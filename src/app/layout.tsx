@@ -3,6 +3,8 @@ import { Toaster } from "@/components/ui/toaster";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { CookieConsentBanner } from "@/components/shared/CookieConsentBanner";
+import { ScrollToTopButton } from "@/components/shared/ScrollToTopButton";
+import { Chatbot } from "@/components/shared/Chatbot";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -28,12 +30,14 @@ export default function RootLayout({
           rel="stylesheet"
         />
       </head>
-      <body className="font-body antialiased">
+      <body className="font-body antialiased flex flex-col min-h-screen">
         <Header />
-        <main>{children}</main>
+        <main className="flex-grow">{children}</main>
         <Footer />
         <CookieConsentBanner />
         <Toaster />
+        <ScrollToTopButton />
+        <Chatbot />
       </body>
     </html>
   );
