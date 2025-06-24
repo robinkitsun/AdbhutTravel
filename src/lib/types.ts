@@ -3,7 +3,6 @@ export interface Package {
   name: string;
   image: string;
   dataAiHint: string;
-  price: number;
   duration: string;
 }
 

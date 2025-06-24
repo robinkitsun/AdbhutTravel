@@ -60,7 +60,9 @@ export default function Footer() {
         
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="space-y-4">
-            <Logo />
+            <Link href="/">
+             <Logo />
+            </Link>
             <p className="text-sm text-muted-foreground">
               Crafting unforgettable travel experiences. <br />
               CIN: U63090HR2020PTC086874

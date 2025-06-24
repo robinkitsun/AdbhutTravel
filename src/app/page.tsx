@@ -11,7 +11,6 @@ const domesticPackages: Package[] = [
     name: 'Coastal Charm: Goa Gateway',
     image: 'https://placehold.co/600x400.png',
     dataAiHint: 'Goa beach',
-    price: 499,
     duration: '5 Days / 4 Nights',
   },
   {
@@ -19,7 +18,6 @@ const domesticPackages: Package[] = [
     name: 'Mountain Majesty: Himalayan Retreat',
     image: 'https://placehold.co/600x400.png',
     dataAiHint: 'Himalayan mountains',
-    price: 799,
     duration: '7 Days / 6 Nights',
   },
   {
@@ -27,7 +25,6 @@ const domesticPackages: Package[] = [
     name: 'Royal Rajasthan: Heritage Tour',
     image: 'https://placehold.co/600x400.png',
     dataAiHint: 'Rajasthan fort',
-    price: 650,
     duration: '6 Days / 5 Nights',
   },
 ];
@@ -38,7 +35,6 @@ const internationalPackages: Package[] = [
     name: 'Parisian Dreams: Eiffel Tower & Louvre',
     image: 'https://placehold.co/600x400.png',
     dataAiHint: 'Eiffel Tower',
-    price: 1299,
     duration: '7 Days / 6 Nights',
   },
   {
@@ -46,7 +42,6 @@ const internationalPackages: Package[] = [
     name: 'Bali Bliss: Beaches & Temples',
     image: 'https://placehold.co/600x400.png',
     dataAiHint: 'Bali temple',
-    price: 999,
     duration: '8 Days / 7 Nights',
   },
   {
@@ -54,7 +49,6 @@ const internationalPackages: Package[] = [
     name: 'Roman Holiday: Colosseum & Vatican',
     image: 'https://placehold.co/600x400.png',
     dataAiHint: 'Rome Colosseum',
-    price: 1150,
     duration: '6 Days / 5 Nights',
   },
 ];

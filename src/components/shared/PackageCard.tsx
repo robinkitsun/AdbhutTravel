@@ -29,8 +29,7 @@ export default function PackageCard({ pkg }: PackageCardProps) {
             <span>{pkg.duration}</span>
         </div>
       </CardContent>
-      <CardFooter className="p-6 pt-0 flex justify-between items-center">
-        <p className="text-xl font-bold text-foreground">${pkg.price}</p>
+      <CardFooter className="p-6 pt-0 flex justify-end items-center">
         <Button asChild>
           <Link href="/contact">Book Now</Link>
         </Button>
