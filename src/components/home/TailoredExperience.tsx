@@ -15,7 +15,7 @@ export default function TailoredExperience() {
               width={600}
               height={700}
               className="w-full h-full object-cover"
-              data-ai-hint="person planning map"
+              data-ai-hint="planning map"
             />
           </div>
           <div>

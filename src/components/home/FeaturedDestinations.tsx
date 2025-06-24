@@ -3,9 +3,9 @@ import { Card, CardContent } from "@/components/ui/card";
 import { ArrowRight } from "lucide-react";
 
 const destinations = [
-  { name: "Majestic Peaks of the Alps", image: "https://placehold.co/400x500.png", dataAiHint: "alps mountains" },
-  { name: "Serene Shores of the Maldives", image: "https://placehold.co/400x500.png", dataAiHint: "maldives beach" },
-  { name: "Vibrant Streets of Tokyo", image: "https://placehold.co/400x500.png", dataAiHint: "tokyo street" },
+  { name: "Majestic Peaks of the Alps", image: "https://placehold.co/400x500.png", dataAiHint: "Alps mountains" },
+  { name: "Serene Shores of the Maldives", image: "https://placehold.co/400x500.png", dataAiHint: "Maldives beach" },
+  { name: "Vibrant Streets of Tokyo", image: "https://placehold.co/400x500.png", dataAiHint: "Tokyo street" },
 ];
 
 export default function FeaturedDestinations() {

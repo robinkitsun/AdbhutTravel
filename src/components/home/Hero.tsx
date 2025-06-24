@@ -8,7 +8,7 @@ export default function Hero() {
       <div 
         className="absolute inset-0 bg-cover bg-center bg-fixed"
         style={{ backgroundImage: "url('https://placehold.co/1920x1080.png')" }}
-        data-ai-hint="thailand beach"
+        data-ai-hint="tropical paradise"
       >
         <div className="absolute inset-0 bg-black/50" />
       </div>
