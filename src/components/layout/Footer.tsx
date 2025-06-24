@@ -25,7 +25,7 @@ export default function Footer() {
 
   return (
     <footer className="bg-secondary/50 text-foreground border-t">
-      <div className="container py-12 px-6">
+      <div className="container py-12">
         {isHomePage && (
           <div className="mb-12">
             <div className="max-w-4xl mx-auto">
@@ -76,7 +76,16 @@ export default function Footer() {
                   U63090HR2020PTC086874
                 </Link>
             </p>
-            <div className="flex space-x-4">
+          </div>
+          <div>
+            <h3 className="font-headline font-semibold mb-4">Quick Links</h3>
+            <ul className="space-y-2 text-sm">
+              <li><Link href="/about" className="text-muted-foreground hover:text-primary">About Us</Link></li>
+              <li><Link href="/services" className="text-muted-foreground hover:text-primary">Services</Link></li>
+              <li><Link href="/mice" className="text-muted-foreground hover:text-primary">MICE</Link></li>
+              <li><Link href="/contact" className="text-muted-foreground hover:text-primary">Contact Us</Link></li>
+            </ul>
+             <div className="flex space-x-4 mt-4">
               <Link href="https://x.com/AdbhutTravel" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary">
                 <Twitter className="h-5 w-5" />
               </Link>
@@ -93,15 +102,6 @@ export default function Footer() {
                 <Youtube className="h-5 w-5" />
               </Link>
             </div>
-          </div>
-          <div>
-            <h3 className="font-headline font-semibold mb-4">Quick Links</h3>
-            <ul className="space-y-2 text-sm">
-              <li><Link href="/about" className="text-muted-foreground hover:text-primary">About Us</Link></li>
-              <li><Link href="/services" className="text-muted-foreground hover:text-primary">Services</Link></li>
-              <li><Link href="/mice" className="text-muted-foreground hover:text-primary">MICE</Link></li>
-              <li><Link href="/contact" className="text-muted-foreground hover:text-primary">Contact Us</Link></li>
-            </ul>
           </div>
           <div>
             <h3 className="font-headline font-semibold mb-4">Legal</h3>
