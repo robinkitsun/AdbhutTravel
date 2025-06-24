@@ -28,7 +28,7 @@ export default function ContactPage() {
                         </div>
                         <div>
                             <h3 className="font-semibold text-lg">Our Office</h3>
-                            <p className="text-muted-foreground">123 Travel Lane, Wanderlust City, 12345</p>
+                            <p className="text-muted-foreground">SCF 61, 1st Floor, Near Anaj Mandi Gate, Pehowa, Kurukshetra, Haryana-136128</p>
                         </div>
                      </div>
                       <div className="flex items-start gap-4">
@@ -37,7 +37,7 @@ export default function ContactPage() {
                         </div>
                         <div>
                             <h3 className="font-semibold text-lg">Email Us</h3>
-                            <p className="text-muted-foreground">contact@adbhutexplorer.com</p>
+                            <p className="text-muted-foreground">info@adbhuttravel.in</p>
                         </div>
                      </div>
                       <div className="flex items-start gap-4">
@@ -46,7 +46,8 @@ export default function ContactPage() {
                         </div>
                         <div>
                             <h3 className="font-semibold text-lg">Call Us</h3>
-                            <p className="text-muted-foreground">+1 (234) 567-890</p>
+                            <p className="text-muted-foreground">Toll Free: 1800 890 5147</p>
+                            <p className="text-muted-foreground">Mobile: +91-9671825147</p>
                         </div>
                      </div>
                 </div>

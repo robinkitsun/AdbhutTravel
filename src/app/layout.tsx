@@ -6,8 +6,8 @@ import { CookieConsentBanner } from "@/components/shared/CookieConsentBanner";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Adbhut Explorer",
-  description: "Curated travel packages and personalized itinerary planning.",
+  title: "Adbhut Travel And Event Pvt. Ltd.",
+  description: "Curated travel packages and personalized itinerary planning by Adbhut Travel.",
   icons: {
     icon: "/favicon.ico",
   },

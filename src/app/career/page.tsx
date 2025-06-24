@@ -54,7 +54,7 @@ export default function CareerPage() {
                 </CardContent>
                 <CardFooter>
                   <Button asChild className="w-full">
-                    <Link href={`mailto:careers@adbhutexplorer.com?subject=Application for ${job.title}`}>Apply Now</Link>
+                    <Link href={`mailto:info@adbhuttravel.in?subject=Application for ${job.title}`}>Apply Now</Link>
                   </Button>
                 </CardFooter>
               </Card>
@@ -63,7 +63,7 @@ export default function CareerPage() {
            <div className="text-center mt-16">
                 <p className="text-muted-foreground">Don't see a role that fits? We're always looking for talent.</p>
                 <Button asChild variant="link">
-                    <Link href="mailto:careers@adbhutexplorer.com">Send us your resume</Link>
+                    <Link href="mailto:info@adbhuttravel.in">Send us your resume</Link>
                 </Button>
             </div>
         </div>

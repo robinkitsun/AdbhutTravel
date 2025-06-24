@@ -3,18 +3,19 @@ import { Globe, Twitter, Facebook, Instagram, Linkedin, MapPin, Phone, Mail } fr
 
 export default function Footer() {
   return (
-    <footer className="bg-secondary text-secondary-foreground border-t">
+    <footer className="bg-background text-foreground border-t dark">
       <div className="container py-12 px-6">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="space-y-4">
             <Link href="/" className="flex items-center gap-2">
               <Globe className="h-8 w-8 text-primary" />
               <span className="font-headline text-2xl font-bold">
-                Adbhut Explorer
+                Adbhut Travel
               </span>
             </Link>
             <p className="text-sm text-muted-foreground">
-              Crafting unforgettable travel experiences.
+              Crafting unforgettable travel experiences. <br />
+              CIN: U63090HR2020PTC086874
             </p>
             <div className="flex space-x-4">
               <Link href="#" className="text-muted-foreground hover:text-primary">
@@ -53,21 +54,21 @@ export default function Footer() {
             <ul className="space-y-2 text-sm text-muted-foreground">
               <li className="flex items-start gap-2">
                 <MapPin className="h-4 w-4 mt-1 shrink-0" />
-                <span>123 Travel Lane, Wanderlust City, 12345</span>
+                <span>SCF 61, 1st Floor, Near Anaj Mandi Gate, Pehowa, Kurukshetra, Haryana-136128</span>
               </li>
               <li className="flex items-center gap-2">
                 <Phone className="h-4 w-4 shrink-0" />
-                <span>+1 (234) 567-890</span>
+                <span>1800 890 5147 / +91-9671825147</span>
               </li>
               <li className="flex items-center gap-2">
                 <Mail className="h-4 w-4 shrink-0" />
-                <span>contact@adbhutexplorer.com</span>
+                <span>info@adbhuttravel.in</span>
               </li>
             </ul>
           </div>
         </div>
         <div className="mt-8 border-t border-border pt-6 text-center text-sm text-muted-foreground">
-          <p>&copy; {new Date().getFullYear()} Adbhut Explorer. All Rights Reserved.</p>
+          <p>&copy; {new Date().getFullYear()} Adbhut Travel And Event Pvt. Ltd. All Rights Reserved.</p>
         </div>
       </div>
     </footer>

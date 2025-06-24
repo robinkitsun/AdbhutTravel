@@ -21,12 +21,12 @@ export default function Header() {
   const pathname = usePathname();
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-16 max-w-screen-2xl items-center justify-between">
         <Link href="/" className="flex items-center gap-2">
           <Globe className="h-6 w-6 text-primary" />
           <span className="font-headline text-xl font-bold text-foreground">
-            Adbhut Explorer
+            Adbhut Travel
           </span>
         </Link>
 
@@ -37,7 +37,7 @@ export default function Header() {
               href={href}
               className={cn(
                 "transition-colors hover:text-primary",
-                pathname === href ? "text-primary" : "text-muted-foreground"
+                pathname === href ? "text-foreground font-semibold" : "text-muted-foreground"
               )}
             >
               {label}
@@ -54,9 +54,11 @@ export default function Header() {
           </SheetTrigger>
           <SheetContent side="right">
             <nav className="grid gap-6 text-lg font-medium mt-8">
-              <Link href="/" className="flex items-center gap-2 text-lg font-semibold">
+              <Link href="/" className="flex items-center gap-2 text-lg font-semibold mb-4">
                 <Globe className="h-6 w-6 text-primary" />
-                <span className="sr-only">Adbhut Explorer</span>
+                 <span className="font-headline text-xl font-bold text-foreground">
+                  Adbhut Travel
+                </span>
               </Link>
               {navLinks.map(({ href, label }) => (
                 <Link

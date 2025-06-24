@@ -3,10 +3,9 @@ import { Card, CardContent } from "@/components/ui/card";
 import { ArrowRight } from "lucide-react";
 
 const destinations = [
-  { name: "Maldives", image: "https://placehold.co/400x500.png", dataAiHint: "maldives overwater" },
-  { name: "Kyoto", image: "https://placehold.co/400x500.png", dataAiHint: "kyoto cherry" },
-  { name: "Santorini", image: "https://placehold.co/400x500.png", dataAiHint: "santorini greece" },
-  { name: "Jaipur", image: "https://placehold.co/400x500.png", dataAiHint: "jaipur palace" },
+  { name: "Majestic Peaks of the Alps", image: "https://placehold.co/400x500.png", dataAiHint: "alps mountains" },
+  { name: "Serene Shores of the Maldives", image: "https://placehold.co/400x500.png", dataAiHint: "maldives beach" },
+  { name: "Vibrant Streets of Tokyo", image: "https://placehold.co/400x500.png", dataAiHint: "tokyo street" },
 ];
 
 export default function FeaturedDestinations() {
@@ -19,7 +18,7 @@ export default function FeaturedDestinations() {
         <p className="text-center text-muted-foreground max-w-2xl mx-auto mb-10">
           Explore breathtaking destinations handpicked by our travel experts.
         </p>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {destinations.map((dest) => (
             <Card key={dest.name} className="overflow-hidden group border-0 shadow-lg transform hover:-translate-y-2 transition-transform duration-300">
               <CardContent className="p-0 relative">

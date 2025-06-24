@@ -23,7 +23,7 @@ export default function TailoredExperience() {
               Your Journey, Perfectly Tailored
             </h2>
             <p className="text-muted-foreground mb-6">
-              At Adbhut Explorer, we believe that travel should be as unique as you are. Our experts work with you to design a personalized itinerary that matches your interests, budget, and style.
+              At Adbhut Travel, we believe that travel should be as unique as you are. Our experts work with you to design a personalized itinerary that matches your interests, budget, and style.
             </p>
             <ul className="space-y-4 mb-8">
               <li className="flex items-center gap-3">
