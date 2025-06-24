@@ -137,7 +137,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-6 border-t border-border pt-4 text-center text-sm text-muted-foreground">
+        <div className="mt-4 border-t border-border pt-2 text-center text-sm text-muted-foreground">
           <p>&copy; {new Date().getFullYear()} Adbhut Travel And Event Pvt. Ltd. All Rights Reserved.</p>
         </div>
       </div>
