@@ -1,17 +1,15 @@
 import { cn } from '@/lib/utils';
+import Image from 'next/image';
 
 export function Logo({ className }: { className?: string }) {
   return (
-    <div className={cn("grid", className)}>
-        <div className="flex items-start">
-            <span className="font-body text-3xl font-bold tracking-tight text-primary">
-                ADBHUT
-            </span>
-            <span className="text-[10px] font-bold text-primary" style={{ lineHeight: '1.5' }}>®</span>
-        </div>
-        <span className="font-body text-[10px] text-right -mt-1.5 italic text-foreground/90">
-            Travel & Event Pvt Ltd
-        </span>
-    </div>
+    <Image
+      src="https://www.adbhuttravel.com/wp-content/uploads/2023/08/cropped-adbhut-logo-1.png"
+      alt="Adbhut Travel And Event Pvt. Ltd. Logo"
+      width={188}
+      height={40}
+      className={cn(className)}
+      priority
+    />
   );
 }
