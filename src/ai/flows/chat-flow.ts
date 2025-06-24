@@ -43,10 +43,7 @@ export async function chatWithAgent(input: z.infer<typeof ChatInputSchema>): Pro
     const {output} = await ai.generate({
         prompt: message,
         history: historyForModel,
-        config: {
-            // @ts-ignore
-            system: systemPrompt,
-        },
+        system: systemPrompt,
     });
     
     return output.text;

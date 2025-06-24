@@ -6,6 +6,7 @@ import { CookieConsentBanner } from "@/components/shared/CookieConsentBanner";
 import { ScrollToTopButton } from "@/components/shared/ScrollToTopButton";
 import { Chatbot } from "@/components/shared/Chatbot";
 import "./globals.css";
+import { ScrollToBottomButton } from "@/components/shared/ScrollToBottomButton";
 
 export const metadata: Metadata = {
   title: "Adbhut Travel And Event Pvt. Ltd.",
@@ -21,7 +22,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="!scroll-smooth" suppressHydrationWarning>
+    <html lang="en" className="scroll-smooth" suppressHydrationWarning>
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
@@ -37,6 +38,7 @@ export default function RootLayout({
         <CookieConsentBanner />
         <Toaster />
         <ScrollToTopButton />
+        <ScrollToBottomButton />
         <Chatbot />
       </body>
     </html>
