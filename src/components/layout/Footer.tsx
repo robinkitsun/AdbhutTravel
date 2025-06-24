@@ -50,7 +50,7 @@ export default function Footer() {
                 alt={logo.alt}
                 width={logo.width}
                 height={logo.height}
-                className="object-contain brightness-0 invert"
+                className="object-contain"
                 data-ai-hint={logo.dataAiHint}
               />
             ))}
