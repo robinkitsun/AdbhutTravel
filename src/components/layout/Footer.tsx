@@ -1,10 +1,62 @@
+"use client";
+
 import Link from "next/link";
+import Image from "next/image";
+import { usePathname } from "next/navigation";
 import { Globe, Twitter, Facebook, Instagram, Linkedin, MapPin, Phone, Mail } from "lucide-react";
 
+const certificateLogos = [
+  { src: 'https://placehold.co/130x40.png', alt: 'Ministry of Tourism', width: 130, height: 40, dataAiHint: "tourism ministry logo" },
+  { src: 'https://placehold.co/80x40.png', alt: 'IATA', width: 80, height: 40, dataAiHint: "IATA logo" },
+  { src: 'https://placehold.co/80x40.png', alt: 'TAAI', width: 80, height: 40, dataAiHint: "TAAI logo" },
+  { src: 'https://placehold.co/90x40.png', alt: 'TAFI', width: 90, height: 40, dataAiHint: "TAFI logo" },
+  { src: 'https://placehold.co/140x40.png', alt: 'Outbound Tour Operators Association of India', width: 140, height: 40, dataAiHint: "OTOAI logo" },
+  { src: 'https://placehold.co/70x40.png', alt: 'ETAA', width: 70, height: 40, dataAiHint: "ETAA logo" },
+  { src: 'https://placehold.co/90x40.png', alt: 'Association of Domestic Tour Operators of India', width: 90, height: 40, dataAiHint: "adtoi logo" },
+  { src: 'https://placehold.co/130x40.png', alt: 'Haryana Tourism', width: 130, height: 40, dataAiHint: "haryana tourism logo" },
+  { src: 'https://placehold.co/80x40.png', alt: 'AHK', width: 80, height: 40, dataAiHint: "AHK logo" },
+];
+
+
 export default function Footer() {
+  const pathname = usePathname();
+  const isHomePage = pathname === '/';
+
   return (
     <footer className="bg-background text-foreground border-t dark">
       <div className="container py-12 px-6">
+        {isHomePage && (
+          <div className="mb-12">
+            <div className="max-w-4xl mx-auto">
+              <div className="relative h-0 pb-[56.25%]"> {/* 16:9 aspect ratio */}
+                <iframe
+                  className="absolute top-0 left-0 w-full h-full rounded-lg shadow-xl"
+                  src="https://www.youtube.com/embed/IfBDSc2Lb7U"
+                  title="ADBHUT Profile Video"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowFullScreen
+                ></iframe>
+              </div>
+            </div>
+          </div>
+        )}
+
+        <div className="mb-12">
+          <div className="flex justify-center items-center flex-wrap gap-x-8 gap-y-6">
+            {certificateLogos.map((logo, index) => (
+              <Image
+                key={index}
+                src={logo.src}
+                alt={logo.alt}
+                width={logo.width}
+                height={logo.height}
+                className="object-contain brightness-0 invert"
+                data-ai-hint={logo.dataAiHint}
+              />
+            ))}
+          </div>
+        </div>
+        
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="space-y-4">
             <Link href="/" className="flex items-center gap-2">
