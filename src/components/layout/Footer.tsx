@@ -3,7 +3,8 @@
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { Globe, Twitter, Facebook, Instagram, Linkedin, MapPin, Phone, Mail } from "lucide-react";
+import { Twitter, Facebook, Instagram, Linkedin, MapPin, Phone, Mail, Youtube } from "lucide-react";
+import { Logo } from "@/components/shared/Logo";
 
 const certificateLogos = [
   { src: 'https://placehold.co/130x40.png', alt: 'Ministry of Tourism', width: 130, height: 40, dataAiHint: "tourism ministry logo" },
@@ -23,7 +24,7 @@ export default function Footer() {
   const isHomePage = pathname === '/';
 
   return (
-    <footer className="bg-background text-foreground border-t dark">
+    <footer className="bg-secondary/50 text-foreground border-t">
       <div className="container py-12 px-6">
         {isHomePage && (
           <div className="mb-12">
@@ -59,28 +60,26 @@ export default function Footer() {
         
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="space-y-4">
-            <Link href="/" className="flex items-center gap-2">
-              <Globe className="h-8 w-8 text-primary" />
-              <span className="font-headline text-2xl font-bold">
-                Adbhut Travel
-              </span>
-            </Link>
+            <Logo />
             <p className="text-sm text-muted-foreground">
               Crafting unforgettable travel experiences. <br />
               CIN: U63090HR2020PTC086874
             </p>
             <div className="flex space-x-4">
-              <Link href="#" className="text-muted-foreground hover:text-primary">
+              <Link href="https://x.com/AdbhutTravel" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary">
                 <Twitter className="h-5 w-5" />
               </Link>
-              <Link href="#" className="text-muted-foreground hover:text-primary">
+              <Link href="https://www.facebook.com/adbhuttravelagency" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary">
                 <Facebook className="h-5 w-5" />
               </Link>
-              <Link href="#" className="text-muted-foreground hover:text-primary">
+              <Link href="https://www.instagram.com/adbhut_travel_agency/?hl=en" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary">
                 <Instagram className="h-5 w-5" />
               </Link>
-              <Link href="#" className="text-muted-foreground hover:text-primary">
+               <Link href="https://www.linkedin.com/in/mohit-sharma-8517221b8/" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary">
                 <Linkedin className="h-5 w-5" />
+              </Link>
+              <Link href="https://www.youtube.com/watch?v=IfBDSc2Lb7U" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary">
+                <Youtube className="h-5 w-5" />
               </Link>
             </div>
           </div>

@@ -1,5 +1,6 @@
 import ContactForm from "@/components/contact/ContactForm";
-import { Mail, Phone, MapPin } from "lucide-react";
+import { Mail, Phone, MapPin, Facebook, Instagram, Youtube, Linkedin, Twitter } from "lucide-react";
+import Link from "next/link";
 
 export default function ContactPage() {
   return (
@@ -50,6 +51,26 @@ export default function ContactPage() {
                             <p className="text-muted-foreground">Mobile: +91-9671825147</p>
                         </div>
                      </div>
+                </div>
+                 <div>
+                    <h3 className="font-semibold text-lg mb-4">Follow Us</h3>
+                    <div className="flex space-x-4">
+                        <Link href="https://www.facebook.com/adbhuttravelagency" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary p-2 bg-primary/20 rounded-full">
+                            <Facebook className="h-6 w-6" />
+                        </Link>
+                        <Link href="https://www.instagram.com/adbhut_travel_agency/?hl=en" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary p-2 bg-primary/20 rounded-full">
+                            <Instagram className="h-6 w-6" />
+                        </Link>
+                        <Link href="https://www.youtube.com/watch?v=IfBDSc2Lb7U" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary p-2 bg-primary/20 rounded-full">
+                            <Youtube className="h-6 w-6" />
+                        </Link>
+                        <Link href="https://www.linkedin.com/in/mohit-sharma-8517221b8/" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary p-2 bg-primary/20 rounded-full">
+                            <Linkedin className="h-6 w-6" />
+                        </Link>
+                        <Link href="https://x.com/AdbhutTravel" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary p-2 bg-primary/20 rounded-full">
+                            <Twitter className="h-6 w-6" />
+                        </Link>
+                    </div>
                 </div>
             </div>
             <ContactForm />
