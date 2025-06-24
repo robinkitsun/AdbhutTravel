@@ -7,15 +7,15 @@ import { Twitter, Facebook, Instagram, Linkedin, MapPin, Phone, Mail, Youtube } 
 import { Logo } from "@/components/shared/Logo";
 
 const certificateLogos = [
-  { src: 'https://placehold.co/130x40.png', alt: 'Ministry of Tourism', width: 130, height: 40, dataAiHint: "tourism ministry logo" },
-  { src: 'https://placehold.co/80x40.png', alt: 'IATA', width: 80, height: 40, dataAiHint: "IATA logo" },
-  { src: 'https://placehold.co/80x40.png', alt: 'TAAI', width: 80, height: 40, dataAiHint: "TAAI logo" },
-  { src: 'https://placehold.co/90x40.png', alt: 'TAFI', width: 90, height: 40, dataAiHint: "TAFI logo" },
-  { src: 'https://placehold.co/140x40.png', alt: 'Outbound Tour Operators Association of India', width: 140, height: 40, dataAiHint: "OTOAI logo" },
-  { src: 'https://placehold.co/70x40.png', alt: 'ETAA', width: 70, height: 40, dataAiHint: "ETAA logo" },
-  { src: 'https://placehold.co/90x40.png', alt: 'Association of Domestic Tour Operators of India', width: 90, height: 40, dataAiHint: "adtoi logo" },
-  { src: 'https://placehold.co/130x40.png', alt: 'Haryana Tourism', width: 130, height: 40, dataAiHint: "haryana tourism logo" },
-  { src: 'https://placehold.co/80x40.png', alt: 'AHK', width: 80, height: 40, dataAiHint: "AHK logo" },
+  { src: 'https://www.adbhuttravel.com/wp-content/uploads/2023/11/Ministry-of-Tourism.png', alt: 'Ministry of Tourism', width: 130, height: 40, dataAiHint: "tourism ministry logo" },
+  { src: 'https://www.adbhuttravel.com/wp-content/uploads/2023/11/IATA.png', alt: 'IATA', width: 80, height: 40, dataAiHint: "IATA logo" },
+  { src: 'https://www.adbhuttravel.com/wp-content/uploads/2023/11/TAAI.png', alt: 'TAAI', width: 80, height: 40, dataAiHint: "TAAI logo" },
+  { src: 'https://www.adbhuttravel.com/wp-content/uploads/2023/11/TAFI.png', alt: 'TAFI', width: 90, height: 40, dataAiHint: "TAFI logo" },
+  { src: 'https://www.adbhuttravel.com/wp-content/uploads/2023/11/Outbound-Tour-Operators-Association-of-India.png', alt: 'Outbound Tour Operators Association of India', width: 140, height: 40, dataAiHint: "OTOAI logo" },
+  { src: 'https://www.adbhuttravel.com/wp-content/uploads/2023/11/ETAA.png', alt: 'ETAA', width: 70, height: 40, dataAiHint: "ETAA logo" },
+  { src: 'https://www.adbhuttravel.com/wp-content/uploads/2023/11/Association-of-Domestic-Tour-Operators-of-India.png', alt: 'Association of Domestic Tour Operators of India', width: 90, height: 40, dataAiHint: "adtoi logo" },
+  { src: 'https://www.adbhuttravel.com/wp-content/uploads/2023/11/haryana-tourism.png', alt: 'Haryana Tourism', width: 130, height: 40, dataAiHint: "haryana tourism logo" },
+  { src: 'https://www.adbhuttravel.com/wp-content/uploads/2023/11/AHK.png', alt: 'AHK', width: 80, height: 40, dataAiHint: "AHK logo" },
 ];
 
 
@@ -104,18 +104,25 @@ export default function Footer() {
           </div>
           <div>
             <h3 className="font-headline font-semibold mb-4">Contact</h3>
-            <ul className="space-y-2 text-sm text-muted-foreground">
+            <ul className="space-y-3 text-sm text-muted-foreground">
               <li className="flex items-start gap-2">
-                <MapPin className="h-4 w-4 mt-1 shrink-0" />
-                <span>SCF 61, 1st Floor, Near Anaj Mandi Gate, Pehowa, Kurukshetra, Haryana-136128</span>
+                 <Link href="https://maps.app.goo.gl/PQE2gRmZKpLUZY7U9" target="_blank" rel="noopener noreferrer" className="flex items-start gap-2 text-muted-foreground hover:text-primary">
+                    <MapPin className="h-4 w-4 mt-1 shrink-0" />
+                    <span>SCF 61, 1st Floor, Near Anaj Mandi Gate, Pehowa, Kurukshetra, Haryana-136128</span>
+                 </Link>
+              </li>
+              <li className="flex items-start gap-2">
+                <Phone className="h-4 w-4 mt-1 shrink-0" />
+                <div>
+                   <Link href="tel:18008905147" className="block text-muted-foreground hover:text-primary">Toll Free: 1800 890 5147</Link>
+                   <Link href="tel:+919671825147" className="block text-muted-foreground hover:text-primary">Mobile: +91-9671825147</Link>
+                </div>
               </li>
               <li className="flex items-center gap-2">
-                <Phone className="h-4 w-4 shrink-0" />
-                <span>1800 890 5147 / +91-9671825147</span>
-              </li>
-              <li className="flex items-center gap-2">
-                <Mail className="h-4 w-4 shrink-0" />
-                <span>info@adbhuttravel.in</span>
+                 <Link href="mailto:info@adbhuttravel.in" className="flex items-center gap-2 text-muted-foreground hover:text-primary">
+                    <Mail className="h-4 w-4 shrink-0" />
+                    <span>info@adbhuttravel.in</span>
+                 </Link>
               </li>
             </ul>
           </div>
