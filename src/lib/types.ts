@@ -12,6 +12,12 @@ export type Facility =
   | 'wifi'
   | 'veg';
 
+export interface ItineraryDay {
+  day: number;
+  title: string;
+  details: string[];
+}
+
 export interface Package {
   id: string;
   name: string;
@@ -22,7 +28,7 @@ export interface Package {
   facilities?: Facility[];
   gallery?: string[];
   galleryHints?: string[];
-  itinerary: string;
+  itinerary: ItineraryDay[];
 }
 
 export interface Testimonial {

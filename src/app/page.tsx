@@ -22,35 +22,13 @@ const domesticPackages: Package[] = [
         "https://placehold.co/600x400.png",
     ],
     galleryHints: ["kashmir dal lake", "kashmir mountains", "srinagar garden", "kashmir people"],
-    itinerary: `Couple's Kashmir Escape: 5-Day Itinerary
-This itinerary focuses on popular sights and romantic activities for a couple's getaway in Kashmir.
-
-Day 1: Arrival in Srinagar & Dal Lake Serenity
-Morning (9:00 AM): Arrive at Srinagar Airport (SXR). Our representative will greet you and transfer you to your houseboat on Dal Lake.
-Afternoon (1:00 PM): Check in and enjoy a welcome lunch on the houseboat.
-Afternoon (3:00 PM): Shikara ride on Dal Lake. Explore the floating gardens, Nehru Park, and Kabutarkhana (pigeon house).
-Evening (7:00 PM): Enjoy a romantic candle-light dinner on the houseboat.
-
-Day 2: Gulmarg's Snowy Paradise
-Morning (9:00 AM): After breakfast, drive to Gulmarg, the "Meadow of Flowers."
-Afternoon (1:00 PM): Take the Gulmarg Gondola ride (Phase 1) to Kongdoori Station for stunning views of the snow-capped peaks.
-Afternoon (3:00 PM): Try your hand at skiing or snowboarding (seasonal) or simply enjoy the panoramic vistas.
-Evening (6:00 PM): Return to Srinagar for dinner and overnight stay.
-
-Day 3: The Valleys of Pahalgam
-Morning (9:00 AM): Depart for Pahalgam, the "Valley of Shepherds." En route, visit the saffron fields and Awantipura ruins.
-Afternoon (1:00 PM): On arrival, check into your hotel. Post lunch, explore the scenic Aru Valley and Betaab Valley.
-Evening (6:00 PM): Stroll along the Lidder River. Dinner and overnight stay in Pahalgam.
-
-Day 4: The Golden Meadows of Sonmarg
-Morning (9:00 AM): Travel to Sonmarg, the "Meadow of Gold."
-Afternoon (12:00 PM): Explore the Thajiwas Glacier. You can hire a pony for a scenic ride.
-Afternoon (3:00 PM): Enjoy the serene beauty of the alpine meadows and gushing streams.
-Evening (7:00 PM): Return to your hotel in Srinagar for a farewell dinner.
-
-Day 5: Departure
-Morning (9:00 AM): After breakfast, you will be transferred to Srinagar Airport for your onward journey, filled with beautiful memories.
-`
+    itinerary: [
+      { day: 1, title: 'Arrival in Srinagar & Dal Lake', details: ['Arrive at Srinagar Airport, where our representative will greet you and escort you to your charming houseboat on Dal Lake. After settling in, embark on a serene Shikara ride, gliding across the tranquil waters to witness floating gardens and vibrant markets.'] },
+      { day: 2, title: 'Gulmarg Gondola & Alpine Views', details: ['Journey to Gulmarg, the "Meadow of Flowers." Ascend via the famous Gulmarg Gondola to Kongdoori Station, where you\'ll be met with breathtaking panoramic views of snow-capped peaks. Spend the afternoon exploring the alpine meadows before returning to Srinagar.'] },
+      { day: 3, title: 'Pahalgam\'s Valleys & Scenery', details: ['Travel to Pahalgam, the "Valley of Shepherds." Discover the stunning beauty of Aru Valley and Betaab Valley, settings for many Bollywood films. Enjoy a peaceful walk along the Lidder River, surrounded by pristine nature.'] },
+      { day: 4, title: 'Sonmarg, the Meadow of Gold', details: ['Explore Sonmarg, known for its golden meadows and dramatic landscapes. Take an optional pony ride to the Thajiwas Glacier to witness its grandeur up close. The day is filled with incredible photo opportunities and fresh mountain air.'] },
+      { day: 5, title: 'Departure from Srinagar', details: ['After a final Kashmiri breakfast, we will transfer you to Srinagar Airport for your departure, leaving you with unforgettable memories of your romantic escape.'] }
+    ]
   },
   {
     id: '2',
@@ -67,31 +45,13 @@ Morning (9:00 AM): After breakfast, you will be transferred to Srinagar Airport 
         "https://placehold.co/600x400.png",
     ],
     galleryHints: ["ladakh monastery", "pangong lake", "nubra valley", "khardung la pass"],
-    itinerary: `Leh-Ladakh Adventure: 5-Day Itinerary
-A high-altitude adventure for a group of four, exploring the rugged beauty of Ladakh.
-
-Day 1: Arrival and Acclimatization in Leh
-Morning (10:00 AM): Arrive at Kushok Bakula Rimpochee Airport (IXL). Transfer to your hotel and rest for the full day to acclimatize to the high altitude (11,500 ft).
-Evening (5:00 PM): A gentle walk to Leh Market and Shanti Stupa for a panoramic sunset view.
-
-Day 2: Exploring Leh's Monasteries
-Morning (9:00 AM): Visit Thiksey Monastery, an impressive complex rising tier upon tier on a hill.
-Afternoon (1:00 PM): Explore Hemis Monastery, the largest and wealthiest monastery in Ladakh.
-Afternoon (4:00 PM): Visit the Hall of Fame, a museum constructed by the Indian Army in memory of the brave soldiers.
-
-Day 3: Nubra Valley via Khardung La
-Morning (8:00 AM): Drive to Nubra Valley, crossing the Khardung La Pass, one of the world's highest motorable roads.
-Afternoon (2:00 PM): Check into your camp/hotel in Hunder. Post lunch, enjoy a double-humped Bactrian camel ride on the sand dunes.
-Evening: Relax and enjoy the serene desert landscape.
-
-Day 4: Journey to Pangong Lake
-Morning (8:00 AM): Drive to the mesmerizing Pangong Lake, a high-altitude saline water lake that changes colors.
-Afternoon (1:00 PM): Spend time at the lake shore, taking in the breathtaking views of the turquoise water against the stark mountains.
-Evening (6:00 PM): Drive back to Leh for dinner and overnight stay.
-
-Day 5: Departure from Leh
-Morning (8:00 AM): After breakfast, transfer to Leh airport for your flight back home, with memories of a lifetime.
-`
+    itinerary: [
+      { day: 1, title: 'Arrival & Acclimatization in Leh', details: ['Fly into Leh and take the full day to acclimatize to the high altitude (11,500 ft), which is crucial for a healthy trip. In the evening, take a gentle stroll to Shanti Stupa for a panoramic sunset view over the valley.'] },
+      { day: 2, title: 'Monastery Tour & Local Culture', details: ['Immerse yourself in Ladakhi culture with visits to the region\'s most famous monasteries. Explore the grandeur of Thiksey Monastery and the ancient treasures of Hemis Monastery, the largest in Ladakh.'] },
+      { day: 3, title: 'Nubra Valley via Khardung La', details: ['Embark on a thrilling drive to Nubra Valley over Khardung La, one of the world\'s highest motorable passes. In Hunder, enjoy a unique double-humped Bactrian camel ride across the cold desert sand dunes.'] },
+      { day: 4, title: 'The Spectacle of Pangong Lake', details: ['Journey to the mesmerizing Pangong Lake, a high-altitude saline lake that famously changes color with the shifting light. Spend the afternoon taking in the breathtaking views before returning to Leh.'] },
+      { day: 5, title: 'Departure from Leh', details: ['After breakfast, you will be transferred to Leh Airport, filled with incredible memories of your high-altitude adventure with your group.'] }
+    ]
   },
   {
     id: '3',
@@ -108,39 +68,18 @@ Morning (8:00 AM): After breakfast, transfer to Leh airport for your flight back
         "https://placehold.co/600x400.png",
     ],
     galleryHints: ["kedarnath temple", "badrinath temple", "gangotri glacier", "yamunotri temple"],
-    itinerary: `Sacred Char Dham Yatra: 10-Day Itinerary
-A spiritual group journey to the four holy shrines of Yamunotri, Gangotri, Kedarnath, and Badrinath.
-
-Day 1: Delhi to Haridwar (210 Kms / 6-7 hrs)
-Arrive in Delhi and drive to Haridwar. Check into the hotel. In the evening, witness the grand Ganga Aarti at Har Ki Pauri.
-
-Day 2: Haridwar to Barkot (220 Kms / 7-8 hrs)
-After breakfast, drive to Barkot via Dehradun and Mussoorie. En route, visit Kempty Fall.
-
-Day 3: Barkot - Yamunotri - Barkot (36 Kms drive & 6 Kms Trek)
-Drive to Janki Chatti, then start your 6 km trek to Yamunotri. After Darshan, trek back and drive to Barkot.
-
-Day 4: Barkot to Uttarkashi (100 Kms / 4 hrs)
-Drive to Uttarkashi. Visit Vishwanath Temple. Check into the hotel.
-
-Day 5: Uttarkashi - Gangotri - Uttarkashi (100 Kms / 3-4 hrs each way)
-Proceed to Gangotri. After offering prayers at the temple, drive back to Uttarkashi.
-
-Day 6: Uttarkashi to Guptkashi (220 Kms / 8-9 hrs)
-Drive to Guptkashi via Moolgarh & Lambgoan. Check into the hotel.
-
-Day 7: Guptkashi - Kedarnath (30 Kms by road & 19 Kms trek)
-Drive to Sonprayag, then take a local jeep to Gaurikund. Begin your trek to Kedarnath. Perform Pooja and Darshan.
-
-Day 8: Kedarnath - Guptkashi (19 Kms trek & 30 Kms by road)
-Trek down to Gaurikund. Later, drive to Guptkashi and check into the hotel.
-
-Day 9: Guptkashi to Badrinath (215 Kms / 7 hrs)
-Drive to Badrinath via Chopta. On arrival, check into the hotel and visit the Badrinath Temple for evening Aarti.
-
-Day 10: Badrinath to Rishikesh/Delhi (315 Kms / 10-11 hrs)
-Early morning, visit Mana Village. Later, drive back to Rishikesh/Delhi for your onward journey.
-`
+    itinerary: [
+      { day: 1, title: 'Delhi to Haridwar', details: ['Your spiritual journey begins as we drive from Delhi to the holy city of Haridwar. In the evening, witness the captivating Ganga Aarti ceremony at Har Ki Pauri, a truly divine experience.'] },
+      { day: 2, title: 'Haridwar to Barkot', details: ['Travel to Barkot, the gateway to Yamunotri. The scenic drive takes you through Mussoorie, offering beautiful views of the Himalayan foothills.'] },
+      { day: 3, title: 'Yamunotri Darshan', details: ['Drive to Janki Chatti and begin the trek to Yamunotri, the source of the Yamuna River. After seeking blessings at the temple, return to Barkot for the night.'] },
+      { day: 4, title: 'Barkot to Uttarkashi', details: ['Proceed to Uttarkashi, a town situated on the banks of the Bhagirathi river. Visit the ancient Vishwanath Temple in the evening.'] },
+      { day: 5, title: 'Gangotri Darshan', details: ['Journey to Gangotri, the origin of the sacred River Ganges. Offer your prayers at the temple and soak in the spiritual atmosphere before returning to Uttarkashi.'] },
+      { day: 6, title: 'Uttarkashi to Guptkashi', details: ['A long but scenic drive takes you to Guptkashi, an important town on the route to Kedarnath, with views of the Mandakini river valley.'] },
+      { day: 7, title: 'Kedarnath Darshan', details: ['Drive to Sonprayag and then trek or take a helicopter to the holy shrine of Kedarnath, one of the twelve Jyotirlingas of Lord Shiva. The temple\'s majestic setting is awe-inspiring.'] },
+      { day: 8, title: 'Return to Guptkashi', details: ['After morning prayers at Kedarnath, trek back down to Sonprayag and drive to Guptkashi for a well-deserved rest.'] },
+      { day: 9, title: 'Guptkashi to Badrinath', details: ['Travel to Badrinath, the sacred abode of Lord Vishnu. Check into your hotel and visit the Badrinath Temple for the evening Aarti.'] },
+      { day: 10, title: 'Badrinath to Rishikesh/Delhi', details: ['After a final darshan and a visit to Mana, the last village before the Indo-Tibetan border, we begin our journey back towards Rishikesh/Delhi, concluding the sacred pilgrimage.'] }
+    ]
   },
 ];
 
@@ -160,25 +99,13 @@ const internationalPackages: Package[] = [
         "https://placehold.co/600x400.png",
     ],
     galleryHints: ["kuala lumpur towers", "batu caves", "langkawi beach", "penang street art"],
-    itinerary: `Malaysian Discovery for Two: 5-Day Itinerary
-A romantic couple's trip exploring the vibrant culture and landmarks of Malaysia.
-
-Day 1: Arrival in Kuala Lumpur
-Arrive at Kuala Lumpur International Airport (KUL). Transfer to your hotel and check-in. Spend the rest of the day at leisure.
-
-Day 2: Kuala Lumpur City Tour
-Morning: Visit the iconic Petronas Twin Towers for a photo stop, explore Independence Square, and the National Mosque.
-Afternoon: Head to the Batu Caves, a limestone hill that has a series of caves and cave temples.
-
-Day 3: Genting Highlands Day Trip
-Full Day: Enjoy a scenic drive to the Genting Highlands. Take a cable car ride and try your luck at the casino or enjoy the indoor theme park.
-
-Day 4: Shopping and Leisure
-Full Day: Free for you to explore Kuala Lumpur's famous shopping districts like Bukit Bintang or relax at the hotel.
-
-Day 5: Departure
-After breakfast, transfer to the airport for your flight home, with wonderful memories of Malaysia.
-`
+    itinerary: [
+      { day: 1, title: 'Arrival in Kuala Lumpur', details: ['Arrive at Kuala Lumpur International Airport (KUL) and transfer to your hotel. Spend the evening at leisure, perhaps exploring the vibrant Bukit Bintang shopping and entertainment district.'] },
+      { day: 2, title: 'City Tour & Cultural Landmarks', details: ['Discover Kuala Lumpur\'s icons. Pose for photos at the magnificent Petronas Twin Towers, visit the historic Independence Square, and climb the steps to the sacred Batu Caves, a Hindu shrine set within a limestone hill.'] },
+      { day: 3, title: 'Genting Highlands Day Trip', details: ['Take a scenic drive to the cool mountain air of the Genting Highlands. Enjoy a breathtaking cable car ride over the rainforest canopy and explore the resort\'s attractions, including an indoor theme park and casino.'] },
+      { day: 4, title: 'Langkawi Island Escape', details: ['Fly to the beautiful island of Langkawi. Check into your beachside resort and spend the day relaxing on the white sandy beaches or taking a dip in the turquoise waters of the Andaman Sea.'] },
+      { day: 5, title: 'Departure', details: ['Enjoy a final Malaysian breakfast before transferring to Langkawi Airport for your flight home, filled with wonderful memories.'] }
+    ]
   },
   {
     id: '5',
@@ -195,26 +122,13 @@ After breakfast, transfer to the airport for your flight home, with wonderful me
         "https://placehold.co/600x400.png",
     ],
     galleryHints: ["eiffel tower night", "louvre museum", "seine river cruise", "montmartre paris"],
-    itinerary: `Solo in Paris: 5-Day Itinerary
-An immersive tour for a solo traveler to experience the art, history, and charm of Paris.
-
-Day 1: Arrival in Paris
-Arrive at Charles de Gaulle Airport (CDG), transfer to your hotel. Settle in and perhaps take a walk around your neighborhood.
-
-Day 2: Iconic Landmarks
-Morning: Visit the Eiffel Tower. It's recommended to book tickets in advance to avoid long queues.
-Afternoon: Explore the Louvre Museum, home to masterpieces like the Mona Lisa.
-
-Day 3: Art, Culture, and River Views
-Morning: Visit the charming neighborhood of Montmartre and the Sacré-Cœur Basilica.
-Afternoon: Stroll along the Seine River and take a relaxing river cruise for a different perspective of the city.
-
-Day 4: Palace of Versailles
-Full Day: Take a day trip to the magnificent Palace of Versailles. Explore the opulent palace and its vast, beautiful gardens.
-
-Day 5: Departure
-Enjoy a final Parisian breakfast before heading to the airport for your departure.
-`
+    itinerary: [
+      { day: 1, title: 'Arrival in Paris & First Impressions', details: ['Bienvenue à Paris! Arrive at Charles de Gaulle Airport (CDG) and transfer to your hotel. Settle in and take a leisurely walk through your neighborhood, soaking in the city\'s unique atmosphere and charm.'] },
+      { day: 2, title: 'Iconic Landmarks & Masterpieces', details: ['Ascend the Eiffel Tower for breathtaking views of the city. Later, immerse yourself in art history at the Louvre Museum, where you\'ll come face-to-face with timeless masterpieces like the Mona Lisa and the Venus de Milo.'] },
+      { day: 3, title: 'Artistic Montmartre & River Cruise', details: ['Explore the cobblestone streets of Montmartre, visit the beautiful Sacré-Cœur Basilica, and watch artists at work in Place du Tertre. In the evening, enjoy a relaxing cruise along the Seine River for a magical perspective of Paris by night.'] },
+      { day: 4, title: 'The Splendor of Versailles', details: ['Take a day trip to the magnificent Palace of Versailles, a symbol of absolute monarchy. Wander through the opulent Hall of Mirrors, the lavish royal apartments, and the vast, manicured gardens designed by Le Nôtre.'] },
+      { day: 5, title: 'Au Revoir, Paris', details: ['Enjoy one last Parisian breakfast with a croissant and café au lait before heading to the airport for your departure, carrying with you the unforgettable memories of your solo adventure in the City of Light.'] }
+    ]
   },
   {
     id: '6',
@@ -231,37 +145,16 @@ Enjoy a final Parisian breakfast before heading to the airport for your departur
         "https://placehold.co/600x400.png",
     ],
     galleryHints: ["bali rice terrace", "bali temple", "beach sunset bali", "bali villa pool"],
-    itinerary: `Bali Honeymoon Bliss: 8-Day Itinerary
-A perfect romantic escape for honeymooners, blending relaxation, culture, and adventure in Bali.
-
-Day 1: Arrival in Ubud
-Arrive at Denpasar Airport (DPS) and transfer to your private villa in Ubud. Enjoy a romantic welcome dinner.
-
-Day 2: Ubud's Cultural Heart
-Morning: Visit the Tegalalang Rice Terraces and the Sacred Monkey Forest.
-Afternoon: Enjoy a couple's cooking class to learn the secrets of Balinese cuisine.
-
-Day 3: Spiritual Cleansing and Volcano Views
-Morning: Experience a traditional water purification ceremony at Tirta Empul Temple.
-Afternoon: Head to Kintamani to enjoy stunning views of Mount Batur and its crater lake.
-
-Day 4: Relaxation and Transfer to Seminyak
-Morning: Enjoy a leisurely breakfast and a couple's spa treatment at your villa.
-Afternoon: Transfer to the stylish beach town of Seminyak.
-
-Day 5: Beach Fun and Sunset Temple
-Morning: Enjoy water sports at Tanjung Benoa beach.
-Evening: Visit the iconic Uluwatu Temple perched on a cliff, and watch the traditional Kecak dance at sunset.
-
-Day 6: Island Escape to Nusa Penida
-Full Day: Take a fast boat to Nusa Penida island. Visit breathtaking spots like Kelingking Beach and Angel's Billabong.
-
-Day 7: Leisure and Shopping
-Enjoy a final day relaxing on Seminyak beach, shopping for souvenirs, or exploring the chic cafes and boutiques.
-
-Day 8: Departure
-Enjoy a final breakfast in paradise before transferring to the airport for your flight home.
-`
+    itinerary: [
+      { day: 1, title: 'Arrival in Cultural Ubud', details: ['Welcome to Bali! Arrive at Denpasar Airport (DPS) and be whisked away to your private villa in the heart of cultural Ubud. Settle in and enjoy a romantic welcome dinner surrounded by lush greenery.'] },
+      { day: 2, title: 'Ubud\'s Rice Terraces & Monkey Forest', details: ['Explore the iconic Tegalalang Rice Terraces, a stunning example of Bali\'s subak irrigation system. Afterwards, visit the Sacred Monkey Forest Sanctuary to meet its playful inhabitants.'] },
+      { day: 3, title: 'Volcano Views & Spiritual Cleansing', details: ['Journey to Kintamani to witness the majestic Mount Batur volcano and its crater lake. Later, experience a traditional purification ceremony at the holy water temple of Tirta Empul.'] },
+      { day: 4, title: 'Relaxation & Transfer to Seminyak', details: ['Indulge in a leisurely morning with a traditional Balinese couple\'s spa treatment at your villa. In the afternoon, travel to the stylish beach town of Seminyak, known for its chic boutiques and vibrant sunsets.'] },
+      { day: 5, title: 'Uluwatu Temple & Sunset Kecak Dance', details: ['Spend the morning enjoying water sports or relaxing on the beach. In the evening, visit the dramatic Uluwatu Temple, perched on a cliff edge, and witness the captivating Kecak fire dance at sunset.'] },
+      { day: 6, title: 'Island Escape to Nusa Penida', details: ['Embark on an exciting day trip to the pristine island of Nusa Penida. Discover breathtaking landscapes, including the famous Kelingking "T-Rex" Beach and the natural infinity pool of Angel\'s Billabong.'] },
+      { day: 7, title: 'Leisure and Lasting Memories', details: ['Enjoy your final full day in paradise at your own pace. Relax on Seminyak beach, shop for unique souvenirs, or explore the area\'s renowned cafes and restaurants for a final taste of Bali.'] },
+      { day: 8, title: 'Departure from Paradise', details: ['After a final breakfast, we will transfer you to the airport for your flight home, with hearts full of cherished honeymoon memories.'] }
+    ]
   },
 ];
 

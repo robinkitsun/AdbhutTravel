@@ -52,8 +52,31 @@ export function PackageDetailModal({ pkg, children }: { pkg: Package; children: 
             </TabsList>
             <ScrollArea className="flex-grow mt-4 pr-3">
               <TabsContent value="outline">
-                <div className="prose prose-sm md:prose-base max-w-none text-foreground whitespace-pre-wrap font-body">
-                  {pkg.itinerary}
+                <div className="flow-root">
+                  <ul className="-mb-8">
+                    {pkg.itinerary.map((item, index) => (
+                      <li key={item.day}>
+                        <div className="relative pb-8">
+                          {index !== pkg.itinerary.length - 1 ? (
+                            <span className="absolute left-5 top-5 -ml-px h-full w-0.5 bg-border" aria-hidden="true" />
+                          ) : null}
+                          <div className="relative flex items-start space-x-4">
+                            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary ring-8 ring-background">
+                              <span className="font-bold text-primary-foreground">{item.day}</span>
+                            </div>
+                            <div className="min-w-0 flex-1">
+                              <div>
+                                <h3 className="text-xl font-headline font-bold text-foreground">{item.title}</h3>
+                              </div>
+                              <div className="mt-2 text-muted-foreground">
+                                {item.details.map((p, i) => <p key={i} className="mb-2">{p}</p>)}
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
               </TabsContent>
               <TabsContent value="includes">

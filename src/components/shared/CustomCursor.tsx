@@ -31,16 +31,30 @@ export function CustomCursor() {
       followerY += (dotY - followerY) * 0.2;
 
       if (follower) {
-          follower.style.transform = `translate3d(${followerX}px, ${followerY}px, 0)`;
+          follower.style.setProperty('--follower-x', `${followerX}`);
+          follower.style.setProperty('--follower-y', `${followerY}`);
       }
       rafId.current = requestAnimationFrame(animate);
     };
     
+    const onMouseEnter = () => follower?.classList.add('is-active');
+    const onMouseLeave = () => follower?.classList.remove('is-active');
+
+    const interactiveElements = document.querySelectorAll('a, button, [role="button"]');
+    interactiveElements.forEach(el => {
+        el.addEventListener('mouseenter', onMouseEnter);
+        el.addEventListener('mouseleave', onMouseLeave);
+    });
+
     window.addEventListener('mousemove', onMouseMove);
     animate();
 
     return () => {
       window.removeEventListener('mousemove', onMouseMove);
+      interactiveElements.forEach(el => {
+        el.removeEventListener('mouseenter', onMouseEnter);
+        el.removeEventListener('mouseleave', onMouseLeave);
+      });
       if(rafId.current) {
         cancelAnimationFrame(rafId.current);
       }

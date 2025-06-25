@@ -77,8 +77,15 @@ body {
   left: -12px;
   width: 24px;
   height: 24px;
-  background: radial-gradient(circle, hsl(var(--muted-foreground) / 0.6) 0%, hsl(var(--muted-foreground) / 0) 50%);
+  background: radial-gradient(circle, hsl(var(--muted-foreground) / 0.6) 0%, hsl(var(--muted-foreground) / 0) 60%);
   border-radius: 50%;
   pointer-events: none;
   z-index: 9998;
+  transition: transform 0.2s ease-out, background 0.2s ease-out, width 0.3s ease-out, height 0.3s ease-out;
+  transform: translate3d(calc(var(--follower-x, 0) * 1px), calc(var(--follower-y, 0) * 1px), 0);
+}
+
+.custom-cursor-follower.is-active {
+    transform: translate3d(calc(var(--follower-x, 0) * 1px), calc(var(--follower-y, 0) * 1px), 0) scale(1.5);
+    background: radial-gradient(circle, hsl(var(--primary) / 0.5) 0%, hsl(var(--primary) / 0) 60%);
 }
