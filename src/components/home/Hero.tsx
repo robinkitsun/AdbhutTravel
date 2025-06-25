@@ -1,6 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Search } from "lucide-react";
+import Link from "next/link";
 
 export default function Hero() {
   return (
@@ -19,12 +18,13 @@ export default function Hero() {
         <p className="mt-4 max-w-3xl text-lg md:text-xl text-primary-foreground/90 [text-shadow:0_2px_4px_rgba(0,0,0,0.8)]">
           Explore the world's most breathtaking destinations with Adbhut Travel. From exotic beaches to thrilling mountain treks, we curate unforgettable travel experiences tailored just for you.
         </p>
-        <div className="mt-8 w-full max-w-2xl">
-          <div className="relative">
-            <Input type="search" placeholder="Search destinations or packages" className="h-14 pl-12 pr-32 rounded-full bg-white/90 text-foreground focus:bg-white" />
-            <Search className="absolute left-5 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
-            <Button size="lg" className="absolute right-2 top-1/2 -translate-y-1/2 rounded-full px-8">Search</Button>
-          </div>
+        <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
+            <Button asChild size="lg" className="rounded-full px-8">
+                <Link href="#packages">Explore Packages</Link>
+            </Button>
+            <Button asChild size="lg" variant="outline" className="rounded-full px-8 bg-white/10 border-white text-white hover:bg-white/20 hover:text-white">
+                <Link href="/planner">Plan with AI</Link>
+            </Button>
         </div>
       </div>
     </section>

@@ -66,7 +66,7 @@ export default function PackageCard({ pkg }: PackageCardProps) {
 
       <CardFooter className="p-6 pt-2 flex justify-end items-center">
         <Button asChild>
-          <Link href="/contact">Book Now</Link>
+          <Link href="/contact">Get Free Quote</Link>
         </Button>
       </CardFooter>
     </Card>
