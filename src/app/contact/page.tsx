@@ -81,7 +81,7 @@ export default function ContactPage() {
         <div className="container">
           <div className="rounded-lg overflow-hidden shadow-xl">
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3448.749553535934!2d76.58229987555029!3d29.98569032331562!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390e63755b412991%3A0x19a00b8ec9ce0d88!2sAdbhut%20Travel%20And%20Event%20Pvt.%20Ltd.!5e0!3m2!1sen!2sin!4v1721151603597!5m2!1sen!2sin"
+              src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d442340.13377289276!2d76.584489!3d29.985686!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390e25af861f3c3f%3A0x199d26fab984e138!2sAdbhut%20Travel%20%26%20Event%20Pvt%20Ltd!5e0!3m2!1sen!2sus!4v1750874273315!5m2!1sen!2sus"
               width="100%"
               height="450"
               style={{ border: 0 }}
