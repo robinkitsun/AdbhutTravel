@@ -14,7 +14,14 @@ const domesticPackages: Package[] = [
     dataAiHint: 'Kashmir snow couple',
     duration: '04 Nights / 05 Days',
     packageType: '(Couple)',
-    facilities: ['flight', 'food', 'hotel', 'wifi', 'transport', 'veg'],
+    facilities: ['flight', 'hotel', 'transport', 'meals', 'sightseeing'],
+    gallery: [
+        "https://placehold.co/600x400.png",
+        "https://placehold.co/600x400.png",
+        "https://placehold.co/600x400.png",
+        "https://placehold.co/600x400.png",
+    ],
+    galleryHints: ["kashmir dal lake", "kashmir mountains", "srinagar garden", "kashmir people"]
   },
   {
     id: '2',
@@ -23,16 +30,30 @@ const domesticPackages: Package[] = [
     dataAiHint: 'Ladakh mountains snow',
     duration: '04 Nights / 05 Days',
     packageType: '(4 Person)',
-    facilities: ['flight', 'food', 'hotel', 'wifi', 'transport', 'veg'],
+    facilities: ['hotel', 'transport', 'meals', 'sightseeing', 'guide'],
+    gallery: [
+        "https://placehold.co/600x400.png",
+        "https://placehold.co/600x400.png",
+        "https://placehold.co/600x400.png",
+        "https://placehold.co/600x400.png",
+    ],
+    galleryHints: ["ladakh monastery", "pangong lake", "nubra valley", "khardung la pass"]
   },
   {
     id: '3',
     name: 'Char dham yatra',
     image: 'https://www.adbhuttravel.com/wp-content/uploads/elementor/thumbs/tourists-taking-photos-beautiful-scenery-skiing-around-deogyusan-qbf1rtwnf6x8mcl6p8q8bo24o3cudvotd7j9z0ato8.jpg',
     dataAiHint: 'himalayas temple pilgrimage',
-    duration: '04 Nights / 05 Days',
-    packageType: '(Honeymoon Couple)',
-    facilities: ['flight', 'food', 'hotel', 'wifi', 'transport', 'veg'],
+    duration: '09 Nights / 10 Days',
+    packageType: '(Group)',
+    facilities: ['hotel', 'transport', 'meals', 'guide', 'permit'],
+    gallery: [
+        "https://placehold.co/600x400.png",
+        "https://placehold.co/600x400.png",
+        "https://placehold.co/600x400.png",
+        "https://placehold.co/600x400.png",
+    ],
+    galleryHints: ["kedarnath temple", "badrinath temple", "gangotri glacier", "yamunotri temple"]
   },
 ];
 
@@ -44,7 +65,14 @@ const internationalPackages: Package[] = [
     dataAiHint: 'Malaysia city skyline',
     duration: '04 Nights / 05 Days',
     packageType: '(Couple)',
-    facilities: ['flight', 'food', 'hotel', 'wifi', 'transport', 'veg'],
+    facilities: ['flight', 'hotel', 'transport', 'meals', 'visa'],
+    gallery: [
+        "https://placehold.co/600x400.png",
+        "https://placehold.co/600x400.png",
+        "https://placehold.co/600x400.png",
+        "https://placehold.co/600x400.png",
+    ],
+    galleryHints: ["kuala lumpur towers", "batu caves", "langkawi beach", "penang street art"]
   },
   {
     id: '5',
@@ -53,7 +81,14 @@ const internationalPackages: Package[] = [
     dataAiHint: 'Eiffel Tower',
     duration: '04 Nights / 05 Days',
     packageType: '(One Person)',
-    facilities: ['flight', 'food', 'hotel', 'wifi', 'transport', 'veg'],
+    facilities: ['flight', 'hotel', 'sightseeing', 'guide', 'insurance'],
+    gallery: [
+        "https://placehold.co/600x400.png",
+        "https://placehold.co/600x400.png",
+        "https://placehold.co/600x400.png",
+        "https://placehold.co/600x400.png",
+    ],
+    galleryHints: ["eiffel tower night", "louvre museum", "seine river cruise", "montmartre paris"]
   },
   {
     id: '6',
@@ -62,7 +97,14 @@ const internationalPackages: Package[] = [
     dataAiHint: 'Bali temple lake',
     duration: '7 night 8 days',
     packageType: '(Honeymoon Couple)',
-    facilities: ['flight', 'food', 'hotel', 'wifi', 'transport', 'veg'],
+    facilities: ['flight', 'hotel', 'transport', 'meals', 'sightseeing', 'spa'],
+     gallery: [
+        "https://placehold.co/600x400.png",
+        "https://placehold.co/600x400.png",
+        "https://placehold.co/600x400.png",
+        "https://placehold.co/600x400.png",
+    ],
+    galleryHints: ["bali rice terrace", "bali temple", "beach sunset bali", "bali villa pool"]
   },
 ];
 

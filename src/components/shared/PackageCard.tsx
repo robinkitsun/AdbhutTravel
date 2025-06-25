@@ -1,10 +1,10 @@
 import Image from "next/image";
-import Link from "next/link";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Clock, Plane, Utensils, BedDouble, Wifi, Car, Leaf } from "lucide-react";
+import { Clock, Plane, Utensils, BedDouble, Wifi, Car, Leaf, LandPlot, Palmtree, FerrisWheel, HandPlatter, Earth, Ticket, ShieldCheck, FileText, MountainSnow, Flower, User, Users } from "lucide-react";
 import type { Package, Facility } from "@/lib/types";
 import { cn } from "@/lib/utils";
+import { PackageDetailModal } from "./PackageDetailModal";
 
 interface PackageCardProps {
   pkg: Package;
@@ -12,11 +12,17 @@ interface PackageCardProps {
 
 const facilityIcons: Record<Facility, React.ElementType> = {
   flight: Plane,
-  food: Utensils,
   hotel: BedDouble,
-  wifi: Wifi,
   transport: Car,
-  veg: Leaf,
+  meals: Utensils,
+  sightseeing: Palmtree,
+  guide: User,
+  visa: FileText,
+  insurance: ShieldCheck,
+  permit: Ticket,
+  spa: Flower,
+  wifi: Wifi,
+  veg: Leaf
 };
 
 const iconColors = [
@@ -54,20 +60,23 @@ export default function PackageCard({ pkg }: PackageCardProps) {
       {pkg.facilities && pkg.facilities.length > 0 && (
         <div className="px-4 pb-4 border-t pt-4">
           <div className="flex items-center gap-4 flex-wrap">
-            {pkg.facilities.map((facility, index) => {
+            {pkg.facilities.slice(0, 5).map((facility, index) => {
                 const Icon = facilityIcons[facility];
                 if (!Icon) return null;
                 const colorClass = iconColors[index % iconColors.length];
                 return <Icon key={facility} className={cn("w-6 h-6", colorClass)} aria-label={facility}/>;
             })}
+             {pkg.facilities.length > 5 && (
+              <span className="text-sm text-muted-foreground">+ {pkg.facilities.length - 5} more</span>
+            )}
           </div>
         </div>
       )}
 
-      <CardFooter className="p-4 pt-2 flex justify-end items-center">
-        <Button asChild>
-          <Link href="/contact">Get Free Quote</Link>
-        </Button>
+      <CardFooter className="p-4 pt-0 flex justify-end items-center">
+        <PackageDetailModal pkg={pkg}>
+          <Button>Get Free Quote</Button>
+        </PackageDetailModal>
       </CardFooter>
     </Card>
   );
