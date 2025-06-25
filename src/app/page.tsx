@@ -10,7 +10,7 @@ const domesticPackages: Package[] = [
   {
     id: '1',
     name: 'Couple Kashmir Package',
-    image: 'https://placehold.co/600x400.png',
+    image: 'https://www.adbhuttravel.com/wp-content/uploads/elementor/thumbs/0231360a-2d4d-4083-b845-af0ab6a5f939-qbf1rtwnf6x8mcl6p8q8bo24o3cudvotd7j9z0ato8.jpg',
     dataAiHint: 'Kashmir snow couple',
     duration: '04 Nights / 05 Days',
     packageType: '(Couple)',
