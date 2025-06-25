@@ -10,13 +10,11 @@ export function CustomCursor() {
     const follower = followerRef.current;
     if (!follower) return;
 
-    // We're keeping these intermediate variables for the momentum effect
     let mouseX = window.innerWidth / 2;
     let mouseY = window.innerHeight / 2;
-    let dotX = mouseX;
-    let dotY = mouseY;
     let followerX = mouseX;
     let followerY = mouseY;
+    const momentumFactor = 0.8; // Higher value = faster, more direct following
 
     const onMouseMove = (e: MouseEvent) => {
       mouseX = e.clientX;
@@ -24,11 +22,9 @@ export function CustomCursor() {
     };
 
     const animate = () => {
-      // This creates the smooth "momentum" effect
-      dotX += (mouseX - dotX) * 0.7;
-      dotY += (mouseY - dotY) * 0.7;
-      followerX += (dotX - followerX) * 0.2;
-      followerY += (dotY - followerY) * 0.2;
+      // Direct, fast momentum
+      followerX += (mouseX - followerX) * momentumFactor;
+      followerY += (mouseY - followerY) * momentumFactor;
 
       if (follower) {
           follower.style.setProperty('--follower-x', `${followerX}`);
