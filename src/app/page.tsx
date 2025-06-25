@@ -1,3 +1,4 @@
+
 import Hero from "@/components/home/Hero";
 import FeaturedDestinations from "@/components/home/FeaturedDestinations";
 import PackageShowcase from "@/components/home/PackageShowcase";
@@ -8,24 +9,24 @@ import type { Package } from "@/lib/types";
 const domesticPackages: Package[] = [
   {
     id: '1',
-    name: 'Coastal Charm: Goa Gateway',
-    image: 'https://placehold.co/600x400.png',
+    name: 'GOA-DELIGHT',
+    image: 'https://www.adbhuttravel.com/wp-content/uploads/2023/08/goa-delight-350x250.jpg',
     dataAiHint: 'Goa beach',
-    duration: '5 Days / 4 Nights',
+    duration: '3 Nights / 4 Days',
   },
   {
     id: '2',
-    name: 'Mountain Majesty: Himalayan Retreat',
-    image: 'https://placehold.co/600x400.png',
-    dataAiHint: 'Himalayan mountains',
-    duration: '7 Days / 6 Nights',
+    name: 'Heavenly Kashmir',
+    image: 'https://www.adbhuttravel.com/wp-content/uploads/2023/08/kashmir-350x250.jpg',
+    dataAiHint: 'Kashmir valley',
+    duration: '5 Nights / 6 Days',
   },
   {
     id: '3',
-    name: 'Royal Rajasthan: Heritage Tour',
-    image: 'https://placehold.co/600x400.png',
-    dataAiHint: 'Rajasthan fort',
-    duration: '6 Days / 5 Nights',
+    name: 'KERALA-MUNNAR',
+    image: 'https://www.adbhuttravel.com/wp-content/uploads/2023/08/kerala-350x250.jpg',
+    dataAiHint: 'Kerala backwaters',
+    duration: '4 Nights / 5 Days',
   },
 ];
 
