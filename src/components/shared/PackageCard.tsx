@@ -40,8 +40,8 @@ export default function PackageCard({ pkg }: PackageCardProps) {
           data-ai-hint={pkg.dataAiHint}
         />
       </CardHeader>
-      <CardContent className="p-6 flex-grow">
-        <CardTitle className="font-headline text-xl mb-2 min-h-[3.5rem]">{pkg.name}</CardTitle>
+      <CardContent className="p-4 flex-grow">
+        <CardTitle className="font-headline text-xl mb-2 min-h-[3rem]">{pkg.name}</CardTitle>
         <div className="flex items-center text-muted-foreground text-sm">
             <Clock className="w-4 h-4 mr-1.5"/>
             <span>{pkg.duration}</span>
@@ -52,7 +52,7 @@ export default function PackageCard({ pkg }: PackageCardProps) {
       </CardContent>
 
       {pkg.facilities && pkg.facilities.length > 0 && (
-        <div className="px-6 pb-4 border-t pt-4">
+        <div className="px-4 pb-4 border-t pt-4">
           <div className="flex items-center gap-4 flex-wrap">
             {pkg.facilities.map((facility, index) => {
                 const Icon = facilityIcons[facility];
@@ -64,7 +64,7 @@ export default function PackageCard({ pkg }: PackageCardProps) {
         </div>
       )}
 
-      <CardFooter className="p-6 pt-2 flex justify-end items-center">
+      <CardFooter className="p-4 pt-2 flex justify-end items-center">
         <Button asChild>
           <Link href="/contact">Get Free Quote</Link>
         </Button>
