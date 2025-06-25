@@ -7,6 +7,7 @@ import { ScrollToTopButton } from "@/components/shared/ScrollToTopButton";
 import { Chatbot } from "@/components/shared/Chatbot";
 import "./globals.css";
 import { ScrollToBottomButton } from "@/components/shared/ScrollToBottomButton";
+import { CustomCursor } from "@/components/shared/CustomCursor";
 
 export const metadata: Metadata = {
   title: "Adbhut Travel And Event Pvt. Ltd.",
@@ -32,6 +33,7 @@ export default function RootLayout({
         />
       </head>
       <body className="font-body antialiased flex flex-col min-h-screen">
+        <CustomCursor />
         <Header />
         <main className="flex-grow">{children}</main>
         <Footer />
