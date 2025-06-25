@@ -1,16 +1,13 @@
 
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Image from "next/image";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { Loader2, Plane, BedDouble, Utensils, Car, Palmtree, User, FileText, ShieldCheck, Ticket, Flower, Wifi, Leaf } from 'lucide-react';
-import { getTripOutline } from "@/lib/actions";
+import { Plane, BedDouble, Utensils, Car, Palmtree, User, FileText, ShieldCheck, Ticket, Flower, Wifi, Leaf } from 'lucide-react';
 import type { Package, Facility } from "@/lib/types";
-import { cn } from "@/lib/utils";
 
 const facilityDetails: Record<Facility, { icon: React.ElementType; label: string }> = {
   flight: { icon: Plane, label: "Flights" },
@@ -36,26 +33,7 @@ const commonExclusions = [
 ];
 
 export function PackageDetailModal({ pkg, children }: { pkg: Package; children: React.ReactNode }) {
-  const [itinerary, setItinerary] = useState<string | null>(null);
-  const [isLoading, setIsLoading] = useState(false);
   const [open, setOpen] = useState(false);
-
-  useEffect(() => {
-    if (open && !itinerary) {
-      setIsLoading(true);
-      getTripOutline(pkg.name, pkg.duration)
-        .then((result) => {
-          setItinerary(result);
-        })
-        .catch((error) => {
-          console.error(error);
-          setItinerary("Could not load itinerary. Please try again later.");
-        })
-        .finally(() => {
-          setIsLoading(false);
-        });
-    }
-  }, [open, itinerary, pkg.name, pkg.duration]);
   
   return (
     <Dialog open={open} onOpenChange={setOpen}>
@@ -74,15 +52,9 @@ export function PackageDetailModal({ pkg, children }: { pkg: Package; children: 
             </TabsList>
             <ScrollArea className="flex-grow mt-4 pr-3">
               <TabsContent value="outline">
-                {isLoading ? (
-                  <div className="flex justify-center items-center h-64">
-                    <Loader2 className="h-8 w-8 animate-spin text-primary" />
-                  </div>
-                ) : (
-                  <div className="prose prose-sm md:prose-base max-w-none text-foreground whitespace-pre-wrap font-body">
-                    {itinerary}
-                  </div>
-                )}
+                <div className="prose prose-sm md:prose-base max-w-none text-foreground whitespace-pre-wrap font-body">
+                  {pkg.itinerary}
+                </div>
               </TabsContent>
               <TabsContent value="includes">
                  <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">

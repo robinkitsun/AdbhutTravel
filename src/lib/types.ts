@@ -22,6 +22,7 @@ export interface Package {
   facilities?: Facility[];
   gallery?: string[];
   galleryHints?: string[];
+  itinerary: string;
 }
 
 export interface Testimonial {

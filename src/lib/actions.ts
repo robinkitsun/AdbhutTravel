@@ -100,19 +100,3 @@ export async function chatWithAgentAction(
     };
   }
 }
-
-export async function getTripOutline(packageName: string, duration: string): Promise<string> {
-    try {
-        const result = await generateTravelItinerary({
-            dates: duration,
-            budget: 'Varies based on selection',
-            preferences: `A standard tour package including popular sights and activities for ${packageName}. Please provide a detailed, day-by-day plan.`,
-            popularTouristDestinations: packageName,
-        });
-        
-        return result.itinerary || "Could not generate an itinerary at this time. Please contact us for details.";
-    } catch (error) {
-        console.error("Error generating trip outline:", error);
-        return "There was an error generating the itinerary. Please try again later.";
-    }
-}
