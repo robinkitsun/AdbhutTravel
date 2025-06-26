@@ -8,6 +8,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger, Dialog
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
+import { ScrollArea } from "@/components/ui/scroll-area";
 import { Plane, BedDouble, Utensils, Car, Palmtree, User, FileText, ShieldCheck, Ticket, Flower, Wifi, Leaf, Info, X, Map, ListChecks, XCircle, GalleryHorizontal } from 'lucide-react';
 import type { Package, Facility } from "@/lib/types";
 import { cn } from "@/lib/utils";
@@ -41,22 +42,26 @@ export function PackageDetailModal({ pkg, children }: { pkg: Package; children: 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>{children}</DialogTrigger>
-      <DialogContent className="sm:max-w-4xl p-0">
-        <div className="p-6">
-            <DialogHeader className="p-0 pb-4">
+      <DialogContent className="sm:max-w-4xl p-0 flex flex-col max-h-[90vh]">
+        <div className="p-6 border-b shrink-0">
+            <DialogHeader className="p-0">
               <DialogTitle className="font-headline text-3xl">{pkg.name}</DialogTitle>
             </DialogHeader>
-            
-            <Tabs defaultValue="outline" className="w-full">
-                <TabsList className="grid w-full grid-cols-4 rounded-lg bg-muted p-1">
-                <TabsTrigger value="outline">Trip Outline</TabsTrigger>
-                <TabsTrigger value="includes">Trip Includes</TabsTrigger>
-                <TabsTrigger value="excludes">Trip Excludes</TabsTrigger>
-                <TabsTrigger value="gallery">Gallery</TabsTrigger>
-                </TabsList>
+        </div>
+        
+        <div className="flex-grow overflow-hidden">
+            <Tabs defaultValue="outline" className="w-full h-full flex flex-col">
+                <div className="px-6 pt-6 shrink-0">
+                    <TabsList className="grid w-full grid-cols-4 rounded-lg bg-muted p-1">
+                        <TabsTrigger value="outline">Trip Outline</TabsTrigger>
+                        <TabsTrigger value="includes">Trip Includes</TabsTrigger>
+                        <TabsTrigger value="excludes">Trip Excludes</TabsTrigger>
+                        <TabsTrigger value="gallery">Gallery</TabsTrigger>
+                    </TabsList>
+                </div>
 
-                <div className="mt-4">
-                    <TabsContent value="outline" className="m-0 p-0">
+                <ScrollArea className="flex-grow p-6">
+                    <TabsContent value="outline" className="m-0">
                         <div className="bg-pastel-blue rounded-lg p-6">
                             <div className="mb-6">
                                 <h3 className="text-2xl font-headline font-bold flex items-center gap-2 text-foreground">
@@ -90,7 +95,7 @@ export function PackageDetailModal({ pkg, children }: { pkg: Package; children: 
                             </div>
                         </div>
                     </TabsContent>
-                    <TabsContent value="includes" className="m-0 p-0">
+                    <TabsContent value="includes" className="m-0">
                         <div className="bg-pastel-green rounded-lg p-6">
                             <div className="mb-6">
                                 <h3 className="text-2xl font-headline font-bold flex items-center gap-2 text-foreground">
@@ -122,7 +127,7 @@ export function PackageDetailModal({ pkg, children }: { pkg: Package; children: 
                             </ul>
                         </div>
                     </TabsContent>
-                    <TabsContent value="excludes" className="m-0 p-0">
+                    <TabsContent value="excludes" className="m-0">
                         <div className="bg-pastel-red rounded-lg p-6">
                             <div className="mb-6">
                                 <h3 className="text-2xl font-headline font-bold flex items-center gap-2 text-foreground">
@@ -150,7 +155,7 @@ export function PackageDetailModal({ pkg, children }: { pkg: Package; children: 
                             </ul>
                         </div>
                     </TabsContent>
-                    <TabsContent value="gallery" className="m-0 p-0">
+                    <TabsContent value="gallery" className="m-0">
                         <div className="bg-pastel-purple rounded-lg p-6">
                             <div className="mb-6">
                                 <h3 className="text-2xl font-headline font-bold flex items-center gap-2 text-foreground">
@@ -174,17 +179,17 @@ export function PackageDetailModal({ pkg, children }: { pkg: Package; children: 
                             </div>
                         </div>
                     </TabsContent>
-                </div>
+                </ScrollArea>
             </Tabs>
+        </div>
             
-            <div className="flex justify-end items-center gap-4 pt-6">
-                <DialogClose asChild>
-                    <Button variant="outline" className="transition-transform duration-300 hover:-translate-y-1">Close</Button>
-                </DialogClose>
-                <Button asChild className="transition-transform duration-300 hover:-translate-y-1">
-                    <Link href="/contact">Contact Us</Link>
-                </Button>
-            </div>
+        <div className="flex justify-end items-center gap-4 p-6 border-t shrink-0">
+            <DialogClose asChild>
+                <Button variant="outline" className="transition-transform duration-300 hover:-translate-y-1">Close</Button>
+            </DialogClose>
+            <Button asChild className="transition-transform duration-300 hover:-translate-y-1">
+                <Link href="/contact">Contact Us</Link>
+            </Button>
         </div>
       </DialogContent>
     </Dialog>
