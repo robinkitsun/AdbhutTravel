@@ -83,7 +83,7 @@ export default function ContactPage() {
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d442340.13377289276!2d76.584489!3d29.985686!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390e25af861f3c3f%3A0x199d26fab984e138!2sAdbhut%20Travel%20%26%20Event%20Pvt%20Ltd!5e0!3m2!1sen!2sus!4v1750874273315!5m2!1sen!2sus"
               width="100%"
-              height="450"
+              height="400"
               style={{ border: 0 }}
               allowFullScreen={true}
               loading="lazy"
