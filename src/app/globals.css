@@ -33,6 +33,10 @@ body {
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
     --radius: 0.5rem;
+    --pastel-blue: 210 100% 98%;
+    --pastel-green: 145 80% 97%;
+    --pastel-red: 0 100% 98%;
+    --pastel-purple: 260 100% 98%;
   }
   .dark {
     --background: 20 14.3% 4.1%;
@@ -59,6 +63,10 @@ body {
     --chart-3: 30 80% 55%;
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%;
+    --pastel-blue: 210 100% 10%;
+    --pastel-green: 145 80% 10%;
+    --pastel-red: 0 100% 12%;
+    --pastel-purple: 260 100% 12%;
   }
 }
 
