@@ -36,6 +36,17 @@ const exclusionDetails = [
     { title: "Early check-in or late check-out charges", description: "Standard hotel check-in and check-out times apply. Any charges for early arrival or late departure are not included." }
 ];
 
+const TabFooter = () => (
+    <div className="flex justify-end items-center gap-4 p-4 mt-auto border-t border-black/10 shrink-0">
+        <DialogClose asChild>
+            <Button variant="outline" className="transition-transform duration-300 hover:-translate-y-1">Close</Button>
+        </DialogClose>
+        <Button asChild className="transition-transform duration-300 hover:-translate-y-1">
+            <Link href="/contact">Contact Us</Link>
+        </Button>
+    </div>
+);
+
 export function PackageDetailModal({ pkg, children }: { pkg: Package; children: React.ReactNode }) {
   const [open, setOpen] = useState(false);
   
@@ -44,153 +55,157 @@ export function PackageDetailModal({ pkg, children }: { pkg: Package; children: 
       <DialogTrigger asChild>{children}</DialogTrigger>
       <DialogContent className="sm:max-w-4xl p-0 flex flex-col max-h-[90vh]">
         <div className="p-6 border-b shrink-0">
-            <DialogHeader className="p-0">
+            <DialogHeader>
               <DialogTitle className="font-headline text-3xl">{pkg.name}</DialogTitle>
             </DialogHeader>
         </div>
         
-        <div className="flex-grow overflow-hidden">
-            <Tabs defaultValue="outline" className="w-full h-full flex flex-col">
-                <div className="px-6 pt-6 shrink-0">
-                    <TabsList className="grid w-full grid-cols-4 rounded-lg bg-muted p-1">
-                        <TabsTrigger value="outline">Trip Outline</TabsTrigger>
-                        <TabsTrigger value="includes">Trip Includes</TabsTrigger>
-                        <TabsTrigger value="excludes">Trip Excludes</TabsTrigger>
-                        <TabsTrigger value="gallery">Gallery</TabsTrigger>
+        <Tabs defaultValue="outline" className="w-full flex-grow flex flex-col overflow-hidden">
+            <div className="px-6 pt-4 pb-2 shrink-0">
+                <div className="bg-muted p-1 rounded-lg">
+                    <TabsList className="grid w-full grid-cols-4 rounded-md bg-transparent p-0">
+                        <TabsTrigger value="outline" className="data-[state=active]:bg-background data-[state=active]:shadow-md">Trip Outline</TabsTrigger>
+                        <TabsTrigger value="includes" className="data-[state=active]:bg-background data-[state=active]:shadow-md">Trip Includes</TabsTrigger>
+                        <TabsTrigger value="excludes" className="data-[state=active]:bg-background data-[state=active]:shadow-md">Trip Excludes</TabsTrigger>
+                        <TabsTrigger value="gallery" className="data-[state=active]:bg-background data-[state=active]:shadow-md">Gallery</TabsTrigger>
                     </TabsList>
                 </div>
+            </div>
 
-                <ScrollArea className="flex-grow p-6">
-                    <TabsContent value="outline" className="m-0">
-                        <div className="bg-pastel-blue rounded-lg p-6">
-                            <div className="mb-6">
-                                <h3 className="text-2xl font-headline font-bold flex items-center gap-2 text-foreground">
-                                    <Map className="h-6 w-6 text-chart-3" /> Trip Outline
-                                </h3>
-                                <p className="text-muted-foreground">A day-by-day journey through your adventure.</p>
-                            </div>
-                            <div className="flow-root">
-                              <ul className="-mb-8">
-                                {pkg.itinerary.map((item, index) => (
-                                  <li key={item.day}>
-                                    <div className="relative pb-8">
-                                      {index !== pkg.itinerary.length - 1 ? (
-                                        <span className="absolute left-6 top-6 -ml-px h-full w-0.5 bg-border" aria-hidden="true" />
-                                      ) : null}
-                                      <div className="relative flex items-start space-x-5">
-                                        <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary ring-8 ring-pastel-blue">
-                                          <span className="text-lg font-bold text-primary-foreground">{item.day}</span>
-                                        </div>
-                                        <div className="min-w-0 flex-1 pt-1.5">
-                                          <h3 className="text-xl font-headline font-bold text-foreground">{item.title}</h3>
-                                          <div className="mt-2 text-muted-foreground">
-                                            {item.details.map((p, i) => <p key={i} className="mb-2">{p}</p>)}
-                                          </div>
-                                        </div>
+            <TabsContent value="outline" className="flex-grow flex flex-col m-0 p-6 pt-2 overflow-hidden">
+                <div className="bg-pastel-blue rounded-lg flex flex-col flex-grow overflow-hidden">
+                    <div className="p-6 pb-4 shrink-0">
+                        <h3 className="text-2xl font-headline font-bold flex items-center gap-2 text-foreground">
+                            <Map className="h-6 w-6 text-chart-3" /> Trip Outline
+                        </h3>
+                        <p className="text-muted-foreground">A day-by-day journey through your adventure.</p>
+                    </div>
+                    <ScrollArea className="flex-grow px-6">
+                        <div className="flow-root">
+                          <ul className="-mb-8">
+                            {pkg.itinerary.map((item, index) => (
+                              <li key={item.day}>
+                                <div className="relative pb-8">
+                                  {index !== pkg.itinerary.length - 1 ? (
+                                    <span className="absolute left-6 top-6 -ml-px h-full w-0.5 bg-border" aria-hidden="true" />
+                                  ) : null}
+                                  <div className="relative flex items-start space-x-5">
+                                    <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary ring-8 ring-pastel-blue">
+                                      <span className="text-lg font-bold text-primary-foreground">{item.day}</span>
+                                    </div>
+                                    <div className="min-w-0 flex-1 pt-1.5">
+                                      <h3 className="text-xl font-headline font-bold text-foreground">{item.title}</h3>
+                                      <div className="mt-2 text-muted-foreground">
+                                        {item.details.map((p, i) => <p key={i} className="mb-2">{p}</p>)}
                                       </div>
                                     </div>
-                                  </li>
-                                ))}
-                              </ul>
-                            </div>
+                                  </div>
+                                </div>
+                              </li>
+                            ))}
+                          </ul>
                         </div>
-                    </TabsContent>
-                    <TabsContent value="includes" className="m-0">
-                        <div className="bg-pastel-green rounded-lg p-6">
-                            <div className="mb-6">
-                                <h3 className="text-2xl font-headline font-bold flex items-center gap-2 text-foreground">
-                                    <ListChecks className="h-6 w-6 text-chart-2" /> Trip Includes
-                                </h3>
-                                <p className="text-muted-foreground">Everything that is covered in your package.</p>
-                            </div>
-                            <ul className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-2">
-                                {pkg.facilities?.map((facility) => {
-                                    const detail = facilityDetails[facility];
-                                    if (!detail) return null;
-                                    return (
-                                    <li key={facility} className="group flex items-center gap-3 py-2 transition-transform duration-300 hover:-translate-y-1">
-                                        <detail.icon className="h-7 w-7 text-primary shrink-0"/>
-                                        <span className="font-medium text-foreground">{detail.label}</span>
-                                        <TooltipProvider delayDuration={100}>
-                                        <Tooltip>
-                                            <TooltipTrigger asChild>
-                                            <Info className="h-4 w-4 text-muted-foreground cursor-pointer opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-                                            </TooltipTrigger>
-                                            <TooltipContent className="z-[9999] max-w-xs">
-                                            <p>{detail.description}</p>
-                                            </TooltipContent>
-                                        </Tooltip>
-                                        </TooltipProvider>
-                                    </li>
-                                    )
-                                })}
-                            </ul>
-                        </div>
-                    </TabsContent>
-                    <TabsContent value="excludes" className="m-0">
-                        <div className="bg-pastel-red rounded-lg p-6">
-                            <div className="mb-6">
-                                <h3 className="text-2xl font-headline font-bold flex items-center gap-2 text-foreground">
-                                    <XCircle className="h-6 w-6 text-destructive" /> Trip Excludes
-                                </h3>
-                                <p className="text-muted-foreground">What's not covered in the package price.</p>
-                            </div>
-                            <ul className="space-y-2">
-                              {exclusionDetails.map((item) => (
-                                <li key={item.title} className="group flex items-center gap-3 py-2 transition-transform duration-300 hover:-translate-y-1">
-                                    <X className="h-5 w-5 text-destructive bg-destructive/20 rounded-full p-1 shrink-0"/>
-                                    <span className="text-muted-foreground">{item.title}</span>
+                    </ScrollArea>
+                    <TabFooter />
+                </div>
+            </TabsContent>
+
+            <TabsContent value="includes" className="flex-grow flex flex-col m-0 p-6 pt-2 overflow-hidden">
+                <div className="bg-pastel-green rounded-lg flex flex-col flex-grow overflow-hidden">
+                    <div className="p-6 pb-4 shrink-0">
+                        <h3 className="text-2xl font-headline font-bold flex items-center gap-2 text-foreground">
+                            <ListChecks className="h-6 w-6 text-chart-2" /> Trip Includes
+                        </h3>
+                        <p className="text-muted-foreground">Everything that is covered in your package.</p>
+                    </div>
+                    <ScrollArea className="flex-grow px-6">
+                         <ul className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-2">
+                            {pkg.facilities?.map((facility) => {
+                                const detail = facilityDetails[facility];
+                                if (!detail) return null;
+                                return (
+                                <li key={facility} className="group flex items-center gap-3 py-2 transition-transform duration-300 hover:-translate-y-1">
+                                    <detail.icon className="h-7 w-7 text-primary shrink-0"/>
+                                    <span className="font-medium text-foreground">{detail.label}</span>
                                     <TooltipProvider delayDuration={100}>
                                     <Tooltip>
                                         <TooltipTrigger asChild>
-                                            <Info className="h-4 w-4 text-muted-foreground cursor-pointer opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                                          <Info className="h-4 w-4 text-muted-foreground cursor-pointer opacity-70 transition-opacity duration-300 hover:opacity-100 ml-1" />
                                         </TooltipTrigger>
                                         <TooltipContent className="z-[9999] max-w-xs">
-                                            <p>{item.description}</p>
+                                          <p>{detail.description}</p>
                                         </TooltipContent>
                                     </Tooltip>
                                     </TooltipProvider>
                                 </li>
-                              ))}
-                            </ul>
-                        </div>
-                    </TabsContent>
-                    <TabsContent value="gallery" className="m-0">
-                        <div className="bg-pastel-purple rounded-lg p-6">
-                            <div className="mb-6">
-                                <h3 className="text-2xl font-headline font-bold flex items-center gap-2 text-foreground">
-                                    <GalleryHorizontal className="h-6 w-6 text-chart-5" /> Gallery
-                                </h3>
-                                <p className="text-muted-foreground">A visual glimpse of your destination.</p>
-                            </div>
-                            <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-                                {(pkg.gallery || []).map((imgSrc, index) => (
-                                    <div key={index} className="rounded-lg overflow-hidden shadow-md transition-transform duration-300 hover:-translate-y-1">
-                                    <Image 
-                                        src={imgSrc} 
-                                        alt={`${pkg.name} gallery image ${index + 1}`} 
-                                        width={400} 
-                                        height={300} 
-                                        className="w-full h-full object-cover"
-                                        data-ai-hint={pkg.galleryHints ? pkg.galleryHints[index] : pkg.dataAiHint}
-                                        />
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
-                    </TabsContent>
-                </ScrollArea>
-            </Tabs>
-        </div>
+                                )
+                            })}
+                        </ul>
+                    </ScrollArea>
+                    <TabFooter />
+                </div>
+            </TabsContent>
+
+            <TabsContent value="excludes" className="flex-grow flex flex-col m-0 p-6 pt-2 overflow-hidden">
+                <div className="bg-pastel-red rounded-lg flex flex-col flex-grow overflow-hidden">
+                    <div className="p-6 pb-4 shrink-0">
+                        <h3 className="text-2xl font-headline font-bold flex items-center gap-2 text-foreground">
+                            <XCircle className="h-6 w-6 text-destructive" /> Trip Excludes
+                        </h3>
+                        <p className="text-muted-foreground">What's not covered in the package price.</p>
+                    </div>
+                    <ScrollArea className="flex-grow px-6">
+                        <ul className="space-y-2">
+                          {exclusionDetails.map((item) => (
+                            <li key={item.title} className="group flex items-center gap-3 py-2 transition-transform duration-300 hover:-translate-y-1">
+                                <X className="h-5 w-5 text-destructive bg-destructive/20 rounded-full p-1 shrink-0"/>
+                                <span className="text-muted-foreground">{item.title}</span>
+                                <TooltipProvider delayDuration={100}>
+                                <Tooltip>
+                                    <TooltipTrigger asChild>
+                                        <Info className="h-4 w-4 text-muted-foreground cursor-pointer opacity-70 transition-opacity duration-300 hover:opacity-100 ml-1" />
+                                    </TooltipTrigger>
+                                    <TooltipContent className="z-[9999] max-w-xs">
+                                        <p>{item.description}</p>
+                                    </TooltipContent>
+                                </Tooltip>
+                                </TooltipProvider>
+                            </li>
+                          ))}
+                        </ul>
+                    </ScrollArea>
+                    <TabFooter />
+                </div>
+            </TabsContent>
             
-        <div className="flex justify-end items-center gap-4 p-6 border-t shrink-0">
-            <DialogClose asChild>
-                <Button variant="outline" className="transition-transform duration-300 hover:-translate-y-1">Close</Button>
-            </DialogClose>
-            <Button asChild className="transition-transform duration-300 hover:-translate-y-1">
-                <Link href="/contact">Contact Us</Link>
-            </Button>
-        </div>
+            <TabsContent value="gallery" className="flex-grow flex flex-col m-0 p-6 pt-2 overflow-hidden">
+                <div className="bg-pastel-purple rounded-lg flex flex-col flex-grow overflow-hidden">
+                    <div className="p-6 pb-4 shrink-0">
+                        <h3 className="text-2xl font-headline font-bold flex items-center gap-2 text-foreground">
+                            <GalleryHorizontal className="h-6 w-6 text-chart-5" /> Gallery
+                        </h3>
+                        <p className="text-muted-foreground">A visual glimpse of your destination.</p>
+                    </div>
+                    <ScrollArea className="flex-grow p-6 pt-2">
+                        <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                            {(pkg.gallery || []).map((imgSrc, index) => (
+                                <div key={index} className="rounded-lg overflow-hidden shadow-md transition-transform duration-300 hover:-translate-y-1">
+                                <Image 
+                                    src={imgSrc} 
+                                    alt={`${pkg.name} gallery image ${index + 1}`} 
+                                    width={400} 
+                                    height={300} 
+                                    className="w-full h-full object-cover"
+                                    data-ai-hint={pkg.galleryHints ? pkg.galleryHints[index] : pkg.dataAiHint}
+                                    />
+                                </div>
+                            ))}
+                        </div>
+                    </ScrollArea>
+                     <TabFooter />
+                </div>
+            </TabsContent>
+        </Tabs>
       </DialogContent>
     </Dialog>
   );
