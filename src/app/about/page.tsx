@@ -51,17 +51,17 @@ export default function AboutPage() {
         <div className="container">
           <h2 className="text-3xl font-headline font-bold text-center mb-12">Our Values</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-            <Card className="p-6 border-0 shadow-lg">
+            <Card className="p-6 border-0 shadow-lg hover:-translate-y-1 transition-all duration-300">
               <HeartHandshake className="h-12 w-12 mx-auto text-primary mb-4" />
               <h3 className="text-xl font-headline font-semibold mb-2">Customer First</h3>
               <p className="text-muted-foreground">Your journey is our priority. We are committed to providing impeccable service and support.</p>
             </Card>
-            <Card className="p-6 border-0 shadow-lg">
+            <Card className="p-6 border-0 shadow-lg hover:-translate-y-1 transition-all duration-300">
               <Globe className="h-12 w-12 mx-auto text-primary mb-4" />
               <h3 className="text-xl font-headline font-semibold mb-2">Authentic Experiences</h3>
               <p className="text-muted-foreground">We connect you with the local culture for travel that is genuine and enriching.</p>
             </Card>
-            <Card className="p-6 border-0 shadow-lg">
+            <Card className="p-6 border-0 shadow-lg hover:-translate-y-1 transition-all duration-300">
               <Award className="h-12 w-12 mx-auto text-primary mb-4" />
               <h3 className="text-xl font-headline font-semibold mb-2">Unmatched Quality</h3>
               <p className="text-muted-foreground">From planning to execution, we ensure the highest standards in every aspect of your trip.</p>
@@ -75,7 +75,7 @@ export default function AboutPage() {
           <h2 className="text-3xl font-headline font-bold text-center mb-12">Meet the Team</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {teamMembers.map((member) => (
-              <Card key={member.name} className="p-6 text-center border-0 shadow-lg hover:shadow-xl transition-shadow">
+              <Card key={member.name} className="p-6 text-center border-0 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
                 <Avatar className="w-24 h-24 mx-auto mb-4">
                   <AvatarImage src={member.image} alt={member.name} data-ai-hint={member.dataAiHint} />
                   <AvatarFallback>{member.name.charAt(0)}</AvatarFallback>

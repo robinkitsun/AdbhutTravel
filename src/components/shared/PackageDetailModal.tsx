@@ -44,11 +44,11 @@ export function PackageDetailModal({ pkg, children }: { pkg: Package; children: 
         </DialogHeader>
         <div className="flex-grow min-h-0">
           <Tabs defaultValue="outline" className="h-full flex flex-col">
-            <TabsList className="shrink-0">
-              <TabsTrigger value="outline">Trip Outline</TabsTrigger>
-              <TabsTrigger value="includes">Trip Includes</TabsTrigger>
-              <TabsTrigger value="excludes">Trip Excludes</TabsTrigger>
-              <TabsTrigger value="gallery">Gallery</TabsTrigger>
+            <TabsList className="inline-flex h-auto justify-start rounded-none border-b bg-transparent p-0 w-full">
+              <TabsTrigger value="outline" className="h-full rounded-none border-b-2 border-transparent bg-transparent p-4 font-medium text-muted-foreground shadow-none ring-offset-background transition-all duration-300 hover:-translate-y-1 focus-visible:ring-0 data-[state=active]:border-primary data-[state=active]:text-primary data-[state=active]:shadow-none">Trip Outline</TabsTrigger>
+              <TabsTrigger value="includes" className="h-full rounded-none border-b-2 border-transparent bg-transparent p-4 font-medium text-muted-foreground shadow-none ring-offset-background transition-all duration-300 hover:-translate-y-1 focus-visible:ring-0 data-[state=active]:border-primary data-[state=active]:text-primary data-[state=active]:shadow-none">Trip Includes</TabsTrigger>
+              <TabsTrigger value="excludes" className="h-full rounded-none border-b-2 border-transparent bg-transparent p-4 font-medium text-muted-foreground shadow-none ring-offset-background transition-all duration-300 hover:-translate-y-1 focus-visible:ring-0 data-[state=active]:border-primary data-[state=active]:text-primary data-[state=active]:shadow-none">Trip Excludes</TabsTrigger>
+              <TabsTrigger value="gallery" className="h-full rounded-none border-b-2 border-transparent bg-transparent p-4 font-medium text-muted-foreground shadow-none ring-offset-background transition-all duration-300 hover:-translate-y-1 focus-visible:ring-0 data-[state=active]:border-primary data-[state=active]:text-primary data-[state=active]:shadow-none">Gallery</TabsTrigger>
             </TabsList>
             <ScrollArea className="flex-grow mt-4 pr-3">
               <TabsContent value="outline">

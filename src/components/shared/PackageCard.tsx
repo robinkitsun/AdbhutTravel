@@ -35,7 +35,7 @@ const iconColors = [
 
 export default function PackageCard({ pkg }: PackageCardProps) {
   return (
-    <Card className="overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 flex flex-col bg-card border">
+    <Card className="overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 flex flex-col bg-card border">
       <CardHeader className="p-0">
         <Image
           src={pkg.image}
