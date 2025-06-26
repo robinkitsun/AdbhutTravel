@@ -4,14 +4,12 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger, DialogClose } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Plane, BedDouble, Utensils, Car, Palmtree, User, FileText, ShieldCheck, Ticket, Flower, Wifi, Leaf, Info, X, Map, ListChecks, XCircle, GalleryHorizontal } from 'lucide-react';
 import type { Package, Facility } from "@/lib/types";
-import { cn } from "@/lib/utils";
 
 const facilityDetails: Record<Facility, { icon: React.ElementType; label: string; description: string }> = {
   flight: { icon: Plane, label: "Flights", description: "Round-trip economy class airfare from your departure city." },
@@ -36,17 +34,6 @@ const exclusionDetails = [
     { title: "Early check-in or late check-out charges", description: "Standard hotel check-in and check-out times apply. Any charges for early arrival or late departure are not included." }
 ];
 
-const TabFooter = () => (
-    <div className="flex justify-end items-center gap-4 p-4 mt-auto border-t border-black/10 shrink-0">
-        <DialogClose asChild>
-            <Button variant="outline" className="transition-transform duration-300 hover:-translate-y-1">Close</Button>
-        </DialogClose>
-        <Button asChild className="transition-transform duration-300 hover:-translate-y-1">
-            <Link href="/contact">Contact Us</Link>
-        </Button>
-    </div>
-);
-
 export function PackageDetailModal({ pkg, children }: { pkg: Package; children: React.ReactNode }) {
   const [open, setOpen] = useState(false);
   
@@ -54,20 +41,18 @@ export function PackageDetailModal({ pkg, children }: { pkg: Package; children: 
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>{children}</DialogTrigger>
       <DialogContent className="sm:max-w-4xl p-0 flex flex-col max-h-[90vh]">
-        <div className="p-6 border-b shrink-0">
-            <DialogHeader>
-              <DialogTitle className="font-headline text-3xl">{pkg.name}</DialogTitle>
-            </DialogHeader>
-        </div>
+        <DialogHeader className="p-6 border-b shrink-0">
+          <DialogTitle className="font-headline text-3xl">{pkg.name}</DialogTitle>
+        </DialogHeader>
         
         <Tabs defaultValue="outline" className="w-full flex-grow flex flex-col overflow-hidden">
             <div className="px-6 pt-4 pb-2 shrink-0">
-                <div className="bg-muted p-1 rounded-lg">
-                    <TabsList className="grid w-full grid-cols-4 rounded-md bg-transparent p-0">
-                        <TabsTrigger value="outline" className="data-[state=active]:bg-background data-[state=active]:shadow-md">Trip Outline</TabsTrigger>
-                        <TabsTrigger value="includes" className="data-[state=active]:bg-background data-[state=active]:shadow-md">Trip Includes</TabsTrigger>
-                        <TabsTrigger value="excludes" className="data-[state=active]:bg-background data-[state=active]:shadow-md">Trip Excludes</TabsTrigger>
-                        <TabsTrigger value="gallery" className="data-[state=active]:bg-background data-[state=active]:shadow-md">Gallery</TabsTrigger>
+                 <div className="bg-muted p-1 rounded-lg">
+                    <TabsList className="grid w-full grid-cols-4 rounded-md bg-transparent p-0 h-auto">
+                        <TabsTrigger value="outline" className="data-[state=active]:bg-background data-[state=active]:shadow-md py-2 transition-transform duration-300 hover:-translate-y-1 data-[state=active]:hover:translate-y-0">Trip Outline</TabsTrigger>
+                        <TabsTrigger value="includes" className="data-[state=active]:bg-background data-[state=active]:shadow-md py-2 transition-transform duration-300 hover:-translate-y-1 data-[state=active]:hover:translate-y-0">Trip Includes</TabsTrigger>
+                        <TabsTrigger value="excludes" className="data-[state=active]:bg-background data-[state=active]:shadow-md py-2 transition-transform duration-300 hover:-translate-y-1 data-[state=active]:hover:translate-y-0">Trip Excludes</TabsTrigger>
+                        <TabsTrigger value="gallery" className="data-[state=active]:bg-background data-[state=active]:shadow-md py-2 transition-transform duration-300 hover:-translate-y-1 data-[state=active]:hover:translate-y-0">Gallery</TabsTrigger>
                     </TabsList>
                 </div>
             </div>
@@ -75,12 +60,12 @@ export function PackageDetailModal({ pkg, children }: { pkg: Package; children: 
             <TabsContent value="outline" className="flex-grow flex flex-col m-0 p-6 pt-2 overflow-hidden">
                 <div className="bg-pastel-blue rounded-lg flex flex-col flex-grow overflow-hidden">
                     <div className="p-6 pb-4 shrink-0">
-                        <h3 className="text-2xl font-headline font-bold flex items-center gap-2 text-foreground">
-                            <Map className="h-6 w-6 text-chart-3" /> Trip Outline
+                        <h3 className="text-2xl font-headline font-bold flex items-center gap-3 text-foreground">
+                            <Map className="h-7 w-7 text-chart-3" /> Trip Outline
                         </h3>
-                        <p className="text-muted-foreground">A day-by-day journey through your adventure.</p>
+                        <p className="text-muted-foreground mt-1">A day-by-day journey through your adventure.</p>
                     </div>
-                    <ScrollArea className="flex-grow px-6">
+                    <ScrollArea className="flex-grow px-6 pb-6">
                         <div className="flow-root">
                           <ul className="-mb-8">
                             {pkg.itinerary.map((item, index) => (
@@ -93,7 +78,7 @@ export function PackageDetailModal({ pkg, children }: { pkg: Package; children: 
                                     <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary ring-8 ring-pastel-blue">
                                       <span className="text-lg font-bold text-primary-foreground">{item.day}</span>
                                     </div>
-                                    <div className="min-w-0 flex-1 pt-1.5">
+                                    <div className="min-w-0 flex-1 pt-1.5 transition-transform duration-300 hover:-translate-y-1">
                                       <h3 className="text-xl font-headline font-bold text-foreground">{item.title}</h3>
                                       <div className="mt-2 text-muted-foreground">
                                         {item.details.map((p, i) => <p key={i} className="mb-2">{p}</p>)}
@@ -106,31 +91,32 @@ export function PackageDetailModal({ pkg, children }: { pkg: Package; children: 
                           </ul>
                         </div>
                     </ScrollArea>
-                    <TabFooter />
                 </div>
             </TabsContent>
 
             <TabsContent value="includes" className="flex-grow flex flex-col m-0 p-6 pt-2 overflow-hidden">
                 <div className="bg-pastel-green rounded-lg flex flex-col flex-grow overflow-hidden">
                     <div className="p-6 pb-4 shrink-0">
-                        <h3 className="text-2xl font-headline font-bold flex items-center gap-2 text-foreground">
-                            <ListChecks className="h-6 w-6 text-chart-2" /> Trip Includes
+                        <h3 className="text-2xl font-headline font-bold flex items-center gap-3 text-foreground">
+                            <ListChecks className="h-7 w-7 text-chart-2" /> Trip Includes
                         </h3>
-                        <p className="text-muted-foreground">Everything that is covered in your package.</p>
+                        <p className="text-muted-foreground mt-1">Everything that is covered in your package.</p>
                     </div>
-                    <ScrollArea className="flex-grow px-6">
+                    <ScrollArea className="flex-grow px-6 pb-6">
                          <ul className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-2">
                             {pkg.facilities?.map((facility) => {
                                 const detail = facilityDetails[facility];
                                 if (!detail) return null;
                                 return (
-                                <li key={facility} className="group flex items-center gap-3 py-2 transition-transform duration-300 hover:-translate-y-1">
-                                    <detail.icon className="h-7 w-7 text-primary shrink-0"/>
+                                <li key={facility} className="group flex items-center gap-2 py-2 transition-transform duration-300 hover:-translate-y-1">
+                                    <detail.icon className="h-6 w-6 text-primary shrink-0"/>
                                     <span className="font-medium text-foreground">{detail.label}</span>
                                     <TooltipProvider delayDuration={100}>
                                     <Tooltip>
                                         <TooltipTrigger asChild>
-                                          <Info className="h-4 w-4 text-muted-foreground cursor-pointer opacity-70 transition-opacity duration-300 hover:opacity-100 ml-1" />
+                                           <div className="relative h-4 w-4">
+                                             <Info className="h-4 w-4 text-muted-foreground cursor-pointer opacity-0 transition-opacity duration-300 group-hover:opacity-100 md:opacity-100" />
+                                           </div>
                                         </TooltipTrigger>
                                         <TooltipContent className="z-[9999] max-w-xs">
                                           <p>{detail.description}</p>
@@ -142,28 +128,29 @@ export function PackageDetailModal({ pkg, children }: { pkg: Package; children: 
                             })}
                         </ul>
                     </ScrollArea>
-                    <TabFooter />
                 </div>
             </TabsContent>
 
             <TabsContent value="excludes" className="flex-grow flex flex-col m-0 p-6 pt-2 overflow-hidden">
                 <div className="bg-pastel-red rounded-lg flex flex-col flex-grow overflow-hidden">
                     <div className="p-6 pb-4 shrink-0">
-                        <h3 className="text-2xl font-headline font-bold flex items-center gap-2 text-foreground">
-                            <XCircle className="h-6 w-6 text-destructive" /> Trip Excludes
+                        <h3 className="text-2xl font-headline font-bold flex items-center gap-3 text-foreground">
+                            <XCircle className="h-7 w-7 text-destructive" /> Trip Excludes
                         </h3>
-                        <p className="text-muted-foreground">What's not covered in the package price.</p>
+                        <p className="text-muted-foreground mt-1">What's not covered in the package price.</p>
                     </div>
-                    <ScrollArea className="flex-grow px-6">
+                    <ScrollArea className="flex-grow px-6 pb-6">
                         <ul className="space-y-2">
                           {exclusionDetails.map((item) => (
-                            <li key={item.title} className="group flex items-center gap-3 py-2 transition-transform duration-300 hover:-translate-y-1">
+                            <li key={item.title} className="group flex items-center gap-2 py-2 transition-transform duration-300 hover:-translate-y-1">
                                 <X className="h-5 w-5 text-destructive bg-destructive/20 rounded-full p-1 shrink-0"/>
                                 <span className="text-muted-foreground">{item.title}</span>
                                 <TooltipProvider delayDuration={100}>
                                 <Tooltip>
                                     <TooltipTrigger asChild>
-                                        <Info className="h-4 w-4 text-muted-foreground cursor-pointer opacity-70 transition-opacity duration-300 hover:opacity-100 ml-1" />
+                                        <div className="relative h-4 w-4">
+                                          <Info className="h-4 w-4 text-muted-foreground cursor-pointer opacity-0 transition-opacity duration-300 group-hover:opacity-100 md:opacity-100" />
+                                        </div>
                                     </TooltipTrigger>
                                     <TooltipContent className="z-[9999] max-w-xs">
                                         <p>{item.description}</p>
@@ -174,19 +161,18 @@ export function PackageDetailModal({ pkg, children }: { pkg: Package; children: 
                           ))}
                         </ul>
                     </ScrollArea>
-                    <TabFooter />
                 </div>
             </TabsContent>
             
             <TabsContent value="gallery" className="flex-grow flex flex-col m-0 p-6 pt-2 overflow-hidden">
                 <div className="bg-pastel-purple rounded-lg flex flex-col flex-grow overflow-hidden">
                     <div className="p-6 pb-4 shrink-0">
-                        <h3 className="text-2xl font-headline font-bold flex items-center gap-2 text-foreground">
-                            <GalleryHorizontal className="h-6 w-6 text-chart-5" /> Gallery
+                        <h3 className="text-2xl font-headline font-bold flex items-center gap-3 text-foreground">
+                            <GalleryHorizontal className="h-7 w-7 text-chart-5" /> Gallery
                         </h3>
-                        <p className="text-muted-foreground">A visual glimpse of your destination.</p>
+                        <p className="text-muted-foreground mt-1">A visual glimpse of your destination.</p>
                     </div>
-                    <ScrollArea className="flex-grow p-6 pt-2">
+                    <ScrollArea className="flex-grow px-6 pb-6">
                         <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
                             {(pkg.gallery || []).map((imgSrc, index) => (
                                 <div key={index} className="rounded-lg overflow-hidden shadow-md transition-transform duration-300 hover:-translate-y-1">
@@ -202,7 +188,6 @@ export function PackageDetailModal({ pkg, children }: { pkg: Package; children: 
                             ))}
                         </div>
                     </ScrollArea>
-                     <TabFooter />
                 </div>
             </TabsContent>
         </Tabs>

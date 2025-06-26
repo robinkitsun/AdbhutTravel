@@ -1,3 +1,4 @@
+
 "use client";
 
 import Link from "next/link";
@@ -5,19 +6,6 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { Twitter, Facebook, Instagram, Linkedin, MapPin, Phone, Mail, Youtube } from "lucide-react";
 import { Logo } from "@/components/shared/Logo";
-
-const certificateLogos = [
-  { src: 'https://www.adbhuttravel.com/wp-content/uploads/2023/11/Ministry-of-Tourism.png', alt: 'Ministry of Tourism', width: 130, height: 40, dataAiHint: "tourism ministry logo" },
-  { src: 'https://www.adbhuttravel.com/wp-content/uploads/2023/11/IATA.png', alt: 'IATA', width: 80, height: 40, dataAiHint: "IATA logo" },
-  { src: 'https://www.adbhuttravel.com/wp-content/uploads/2023/11/TAAI.png', alt: 'TAAI', width: 80, height: 40, dataAiHint: "TAAI logo" },
-  { src: 'https://www.adbhuttravel.com/wp-content/uploads/2023/11/TAFI.png', alt: 'TAFI', width: 90, height: 40, dataAiHint: "TAFI logo" },
-  { src: 'https://www.adbhuttravel.com/wp-content/uploads/2023/11/Outbound-Tour-Operators-Association-of-India.png', alt: 'Outbound Tour Operators Association of India', width: 140, height: 40, dataAiHint: "OTOAI logo" },
-  { src: 'https://www.adbhuttravel.com/wp-content/uploads/2023/11/ETAA.png', alt: 'ETAA', width: 70, height: 40, dataAiHint: "ETAA logo" },
-  { src: 'https://www.adbhuttravel.com/wp-content/uploads/2023/11/Association-of-Domestic-Tour-Operators-of-India.png', alt: 'Association of Domestic Tour Operators of India', width: 90, height: 40, dataAiHint: "adtoi logo" },
-  { src: 'https://www.adbhuttravel.com/wp-content/uploads/2023/11/haryana-tourism.png', alt: 'Haryana Tourism', width: 130, height: 40, dataAiHint: "haryana tourism logo" },
-  { src: 'https://www.adbhuttravel.com/wp-content/uploads/2023/11/AHK.png', alt: 'AHK', width: 80, height: 40, dataAiHint: "AHK logo" },
-];
-
 
 export default function Footer() {
   const pathname = usePathname();
@@ -43,18 +31,15 @@ export default function Footer() {
         )}
 
         <div className="mb-12">
-          <div className="flex justify-center items-center flex-wrap gap-x-8 gap-y-6">
-            {certificateLogos.map((logo, index) => (
+          <div className="flex justify-center items-center">
               <Image
-                key={index}
-                src={logo.src}
-                alt={logo.alt}
-                width={logo.width}
-                height={logo.height}
-                className="object-contain transition-transform duration-300 hover:-translate-y-1"
-                data-ai-hint={logo.dataAiHint}
+                src="https://www.adbhuttravel.com/wp-content/uploads/2025/01/Screenshot-2025-01-04-at-9.55.01%E2%80%AFAM-1536x113.png"
+                alt="Certifications and Affiliations"
+                width={1536}
+                height={113}
+                className="w-full max-w-6xl h-auto object-contain"
+                data-ai-hint="certifications collage"
               />
-            ))}
           </div>
         </div>
         
