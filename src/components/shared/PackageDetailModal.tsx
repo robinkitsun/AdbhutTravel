@@ -9,9 +9,8 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/comp
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Button } from "@/components/ui/button";
-import { Plane, BedDouble, Utensils, Car, Palmtree, User, FileText, ShieldCheck, Ticket, Flower, Wifi, Leaf, Info, X } from 'lucide-react';
+import { Plane, BedDouble, Utensils, Car, Palmtree, User, FileText, ShieldCheck, Ticket, Flower, Wifi, Leaf, Info, X, Check } from 'lucide-react';
 import type { Package, Facility } from "@/lib/types";
-import { cn } from "@/lib/utils";
 
 const facilityDetails: Record<Facility, { icon: React.ElementType; label: string; description: string }> = {
   flight: { icon: Plane, label: "Flights", description: "Round-trip economy class airfare from your departure city." },
@@ -48,11 +47,11 @@ export function PackageDetailModal({ pkg, children }: { pkg: Package; children: 
         </DialogHeader>
         <div className="flex-grow min-h-0 px-6">
           <Tabs defaultValue="outline" className="h-full flex flex-col">
-            <TabsList className="grid w-full grid-cols-4 rounded-lg bg-muted p-1">
-              <TabsTrigger value="outline" className="transition-transform duration-300 hover:-translate-y-1">Trip Outline</TabsTrigger>
-              <TabsTrigger value="includes" className="transition-transform duration-300 hover:-translate-y-1">Trip Includes</TabsTrigger>
-              <TabsTrigger value="excludes" className="transition-transform duration-300 hover:-translate-y-1">Trip Excludes</TabsTrigger>
-              <TabsTrigger value="gallery" className="transition-transform duration-300 hover:-translate-y-1">Gallery</TabsTrigger>
+             <TabsList className="grid w-full grid-cols-4 rounded-lg bg-muted p-1">
+              <TabsTrigger value="outline">Trip Outline</TabsTrigger>
+              <TabsTrigger value="includes">Trip Includes</TabsTrigger>
+              <TabsTrigger value="excludes">Trip Excludes</TabsTrigger>
+              <TabsTrigger value="gallery">Gallery</TabsTrigger>
             </TabsList>
             <ScrollArea className="flex-grow mt-6 pr-4 -mr-4">
               <TabsContent value="outline">
@@ -84,44 +83,44 @@ export function PackageDetailModal({ pkg, children }: { pkg: Package; children: 
                 </div>
               </TabsContent>
               <TabsContent value="includes">
-                 <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-2">
+                 <ul className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-2">
                     {pkg.facilities?.map((facility) => {
                         const detail = facilityDetails[facility];
                         if (!detail) return null;
                         return (
-                          <div key={facility} className="group flex items-center justify-start gap-3 py-2 transition-transform duration-300 hover:-translate-y-1">
-                              <detail.icon className="h-7 w-7 text-primary shrink-0"/>
+                          <li key={facility} className="group flex items-start gap-3 py-2">
+                              <detail.icon className="h-7 w-7 mt-0.5 text-primary shrink-0"/>
                               <div className="flex items-center gap-1.5">
-                                <span className="font-medium text-foreground transition-transform duration-300 group-hover:-translate-y-px">{detail.label}</span>
+                                <span className="font-medium text-foreground">{detail.label}</span>
                                  <TooltipProvider delayDuration={100}>
                                   <Tooltip>
                                     <TooltipTrigger asChild>
                                       <Info className="h-4 w-4 text-muted-foreground cursor-pointer opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
                                     </TooltipTrigger>
-                                    <TooltipContent>
+                                    <TooltipContent className="z-50 max-w-xs">
                                       <p>{detail.description}</p>
                                     </TooltipContent>
                                   </Tooltip>
                                 </TooltipProvider>
                               </div>
-                          </div>
+                          </li>
                         )
                     })}
-                 </div>
+                 </ul>
               </TabsContent>
               <TabsContent value="excludes">
                  <ul className="space-y-2">
                   {exclusionDetails.map((item) => (
-                     <li key={item.title} className="group flex items-center justify-start gap-3 py-2 transition-transform duration-300 hover:-translate-y-1">
-                        <X className="h-5 w-5 text-destructive bg-destructive/20 rounded-full p-1 shrink-0"/>
+                     <li key={item.title} className="group flex items-start gap-3 py-2">
+                        <X className="h-5 w-5 mt-1 text-destructive bg-destructive/20 rounded-full p-1 shrink-0"/>
                         <div className="flex items-center gap-1.5">
-                            <span className="text-muted-foreground transition-transform duration-300 group-hover:-translate-y-px">{item.title}</span>
+                            <span className="text-muted-foreground">{item.title}</span>
                             <TooltipProvider delayDuration={100}>
                               <Tooltip>
                                 <TooltipTrigger asChild>
                                     <Info className="h-4 w-4 text-muted-foreground cursor-pointer opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
                                 </TooltipTrigger>
-                                <TooltipContent>
+                                <TooltipContent className="z-50 max-w-xs">
                                     <p>{item.description}</p>
                                 </TooltipContent>
                               </Tooltip>
