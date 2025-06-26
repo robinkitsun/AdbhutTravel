@@ -229,3 +229,5 @@ export function PackageDetailModal({ pkg, children }: { pkg: Package; children: 
     </Dialog>
   );
 }
+
+    
