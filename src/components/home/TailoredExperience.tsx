@@ -8,7 +8,7 @@ export default function TailoredExperience() {
     <section className="py-12 md:py-24 bg-secondary">
       <div className="container">
         <div className="grid md:grid-cols-2 gap-12 items-center">
-          <div className="rounded-lg overflow-hidden shadow-2xl">
+          <div className="rounded-lg overflow-hidden shadow-2xl transition-transform duration-300 hover:-translate-y-1">
             <Image
               src="https://placehold.co/600x700.png"
               alt="Tailored travel experience"
@@ -39,8 +39,8 @@ export default function TailoredExperience() {
                 <span>Exclusive access and unique local experiences.</span>
               </li>
             </ul>
-            <Button asChild size="lg">
-              <Link href="/planner">Start Planning with AI</Link>
+            <Button asChild size="lg" className="transition-transform duration-300 hover:-translate-y-1">
+              <Link href="/contact">Start Planning</Link>
             </Button>
           </div>
         </div>

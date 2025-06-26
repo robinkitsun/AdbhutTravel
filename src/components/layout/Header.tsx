@@ -13,7 +13,6 @@ const navLinks = [
   { href: "/about", label: "About Us" },
   { href: "/services", label: "Services" },
   { href: "/mice", label: "MICE" },
-  { href: "/planner", label: "AI Planner" },
   { href: "/career", label: "Career" },
   { href: "/contact", label: "Contact Us" },
 ];
@@ -23,8 +22,8 @@ export default function Header() {
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container flex h-16 items-center justify-between">
-        <Link href="/">
+      <div className="container flex h-14 items-center justify-between">
+        <Link href="/" className="transition-transform duration-300 hover:-translate-y-1">
           <Logo />
         </Link>
 
@@ -45,7 +44,7 @@ export default function Header() {
 
         <Sheet>
           <SheetTrigger asChild>
-            <Button variant="outline" size="icon" className="md:hidden">
+            <Button variant="outline" size="icon" className="md:hidden transition-transform duration-300 hover:-translate-y-1">
               <Menu className="h-5 w-5" />
               <span className="sr-only">Toggle navigation menu</span>
             </Button>

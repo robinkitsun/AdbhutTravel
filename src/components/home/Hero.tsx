@@ -19,11 +19,8 @@ export default function Hero() {
           Explore the world's most breathtaking destinations with Adbhut Travel. From exotic beaches to thrilling mountain treks, we curate unforgettable travel experiences tailored just for you.
         </p>
         <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
-            <Button asChild size="lg" className="rounded-full px-8">
+            <Button asChild size="lg" className="rounded-full px-8 transition-transform duration-300 hover:-translate-y-1">
                 <Link href="#packages">Explore Packages</Link>
-            </Button>
-            <Button asChild size="lg" variant="outline" className="rounded-full px-8 bg-white/10 border-white text-white hover:bg-white/20 hover:text-white">
-                <Link href="/planner">Plan with AI</Link>
             </Button>
         </div>
       </div>
