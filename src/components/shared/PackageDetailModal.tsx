@@ -10,6 +10,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Plane, BedDouble, Utensils, Car, Palmtree, User, FileText, ShieldCheck, Ticket, Flower, Wifi, Leaf, Info, X, Map, ListChecks, XCircle, GalleryHorizontal } from 'lucide-react';
 import type { Package, Facility } from "@/lib/types";
+import { cn } from "@/lib/utils";
 
 const facilityDetails: Record<Facility, { icon: React.ElementType; label: string; description: string }> = {
   flight: { icon: Plane, label: "Flights", description: "Round-trip economy class airfare from your departure city." },
@@ -49,23 +50,23 @@ export function PackageDetailModal({ pkg, children }: { pkg: Package; children: 
             <div className="px-6 pt-4 pb-2 shrink-0">
                  <div className="bg-muted p-1 rounded-lg">
                     <TabsList className="grid w-full grid-cols-4 rounded-md bg-transparent p-0 h-auto">
-                        <TabsTrigger value="outline" className="data-[state=active]:bg-background data-[state=active]:shadow-md py-2 transition-transform duration-300 hover:-translate-y-1 data-[state=active]:hover:translate-y-0">Trip Outline</TabsTrigger>
-                        <TabsTrigger value="includes" className="data-[state=active]:bg-background data-[state=active]:shadow-md py-2 transition-transform duration-300 hover:-translate-y-1 data-[state=active]:hover:translate-y-0">Trip Includes</TabsTrigger>
-                        <TabsTrigger value="excludes" className="data-[state=active]:bg-background data-[state=active]:shadow-md py-2 transition-transform duration-300 hover:-translate-y-1 data-[state=active]:hover:translate-y-0">Trip Excludes</TabsTrigger>
-                        <TabsTrigger value="gallery" className="data-[state=active]:bg-background data-[state=active]:shadow-md py-2 transition-transform duration-300 hover:-translate-y-1 data-[state=active]:hover:translate-y-0">Gallery</TabsTrigger>
+                        <TabsTrigger value="outline" className="data-[state=active]:bg-background data-[state=active]:shadow-md py-2">Trip Outline</TabsTrigger>
+                        <TabsTrigger value="includes" className="data-[state=active]:bg-background data-[state=active]:shadow-md py-2">Trip Includes</TabsTrigger>
+                        <TabsTrigger value="excludes" className="data-[state=active]:bg-background data-[state=active]:shadow-md py-2">Trip Excludes</TabsTrigger>
+                        <TabsTrigger value="gallery" className="data-[state=active]:bg-background data-[state=active]:shadow-md py-2">Gallery</TabsTrigger>
                     </TabsList>
                 </div>
             </div>
 
-            <TabsContent value="outline" className="flex-grow flex flex-col m-0 p-6 pt-2 overflow-hidden">
-                <div className="bg-pastel-blue rounded-lg flex flex-col flex-grow overflow-hidden">
-                    <div className="p-6 pb-4 shrink-0">
-                        <h3 className="text-2xl font-headline font-bold flex items-center gap-3 text-foreground">
-                            <Map className="h-7 w-7 text-chart-3" /> Trip Outline
-                        </h3>
-                        <p className="text-muted-foreground mt-1">A day-by-day journey through your adventure.</p>
-                    </div>
-                    <ScrollArea className="flex-grow px-6 pb-6">
+            <TabsContent value="outline" className="flex-grow m-0 overflow-hidden">
+                <ScrollArea className="h-full">
+                    <div className="bg-pastel-blue p-6">
+                        <div className="mb-6">
+                            <h3 className="text-2xl font-headline font-bold flex items-center gap-3 text-foreground">
+                                <Map className="h-7 w-7 text-chart-3" /> Trip Outline
+                            </h3>
+                            <p className="text-muted-foreground mt-1">A day-by-day journey through your adventure.</p>
+                        </div>
                         <div className="flow-root">
                           <ul className="-mb-8">
                             {pkg.itinerary.map((item, index) => (
@@ -90,19 +91,19 @@ export function PackageDetailModal({ pkg, children }: { pkg: Package; children: 
                             ))}
                           </ul>
                         </div>
-                    </ScrollArea>
-                </div>
+                    </div>
+                </ScrollArea>
             </TabsContent>
 
-            <TabsContent value="includes" className="flex-grow flex flex-col m-0 p-6 pt-2 overflow-hidden">
-                <div className="bg-pastel-green rounded-lg flex flex-col flex-grow overflow-hidden">
-                    <div className="p-6 pb-4 shrink-0">
-                        <h3 className="text-2xl font-headline font-bold flex items-center gap-3 text-foreground">
-                            <ListChecks className="h-7 w-7 text-chart-2" /> Trip Includes
-                        </h3>
-                        <p className="text-muted-foreground mt-1">Everything that is covered in your package.</p>
-                    </div>
-                    <ScrollArea className="flex-grow px-6 pb-6">
+            <TabsContent value="includes" className="flex-grow m-0 overflow-hidden">
+                <ScrollArea className="h-full">
+                    <div className="bg-pastel-green p-6">
+                        <div className="mb-6">
+                            <h3 className="text-2xl font-headline font-bold flex items-center gap-3 text-foreground">
+                                <ListChecks className="h-7 w-7 text-chart-2" /> Trip Includes
+                            </h3>
+                            <p className="text-muted-foreground mt-1">Everything that is covered in your package.</p>
+                        </div>
                          <ul className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-2">
                             {pkg.facilities?.map((facility) => {
                                 const detail = facilityDetails[facility];
@@ -127,19 +128,19 @@ export function PackageDetailModal({ pkg, children }: { pkg: Package; children: 
                                 )
                             })}
                         </ul>
-                    </ScrollArea>
-                </div>
+                    </div>
+                </ScrollArea>
             </TabsContent>
 
-            <TabsContent value="excludes" className="flex-grow flex flex-col m-0 p-6 pt-2 overflow-hidden">
-                <div className="bg-pastel-red rounded-lg flex flex-col flex-grow overflow-hidden">
-                    <div className="p-6 pb-4 shrink-0">
-                        <h3 className="text-2xl font-headline font-bold flex items-center gap-3 text-foreground">
-                            <XCircle className="h-7 w-7 text-destructive" /> Trip Excludes
-                        </h3>
-                        <p className="text-muted-foreground mt-1">What's not covered in the package price.</p>
-                    </div>
-                    <ScrollArea className="flex-grow px-6 pb-6">
+            <TabsContent value="excludes" className="flex-grow m-0 overflow-hidden">
+                 <ScrollArea className="h-full">
+                    <div className="bg-pastel-red p-6">
+                        <div className="mb-6">
+                            <h3 className="text-2xl font-headline font-bold flex items-center gap-3 text-foreground">
+                                <XCircle className="h-7 w-7 text-destructive" /> Trip Excludes
+                            </h3>
+                            <p className="text-muted-foreground mt-1">What's not covered in the package price.</p>
+                        </div>
                         <ul className="space-y-2">
                           {exclusionDetails.map((item) => (
                             <li key={item.title} className="group flex items-center gap-2 py-2 transition-transform duration-300 hover:-translate-y-1">
@@ -160,19 +161,19 @@ export function PackageDetailModal({ pkg, children }: { pkg: Package; children: 
                             </li>
                           ))}
                         </ul>
-                    </ScrollArea>
-                </div>
+                    </div>
+                </ScrollArea>
             </TabsContent>
             
-            <TabsContent value="gallery" className="flex-grow flex flex-col m-0 p-6 pt-2 overflow-hidden">
-                <div className="bg-pastel-purple rounded-lg flex flex-col flex-grow overflow-hidden">
-                    <div className="p-6 pb-4 shrink-0">
-                        <h3 className="text-2xl font-headline font-bold flex items-center gap-3 text-foreground">
-                            <GalleryHorizontal className="h-7 w-7 text-chart-5" /> Gallery
-                        </h3>
-                        <p className="text-muted-foreground mt-1">A visual glimpse of your destination.</p>
-                    </div>
-                    <ScrollArea className="flex-grow px-6 pb-6">
+            <TabsContent value="gallery" className="flex-grow m-0 overflow-hidden">
+                 <ScrollArea className="h-full">
+                    <div className="bg-pastel-purple p-6">
+                        <div className="mb-6">
+                            <h3 className="text-2xl font-headline font-bold flex items-center gap-3 text-foreground">
+                                <GalleryHorizontal className="h-7 w-7 text-chart-5" /> Gallery
+                            </h3>
+                            <p className="text-muted-foreground mt-1">A visual glimpse of your destination.</p>
+                        </div>
                         <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
                             {(pkg.gallery || []).map((imgSrc, index) => (
                                 <div key={index} className="rounded-lg overflow-hidden shadow-md transition-transform duration-300 hover:-translate-y-1">
@@ -187,8 +188,8 @@ export function PackageDetailModal({ pkg, children }: { pkg: Package; children: 
                                 </div>
                             ))}
                         </div>
-                    </ScrollArea>
-                </div>
+                    </div>
+                </ScrollArea>
             </TabsContent>
         </Tabs>
       </DialogContent>

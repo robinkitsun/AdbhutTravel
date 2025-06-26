@@ -13,9 +13,9 @@ export default function Footer() {
 
   return (
     <footer className="bg-secondary/50 text-foreground border-t">
-      <div className="container py-12">
+      <div className="container py-8">
         {isHomePage && (
-          <div className="mb-12">
+          <div className="mb-8">
             <div className="max-w-4xl mx-auto">
               <div className="relative h-0 pb-[56.25%]"> {/* 16:9 aspect ratio */}
                 <iframe
@@ -30,7 +30,7 @@ export default function Footer() {
           </div>
         )}
 
-        <div className="mb-12">
+        <div className="mb-8">
           <div className="flex justify-center items-center">
               <Image
                 src="https://www.adbhuttravel.com/wp-content/uploads/2025/01/Screenshot-2025-01-04-at-9.55.01%E2%80%AFAM-1536x113.png"
