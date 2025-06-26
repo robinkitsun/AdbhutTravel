@@ -3,33 +3,36 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import Link from "next/link";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger, DialogFooter, DialogClose } from "@/components/ui/dialog";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { Plane, BedDouble, Utensils, Car, Palmtree, User, FileText, ShieldCheck, Ticket, Flower, Wifi, Leaf } from 'lucide-react';
+import { Button } from "@/components/ui/button";
+import { Plane, BedDouble, Utensils, Car, Palmtree, User, FileText, ShieldCheck, Ticket, Flower, Wifi, Leaf, Info, X } from 'lucide-react';
 import type { Package, Facility } from "@/lib/types";
 
-const facilityDetails: Record<Facility, { icon: React.ElementType; label: string }> = {
-  flight: { icon: Plane, label: "Flights" },
-  hotel: { icon: BedDouble, label: "Accommodation" },
-  transport: { icon: Car, label: "Private Transfers" },
-  meals: { icon: Utensils, label: "Meals" },
-  sightseeing: { icon: Palmtree, label: "Sightseeing" },
-  guide: { icon: User, label: "Local Guide" },
-  visa: { icon: FileText, label: "Visa Assistance" },
-  insurance: { icon: ShieldCheck, label: "Travel Insurance" },
-  permit: { icon: Ticket, label: "Permits & Fees" },
-  spa: { icon: Flower, label: "Spa & Wellness" },
-  wifi: { icon: Wifi, label: "Wi-Fi" },
-  veg: { icon: Leaf, label: "Veg Meals" },
+const facilityDetails: Record<Facility, { icon: React.ElementType; label: string; description: string }> = {
+  flight: { icon: Plane, label: "Flights", description: "Round-trip economy class airfare from your departure city." },
+  hotel: { icon: BedDouble, label: "Accommodation", description: "Stay in carefully selected 4-star hotels with daily breakfast." },
+  transport: { icon: Car, label: "Private Transfers", description: "All airport transfers and ground transportation in a private, air-conditioned vehicle." },
+  meals: { icon: Utensils, label: "Meals", description: "Daily breakfast at the hotel and select lunches or dinners as per the itinerary." },
+  sightseeing: { icon: Palmtree, label: "Sightseeing", description: "All entry fees and guided tours for attractions mentioned in the itinerary." },
+  guide: { icon: User, label: "Local Guide", description: "Services of an English-speaking professional guide for all tours." },
+  visa: { icon: FileText, label: "Visa Assistance", description: "We provide assistance with the visa application process. Fees are not included." },
+  insurance: { icon: ShieldCheck, label: "Travel Insurance", description: "Basic travel insurance covering medical emergencies and trip cancellation." },
+  permit: { icon: Ticket, label: "Permits & Fees", description: "All necessary permits, road taxes, and government fees are included." },
+  spa: { icon: Flower, label: "Spa & Wellness", description: "A complimentary spa or wellness session to help you relax and rejuvenate." },
+  wifi: { icon: Wifi, label: "Wi-Fi", description: "Complimentary Wi-Fi access at all hotel accommodations." },
+  veg: { icon: Leaf, label: "Veg Meals", description: "Vegetarian meal options are available upon request at all locations." },
 };
 
-const commonExclusions = [
-    "Personal expenses (laundry, phone calls, etc.)",
-    "Optional tours and activities not listed in the itinerary",
-    "Tips and gratuities for guides and drivers",
-    "Any items not specifically mentioned as 'included'",
-    "Early check-in or late check-out charges"
+const exclusionDetails = [
+    { title: "Personal expenses (laundry, phone calls, etc.)", description: "Any costs of a personal nature, such as laundry services, phone calls, or mini-bar purchases, are not included." },
+    { title: "Optional tours and activities not listed in the itinerary", description: "Any tours or activities that are not explicitly mentioned in the 'Trip Includes' section can be arranged at an additional cost." },
+    { title: "Tips and gratuities for guides and drivers", description: "Tipping is at your discretion and is a way to show appreciation for excellent service. It is not included in the package price." },
+    { title: "Any items not specifically mentioned as 'included'", description: "This package only covers items listed under 'Trip Includes'. Anything not on that list is excluded." },
+    { title: "Early check-in or late check-out charges", description: "Standard hotel check-in and check-out times apply. Any charges for early arrival or late departure are not included." }
 ];
 
 export function PackageDetailModal({ pkg, children }: { pkg: Package; children: React.ReactNode }) {
@@ -38,11 +41,11 @@ export function PackageDetailModal({ pkg, children }: { pkg: Package; children: 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>{children}</DialogTrigger>
-      <DialogContent className="sm:max-w-4xl h-[90vh] flex flex-col">
-        <DialogHeader>
+      <DialogContent className="sm:max-w-4xl h-[90vh] flex flex-col p-0">
+        <DialogHeader className="p-6 pb-0">
           <DialogTitle className="font-headline text-3xl">{pkg.name}</DialogTitle>
         </DialogHeader>
-        <div className="flex-grow min-h-0">
+        <div className="flex-grow min-h-0 px-6">
           <Tabs defaultValue="outline" className="h-full flex flex-col">
             <TabsList className="inline-flex h-auto justify-start rounded-none border-b bg-transparent p-0 w-full">
               <TabsTrigger value="outline" className="h-full rounded-none border-b-2 border-transparent bg-transparent p-4 font-medium text-muted-foreground shadow-none ring-offset-background transition-all duration-300 hover:-translate-y-1 focus-visible:ring-0 data-[state=active]:border-primary data-[state=active]:text-primary data-[state=active]:shadow-none">Trip Outline</TabsTrigger>
@@ -50,7 +53,7 @@ export function PackageDetailModal({ pkg, children }: { pkg: Package; children: 
               <TabsTrigger value="excludes" className="h-full rounded-none border-b-2 border-transparent bg-transparent p-4 font-medium text-muted-foreground shadow-none ring-offset-background transition-all duration-300 hover:-translate-y-1 focus-visible:ring-0 data-[state=active]:border-primary data-[state=active]:text-primary data-[state=active]:shadow-none">Trip Excludes</TabsTrigger>
               <TabsTrigger value="gallery" className="h-full rounded-none border-b-2 border-transparent bg-transparent p-4 font-medium text-muted-foreground shadow-none ring-offset-background transition-all duration-300 hover:-translate-y-1 focus-visible:ring-0 data-[state=active]:border-primary data-[state=active]:text-primary data-[state=active]:shadow-none">Gallery</TabsTrigger>
             </TabsList>
-            <ScrollArea className="flex-grow mt-4 pr-3">
+            <ScrollArea className="flex-grow mt-4 pr-3 -mr-3">
               <TabsContent value="outline">
                 <div className="flow-root">
                   <ul className="-mb-8">
@@ -80,23 +83,49 @@ export function PackageDetailModal({ pkg, children }: { pkg: Package; children: 
                 </div>
               </TabsContent>
               <TabsContent value="includes">
-                 <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                 <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-2">
                     {pkg.facilities?.map((facility) => {
                         const detail = facilityDetails[facility];
                         if (!detail) return null;
                         return (
-                            <div key={facility} className="flex items-center gap-3 p-3 bg-secondary/70 rounded-lg">
-                                <detail.icon className="h-7 w-7 text-primary"/>
-                                <span className="font-medium text-foreground">{detail.label}</span>
-                            </div>
+                           <TooltipProvider key={facility} delayDuration={100}>
+                             <Tooltip>
+                              <div className="group flex items-center justify-between py-2 transition-transform duration-300 hover:-translate-y-1">
+                                <div className="flex items-center gap-3">
+                                  <detail.icon className="h-7 w-7 text-primary"/>
+                                  <span className="font-medium text-foreground">{detail.label}</span>
+                                </div>
+                                <TooltipTrigger asChild>
+                                    <Info className="h-4 w-4 text-muted-foreground opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                                </TooltipTrigger>
+                              </div>
+                               <TooltipContent>
+                                 <p>{detail.description}</p>
+                               </TooltipContent>
+                             </Tooltip>
+                           </TooltipProvider>
                         )
                     })}
                  </div>
               </TabsContent>
               <TabsContent value="excludes">
-                <ul className="space-y-3 list-disc list-inside">
-                  {commonExclusions.map((item, index) => (
-                    <li key={index} className="text-muted-foreground">{item}</li>
+                 <ul className="space-y-1">
+                  {exclusionDetails.map((item) => (
+                    <li key={item.title}>
+                       <TooltipProvider delayDuration={100}>
+                         <Tooltip>
+                           <div className="group flex items-center justify-between py-2 transition-transform duration-300 hover:-translate-y-1">
+                              <span className="text-muted-foreground">{item.title}</span>
+                              <TooltipTrigger asChild>
+                                <Info className="h-4 w-4 text-muted-foreground opacity-0 transition-opacity duration-300 group-hover:opacity-100 ml-4" />
+                              </TooltipTrigger>
+                           </div>
+                           <TooltipContent>
+                             <p>{item.description}</p>
+                           </TooltipContent>
+                         </Tooltip>
+                       </TooltipProvider>
+                    </li>
                   ))}
                 </ul>
               </TabsContent>
@@ -118,6 +147,14 @@ export function PackageDetailModal({ pkg, children }: { pkg: Package; children: 
               </TabsContent>
             </ScrollArea>
           </Tabs>
+        </div>
+         <div className="flex justify-end items-center gap-4 p-6 border-t bg-background">
+            <DialogClose asChild>
+                <Button variant="outline">Close</Button>
+            </DialogClose>
+            <Button asChild>
+                <Link href="/contact">Contact Us</Link>
+            </Button>
         </div>
       </DialogContent>
     </Dialog>
