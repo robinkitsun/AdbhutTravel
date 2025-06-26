@@ -4,10 +4,11 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger, DialogClose } from "@/components/ui/dialog";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { Button } from "@/components/ui/button";
 import { Plane, BedDouble, Utensils, Car, Palmtree, User, FileText, ShieldCheck, Ticket, Flower, Wifi, Leaf, Info, X, Map, ListChecks, XCircle, GalleryHorizontal } from 'lucide-react';
 import type { Package, Facility } from "@/lib/types";
 import { cn } from "@/lib/utils";
@@ -91,6 +92,14 @@ export function PackageDetailModal({ pkg, children }: { pkg: Package; children: 
                             ))}
                           </ul>
                         </div>
+                        <div className="border-t border-foreground/20 mt-8 pt-6 flex justify-end gap-4">
+                            <DialogClose asChild>
+                                <Button variant="outline" className="bg-transparent hover:bg-white/20 border-foreground/50 text-foreground">Close</Button>
+                            </DialogClose>
+                            <Button asChild>
+                                <Link href="/contact">Contact Us</Link>
+                            </Button>
+                        </div>
                     </div>
                 </ScrollArea>
             </TabsContent>
@@ -128,6 +137,14 @@ export function PackageDetailModal({ pkg, children }: { pkg: Package; children: 
                                 )
                             })}
                         </ul>
+                        <div className="border-t border-foreground/20 mt-8 pt-6 flex justify-end gap-4">
+                            <DialogClose asChild>
+                                <Button variant="outline" className="bg-transparent hover:bg-white/20 border-foreground/50 text-foreground">Close</Button>
+                            </DialogClose>
+                            <Button asChild>
+                                <Link href="/contact">Contact Us</Link>
+                            </Button>
+                        </div>
                     </div>
                 </ScrollArea>
             </TabsContent>
@@ -161,6 +178,14 @@ export function PackageDetailModal({ pkg, children }: { pkg: Package; children: 
                             </li>
                           ))}
                         </ul>
+                         <div className="border-t border-foreground/20 mt-8 pt-6 flex justify-end gap-4">
+                            <DialogClose asChild>
+                                <Button variant="outline" className="bg-transparent hover:bg-white/20 border-foreground/50 text-foreground">Close</Button>
+                            </DialogClose>
+                            <Button asChild>
+                                <Link href="/contact">Contact Us</Link>
+                            </Button>
+                        </div>
                     </div>
                 </ScrollArea>
             </TabsContent>
@@ -187,6 +212,14 @@ export function PackageDetailModal({ pkg, children }: { pkg: Package; children: 
                                     />
                                 </div>
                             ))}
+                        </div>
+                        <div className="border-t border-foreground/20 mt-8 pt-6 flex justify-end gap-4">
+                            <DialogClose asChild>
+                                <Button variant="outline" className="bg-transparent hover:bg-white/20 border-foreground/50 text-foreground">Close</Button>
+                            </DialogClose>
+                            <Button asChild>
+                                <Link href="/contact">Contact Us</Link>
+                            </Button>
                         </div>
                     </div>
                 </ScrollArea>
