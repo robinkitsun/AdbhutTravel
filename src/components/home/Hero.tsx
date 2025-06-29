@@ -1,16 +1,19 @@
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Hero() {
   return (
     <section className="relative h-[calc(80vh)] w-full">
-      <div 
-        className="absolute inset-0 bg-cover bg-center bg-fixed"
-        style={{ backgroundImage: "url('https://images.pexels.com/photos/221471/pexels-photo-221471.jpeg')" }}
+      <Image
+        src="https://images.pexels.com/photos/221471/pexels-photo-221471.jpeg"
+        alt="Tropical beach background"
+        fill
+        priority
+        className="object-cover"
         data-ai-hint="tropical beach"
-      >
-        <div className="absolute inset-0 bg-black/50" />
-      </div>
+      />
+      <div className="absolute inset-0 bg-black/50" />
       <div className="relative z-10 flex flex-col items-center justify-center h-full text-center text-white p-4">
         <h1 className="font-headline text-5xl md:text-7xl font-bold !text-primary-foreground leading-tight [text-shadow:0_2px_4px_rgba(0,0,0,0.8)]">
           Discover Your Next Adventure

@@ -8,6 +8,21 @@ import { Chatbot } from "@/components/shared/Chatbot";
 import "./globals.css";
 import { ScrollToBottomButton } from "@/components/shared/ScrollToBottomButton";
 import { CustomCursor } from "@/components/shared/CustomCursor";
+import { PT_Sans, Playfair_Display } from 'next/font/google';
+
+const ptSans = PT_Sans({
+  subsets: ['latin'],
+  weight: ['400', '700'],
+  variable: '--font-pt-sans',
+  display: 'swap',
+});
+
+const playfairDisplay = Playfair_Display({
+  subsets: ['latin'],
+  weight: ['400', '700'],
+  variable: '--font-playfair-display',
+  display: 'swap',
+});
 
 export const metadata: Metadata = {
   title: "Adbhut Travel And Event Pvt. Ltd.",
@@ -23,14 +38,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="scroll-smooth" suppressHydrationWarning>
+    <html lang="en" className={`${ptSans.variable} ${playfairDisplay.variable} scroll-smooth`} suppressHydrationWarning>
       <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=PT+Sans:wght@400;700&display=swap"
-          rel="stylesheet"
-        />
       </head>
       <body className="font-body antialiased flex flex-col min-h-screen">
         <CustomCursor />

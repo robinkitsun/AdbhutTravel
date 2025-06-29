@@ -32,7 +32,7 @@ export default function Header() {
       setAnimationProgress(progress);
     };
 
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     handleScroll(); // Set initial state
 
     return () => {
@@ -41,17 +41,13 @@ export default function Header() {
   }, []);
 
   // Define animation values based on scroll progress
-  const startTranslatePx = 48; // 3rem, from an equivalent of translate-x-12
+  const startTranslatePx = 48;
   const endTranslatePx = 0;
   const currentTranslatePx = startTranslatePx * (1 - animationProgress);
 
   const startScaleVal = 0.9;
   const endScaleVal = 1.0;
   const currentScaleVal = startScaleVal + (endScaleVal - startScaleVal) * animationProgress;
-
-  const startGapRem = 1; // 1rem, from gap-4
-  const endGapRem = 4.5; // Reduced from 5rem to 4.5rem (10% reduction)
-  const currentGapRem = startGapRem + (endGapRem - startGapRem) * animationProgress;
 
   const startOpacityVal = 0.7;
   const endOpacityVal = 1.0;
@@ -60,11 +56,13 @@ export default function Header() {
   const logoStyle = {
     transform: `translateX(${currentTranslatePx}px) scale(${currentScaleVal})`,
   };
+  
+  // Removed `gap` from animation to improve performance. `scale` handles the expansion effect.
   const navStyle = {
-    gap: `${currentGapRem}rem`,
     transform: `scale(${currentScaleVal})`,
     opacity: currentOpacityVal,
   };
+
   const consultationStyle = {
     transform: `translateX(${-currentTranslatePx}px) scale(${currentScaleVal})`,
   };
@@ -82,7 +80,7 @@ export default function Header() {
 
         <nav
           style={navStyle}
-          className="hidden md:flex items-center font-medium"
+          className="hidden md:flex items-center gap-10 font-medium"
         >
           {navLinks.map(({ href, label }) => (
             <Link
