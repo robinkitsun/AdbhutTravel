@@ -20,41 +20,68 @@ const navLinks = [
 
 export default function Header() {
   const pathname = usePathname();
-  const [isScrolled, setIsScrolled] = useState(false);
+  const [animationProgress, setAnimationProgress] = useState(0);
 
   useEffect(() => {
     const handleScroll = () => {
-      // Animate after scrolling a small amount (e.g., 50px)
-      setIsScrolled(window.scrollY > 50);
+      const scrollY = window.scrollY;
+      // Animate over the first 80% of the viewport height (the hero section)
+      const animationEndScroll = window.innerHeight * 0.8;
+      const progress = Math.min(scrollY / animationEndScroll, 1);
+      setAnimationProgress(progress);
     };
 
     window.addEventListener("scroll", handleScroll);
-    // Set initial state
-    handleScroll();
+    handleScroll(); // Set initial state
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
 
+  // Define animation values based on scroll progress
+  const startTranslatePx = 48; // 3rem, from an equivalent of translate-x-12
+  const endTranslatePx = 0;
+  const currentTranslatePx = startTranslatePx * (1 - animationProgress);
+
+  const startScaleVal = 0.9;
+  const endScaleVal = 1.0;
+  const currentScaleVal = startScaleVal + (endScaleVal - startScaleVal) * animationProgress;
+
+  const startGapRem = 1; // 1rem, from gap-4
+  const endGapRem = 5; // 5rem, from gap-20
+  const currentGapRem = startGapRem + (endGapRem - startGapRem) * animationProgress;
+
+  const startOpacityVal = 0.7;
+  const endOpacityVal = 1.0;
+  const currentOpacityVal = startOpacityVal + (endOpacityVal - startOpacityVal) * animationProgress;
+
+  const logoStyle = {
+    transform: `translateX(${currentTranslatePx}px) scale(${currentScaleVal})`,
+  };
+  const navStyle = {
+    gap: `${currentGapRem}rem`,
+    transform: `scale(${currentScaleVal})`,
+    opacity: currentOpacityVal,
+  };
+  const consultationStyle = {
+    transform: `translateX(${-currentTranslatePx}px) scale(${currentScaleVal})`,
+  };
+
+
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background">
       <div className="container flex h-16 items-center justify-between overflow-x-hidden">
         <Link
           href="/"
-          className={cn(
-            "transition-transform duration-500 ease-in-out",
-            !isScrolled ? "translate-x-8 scale-90" : "translate-x-0 scale-100"
-          )}
+          style={logoStyle}
         >
           <Logo />
         </Link>
 
         <nav
-          className={cn(
-            "hidden md:flex items-center font-medium transition-all duration-500 ease-in-out",
-            !isScrolled ? "gap-4 scale-90 opacity-70" : "gap-16 scale-100 opacity-100"
-          )}
+          style={navStyle}
+          className="hidden md:flex items-center font-medium"
         >
           {navLinks.map(({ href, label }) => (
             <Link
@@ -71,10 +98,8 @@ export default function Header() {
         </nav>
 
         <div
-          className={cn(
-            "flex items-center gap-4 transition-transform duration-500 ease-in-out",
-            !isScrolled ? "-translate-x-8 scale-90" : "translate-x-0 scale-100"
-          )}
+          style={consultationStyle}
+          className="flex items-center"
         >
           <Button asChild className="hidden md:inline-flex">
             <Link href="/contact">Get Free Consultation</Link>
