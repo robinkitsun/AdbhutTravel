@@ -1,3 +1,4 @@
+
 "use client";
 
 import Link from "next/link";
@@ -41,7 +42,7 @@ export default function Header() {
   }, []);
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <header className="sticky top-0 z-50 w-full border-b bg-background">
       <div className="container flex h-14 items-center justify-between">
         <Link href="/" className="transition-transform duration-300 hover:-translate-y-1">
           <Logo />
@@ -50,7 +51,7 @@ export default function Header() {
         <nav
           className={cn(
             "hidden md:flex items-center text-sm font-medium transition-[gap] duration-500 ease-out",
-            isScrolled ? "gap-6" : "gap-2"
+            isScrolled ? "gap-8" : "gap-4"
           )}
         >
           {navLinks.map(({ href, label }) => (
