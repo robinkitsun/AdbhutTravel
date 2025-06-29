@@ -1,4 +1,3 @@
-
 "use client";
 
 import Link from "next/link";
@@ -54,7 +53,7 @@ export default function Header() {
         <nav
           className={cn(
             "hidden md:flex items-center text-sm font-medium transition-all duration-500 ease-in-out",
-            !isScrolled ? "gap-6 scale-95 opacity-80" : "gap-10 scale-100 opacity-100"
+            !isScrolled ? "gap-6 scale-95 opacity-80" : "gap-12 scale-100 opacity-100"
           )}
         >
           {navLinks.map(({ href, label }) => (
