@@ -25,10 +25,12 @@ export default function Header() {
 
   useEffect(() => {
     const handleScroll = () => {
+      // Animate after scrolling a small amount (e.g., 50px)
       setIsScrolled(window.scrollY > 50);
     };
 
     window.addEventListener("scroll", handleScroll);
+    // Set initial state
     handleScroll();
 
     return () => {
@@ -38,15 +40,21 @@ export default function Header() {
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background">
-      <div className="container flex h-16 items-center justify-between">
-        <Link href="/" className="transition-transform duration-300 hover:-translate-y-1">
+      <div className="container flex h-16 items-center justify-between overflow-x-hidden">
+        <Link
+          href="/"
+          className={cn(
+            "transition-transform duration-500 ease-in-out",
+            !isScrolled ? "translate-x-8" : "translate-x-0"
+          )}
+        >
           <Logo />
         </Link>
 
         <nav
           className={cn(
-            "hidden md:flex items-center text-sm font-medium transition-[gap] duration-500 ease-in-out",
-            isScrolled ? "gap-10" : "gap-6"
+            "hidden md:flex items-center text-sm font-medium transition-all duration-500 ease-in-out",
+            !isScrolled ? "gap-6 scale-95 opacity-80" : "gap-10 scale-100 opacity-100"
           )}
         >
           {navLinks.map(({ href, label }) => (
@@ -54,7 +62,7 @@ export default function Header() {
               key={href}
               href={href}
               className={cn(
-                "transition-all duration-300 hover:text-primary hover:-translate-y-1 whitespace-nowrap",
+                "transition-colors duration-300 hover:text-primary whitespace-nowrap",
                 pathname === href ? "text-foreground font-semibold" : "text-muted-foreground"
               )}
             >
@@ -63,14 +71,19 @@ export default function Header() {
           ))}
         </nav>
 
-        <div className="flex items-center gap-4">
-          <Button asChild className="hidden md:inline-flex transition-transform duration-300 hover:-translate-y-1">
+        <div
+          className={cn(
+            "flex items-center gap-4 transition-transform duration-500 ease-in-out",
+            !isScrolled ? "-translate-x-8" : "translate-x-0"
+          )}
+        >
+          <Button asChild className="hidden md:inline-flex">
             <Link href="/contact">Get Free Consultation</Link>
           </Button>
           
           <Sheet>
             <SheetTrigger asChild>
-              <Button variant="outline" size="icon" className="md:hidden transition-transform duration-300 hover:-translate-y-1">
+              <Button variant="outline" size="icon" className="md:hidden">
                 <Menu className="h-5 w-5" />
                 <span className="sr-only">Toggle navigation menu</span>
               </Button>
