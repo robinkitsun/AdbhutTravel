@@ -44,7 +44,7 @@ export default function Header() {
           href="/"
           className={cn(
             "transition-transform duration-500 ease-in-out",
-            !isScrolled ? "translate-x-16 scale-90" : "translate-x-0 scale-100"
+            !isScrolled ? "translate-x-8 scale-90" : "translate-x-0 scale-100"
           )}
         >
           <Logo />
@@ -52,8 +52,8 @@ export default function Header() {
 
         <nav
           className={cn(
-            "hidden md:flex items-center text-base font-medium transition-all duration-500 ease-in-out",
-            !isScrolled ? "gap-6 scale-90 opacity-70" : "gap-12 scale-100 opacity-100"
+            "hidden md:flex items-center font-medium transition-all duration-500 ease-in-out",
+            !isScrolled ? "gap-4 scale-90 opacity-70" : "gap-16 scale-100 opacity-100"
           )}
         >
           {navLinks.map(({ href, label }) => (
@@ -61,8 +61,8 @@ export default function Header() {
               key={href}
               href={href}
               className={cn(
-                "transition-colors duration-300 hover:text-primary whitespace-nowrap animated-underline pb-2",
-                pathname === href ? "text-foreground font-semibold" : "text-muted-foreground"
+                "text-lg transition-colors duration-300 hover:text-primary hover:font-bold whitespace-nowrap animated-underline pb-2",
+                pathname === href ? "text-foreground font-bold" : "text-muted-foreground"
               )}
             >
               {label}
@@ -73,7 +73,7 @@ export default function Header() {
         <div
           className={cn(
             "flex items-center gap-4 transition-transform duration-500 ease-in-out",
-            !isScrolled ? "-translate-x-16 scale-90" : "translate-x-0 scale-100"
+            !isScrolled ? "-translate-x-8 scale-90" : "translate-x-0 scale-100"
           )}
         >
           <Button asChild className="hidden md:inline-flex">
