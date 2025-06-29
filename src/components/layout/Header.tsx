@@ -53,13 +53,17 @@ export default function Header() {
   const endOpacityVal = 1.0;
   const currentOpacityVal = startOpacityVal + (endOpacityVal - startOpacityVal) * animationProgress;
 
+  const startGapRem = 2; // Starts at ~gap-8
+  const endGapRem = 4;   // Expands to ~gap-16 for a more pronounced effect
+  const currentGapRem = startGapRem + (endGapRem - startGapRem) * animationProgress;
+
   const logoStyle = {
     transform: `translateX(${currentTranslatePx}px) scale(${currentScaleVal})`,
   };
   
-  // Removed `gap` from animation to improve performance. `scale` handles the expansion effect.
+  // Animate `gap` for more expansion, which is more performant than before due to other optimizations.
   const navStyle = {
-    transform: `scale(${currentScaleVal})`,
+    gap: `${currentGapRem}rem`,
     opacity: currentOpacityVal,
   };
 
@@ -80,7 +84,7 @@ export default function Header() {
 
         <nav
           style={navStyle}
-          className="hidden md:flex items-center gap-10 font-medium"
+          className="hidden md:flex items-center font-medium"
         >
           {navLinks.map(({ href, label }) => (
             <Link
