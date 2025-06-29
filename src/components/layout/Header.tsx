@@ -1,3 +1,4 @@
+
 "use client";
 
 import Link from "next/link";
@@ -49,7 +50,7 @@ export default function Header() {
   const currentScaleVal = startScaleVal + (endScaleVal - startScaleVal) * animationProgress;
 
   const startGapRem = 1; // 1rem, from gap-4
-  const endGapRem = 5; // 5rem, from gap-20
+  const endGapRem = 4.5; // Reduced from 5rem to 4.5rem (10% reduction)
   const currentGapRem = startGapRem + (endGapRem - startGapRem) * animationProgress;
 
   const startOpacityVal = 0.7;
