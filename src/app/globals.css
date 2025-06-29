@@ -79,6 +79,27 @@ body {
   }
 }
 
+@layer utilities {
+  .animated-underline {
+    position: relative;
+  }
+  .animated-underline::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 2px;
+    width: 100%;
+    background-color: hsl(var(--primary));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease-out;
+  }
+  .animated-underline:hover::after {
+    transform: scaleX(1);
+  }
+}
+
 .custom-cursor-follower {
   position: fixed;
   top: -10px;
