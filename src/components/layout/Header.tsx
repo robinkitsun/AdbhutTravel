@@ -7,6 +7,7 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { Logo } from "@/components/shared/Logo";
+import { useEffect, useState } from "react";
 
 const navLinks = [
   { href: "/", label: "Home" },
@@ -19,6 +20,25 @@ const navLinks = [
 
 export default function Header() {
   const pathname = usePathname();
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      // Set to true if scrolled more than 50px, false otherwise
+      setIsScrolled(window.scrollY > 50);
+    };
+
+    // Add event listener
+    window.addEventListener("scroll", handleScroll);
+
+    // Call handler right away in case page loads already scrolled
+    handleScroll();
+
+    // Clean up event listener
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -27,13 +47,18 @@ export default function Header() {
           <Logo />
         </Link>
 
-        <nav className="hidden md:flex items-center gap-6 text-sm font-medium">
+        <nav
+          className={cn(
+            "hidden md:flex items-center text-sm font-medium transition-[gap] duration-500 ease-out",
+            isScrolled ? "gap-6" : "gap-2"
+          )}
+        >
           {navLinks.map(({ href, label }) => (
             <Link
               key={href}
               href={href}
               className={cn(
-                "transition-all duration-300 hover:text-primary hover:-translate-y-1",
+                "transition-all duration-300 hover:text-primary hover:-translate-y-1 whitespace-nowrap",
                 pathname === href ? "text-foreground font-semibold" : "text-muted-foreground"
               )}
             >
