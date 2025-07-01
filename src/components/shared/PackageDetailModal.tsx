@@ -1,3 +1,4 @@
+
 "use client";
 
 import Image from "next/image";
@@ -63,7 +64,7 @@ export function PackageDetailModal({ pkg, children }: PackageDetailModalProps) {
   return (
     <Dialog>
       <DialogTrigger asChild>{children}</DialogTrigger>
-      <DialogContent className="sm:max-w-4xl p-0 flex flex-col h-full max-h-[90vh] bg-card">
+      <DialogContent className="sm:max-w-4xl p-0 flex flex-col max-h-[90vh] bg-card">
         <DialogHeader className="p-6 pb-2">
           <DialogTitle className="font-headline text-2xl">{pkg.name}</DialogTitle>
         </DialogHeader>
@@ -153,7 +154,7 @@ export function PackageDetailModal({ pkg, children }: PackageDetailModalProps) {
             </Tabs>
           </div>
           
-          <DialogFooter className="p-6 mt-4 bg-background border-t sticky bottom-0">
+          <DialogFooter className="p-6 mt-4">
             <DialogClose asChild>
               <Button>Book This Tour</Button>
             </DialogClose>
