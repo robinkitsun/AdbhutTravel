@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Clock, Plane, Utensils, BedDouble, Wifi, Car, Leaf, LandPlot, Palmtree, FerrisWheel, HandPlatter, Earth, Ticket, ShieldCheck, FileText, MountainSnow, Flower, User, Users } from "lucide-react";
 import type { Package, Facility } from "@/lib/types";
 import { cn } from "@/lib/utils";
+import { PackageDetailModal } from "./PackageDetailModal";
 
 interface PackageCardProps {
   pkg: Package;
@@ -73,7 +74,9 @@ export default function PackageCard({ pkg }: PackageCardProps) {
       )}
 
       <CardFooter className="p-4 pt-0 flex justify-end items-center">
-        <Button>Get Free Quote</Button>
+        <PackageDetailModal pkg={pkg}>
+           <Button>Get Free Quote</Button>
+        </PackageDetailModal>
       </CardFooter>
     </Card>
   );
