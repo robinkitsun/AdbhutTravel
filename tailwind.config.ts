@@ -72,12 +72,6 @@ export default {
           border: 'hsl(var(--sidebar-border))',
           ring: 'hsl(var(--sidebar-ring))',
         },
-        pastel: {
-          blue: 'hsl(var(--pastel-blue))',
-          green: 'hsl(var(--pastel-green))',
-          red: 'hsl(var(--pastel-red))',
-          purple: 'hsl(var(--pastel-purple))',
-        },
       },
       borderRadius: {
         lg: 'var(--radius)',
