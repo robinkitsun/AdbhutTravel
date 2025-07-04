@@ -19,7 +19,7 @@ export default function AffiliationsPage() {
     <>
       <section className="bg-secondary py-8">
         <div className="container text-center">
-          <h1 className="text-4xl md:text-5xl font-headline font-bold">Our Affiliations</h1>
+          <h1 className="text-4xl md:text-5xl font-headline font-bold">Our Affiliations – We are Affiliated with:</h1>
         </div>
       </section>
 
