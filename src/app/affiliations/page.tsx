@@ -25,7 +25,6 @@ export default function AffiliationsPage() {
 
       <section className="py-16 md:py-24">
         <div className="container">
-          <h2 className="text-2xl md:text-3xl font-bold mb-8">Our Affiliations – We are Affiliated with:</h2>
           <ul className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4 list-disc pl-5">
             {affiliationsList.map((item, index) => (
               <li key={index} className="text-lg text-muted-foreground">{item}</li>
