@@ -23,7 +23,7 @@ export default function AffiliationsPage() {
         </div>
       </section>
 
-      <section className="py-16 md:py-24">
+      <section className="py-8 md:py-12">
         <div className="container">
           <ul className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4 list-disc pl-5">
             {affiliationsList.map((item, index) => (
