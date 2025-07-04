@@ -1,7 +1,4 @@
 
-import Image from "next/image";
-import { ShieldCheck } from "lucide-react";
-
 const affiliationsList = [
   "MOT (Ministry of Tourism India)",
   "IATA (International Air Transport Association – Established in 1945)",
@@ -29,24 +26,11 @@ export default function AffiliationsPage() {
       <section className="py-16 md:py-24">
         <div className="container">
           <h2 className="text-2xl md:text-3xl font-bold mb-8">Our Affiliations – We are Affiliated with:</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4">
+          <ul className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4 list-disc pl-5">
             {affiliationsList.map((item, index) => (
-              <div key={index} className="flex items-start gap-3">
-                <ShieldCheck className="h-6 w-6 text-primary mt-1 shrink-0" />
-                <span className="text-lg text-muted-foreground">{item}</span>
-              </div>
+              <li key={index} className="text-lg text-muted-foreground">{item}</li>
             ))}
-          </div>
-          <div className="mt-16">
-            <Image
-              src="https://www.adbhuttravel.com/wp-content/uploads/2025/01/Screenshot-2025-01-04-at-9.55.01%E2%80%AFAM-1536x113.png"
-              alt="Certifications and Affiliations Logos"
-              width={1536}
-              height={113}
-              className="w-full h-auto object-contain"
-              data-ai-hint="certifications collage"
-            />
-          </div>
+          </ul>
         </div>
       </section>
     </>
