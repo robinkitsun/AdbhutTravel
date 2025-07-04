@@ -1,76 +1,65 @@
 import Image from "next/image";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Logo } from "@/components/shared/Logo";
 
-const trademarks = [
-  {
-    name: "VISITKURUKSHETRA.IN (A Unit of Adbhut Travel)",
-    logoUrl: "https://www.adbhuttravel.com/wp-content/uploads/2024/06/Screenshot-2024-06-27-at-11.17.15%E2%80%AFAM-1.png",
-    width: 250,
-    height: 100,
-  },
-  {
-    name: "Adbhut Travel And Event Pvt. Ltd.",
-    isComponent: true,
-  },
-  {
-    name: "NORTH CAB",
-    logoUrl: "https://www.adbhuttravel.com/wp-content/uploads/2024/06/Screenshot_2023-01-24_at_1.52.15_PM-removebg-preview.png",
-    width: 200,
-    height: 100,
-  },
-  {
-    name: "Adbhut Foundation",
-    logoUrl: "https://www.adbhuttravel.com/wp-content/uploads/2024/06/LOGO-ADBHUT-FOUNDATION.png",
-    width: 200,
-    height: 100,
-  },
-  {
-    name: "Adbhut Vivah",
-    logoUrl: "https://www.adbhuttravel.com/wp-content/uploads/2024/06/Screenshot-2024-06-27-at-11.23.46%E2%80%AFAM.png",
-    width: 250,
-    height: 100,
-  },
+const logos = [
+  { isComponent: true, alt: 'Adbhut Travel Agency Logo' },
+  { src: 'https://www.adbhuttravel.com/wp-content/uploads/2024/06/Screenshot-2024-06-27-at-11.23.46%E2%80%AFAM.png', alt: 'Adbhut Wordmark Logo', width: 250, height: 80 },
+  { src: 'https://www.adbhuttravel.com/wp-content/uploads/2024/06/Screenshot-2024-06-27-at-11.17.15%E2%80%AFAM-1.png', alt: 'VisitKurukshetra.in Logo', width: 250, height: 80 },
+  { src: 'https://www.adbhuttravel.com/wp-content/uploads/2024/06/LOGO-ADBHUT-FOUNDATION.png', alt: 'Adbhut Foundation Logo', width: 250, height: 80 },
+  { src: 'https://www.adbhuttravel.com/wp-content/uploads/2024/06/Screenshot_2023-01-24_at_1.52.15_PM-removebg-preview.png', alt: 'North Cabs Logo', width: 200, height: 80 },
+];
+
+const wordmarks = [
+  "ADBHUT TRAVEL AGENCY",
+  "ADBHUT",
+  "VisitKurukshetra",
+  "ADBHUT FOUNDATION",
+  "NORTH CABS",
+  "Our effort your comfort"
 ];
 
 export default function TrademarksPage() {
   return (
-    <>
-      <section className="bg-secondary py-16 md:py-24">
-        <div className="container text-center">
-          <h1 className="text-4xl md:text-5xl font-headline font-bold">Our Trademarks</h1>
-          <p className="mt-4 max-w-3xl mx-auto text-lg text-muted-foreground">
-            Our registered trademarks and brands under Adbhut Travel And Event Pvt. Ltd.
-          </p>
-        </div>
-      </section>
-
-      <section className="py-16 md:py-24">
-        <div className="container">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            {trademarks.map((trademark) => (
-              <Card key={trademark.name} className="flex flex-col items-center justify-start p-6 text-center shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
-                <CardHeader className="h-28 flex items-center justify-center">
-                  {trademark.isComponent ? (
-                    <Logo />
-                  ) : (
-                    <Image
-                      src={trademark.logoUrl!}
-                      alt={`${trademark.name} Logo`}
-                      width={trademark.width}
-                      height={trademark.height}
-                      className="max-h-24 w-auto object-contain"
-                    />
-                  )}
-                </CardHeader>
-                <CardContent className="flex-grow flex items-center">
-                  <CardTitle className="font-body text-base font-semibold">{trademark.name}</CardTitle>
-                </CardContent>
-              </Card>
+    <div className="container py-12 md:py-16">
+      <h1 className="text-4xl font-headline font-bold mb-8">Trademarks</h1>
+      <div className="space-y-10 text-muted-foreground">
+        <p>
+          You may not use or register, in whole or in part, any Adbhut owned trademark, service mark, wordmark, graphic symbols, logos, icons, or an alteration thereof. Provided below is an illustrative list of all trademarks that have been filed and/or registered by Adbhut Travel And Private Limited / Mohit Sharma.
+        </p>
+        
+        <div className="space-y-4">
+          <h2 className="text-2xl font-headline font-semibold text-foreground">Logos</h2>
+          <div className="flex flex-wrap items-center gap-x-12 gap-y-6">
+            {logos.map((logo) => (
+              logo.isComponent ? (
+                <Logo key={logo.alt}/>
+              ) : (
+                <Image
+                  key={logo.alt}
+                  src={logo.src!}
+                  alt={logo.alt}
+                  width={logo.width}
+                  height={logo.height}
+                  className="max-h-12 w-auto object-contain"
+                />
+              )
             ))}
           </div>
         </div>
-      </section>
-    </>
+        
+        <div className="space-y-4">
+            <h2 className="text-2xl font-headline font-semibold text-foreground">Wordmarks</h2>
+            <ul className="list-disc pl-5 space-y-2 border-l-2 border-primary ml-2 pl-6">
+                {wordmarks.map((mark) => (
+                    <li key={mark}>{mark}</li>
+                ))}
+            </ul>
+        </div>
+
+        <p className="text-sm">
+          <span className="font-semibold text-foreground">Note:</span> External parties willing to use any of the above listed Adbhut trademarks are required to get written permission from Adbhut Travel And Event Private Limited by writing to the management.
+        </p>
+      </div>
+    </div>
   );
 }
