@@ -19,14 +19,14 @@ const affiliationsList = [
 export default function AffiliationsPage() {
   return (
     <>
-      <section className="bg-secondary py-16 md:py-24">
+      <section className="bg-secondary py-12 md:py-16">
         <div className="container text-center">
           <h1 className="text-4xl md:text-5xl font-headline font-bold">Our Affiliations</h1>
         </div>
       </section>
 
       <section className="py-16 md:py-24">
-        <div className="container max-w-4xl">
+        <div className="container">
           <h2 className="text-2xl md:text-3xl font-bold mb-6">Our Affiliations – We are Affiliated with:</h2>
           <ul className="space-y-3 list-disc list-inside text-muted-foreground">
             {affiliationsList.map((item, index) => (
