@@ -2,9 +2,20 @@
 "use client";
 
 import Link from "next/link";
-import { Menu } from "lucide-react";
+import { Menu, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import {
+  Sheet,
+  SheetContent,
+  SheetTrigger,
+  SheetClose,
+} from "@/components/ui/sheet";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { Logo } from "@/components/shared/Logo";
@@ -19,6 +30,15 @@ const navLinks = [
   { href: "/contact", label: "Contact Us" },
 ];
 
+const moreLinks = [
+    { href: "/offers", label: "Offers" },
+    { href: "https://adbhuttravel.com/visitkurukshetra.in/VISITKURUKSHETRA%20ITINERARY%20NEW.pdf", label: "Visit Kurukshetra", external: true },
+    { href: "/north-cab", label: "North Cab by Adbhut" },
+    { href: "/trademarks", label: "Trademarks" },
+    { href: "/affiliations", label: "Affiliations" },
+];
+
+
 export default function Header() {
   const pathname = usePathname();
   const [animationProgress, setAnimationProgress] = useState(0);
@@ -26,21 +46,19 @@ export default function Header() {
   useEffect(() => {
     const handleScroll = () => {
       const scrollY = window.scrollY;
-      // Animate over the first 80% of the viewport height (the hero section)
       const animationEndScroll = window.innerHeight * 0.8;
       const progress = Math.min(scrollY / animationEndScroll, 1);
       setAnimationProgress(progress);
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
-    handleScroll(); // Set initial state
+    handleScroll();
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
 
-  // Define animation values based on scroll progress
   const startTranslatePx = 48;
   const endTranslatePx = 0;
   const currentTranslatePx = startTranslatePx * (1 - animationProgress);
@@ -53,15 +71,14 @@ export default function Header() {
   const endOpacityVal = 1.0;
   const currentOpacityVal = startOpacityVal + (endOpacityVal - startOpacityVal) * animationProgress;
 
-  const startGapRem = 2; // Starts at ~gap-8
-  const endGapRem = 4;   // Expands to ~gap-16 for a more pronounced effect
+  const startGapRem = 2;
+  const endGapRem = 4;
   const currentGapRem = startGapRem + (endGapRem - startGapRem) * animationProgress;
 
   const logoStyle = {
     transform: `translateX(${currentTranslatePx}px) scale(${currentScaleVal})`,
   };
-  
-  // Animate `gap` for more expansion, which is more performant than before due to other optimizations.
+
   const navStyle = {
     gap: `${currentGapRem}rem`,
     opacity: currentOpacityVal,
@@ -98,6 +115,27 @@ export default function Header() {
               {label}
             </Link>
           ))}
+            <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                <button className={cn(
+                    "text-lg transition-colors duration-300 hover:text-primary hover:font-bold whitespace-nowrap animated-underline pb-2 flex items-center gap-1 group text-muted-foreground"
+                )}>
+                    More
+                    <ChevronDown className="h-4 w-4 transition-transform duration-200 group-data-[state=open]:rotate-180" />
+                </button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end">
+                    {moreLinks.map((link) => (
+                        <DropdownMenuItem key={link.href} asChild>
+                            {link.external ? (
+                                <a href={link.href} target="_blank" rel="noopener noreferrer" className="w-full cursor-pointer">{link.label}</a>
+                            ) : (
+                                <Link href={link.href} className="w-full">{link.label}</Link>
+                            )}
+                        </DropdownMenuItem>
+                    ))}
+                </DropdownMenuContent>
+            </DropdownMenu>
         </nav>
 
         <div
@@ -116,26 +154,41 @@ export default function Header() {
               </Button>
             </SheetTrigger>
             <SheetContent side="right">
-              <nav className="grid gap-6 text-lg font-medium mt-8">
+              <nav className="grid gap-2 text-lg font-medium mt-8">
                 <Link href="/" className="mb-4">
                    <Logo />
                 </Link>
                 {navLinks.map(({ href, label }) => (
-                  <Link
-                    key={href}
-                    href={href}
-                    className={cn(
-                      "hover:text-primary transition-colors",
-                      pathname === href ? "text-foreground" : "text-muted-foreground"
-                    )}
-                  >
-                    {label}
-                  </Link>
+                  <SheetClose asChild key={href}>
+                    <Link
+                      href={href}
+                      className={cn(
+                        "block px-4 py-2 rounded-md hover:text-primary hover:bg-muted transition-colors",
+                        pathname === href ? "text-foreground bg-muted" : "text-muted-foreground"
+                      )}
+                    >
+                      {label}
+                    </Link>
+                  </SheetClose>
                 ))}
+                <div className="border-t pt-4 mt-2">
+                     <h3 className="px-4 py-2 text-sm font-semibold text-muted-foreground">More Options</h3>
+                     {moreLinks.map((link) => (
+                         <SheetClose asChild key={link.href}>
+                             {link.external ? (
+                                <a href={link.href} target="_blank" rel="noopener noreferrer" className="block px-4 py-2 rounded-md text-muted-foreground hover:text-primary hover:bg-muted transition-colors">{link.label}</a>
+                             ) : (
+                                 <Link href={link.href} className={cn("block px-4 py-2 rounded-md hover:text-primary hover:bg-muted transition-colors", pathname === link.href ? "text-foreground bg-muted" : "text-muted-foreground")}>{link.label}</Link>
+                             )}
+                         </SheetClose>
+                     ))}
+                </div>
                 <div className="border-t pt-6 mt-4">
-                    <Button asChild className="w-full">
-                        <Link href="/contact">Get Free Consultation</Link>
-                    </Button>
+                    <SheetClose asChild>
+                        <Button asChild className="w-full">
+                            <Link href="/contact">Get Free Consultation</Link>
+                        </Button>
+                    </SheetClose>
                 </div>
               </nav>
             </SheetContent>
