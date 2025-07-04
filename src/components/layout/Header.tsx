@@ -33,7 +33,7 @@ const navLinks = [
 const moreLinks = [
     { href: "/offers", label: "Offers" },
     { href: "https://adbhuttravel.com/visitkurukshetra.in/VISITKURUKSHETRA%20ITINERARY%20NEW.pdf", label: "Visit Kurukshetra", external: true },
-    { href: "/north-cab", label: "North Cab by Adbhut" },
+    { href: "https://northcabs.in/", label: "North Cab by Adbhut (Cab Booking)", external: true },
     { href: "/trademarks", label: "Trademarks" },
     { href: "/affiliations", label: "Affiliations" },
 ];
