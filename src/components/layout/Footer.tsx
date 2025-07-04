@@ -51,15 +51,7 @@ export default function Footer() {
              <p className="font-semibold text-foreground">Adbhut Travel And Event Pvt. Ltd.</p>
             <p className="text-sm text-muted-foreground">
               Crafting unforgettable travel experiences. <br />
-              CIN:{" "}
-                <Link
-                  href="https://www.zaubacorp.com/company/ADBHUT-TRAVEL-AND-EVENT-PRIVATE-LIMITED/U63090HR2020PTC086874"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-primary hover:underline"
-                >
-                  U63090HR2020PTC086874
-                </Link>
+              CIN: U63090HR2020PTC086874
             </p>
           </div>
           <div>
