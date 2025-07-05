@@ -17,11 +17,11 @@ const domesticPackages: Package[] = [
     facilities: ['flight', 'hotel', 'transport', 'meals', 'sightseeing'],
     gallery: [
         "https://images.pexels.com/photos/159516/kashmir-india-lake-boat-159516.jpeg",
-        "https://images.pexels.com/photos/158735/kashmir-ladakh-india-158735.jpeg",
         "https://images.pexels.com/photos/1603650/pexels-photo-1603650.jpeg",
-        "https://images.pexels.com/photos/159534/kashmir-ladakh-india-woman-159534.jpeg",
+        "https://images.pexels.com/photos/7904033/pexels-photo-7904033.jpeg",
+        "https://images.pexels.com/photos/11049969/pexels-photo-11049969.jpeg",
     ],
-    galleryHints: ["kashmir dal lake", "kashmir mountains", "srinagar garden", "kashmir people"],
+    galleryHints: ["kashmir dal lake", "pahalgam valley", "gulmarg snow", "kashmir landscape"],
     itinerary: [
       { day: 1, title: 'Arrival in Srinagar & Dal Lake', details: ['Arrive at Srinagar Airport, where our representative will greet you and escort you to your charming houseboat on Dal Lake. After settling in, embark on a serene Shikara ride, gliding across the tranquil waters to witness floating gardens and vibrant markets.'] },
       { day: 2, title: 'Gulmarg Gondola & Alpine Views', details: ['Journey to Gulmarg, the "Meadow of Flowers." Ascend via the famous Gulmarg Gondola to Kongdoori Station, where you\'ll be met with breathtaking panoramic views of snow-capped peaks. Spend the afternoon exploring the alpine meadows before returning to Srinagar.'] },
