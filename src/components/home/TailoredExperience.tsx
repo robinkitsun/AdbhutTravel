@@ -9,7 +9,7 @@ export default function TailoredExperience() {
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div className="rounded-lg overflow-hidden shadow-2xl transition-transform duration-300 hover:-translate-y-1">
             <Image
-              src="https://placehold.co/600x700.png"
+              src="https://images.pexels.com/photos/4348401/pexels-photo-4348401.jpeg"
               alt="Tailored travel experience"
               width={600}
               height={700}

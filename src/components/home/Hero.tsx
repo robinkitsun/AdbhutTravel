@@ -23,7 +23,7 @@ export default function Hero() {
         </p>
         <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
             <Button asChild size="lg" className="rounded-full px-8 transition-transform duration-300 hover:-translate-y-1">
-                <Link href="/services">Explore Packages</Link>
+                <Link href="/#domestic-packages">Explore Packages</Link>
             </Button>
         </div>
       </div>

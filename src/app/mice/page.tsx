@@ -15,7 +15,7 @@ export default function MicePage() {
       <section className="relative py-24 md:py-32 bg-secondary">
          <div 
           className="absolute inset-0 bg-cover bg-center bg-fixed opacity-10"
-          style={{ backgroundImage: "url('https://placehold.co/1920x1080.png')" }}
+          style={{ backgroundImage: "url('https://images.pexels.com/photos/1181396/pexels-photo-1181396.jpeg')" }}
           data-ai-hint="corporate meeting"
         ></div>
         <div className="container relative text-center">
@@ -58,7 +58,7 @@ export default function MicePage() {
             </div>
             <div className="rounded-lg overflow-hidden shadow-xl order-first md:order-last">
               <Image
-                src="https://placehold.co/600x600.png"
+                src="https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg"
                 alt="Corporate event presentation in a large hall"
                 width={600}
                 height={600}

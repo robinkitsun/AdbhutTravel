@@ -16,10 +16,10 @@ const domesticPackages: Package[] = [
     packageType: '(Couple)',
     facilities: ['flight', 'hotel', 'transport', 'meals', 'sightseeing'],
     gallery: [
-        "https://placehold.co/600x400.png",
-        "https://placehold.co/600x400.png",
-        "https://placehold.co/600x400.png",
-        "https://placehold.co/600x400.png",
+        "https://images.pexels.com/photos/159516/kashmir-india-lake-boat-159516.jpeg",
+        "https://images.pexels.com/photos/158735/kashmir-ladakh-india-158735.jpeg",
+        "https://images.pexels.com/photos/1603650/pexels-photo-1603650.jpeg",
+        "https://images.pexels.com/photos/159534/kashmir-ladakh-india-woman-159534.jpeg",
     ],
     galleryHints: ["kashmir dal lake", "kashmir mountains", "srinagar garden", "kashmir people"],
     itinerary: [
@@ -39,10 +39,10 @@ const domesticPackages: Package[] = [
     packageType: '(4 Person)',
     facilities: ['hotel', 'transport', 'meals', 'sightseeing', 'guide'],
     gallery: [
-        "https://placehold.co/600x400.png",
-        "https://placehold.co/600x400.png",
-        "https://placehold.co/600x400.png",
-        "https://placehold.co/600x400.png",
+        "https://images.pexels.com/photos/163037/buddhism-buddha-prayer-prayer-wheels-163037.jpeg",
+        "https://images.pexels.com/photos/594371/pexels-photo-594371.jpeg",
+        "https://images.pexels.com/photos/1667029/pexels-photo-1667029.jpeg",
+        "https://images.pexels.com/photos/1666989/pexels-photo-1666989.jpeg",
     ],
     galleryHints: ["ladakh monastery", "pangong lake", "nubra valley", "khardung la pass"],
     itinerary: [
@@ -62,10 +62,10 @@ const domesticPackages: Package[] = [
     packageType: '(Group)',
     facilities: ['hotel', 'transport', 'meals', 'guide', 'permit'],
     gallery: [
-        "https://placehold.co/600x400.png",
-        "https://placehold.co/600x400.png",
-        "https://placehold.co/600x400.png",
-        "https://placehold.co/600x400.png",
+        "https://images.pexels.com/photos/10178125/pexels-photo-10178125.jpeg",
+        "https://images.pexels.com/photos/1131466/pexels-photo-1131466.jpeg",
+        "https://images.pexels.com/photos/7209700/pexels-photo-7209700.jpeg",
+        "https://images.pexels.com/photos/13598583/pexels-photo-13598583.jpeg",
     ],
     galleryHints: ["kedarnath temple", "badrinath temple", "gangotri glacier", "yamunotri temple"],
     itinerary: [
@@ -93,10 +93,10 @@ const internationalPackages: Package[] = [
     packageType: '(Couple)',
     facilities: ['flight', 'hotel', 'transport', 'meals', 'visa'],
     gallery: [
-        "https://placehold.co/600x400.png",
-        "https://placehold.co/600x400.png",
-        "https://placehold.co/600x400.png",
-        "https://placehold.co/600x400.png",
+        "https://images.pexels.com/photos/1098460/pexels-photo-1098460.jpeg",
+        "https://images.pexels.com/photos/3979183/pexels-photo-3979183.jpeg",
+        "https://images.pexels.com/photos/237272/pexels-photo-237272.jpeg",
+        "https://images.pexels.com/photos/1660995/pexels-photo-1660995.jpeg",
     ],
     galleryHints: ["kuala lumpur towers", "batu caves", "langkawi beach", "penang street art"],
     itinerary: [
@@ -116,10 +116,10 @@ const internationalPackages: Package[] = [
     packageType: '(One Person)',
     facilities: ['flight', 'hotel', 'sightseeing', 'guide', 'insurance'],
     gallery: [
-        "https://placehold.co/600x400.png",
-        "https://placehold.co/600x400.png",
-        "https://placehold.co/600x400.png",
-        "https://placehold.co/600x400.png",
+        "https://images.pexels.com/photos/54124/pexels-photo-54124.jpeg",
+        "https://images.pexels.com/photos/2363/france-paris-louvre-museum.jpg",
+        "https://images.pexels.com/photos/2224795/pexels-photo-2224795.jpeg",
+        "https://images.pexels.com/photos/3474706/pexels-photo-3474706.jpeg",
     ],
     galleryHints: ["eiffel tower night", "louvre museum", "seine river cruise", "montmartre paris"],
     itinerary: [
@@ -139,10 +139,10 @@ const internationalPackages: Package[] = [
     packageType: '(Honeymoon Couple)',
     facilities: ['flight', 'hotel', 'transport', 'meals', 'sightseeing', 'spa'],
     gallery: [
-        "https://placehold.co/600x400.png",
-        "https://placehold.co/600x400.png",
-        "https://placehold.co/600x400.png",
-        "https://placehold.co/600x400.png",
+        "https://images.pexels.com/photos/2104152/pexels-photo-2104152.jpeg",
+        "https://images.pexels.com/photos/1020052/pexels-photo-1020052.jpeg",
+        "https://images.pexels.com/photos/1591373/pexels-photo-1591373.jpeg",
+        "https://images.pexels.com/photos/261102/pexels-photo-261102.jpeg",
     ],
     galleryHints: ["bali rice terrace", "bali temple", "beach sunset bali", "bali villa pool"],
     itinerary: [
@@ -163,8 +163,8 @@ export default function Home() {
     <div className="flex flex-col">
       <Hero />
       <FeaturedDestinations />
-      <PackageShowcase title="Popular Domestic Packages" packages={domesticPackages} />
-      <PackageShowcase title="Popular International Packages" packages={internationalPackages} />
+      <PackageShowcase id="domestic-packages" title="Popular Domestic Packages" packages={domesticPackages} />
+      <PackageShowcase id="international-packages" title="Popular International Packages" packages={internationalPackages} />
       <TailoredExperience />
       <Testimonials />
     </div>

@@ -30,6 +30,7 @@ import {
   Leaf
 } from "lucide-react";
 import type { Package, Facility } from "@/lib/types";
+import Link from "next/link";
 
 interface PackageDetailModalProps {
   pkg: Package;
@@ -156,7 +157,9 @@ export function PackageDetailModal({ pkg, children }: PackageDetailModalProps) {
           
           <DialogFooter className="p-6 mt-4">
             <DialogClose asChild>
-              <Button>Book This Tour</Button>
+                <Button asChild>
+                    <Link href="/contact">Book This Tour</Link>
+                </Button>
             </DialogClose>
             <DialogClose asChild>
               <Button variant="outline">Close</Button>

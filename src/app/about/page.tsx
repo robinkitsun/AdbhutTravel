@@ -10,9 +10,9 @@ export const metadata: Metadata = {
 };
 
 const teamMembers = [
-  { name: "Aarav Patel", role: "Founder & CEO", image: "https://placehold.co/100x100.png", dataAiHint: "man portrait" },
-  { name: "Priya Singh", role: "Head of Operations", image: "https://placehold.co/100x100.png", dataAiHint: "woman portrait" },
-  { name: "Rohan Mehta", role: "Lead Travel Consultant", image: "https://placehold.co/100x100.png", dataAiHint: "man portrait" },
+  { name: "Aarav Patel", role: "Founder & CEO", image: "https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg", dataAiHint: "man portrait" },
+  { name: "Priya Singh", role: "Head of Operations", image: "https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg", dataAiHint: "woman portrait" },
+  { name: "Rohan Mehta", role: "Lead Travel Consultant", image: "https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg", dataAiHint: "man portrait" },
 ];
 
 export default function AboutPage() {
@@ -32,7 +32,7 @@ export default function AboutPage() {
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="rounded-lg overflow-hidden shadow-xl">
               <Image
-                src="https://placehold.co/600x500.png"
+                src="https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg"
                 alt="Our team working together on a travel plan"
                 width={600}
                 height={500}
@@ -83,7 +83,7 @@ export default function AboutPage() {
             {teamMembers.map((member) => (
               <Card key={member.name} className="p-6 text-center border-0 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
                 <Avatar className="w-24 h-24 mx-auto mb-4">
-                  <AvatarImage src={member.image} alt={member.name} data-ai-hint={member.dataAiHint} />
+                  <AvatarImage src={member.image} alt={member.name} data-ai-hint={member.dataAiHint} className="object-cover" />
                   <AvatarFallback>{member.name.charAt(0)}</AvatarFallback>
                 </Avatar>
                 <h3 className="text-xl font-headline font-semibold">{member.name}</h3>

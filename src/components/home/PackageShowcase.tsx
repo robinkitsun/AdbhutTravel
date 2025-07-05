@@ -2,13 +2,14 @@ import PackageCard from "@/components/shared/PackageCard";
 import type { Package } from "@/lib/types";
 
 interface PackageShowcaseProps {
+  id: string;
   title: string;
   packages: Package[];
 }
 
-export default function PackageShowcase({ title, packages }: PackageShowcaseProps) {
+export default function PackageShowcase({ id, title, packages }: PackageShowcaseProps) {
   return (
-    <section id="packages" className="py-12 md:py-24 bg-background">
+    <section id={id} className="py-12 md:py-24 bg-background">
       <div className="container">
         <h2 className="text-3xl md:text-4xl font-headline font-bold text-center mb-2">
           {title}
