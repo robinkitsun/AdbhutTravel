@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
+import { Textarea } from "@/components/ui/textarea";
 import {
   Dialog,
   DialogContent,
@@ -27,7 +28,6 @@ import { Calendar } from "@/components/ui/calendar";
 
 import { submitTailoredTripForm } from "@/lib/actions";
 import { cn } from "@/lib/utils";
-import type { Facility } from "@/lib/types";
 
 const initialState = {
   message: "",
@@ -35,13 +35,14 @@ const initialState = {
   success: false,
 };
 
-const inclusions: { id: Facility; label: string }[] = [
+const inclusions: { id: string; label: string }[] = [
   { id: 'flight', label: 'Flights' },
   { id: 'hotel', label: 'Accommodation' },
   { id: 'transport', label: 'Transport' },
   { id: 'meals', label: 'Meals' },
   { id: 'sightseeing', label: 'Sightseeing' },
   { id: 'visa', label: 'Visa Assistance' },
+  { id: 'other', label: 'Other' },
 ];
 
 function SubmitButton() {
@@ -65,12 +66,16 @@ export function TailoredTripForm() {
   const [open, setOpen] = useState(false);
   const [state, formAction] = useFormState(submitTailoredTripForm, initialState);
   const formRef = useRef<HTMLFormElement>(null);
-  const [date, setDate] = useState<Date | undefined>();
+  const [startDate, setStartDate] = useState<Date | undefined>();
+  const [endDate, setEndDate] = useState<Date | undefined>();
+  const [showOtherInput, setShowOtherInput] = useState(false);
 
   useEffect(() => {
     if (state.success) {
       formRef.current?.reset();
-      setDate(undefined);
+      setStartDate(undefined);
+      setEndDate(undefined);
+      setShowOtherInput(false);
       setTimeout(() => {
         setOpen(false);
         // Reset state after closing
@@ -95,38 +100,63 @@ export function TailoredTripForm() {
           </DialogDescription>
         </DialogHeader>
         <form ref={formRef} action={formAction} className="space-y-4">
-          <input type="hidden" name="departureDate" value={date ? format(date, "PPP") : ""} />
+          <input type="hidden" name="startDate" value={startDate ? format(startDate, "PPP") : ""} />
+          <input type="hidden" name="endDate" value={endDate ? format(endDate, "PPP") : ""} />
+          
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="space-y-2">
-              <Label htmlFor="departureDate-popover">Tentative Dates</Label>
+              <Label htmlFor="startDate-popover">Start Date</Label>
               <Popover>
                 <PopoverTrigger asChild>
                   <Button
                     variant={"outline"}
-                    id="departureDate-popover"
+                    id="startDate-popover"
                     className={cn(
                       "w-full justify-start text-left font-normal",
-                      !date && "text-muted-foreground"
+                      !startDate && "text-muted-foreground"
                     )}
                   >
                     <CalendarIcon className="mr-2 h-4 w-4" />
-                    {date ? format(date, "PPP") : <span>Pick a date</span>}
+                    {startDate ? format(startDate, "PPP") : <span>Pick a date</span>}
                   </Button>
                 </PopoverTrigger>
                 <PopoverContent className="w-auto p-0">
                   <Calendar
                     mode="single"
-                    selected={date}
-                    onSelect={setDate}
+                    selected={startDate}
+                    onSelect={setStartDate}
+                    disabled={(date) => date < new Date(new Date().setHours(0,0,0,0)) }
                     initialFocus
                   />
                 </PopoverContent>
               </Popover>
             </div>
             <div className="space-y-2">
-              <Label htmlFor="duration">How long (e.g., 5 Days & 4 Nights)</Label>
-              <Input id="duration" name="duration" placeholder="e.g., 5D / 4N" />
-              {state.errors?.duration && <p className="text-sm font-medium text-destructive">{state.errors.duration[0]}</p>}
+              <Label htmlFor="endDate-popover">End Date</Label>
+               <Popover>
+                <PopoverTrigger asChild>
+                  <Button
+                    variant={"outline"}
+                    id="endDate-popover"
+                    className={cn(
+                      "w-full justify-start text-left font-normal",
+                      !endDate && "text-muted-foreground"
+                    )}
+                  >
+                    <CalendarIcon className="mr-2 h-4 w-4" />
+                    {endDate ? format(endDate, "PPP") : <span>Pick a date</span>}
+                  </Button>
+                </PopoverTrigger>
+                <PopoverContent className="w-auto p-0">
+                  <Calendar
+                    mode="single"
+                    selected={endDate}
+                    onSelect={setEndDate}
+                    disabled={(date) => startDate ? date <= startDate : date < new Date(new Date().setHours(0,0,0,0)) }
+                    initialFocus
+                  />
+                </PopoverContent>
+              </Popover>
             </div>
           </div>
 
@@ -147,11 +177,36 @@ export function TailoredTripForm() {
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 rounded-md border p-4">
               {inclusions.map((item) => (
                 <div key={item.id} className="flex items-center space-x-2">
-                  <Checkbox id={item.id} name="inclusions" value={item.id} />
+                  <Checkbox 
+                    id={item.id} 
+                    name="inclusions" 
+                    value={item.id} 
+                    onCheckedChange={ (checked) => {
+                       if (item.id === 'other') {
+                         setShowOtherInput(!!checked);
+                       }
+                    }}
+                  />
                   <Label htmlFor={item.id} className="font-normal cursor-pointer">{item.label}</Label>
                 </div>
               ))}
             </div>
+             {showOtherInput && (
+              <div className="space-y-2 pt-2">
+                  <Label htmlFor="otherInclusion" className="sr-only">Other inclusion details</Label>
+                  <Input id="otherInclusion" name="otherInclusion" placeholder="Please specify other inclusion" />
+              </div>
+            )}
+          </div>
+          
+           <div className="space-y-2">
+            <Label htmlFor="comments">Comments / Special Requests</Label>
+            <Textarea
+              id="comments"
+              name="comments"
+              placeholder="Any additional information or requests..."
+              className="min-h-[100px]"
+            />
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
