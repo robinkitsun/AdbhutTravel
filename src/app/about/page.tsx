@@ -57,11 +57,20 @@ export default function AboutPage() {
         <div className="container">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl font-headline font-bold text-center mb-12">Discover Our Journey</h2>
-            <div className="relative h-0 pb-[56.25%] rounded-lg overflow-hidden shadow-2xl">
+            <div className="relative h-0 pb-[56.25%] rounded-lg overflow-hidden shadow-2xl mb-12">
               <iframe
                 className="absolute top-0 left-0 w-full h-full"
                 src="https://www.youtube.com/embed/SOYiaKA5sRk?si=2WdEVM6oot_jdX0d"
                 title="YouTube video player"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+              ></iframe>
+            </div>
+            <div className="relative h-0 pb-[56.25%] rounded-lg overflow-hidden shadow-2xl">
+              <iframe
+                className="absolute top-0 left-0 w-full h-full"
+                src="https://www.youtube.com/embed/IfBDSc2Lb7U"
+                title="ADBHUT Profile Video"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 allowFullScreen
               ></iframe>
