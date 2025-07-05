@@ -18,7 +18,7 @@ const teamMembers = [
 export default function AboutPage() {
   return (
     <>
-      <section className="bg-secondary py-16 md:py-24">
+      <section className="bg-secondary py-8 md:py-12">
         <div className="container text-center">
           <h1 className="text-4xl md:text-5xl font-headline font-bold">About Adbhut Travel</h1>
           <p className="mt-4 max-w-3xl mx-auto text-lg text-muted-foreground">
@@ -48,6 +48,23 @@ export default function AboutPage() {
               <p className="text-muted-foreground">
                 Today, we have helped thousands of travelers explore the globe, from the serene beaches of the Maldives to the majestic peaks of the Himalayas. Our commitment to quality, personalization, and responsible tourism remains at the heart of everything we do.
               </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-16 md:py-24 bg-secondary/50">
+        <div className="container">
+          <div className="max-w-4xl mx-auto">
+            <h2 className="text-3xl font-headline font-bold text-center mb-12">Discover Our Journey</h2>
+            <div className="relative h-0 pb-[56.25%] rounded-lg overflow-hidden shadow-2xl">
+              <iframe
+                className="absolute top-0 left-0 w-full h-full"
+                src="https://www.youtube.com/embed/IfBDSc2Lb7U"
+                title="Adbhut Travel Profile Video"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+              ></iframe>
             </div>
           </div>
         </div>
