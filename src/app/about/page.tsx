@@ -2,6 +2,12 @@ import Image from "next/image";
 import { Card, CardContent } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Award, Globe, HeartHandshake } from "lucide-react";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "About Us",
+  description: "Learn about the story, values, and passionate team behind Adbhut Travel. Discover our commitment to creating extraordinary journeys and unforgettable memories.",
+};
 
 const teamMembers = [
   { name: "Aarav Patel", role: "Founder & CEO", image: "https://placehold.co/100x100.png", dataAiHint: "man portrait" },
@@ -27,7 +33,7 @@ export default function AboutPage() {
             <div className="rounded-lg overflow-hidden shadow-xl">
               <Image
                 src="https://placehold.co/600x500.png"
-                alt="Our team"
+                alt="Our team working together on a travel plan"
                 width={600}
                 height={500}
                 className="w-full h-full object-cover"

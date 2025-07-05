@@ -1,3 +1,10 @@
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "AI Planner",
+  description: "The Adbhut Travel AI Planner feature is temporarily unavailable while we make improvements. Please check back later for an enhanced experience.",
+};
+
 export default function PlannerPage() {
   return (
     <div className="container py-24 text-center">

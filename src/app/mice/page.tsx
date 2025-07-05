@@ -2,6 +2,12 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { Check } from "lucide-react";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "MICE & Corporate Travel",
+  description: "Elevate your corporate events with Adbhut Travel. We provide end-to-end solutions for Meetings, Incentives, Conferences, and Exhibitions (MICE).",
+};
 
 export default function MicePage() {
   return (
@@ -53,7 +59,7 @@ export default function MicePage() {
             <div className="rounded-lg overflow-hidden shadow-xl order-first md:order-last">
               <Image
                 src="https://placehold.co/600x600.png"
-                alt="Corporate event"
+                alt="Corporate event presentation in a large hall"
                 width={600}
                 height={600}
                 className="w-full h-full object-cover"

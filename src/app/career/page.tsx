@@ -2,6 +2,12 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Button } from "@/components/ui/button";
 import { Briefcase, MapPin } from "lucide-react";
 import Link from "next/link";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Careers",
+  description: "Join our passionate team! Explore current job openings at Adbhut Travel and be part of a company that's redefining the world of travel.",
+};
 
 const jobOpenings = [
   {

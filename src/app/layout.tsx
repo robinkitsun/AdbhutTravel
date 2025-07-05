@@ -25,10 +25,36 @@ const playfairDisplay = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  title: "Adbhut Travel And Event Pvt. Ltd.",
-  description: "Curated travel packages and personalized itinerary planning by Adbhut Travel.",
+  metadataBase: new URL('https://adbhuttravel.com'), // Replace with your actual domain
+  title: {
+    default: "Adbhut Travel And Event Pvt. Ltd.",
+    template: "%s | Adbhut Travel",
+  },
+  description: "Explore breathtaking destinations with Adbhut Travel. We curate unforgettable, personalized travel packages and itineraries, from exotic beaches to mountain treks.",
   icons: {
     icon: "/favicon.ico",
+  },
+  openGraph: {
+    title: "Adbhut Travel | Unforgettable Journeys & Custom Itineraries",
+    description: "Explore the world's most breathtaking destinations with Adbhut Travel.",
+    url: 'https://adbhuttravel.com', // Replace with your actual domain
+    siteName: 'Adbhut Travel',
+    images: [
+      {
+        url: 'https://images.pexels.com/photos/221471/pexels-photo-221471.jpeg', // Default OG image
+        width: 1200,
+        height: 630,
+        alt: 'A beautiful tropical beach with a boat, representing travel destinations.',
+      },
+    ],
+    locale: 'en_US',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: "Adbhut Travel | Unforgettable Journeys & Custom Itineraries",
+    description: "Explore the world's most breathtaking destinations with Adbhut Travel.",
+     images: ['https://images.pexels.com/photos/221471/pexels-photo-221471.jpeg'], // Default Twitter image
   },
 };
 

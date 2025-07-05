@@ -1,6 +1,12 @@
 import ContactForm from "@/components/contact/ContactForm";
 import { Mail, Phone, MapPin, Facebook, Instagram, Youtube, Linkedin, Twitter } from "lucide-react";
 import Link from "next/link";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Contact Us",
+  description: "Get in touch with the Adbhut Travel team. Find our office address, email, phone number, or use the contact form to plan your next trip.",
+};
 
 export default function ContactPage() {
   return (

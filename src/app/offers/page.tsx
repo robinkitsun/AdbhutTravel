@@ -1,3 +1,9 @@
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Special Offers",
+  description: "Find exciting offers and exclusive deals on our travel packages. Check back soon for the best travel experiences curated by Adbhut Travel.",
+};
 
 export default function OffersPage() {
   return (

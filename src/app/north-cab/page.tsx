@@ -1,3 +1,9 @@
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "North Cab by Adbhut",
+  description: "Our premier cab booking service, North Cab, is coming soon. Stay tuned for reliable and comfortable travel options across North India.",
+};
 
 export default function NorthCabPage() {
   return (

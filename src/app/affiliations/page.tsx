@@ -1,3 +1,9 @@
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Our Affiliations",
+  description: "View the official affiliations and accreditations of Adbhut Travel, showcasing our commitment to industry standards and quality service.",
+};
 
 const affiliationsList = [
   "MOT (Ministry of Tourism India)",
@@ -19,7 +25,7 @@ export default function AffiliationsPage() {
     <>
       <section className="bg-secondary py-8">
         <div className="container text-center">
-          <h1 className="text-2xl md:text-3xl font-headline font-bold">Our Affiliations – We are Affiliated with:</h1>
+          <h1 className="text-3xl md:text-4xl font-headline font-bold">Our Affiliations – We are Affiliated with:</h1>
         </div>
       </section>
 

@@ -1,5 +1,11 @@
 import Image from "next/image";
 import { Logo } from "@/components/shared/Logo";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Trademarks",
+  description: "View the official registered trademarks, service marks, wordmarks, and logos owned by Adbhut Travel And Event Private Limited.",
+};
 
 const logos = [
   { src: 'https://www.adbhuttravel.com/wp-content/uploads/2024/06/Screenshot-2024-06-27-at-11.17.15%E2%80%AFAM-1.png', alt: 'VisitKurukshetra.in Logo', width: 250, height: 80 },
