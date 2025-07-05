@@ -1,3 +1,4 @@
+
 "use server";
 
 import { chatWithAgent } from "@/ai/flows/chat-flow";
@@ -129,10 +130,9 @@ const tailoredTripFormSchema = z.object({
   otherInclusion: z.string().optional(),
   comments: z.string().optional(),
   email: z.string().email({ message: "Please enter a valid email." }).optional().or(z.literal('')),
-  mobile: z.string().optional(),
-}).refine(data => !!data.email || !!data.mobile, {
-    message: "Either Email or Mobile Number must be provided.",
-    path: ["email"], // This will show the error message under the email field
+  mobile: z.string({required_error: "Mobile number is required."})
+    .min(10, { message: "Mobile number must be at least 10 digits." })
+    .regex(/^\d{10,}$/, { message: "Please enter a valid 10-digit mobile number." }),
 });
 
 type TailoredTripFormState = {
@@ -150,31 +150,46 @@ type TailoredTripFormState = {
     mobile?: string[];
   };
   success: boolean;
+  data?: {
+    destination?: string;
+    startDate?: string;
+    endDate?: string;
+    adults?: string;
+    kids?: string;
+    inclusions?: string[];
+    otherInclusion?: string;
+    comments?: string;
+    email?: string;
+    mobile?: string;
+  }
 };
 
 export async function submitTailoredTripForm(
   prevState: TailoredTripFormState,
   formData: FormData
 ): Promise<TailoredTripFormState> {
-  const inclusions = formData.getAll('inclusions');
-  const validatedFields = tailoredTripFormSchema.safeParse({
-    destination: formData.get('destination'),
-    startDate: formData.get('startDate'),
-    endDate: formData.get('endDate'),
-    adults: formData.get('adults'),
-    kids: formData.get('kids'),
-    inclusions: inclusions,
-    otherInclusion: formData.get('otherInclusion'),
-    comments: formData.get('comments'),
-    email: formData.get('email'),
-    mobile: formData.get('mobile'),
-  });
+
+  const rawFormData = {
+    destination: formData.get('destination') as string,
+    startDate: formData.get('startDate') as string,
+    endDate: formData.get('endDate') as string,
+    adults: formData.get('adults') as string,
+    kids: formData.get('kids') as string,
+    inclusions: formData.getAll('inclusions') as string[],
+    otherInclusion: formData.get('otherInclusion') as string,
+    comments: formData.get('comments') as string,
+    email: formData.get('email') as string,
+    mobile: formData.get('mobile') as string,
+  }
+
+  const validatedFields = tailoredTripFormSchema.safeParse(rawFormData);
 
   if (!validatedFields.success) {
     return {
-      message: "Validation failed. Please provide either an email or mobile number.",
+      message: "Validation failed. Please check your input and try again.",
       errors: validatedFields.error.flatten().fieldErrors,
       success: false,
+      data: rawFormData,
     };
   }
 
@@ -184,6 +199,7 @@ export async function submitTailoredTripForm(
           message: "The form is not configured to send emails. Please contact support.",
           success: false,
           errors: {},
+          data: rawFormData,
       }
   }
 
@@ -212,46 +228,42 @@ export async function submitTailoredTripForm(
       <p><strong>Contact Mobile:</strong> ${mobile || 'Not provided'}</p>
     `;
 
+    // Send confirmation to customer if email is provided
     if (email) {
-      to = email;
-      cc = 'ankitsundriyal0@gmail.com';
-      subject = 'Your Adbhut Travel Custom Trip Request';
-      emailHtml = `
-        <h1>Thank You for Your Custom Trip Request!</h1>
-        <p>Hello,</p>
-        <p>We've received your request and our travel experts are already looking into it. We will get back to you shortly with a personalized plan.</p>
-        <p>Here's a summary of the details you provided:</p>
-        <hr>
-        ${formDetailsHtml}
-        <br>
-        <p>Best regards,</p>
-        <p>The Adbhut Travel Team</p>
-      `;
-    } else {
-      to = 'ankitsundriyal0@gmail.com';
-      cc = undefined;
-      subject = 'New Custom Trip Request (via Mobile)';
-      emailHtml = `
-        <h1>New Custom Trip Request</h1>
-        <p>A new custom trip request has been submitted via the website. The user did not provide an email address.</p>
-        <hr>
-        ${formDetailsHtml}
-      `;
+        await resend.emails.send({
+            from: 'onboarding@resend.dev',
+            to: email,
+            subject: 'Your Adbhut Travel Custom Trip Request',
+            html: `
+              <h1>Thank You for Your Custom Trip Request!</h1>
+              <p>Hello,</p>
+              <p>We've received your request and our travel experts are already looking into it. We will get back to you shortly with a personalized plan.</p>
+              <p>Here's a summary of the details you provided:</p>
+              <hr>
+              ${formDetailsHtml}
+              <br>
+              <p>Best regards,</p>
+              <p>The Adbhut Travel Team</p>
+            `,
+        });
     }
 
-
+    // Send notification to the admin
     await resend.emails.send({
       from: 'onboarding@resend.dev',
-      to: to,
-      cc: cc,
-      subject: subject,
-      html: emailHtml
+      to: 'ankitsundriyal0@gmail.com',
+      subject: 'New Custom Trip Request',
+      html: `
+        <h1>New Custom Trip Request</h1>
+        <p>A new custom trip request has been submitted via the website.</p>
+        <hr>
+        ${formDetailsHtml}
+      `
     });
 
     return {
       message: "Your request has been sent! We will contact you shortly.",
       success: true,
-      errors: {},
     };
 
   } catch (error) {
@@ -259,7 +271,7 @@ export async function submitTailoredTripForm(
     return {
       message: "Something went wrong and we couldn't send your request. Please try again later.",
       success: false,
-      errors: {},
+      data: rawFormData,
     };
   }
 }

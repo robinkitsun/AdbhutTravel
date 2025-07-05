@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useFormState, useFormStatus } from "react-dom";
@@ -33,6 +34,7 @@ const initialState = {
   message: "",
   errors: {},
   success: false,
+  data: {},
 };
 
 const inclusions: { id: string; label: string }[] = [
@@ -78,12 +80,25 @@ export function TailoredTripForm() {
       setShowOtherInput(false);
       setTimeout(() => {
         setOpen(false);
-        // Reset state after closing
-        state.success = false; 
+        // Reset state after closing to allow for fresh form
+        state.success = false;
         state.message = "";
+        state.data = {};
       }, 2000);
     }
   }, [state]);
+
+  // Re-hydrate state on validation failure
+  useEffect(() => {
+    if (!state.success && state.data) {
+        if (state.data.startDate) setStartDate(new Date(state.data.startDate));
+        if (state.data.endDate) setEndDate(new Date(state.data.endDate));
+        if (state.data.inclusions?.includes('other')) {
+            setShowOtherInput(true);
+        }
+    }
+  }, [state.data, state.success])
+
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
@@ -103,7 +118,7 @@ export function TailoredTripForm() {
           <div className="flex-grow overflow-y-auto p-6 space-y-4">
             <div className="space-y-2">
                 <Label htmlFor="destination">Destination</Label>
-                <Input id="destination" name="destination" placeholder="e.g., Paris, France" />
+                <Input id="destination" name="destination" placeholder="e.g., Paris, France" defaultValue={state.data?.destination} />
                 {state.errors?.destination && <p className="text-sm font-medium text-destructive">{state.errors.destination[0]}</p>}
             </div>
 
@@ -170,12 +185,12 @@ export function TailoredTripForm() {
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-2">
                 <Label htmlFor="adults">Adults</Label>
-                <Input id="adults" name="adults" type="number" placeholder="2" min="0" />
+                <Input id="adults" name="adults" type="number" placeholder="2" min="0" defaultValue={state.data?.adults} />
                 {state.errors?.adults && <p className="text-sm font-medium text-destructive">{state.errors.adults[0]}</p>}
               </div>
               <div className="space-y-2">
                 <Label htmlFor="kids">Kids (Below 12)</Label>
-                <Input id="kids" name="kids" type="number" placeholder="0" min="0" />
+                <Input id="kids" name="kids" type="number" placeholder="0" min="0" defaultValue={state.data?.kids} />
               </div>
             </div>
 
@@ -187,7 +202,8 @@ export function TailoredTripForm() {
                     <Checkbox 
                       id={item.id} 
                       name="inclusions" 
-                      value={item.id} 
+                      value={item.id}
+                      defaultChecked={state.data?.inclusions?.includes(item.id)}
                       onCheckedChange={ (checked) => {
                         if (item.id === 'other') {
                           setShowOtherInput(!!checked);
@@ -201,7 +217,7 @@ export function TailoredTripForm() {
               {showOtherInput && (
                 <div className="space-y-2 pt-2">
                     <Label htmlFor="otherInclusion" className="sr-only">Other inclusion details</Label>
-                    <Input id="otherInclusion" name="otherInclusion" placeholder="Please specify other inclusion" />
+                    <Input id="otherInclusion" name="otherInclusion" placeholder="Please specify other inclusion" defaultValue={state.data?.otherInclusion} />
                 </div>
               )}
             </div>
@@ -213,18 +229,19 @@ export function TailoredTripForm() {
                 name="comments"
                 placeholder="Any additional information or requests..."
                 className="min-h-[100px]"
+                defaultValue={state.data?.comments}
               />
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="space-y-2">
                 <Label htmlFor="email">Email</Label>
-                <Input id="email" name="email" type="email" placeholder="you@example.com" />
+                <Input id="email" name="email" type="email" placeholder="you@example.com" defaultValue={state.data?.email} />
                 {state.errors?.email && <p className="text-sm font-medium text-destructive">{state.errors.email[0]}</p>}
               </div>
               <div className="space-y-2">
-                <Label htmlFor="mobile">Mobile Number</Label>
-                <Input id="mobile" name="mobile" type="tel" placeholder="+91 12345 67890" />
+                <Label htmlFor="mobile">Mobile Number (Required)</Label>
+                <Input id="mobile" name="mobile" type="tel" placeholder="9876543210" defaultValue={state.data?.mobile} />
                 {state.errors?.mobile && <p className="text-sm font-medium text-destructive">{state.errors.mobile[0]}</p>}
               </div>
             </div>
