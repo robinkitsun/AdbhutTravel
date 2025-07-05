@@ -28,7 +28,7 @@ export default function ContactPage() {
                     <h2 className="text-3xl font-headline font-bold mb-4">Get in Touch</h2>
                     <p className="text-muted-foreground mb-6">Fill out the form and our team will get back to you within 24 hours.</p>
                 </div>
-                <div className="space-y-4">
+                <div className="space-y-6">
                      <div className="flex items-start gap-4">
                         <div className="bg-primary/20 p-3 rounded-full">
                            <MapPin className="h-6 w-6 text-primary" />
@@ -38,27 +38,51 @@ export default function ContactPage() {
                             <p className="text-muted-foreground">SCF 61, 1st Floor, Near Anaj Mandi Gate, Pehowa, Kurukshetra, Haryana-136128</p>
                         </div>
                      </div>
-                      <div className="flex items-start gap-4">
-                        <div className="bg-primary/20 p-3 rounded-full">
-                           <Mail className="h-6 w-6 text-primary" />
-                        </div>
-                        <div>
-                            <h3 className="font-semibold text-lg">Email Us</h3>
-                            <p className="text-muted-foreground">info@adbhuttravel.in</p>
-                        </div>
-                     </div>
-                      <div className="flex items-start gap-4">
+                     <div className="flex items-start gap-4">
                         <div className="bg-primary/20 p-3 rounded-full">
                            <Phone className="h-6 w-6 text-primary" />
                         </div>
                         <div>
                             <h3 className="font-semibold text-lg">Call Us</h3>
-                            <p className="text-muted-foreground">+91-9876543210</p>
+                            <div className="text-muted-foreground space-y-1">
+                                <Link href="tel:18008905147" className="block hover:text-primary">Toll Free: 1800 890 5147</Link>
+                                <p>Whatsapp Number: (+91) 96718-25147</p>
+                            </div>
+                        </div>
+                     </div>
+                      <div className="flex items-start gap-4">
+                        <div className="bg-primary/20 p-3 rounded-full">
+                           <Mail className="h-6 w-6 text-primary" />
+                        </div>
+                        <div>
+                            <h3 className="font-semibold text-lg mb-2">Email Us</h3>
+                            <div className="text-muted-foreground space-y-2">
+                                <div>
+                                    <p className="font-medium text-foreground/90">For General Inquiries:</p>
+                                    <Link href="mailto:info@adbhuttravel.in" className="hover:text-primary">info@adbhuttravel.in</Link>
+                                </div>
+                                 <div>
+                                    <p className="font-medium text-foreground/90">For Sales related Inquiries:</p>
+                                    <Link href="mailto:sales@adbhuttravel.in" className="hover:text-primary">sales@adbhuttravel.in</Link>
+                                </div>
+                                 <div>
+                                    <p className="font-medium text-foreground/90">For Accounts related Inquiries:</p>
+                                    <Link href="mailto:accounts@adbhuttravel.in" className="hover:text-primary">accounts@adbhuttravel.in</Link>
+                                </div>
+                                 <div>
+                                    <p className="font-medium text-foreground/90">For Tie-up Inquiries:</p>
+                                    <Link href="mailto:ops@adbhuttravel.in" className="hover:text-primary">ops@adbhuttravel.in</Link>
+                                </div>
+                                <div>
+                                    <p className="font-medium text-foreground/90">For Investment Related Inquiries:</p>
+                                    <Link href="mailto:invest@adbhuttravel.in" className="hover:text-primary">invest@adbhuttravel.in</Link>
+                                </div>
+                            </div>
                         </div>
                      </div>
                 </div>
                  <div>
-                    <h3 className="font-semibold text-lg mb-4">Follow Us</h3>
+                    <h3 className="font-semibold text-lg mb-4 mt-8">Follow Us</h3>
                     <div className="flex space-x-4">
                         <Link href="https://www.facebook.com/adbhuttravelagency" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary p-2 bg-primary/20 rounded-full transition-transform duration-300 hover:-translate-y-1">
                             <Facebook className="h-6 w-6" />
