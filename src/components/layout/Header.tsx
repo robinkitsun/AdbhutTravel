@@ -14,8 +14,6 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { usePathname } from "next/navigation";
@@ -36,11 +34,7 @@ const morePageLinks = [
     { href: "/offers", label: "Offers" },
     { href: "/trademarks", label: "Trademarks" },
     { href: "/affiliations", label: "Affiliations" },
-];
-
-const brandLinks = [
-    { href: "https://adbhuttravel.com/visitkurukshetra.in/VISITKURUKSHETRA%20ITINERARY%20NEW.pdf", label: "Visit Kurukshetra", external: true },
-    { href: "https://northcabs.in/", label: "North Cab", external: true },
+    { href: "/north-cab", label: "North Cab" },
 ];
 
 export default function Header() {
@@ -134,16 +128,6 @@ export default function Header() {
                             <Link href={link.href} className="w-full">{link.label}</Link>
                         </DropdownMenuItem>
                     ))}
-                    <DropdownMenuSeparator />
-                    <DropdownMenuLabel>Our Brands</DropdownMenuLabel>
-                    <DropdownMenuItem asChild>
-                       <Link href="/" className="w-full cursor-pointer">Adbhut Travel</Link>
-                    </DropdownMenuItem>
-                    {brandLinks.map((link) => (
-                        <DropdownMenuItem key={link.href} asChild>
-                            <a href={link.href} target="_blank" rel="noopener noreferrer" className="w-full cursor-pointer">{link.label}</a>
-                        </DropdownMenuItem>
-                    ))}
                 </DropdownMenuContent>
             </DropdownMenu>
         </nav>
@@ -188,16 +172,6 @@ export default function Header() {
                              <Link href={link.href} className={cn("block px-4 py-2 rounded-md hover:text-primary hover:bg-muted transition-colors", pathname === link.href ? "text-foreground bg-muted" : "text-muted-foreground")}>{link.label}</Link>
                          </SheetClose>
                      ))}
-                      <DropdownMenuSeparator className="my-2"/>
-                       <h3 className="px-4 py-2 text-sm font-semibold text-muted-foreground">Our Brands</h3>
-                       <SheetClose asChild>
-                         <Link href="/" className="block px-4 py-2 rounded-md text-muted-foreground hover:text-primary hover:bg-muted transition-colors">Adbhut Travel</Link>
-                       </SheetClose>
-                       {brandLinks.map((link) => (
-                         <SheetClose asChild key={link.href}>
-                             <a href={link.href} target="_blank" rel="noopener noreferrer" className="block px-4 py-2 rounded-md text-muted-foreground hover:text-primary hover:bg-muted transition-colors">{link.label}</a>
-                         </SheetClose>
-                       ))}
                 </div>
                 <div className="border-t pt-6 mt-4">
                     <SheetClose asChild>

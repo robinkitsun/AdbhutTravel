@@ -3,6 +3,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Award, Globe, HeartHandshake } from "lucide-react";
 import type { Metadata } from "next";
+import { Logo } from "@/components/shared/Logo";
 
 export const metadata: Metadata = {
   title: "About Us",
@@ -71,6 +72,38 @@ export default function AboutPage() {
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 allowFullScreen
               ></iframe>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <section className="py-16 md:py-24">
+        <div className="container">
+          <h2 className="text-3xl font-headline font-bold text-center mb-4">Our Brands</h2>
+          <p className="text-center text-muted-foreground max-w-3xl mx-auto mb-12">
+            Adbhut Travel is a proud member of the Adbhut Group, a family of brands dedicated to providing a comprehensive and exceptional range of services in the travel and tourism industry.
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-start justify-items-center text-center">
+            <div className="flex flex-col items-center">
+                <div className="mb-4 flex items-center justify-center h-16">
+                    <Logo />
+                </div>
+                <h3 className="text-xl font-headline font-semibold">Adbhut Travel</h3>
+                <p className="text-muted-foreground mt-2">Our flagship brand for crafting unforgettable domestic and international travel experiences.</p>
+            </div>
+            <div className="flex flex-col items-center">
+                <div className="mb-4 flex items-center justify-center h-16">
+                    <Image src="https://www.adbhuttravel.com/wp-content/uploads/2024/06/Screenshot_2023-01-24_at_1.52.15_PM-removebg-preview.png" alt="North Cabs Logo" width={200} height={80} className="max-h-12 w-auto object-contain" />
+                </div>
+                <h3 className="text-xl font-headline font-semibold">North Cab</h3>
+                <p className="text-muted-foreground mt-2">Reliable and comfortable taxi services for all your travel needs across North India.</p>
+            </div>
+            <div className="flex flex-col items-center">
+                <div className="mb-4 flex items-center justify-center h-16">
+                    <Image src="https://www.adbhuttravel.com/wp-content/uploads/2024/06/Screenshot-2024-06-27-at-11.17.15%E2%80%AFAM-1.png" alt="VisitKurukshetra.in Logo" width={250} height={80} className="max-h-12 w-auto object-contain" />
+                </div>
+                <h3 className="text-xl font-headline font-semibold">Visit Kurukshetra</h3>
+                <p className="text-muted-foreground mt-2">Your dedicated guide to exploring the rich history and culture of Kurukshetra.</p>
             </div>
           </div>
         </div>
