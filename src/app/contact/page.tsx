@@ -43,14 +43,8 @@ export default function ContactPage() {
                            <Mail className="h-6 w-6 text-primary" />
                         </div>
                         <div>
-                            <h3 className="font-semibold text-lg">Our Email Addresses</h3>
-                            <div className="text-muted-foreground space-y-1 mt-1">
-                              <p><strong>General Inquiries:</strong> info@adbhuttravel.in</p>
-                              <p><strong>Sales Inquiries:</strong> sales@adbhuttravel.in</p>
-                              <p><strong>Accounts Inquiries:</strong> accounts@adbhuttravel.in</p>
-                              <p><strong>Tie-up Inquiries:</strong> ops@adbhuttravel.in</p>
-                              <p><strong>Investment Inquiries:</strong> invest@adbhuttravel.in</p>
-                            </div>
+                            <h3 className="font-semibold text-lg">Email Us</h3>
+                            <p className="text-muted-foreground">info@adbhuttravel.in</p>
                         </div>
                      </div>
                       <div className="flex items-start gap-4">
@@ -59,8 +53,7 @@ export default function ContactPage() {
                         </div>
                         <div>
                             <h3 className="font-semibold text-lg">Call Us</h3>
-                            <p className="text-muted-foreground">Toll Free: +91 1800 890 5147</p>
-                            <p className="text-muted-foreground">Whatsapp Number: (+91) 096718-25147</p>
+                            <p className="text-muted-foreground">+91-9876543210</p>
                         </div>
                      </div>
                 </div>
