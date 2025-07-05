@@ -81,9 +81,9 @@ export default function ContactPage() {
                         </div>
                      </div>
                 </div>
-                 <div>
+                 <div className="text-center">
                     <h3 className="font-semibold text-lg mb-4 mt-8">Follow Us</h3>
-                    <div className="flex space-x-4">
+                    <div className="flex justify-center space-x-4">
                         <Link href="https://www.facebook.com/adbhuttravelagency" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary p-2 bg-primary/20 rounded-full transition-transform duration-300 hover:-translate-y-1">
                             <Facebook className="h-6 w-6" />
                         </Link>
