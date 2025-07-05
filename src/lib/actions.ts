@@ -132,7 +132,7 @@ const tailoredTripFormSchema = z.object({
   email: z.string().email({ message: "Please enter a valid email." }).optional().or(z.literal('')),
   mobile: z.string({required_error: "Mobile number is required."})
     .min(10, { message: "Mobile number must be at least 10 digits." })
-    .regex(/^\d{10,}$/, { message: "Please enter a valid 10-digit mobile number." }),
+    .regex(/^\d{10}$/, { message: "Please enter a valid 10-digit mobile number." }),
 });
 
 type TailoredTripFormState = {
@@ -209,8 +209,6 @@ export async function submitTailoredTripForm(
   const resend = new Resend(process.env.RESEND_API_KEY);
 
   try {
-    let to, cc, subject, emailHtml;
-
     const formDetailsHtml = `
       <p><strong>Destination:</strong> ${destination || 'Not provided'}</p>
       <p><strong>Start Date:</strong> ${startDate || 'Not provided'}</p>
@@ -233,6 +231,7 @@ export async function submitTailoredTripForm(
         await resend.emails.send({
             from: 'onboarding@resend.dev',
             to: email,
+            cc: 'ankitsundriyal0@gmail.com',
             subject: 'Your Adbhut Travel Custom Trip Request',
             html: `
               <h1>Thank You for Your Custom Trip Request!</h1>
@@ -246,20 +245,20 @@ export async function submitTailoredTripForm(
               <p>The Adbhut Travel Team</p>
             `,
         });
+    } else {
+         // Send notification to the admin if no customer email
+        await resend.emails.send({
+          from: 'onboarding@resend.dev',
+          to: 'ankitsundriyal0@gmail.com',
+          subject: 'New Custom Trip Request (No Customer Email)',
+          html: `
+            <h1>New Custom Trip Request</h1>
+            <p>A new custom trip request has been submitted via the website.</p>
+            <hr>
+            ${formDetailsHtml}
+          `
+        });
     }
-
-    // Send notification to the admin
-    await resend.emails.send({
-      from: 'onboarding@resend.dev',
-      to: 'ankitsundriyal0@gmail.com',
-      subject: 'New Custom Trip Request',
-      html: `
-        <h1>New Custom Trip Request</h1>
-        <p>A new custom trip request has been submitted via the website.</p>
-        <hr>
-        ${formDetailsHtml}
-      `
-    });
 
     return {
       message: "Your request has been sent! We will contact you shortly.",

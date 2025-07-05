@@ -91,8 +91,18 @@ export function TailoredTripForm() {
   // Re-hydrate state on validation failure
   useEffect(() => {
     if (!state.success && state.data) {
-        if (state.data.startDate) setStartDate(new Date(state.data.startDate));
-        if (state.data.endDate) setEndDate(new Date(state.data.endDate));
+        if (state.data.startDate) {
+          const parsedDate = new Date(state.data.startDate);
+          if (!isNaN(parsedDate.getTime())) {
+            setStartDate(parsedDate);
+          }
+        }
+        if (state.data.endDate) {
+          const parsedDate = new Date(state.data.endDate);
+          if (!isNaN(parsedDate.getTime())) {
+            setEndDate(parsedDate);
+          }
+        }
         if (state.data.inclusions?.includes('other')) {
             setShowOtherInput(true);
         }
