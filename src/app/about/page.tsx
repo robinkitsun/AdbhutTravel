@@ -42,11 +42,8 @@ export default function AboutPage() {
             </div>
             <div>
               <h2 className="text-3xl font-headline font-bold mb-4">Our Story</h2>
-              <p className="text-muted-foreground mb-4">
-                Founded in 2020, Adbhut Travel And Event Pvt. Ltd. was born from a simple yet powerful idea: to make exceptional travel accessible and personal. We started with a small office and a big dream to share the wonders of the world.
-              </p>
               <p className="text-muted-foreground">
-                Today, we have helped thousands of travelers explore the globe, from the serene beaches of the Maldives to the majestic peaks of the Himalayas. Our commitment to quality, personalization, and responsible tourism remains at the heart of everything we do.
+                ADBHUT TRAVEL is a family run and operated business that has been providing service for tourists to all over world since 2017. ADBHUT is specialised in Personals Travel, Groups , Corporate Tours and MICE who are looking for the real Cultural experience. ADBHUT is affiliated with MOT, IATA, TAAI, TAFI, ETAA, ADTOI, OTOAI, IGCC, HCCI, State Tourism, ISO 9001: 2015 and many more.
               </p>
             </div>
           </div>
