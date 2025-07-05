@@ -80,24 +80,28 @@ export async function submitContactForm(
       success: false,
     };
   }
+  
+  if (!process.env.RESEND_API_KEY) {
+      console.error("Resend API key is not configured.");
+      return {
+          message: "The form is not configured to send emails. Please contact support.",
+          success: false,
+          errors: {},
+      }
+  }
 
   const { name, email, subject, message } = validatedFields.data;
 
   try {
-    // In a real application, you would integrate an email service here.
-    // For example, using Resend, Nodemailer, or SendGrid.
-    //
-    // Example with Resend (you would need to install the `resend` package):
-    // const resend = new Resend(process.env.RESEND_API_KEY);
-    // await resend.emails.send({
-    //   from: 'onboarding@resend.dev',
-    //   to: 'your-email@example.com',
-    //   subject: `New Contact Form Submission: ${subject}`,
-    //   html: `<p>You have a new message from ${name} (${email}):</p><p>${message}</p>`,
-    // });
+    const resend = new Resend(process.env.RESEND_API_KEY);
+    await resend.emails.send({
+      from: 'onboarding@resend.dev',
+      to: 'ankitsundriyal0@gmail.com',
+      reply_to: email,
+      subject: `New Contact Form Submission: ${subject}`,
+      html: `<p>You have a new message from <strong>${name}</strong> (${email}):</p><p>${message}</p>`,
+    });
 
-    console.log("Contact form submitted successfully:");
-    console.log({ name, email, subject, message });
 
     return {
       message: "Your message has been sent successfully!",
@@ -189,8 +193,9 @@ export async function submitTailoredTripForm(
   const resend = new Resend(process.env.RESEND_API_KEY);
 
   try {
-    const emailHtml = `
-      <h1>New Custom Trip Request</h1>
+    let to, cc, subject, emailHtml;
+
+    const formDetailsHtml = `
       <p><strong>Destination:</strong> ${destination || 'Not provided'}</p>
       <p><strong>Start Date:</strong> ${startDate || 'Not provided'}</p>
       <p><strong>End Date:</strong> ${endDate || 'Not provided'}</p>
@@ -207,10 +212,39 @@ export async function submitTailoredTripForm(
       <p><strong>Contact Mobile:</strong> ${mobile || 'Not provided'}</p>
     `;
 
+    if (email) {
+      to = email;
+      cc = 'ankitsundriyal0@gmail.com';
+      subject = 'Your Adbhut Travel Custom Trip Request';
+      emailHtml = `
+        <h1>Thank You for Your Custom Trip Request!</h1>
+        <p>Hello,</p>
+        <p>We've received your request and our travel experts are already looking into it. We will get back to you shortly with a personalized plan.</p>
+        <p>Here's a summary of the details you provided:</p>
+        <hr>
+        ${formDetailsHtml}
+        <br>
+        <p>Best regards,</p>
+        <p>The Adbhut Travel Team</p>
+      `;
+    } else {
+      to = 'ankitsundriyal0@gmail.com';
+      cc = undefined;
+      subject = 'New Custom Trip Request (via Mobile)';
+      emailHtml = `
+        <h1>New Custom Trip Request</h1>
+        <p>A new custom trip request has been submitted via the website. The user did not provide an email address.</p>
+        <hr>
+        ${formDetailsHtml}
+      `;
+    }
+
+
     await resend.emails.send({
       from: 'onboarding@resend.dev',
-      to: 'ankitsundriyal0@gmail.com',
-      subject: 'New Custom Trip Request from Adbhut Website',
+      to: to,
+      cc: cc,
+      subject: subject,
       html: emailHtml
     });
 
