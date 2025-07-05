@@ -60,8 +60,8 @@ export default function AboutPage() {
             <div className="relative h-0 pb-[56.25%] rounded-lg overflow-hidden shadow-2xl">
               <iframe
                 className="absolute top-0 left-0 w-full h-full"
-                src="https://www.youtube.com/embed/IfBDSc2Lb7U"
-                title="Adbhut Travel Profile Video"
+                src="https://www.youtube.com/embed/SOYiaKA5sRk?si=2WdEVM6oot_jdX0d"
+                title="YouTube video player"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 allowFullScreen
               ></iframe>
