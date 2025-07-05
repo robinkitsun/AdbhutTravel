@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 export default function ContactPage() {
   return (
     <>
-      <section className="bg-secondary py-4 md:py-6">
+      <section className="bg-secondary py-2 md:py-4">
         <div className="container text-center">
           <h1 className="text-4xl md:text-5xl font-headline font-bold">Contact Us</h1>
           <p className="mt-4 max-w-3xl mx-auto text-lg text-muted-foreground">
@@ -64,15 +64,15 @@ export default function ContactPage() {
                                  <p className="text-muted-foreground">
                                     <span className="font-medium text-foreground/90">For Sales related Inquiries:</span>
                                     <Link href="mailto:sales@adbhuttravel.in" className="hover:text-primary ml-2">sales@adbhuttravel.in</Link>
-                                </p>
+                                 </p>
                                  <p className="text-muted-foreground">
                                     <span className="font-medium text-foreground/90">For Accounts related Inquiries:</span>
                                     <Link href="mailto:accounts@adbhuttravel.in" className="hover:text-primary ml-2">accounts@adbhuttravel.in</Link>
-                                </p>
+                                 </p>
                                  <p className="text-muted-foreground">
                                     <span className="font-medium text-foreground/90">For Tie-up Inquiries:</span>
                                     <Link href="mailto:ops@adbhuttravel.in" className="hover:text-primary ml-2">ops@adbhuttravel.in</Link>
-                                </p>
+                                 </p>
                                 <p className="text-muted-foreground">
                                     <span className="font-medium text-foreground/90">For Investment Related Inquiries:</span>
                                     <Link href="mailto:invest@adbhuttravel.in" className="hover:text-primary ml-2">invest@adbhuttravel.in</Link>
