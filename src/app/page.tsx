@@ -18,10 +18,10 @@ const domesticPackages: Package[] = [
     gallery: [
         "https://images.pexels.com/photos/159516/kashmir-india-lake-boat-159516.jpeg",
         "https://images.pexels.com/photos/1603650/pexels-photo-1603650.jpeg",
+        "https://images.pexels.com/photos/247597/pexels-photo-247597.jpeg",
         "https://images.pexels.com/photos/7904033/pexels-photo-7904033.jpeg",
-        "https://images.pexels.com/photos/11049969/pexels-photo-11049969.jpeg",
     ],
-    galleryHints: ["kashmir dal lake", "pahalgam valley", "gulmarg snow", "kashmir landscape"],
+    galleryHints: ["kashmir dal lake", "gulmarg meadow", "pahalgam valley", "kashmir shikara"],
     itinerary: [
       { day: 1, title: 'Arrival in Srinagar & Dal Lake', details: ['Arrive at Srinagar Airport, where our representative will greet you and escort you to your charming houseboat on Dal Lake. After settling in, embark on a serene Shikara ride, gliding across the tranquil waters to witness floating gardens and vibrant markets.'] },
       { day: 2, title: 'Gulmarg Gondola & Alpine Views', details: ['Journey to Gulmarg, the "Meadow of Flowers." Ascend via the famous Gulmarg Gondola to Kongdoori Station, where you\'ll be met with breathtaking panoramic views of snow-capped peaks. Spend the afternoon exploring the alpine meadows before returning to Srinagar.'] },
@@ -39,12 +39,12 @@ const domesticPackages: Package[] = [
     packageType: '(4 Person)',
     facilities: ['hotel', 'transport', 'meals', 'sightseeing', 'guide'],
     gallery: [
-        "https://images.pexels.com/photos/163037/buddhism-buddha-prayer-prayer-wheels-163037.jpeg",
         "https://images.pexels.com/photos/594371/pexels-photo-594371.jpeg",
-        "https://images.pexels.com/photos/1667029/pexels-photo-1667029.jpeg",
+        "https://images.pexels.com/photos/2113333/pexels-photo-2113333.jpeg",
         "https://images.pexels.com/photos/1666989/pexels-photo-1666989.jpeg",
+        "https://images.pexels.com/photos/12944640/pexels-photo-12944640.jpeg",
     ],
-    galleryHints: ["ladakh monastery", "pangong lake", "nubra valley", "khardung la pass"],
+    galleryHints: ["pangong lake", "nubra valley camels", "khardung la", "thiksey monastery"],
     itinerary: [
       { day: 1, title: 'Arrival & Acclimatization in Leh', details: ['Fly into Leh and take the full day to acclimatize to the high altitude (11,500 ft), which is crucial for a healthy trip. In the evening, take a gentle stroll to Shanti Stupa for a panoramic sunset view over the valley.'] },
       { day: 2, title: 'Monastery Tour & Local Culture', details: ['Immerse yourself in Ladakhi culture with visits to the region\'s most famous monasteries. Explore the grandeur of Thiksey Monastery and the ancient treasures of Hemis Monastery, the largest in Ladakh.'] },
@@ -116,12 +116,12 @@ const internationalPackages: Package[] = [
     packageType: '(One Person)',
     facilities: ['flight', 'hotel', 'sightseeing', 'guide', 'insurance'],
     gallery: [
-        "https://images.pexels.com/photos/54124/pexels-photo-54124.jpeg",
+        "https://images.pexels.com/photos/1850619/pexels-photo-1850619.jpeg",
         "https://images.pexels.com/photos/2363/france-paris-louvre-museum.jpg",
         "https://images.pexels.com/photos/2224795/pexels-photo-2224795.jpeg",
-        "https://images.pexels.com/photos/3474706/pexels-photo-3474706.jpeg",
+        "https://images.pexels.com/photos/338589/pexels-photo-338589.jpeg",
     ],
-    galleryHints: ["eiffel tower night", "louvre museum", "seine river cruise", "montmartre paris"],
+    galleryHints: ["eiffel tower", "louvre museum", "seine river", "montmartre paris"],
     itinerary: [
       { day: 1, title: 'Arrival in Paris & First Impressions', details: ['Bienvenue à Paris! Arrive at Charles de Gaulle Airport (CDG) and transfer to your hotel. Settle in and take a leisurely walk through your neighborhood, soaking in the city\'s unique atmosphere and charm.'] },
       { day: 2, title: 'Iconic Landmarks & Masterpieces', details: ['Ascend the Eiffel Tower for breathtaking views of the city. Later, immerse yourself in art history at the Louvre Museum, where you\'ll come face-to-face with timeless masterpieces like the Mona Lisa and the Venus de Milo.'] },
