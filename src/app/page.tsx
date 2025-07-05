@@ -65,7 +65,7 @@ const domesticPackages: Package[] = [
         "https://images.pexels.com/photos/10178125/pexels-photo-10178125.jpeg",
         "https://images.pexels.com/photos/1131466/pexels-photo-1131466.jpeg",
         "https://images.pexels.com/photos/7209700/pexels-photo-7209700.jpeg",
-        "https://images.pexels.com/photos/13598583/pexels-photo-13598583.jpeg",
+        "https://images.pexels.com/photos/15983637/pexels-photo-15983637.jpeg",
     ],
     galleryHints: ["kedarnath temple", "badrinath temple", "gangotri glacier", "yamunotri temple"],
     itinerary: [
