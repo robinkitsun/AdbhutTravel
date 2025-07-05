@@ -81,28 +81,28 @@ export default function ContactPage() {
                         </div>
                      </div>
                 </div>
-                 <div className="text-center">
-                    <h3 className="font-semibold text-lg mb-4 mt-8">Follow Us</h3>
-                    <div className="flex justify-center space-x-4">
-                        <Link href="https://www.facebook.com/adbhuttravelagency" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary p-2 bg-primary/20 rounded-full transition-transform duration-300 hover:-translate-y-1">
-                            <Facebook className="h-6 w-6" />
-                        </Link>
-                        <Link href="https://www.instagram.com/adbhut_travel_agency/?hl=en" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary p-2 bg-primary/20 rounded-full transition-transform duration-300 hover:-translate-y-1">
-                            <Instagram className="h-6 w-6" />
-                        </Link>
-                        <Link href="https://www.youtube.com/watch?v=IfBDSc2Lb7U" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary p-2 bg-primary/20 rounded-full transition-transform duration-300 hover:-translate-y-1">
-                            <Youtube className="h-6 w-6" />
-                        </Link>
-                        <Link href="https://www.linkedin.com/in/mohit-sharma-8517221b8/" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary p-2 bg-primary/20 rounded-full transition-transform duration-300 hover:-translate-y-1">
-                            <Linkedin className="h-6 w-6" />
-                        </Link>
-                        <Link href="https://x.com/AdbhutTravel" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary p-2 bg-primary/20 rounded-full transition-transform duration-300 hover:-translate-y-1">
-                            <Twitter className="h-6 w-6" />
-                        </Link>
-                    </div>
-                </div>
             </div>
             <ContactForm />
+          </div>
+          <div className="text-center mt-16">
+            <h3 className="font-semibold text-lg mb-4">Follow Us</h3>
+            <div className="flex justify-center space-x-4">
+                <Link href="https://www.facebook.com/adbhuttravelagency" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary p-2 bg-primary/20 rounded-full transition-transform duration-300 hover:-translate-y-1">
+                    <Facebook className="h-6 w-6" />
+                </Link>
+                <Link href="https://www.instagram.com/adbhut_travel_agency/?hl=en" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary p-2 bg-primary/20 rounded-full transition-transform duration-300 hover:-translate-y-1">
+                    <Instagram className="h-6 w-6" />
+                </Link>
+                <Link href="https://www.youtube.com/watch?v=IfBDSc2Lb7U" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary p-2 bg-primary/20 rounded-full transition-transform duration-300 hover:-translate-y-1">
+                    <Youtube className="h-6 w-6" />
+                </Link>
+                <Link href="https://www.linkedin.com/in/mohit-sharma-8517221b8/" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary p-2 bg-primary/20 rounded-full transition-transform duration-300 hover:-translate-y-1">
+                    <Linkedin className="h-6 w-6" />
+                </Link>
+                <Link href="https://x.com/AdbhutTravel" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary p-2 bg-primary/20 rounded-full transition-transform duration-300 hover:-translate-y-1">
+                    <Twitter className="h-6 w-6" />
+                </Link>
+            </div>
           </div>
         </div>
       </section>
