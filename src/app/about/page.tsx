@@ -93,7 +93,7 @@ export default function AboutPage() {
             </div>
             <div className="flex flex-col items-center">
                 <div className="mb-4 flex items-center justify-center h-16">
-                    <Image src="https://www.adbhuttravel.com/wp-content/uploads/2024/06/Screenshot_2023-01-24_at_1.52.15_PM-removebg-preview.png" alt="North Cabs Logo" width={200} height={80} className="max-h-12 w-auto object-contain" />
+                    <Image src="https://www.adbhuttravel.com/wp-content/uploads/2024/06/Screenshot_2023-01-24_at_1.52.15_PM-removebg-preview.png" alt="North Cab Logo" width={200} height={80} className="max-h-12 w-auto object-contain" />
                 </div>
                 <h3 className="text-xl font-headline font-semibold">North Cab</h3>
                 <p className="text-muted-foreground mt-2">Reliable and comfortable taxi services for all your travel needs across North India.</p>
