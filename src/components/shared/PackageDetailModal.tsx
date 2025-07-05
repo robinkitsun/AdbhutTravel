@@ -135,20 +135,16 @@ export function PackageDetailModal({ pkg, children }: PackageDetailModalProps) {
 
                <TabsContent value="gallery" className="mt-4">
                 <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-                    {(pkg.gallery && pkg.gallery.length > 0) ? pkg.gallery?.map((image, index) => (
-                        <div key={index} className="overflow-hidden rounded-lg shadow-md aspect-w-16 aspect-h-9">
-                            <Image
-                                src={image}
-                                alt={`${pkg.name} gallery image ${index + 1}`}
-                                width={400}
-                                height={300}
-                                className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
-                                data-ai-hint={pkg.galleryHints?.[index] || pkg.dataAiHint}
-                            />
-                        </div>
-                    )) : (
-                      <p className="text-muted-foreground col-span-full text-center py-8">No gallery images available for this package.</p>
-                    )}
+                    <div className="overflow-hidden rounded-lg shadow-md aspect-w-16 aspect-h-9">
+                        <Image
+                            src={pkg.image}
+                            alt={`${pkg.name} gallery image`}
+                            width={400}
+                            height={300}
+                            className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+                            data-ai-hint={pkg.dataAiHint}
+                        />
+                    </div>
                 </div>
               </TabsContent>
 

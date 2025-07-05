@@ -1,8 +1,9 @@
-
 "use client";
 
-import { useFormState, useFormStatus } from "react-dom";
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
 import { format } from "date-fns";
 import { Calendar as CalendarIcon, Loader2, CheckCircle } from "lucide-react";
 
@@ -11,6 +12,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Textarea } from "@/components/ui/textarea";
+import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import {
   Dialog,
   DialogContent,
@@ -27,15 +29,8 @@ import {
 } from "@/components/ui/popover";
 import { Calendar } from "@/components/ui/calendar";
 
-import { submitTailoredTripForm } from "@/lib/actions";
+import { submitTailoredTripForm, tailoredTripFormSchema } from "@/lib/actions";
 import { cn } from "@/lib/utils";
-
-const initialState = {
-  message: "",
-  errors: {},
-  success: false,
-  data: undefined,
-};
 
 const inclusionsOptions: { id: string; label: string }[] = [
   { id: 'flight', label: 'Flights' },
@@ -47,100 +42,39 @@ const inclusionsOptions: { id: string; label: string }[] = [
   { id: 'other', label: 'Other' },
 ];
 
-function SubmitButton() {
-  const { pending } = useFormStatus();
-
-  return (
-    <Button type="submit" className="w-full" disabled={pending}>
-      {pending ? (
-        <>
-          <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-          Submitting...
-        </>
-      ) : (
-        "Submit Request"
-      )}
-    </Button>
-  );
-}
+type TailoredTripFormData = z.infer<typeof tailoredTripFormSchema>;
 
 export function TailoredTripForm() {
   const [open, setOpen] = useState(false);
-  const [state, formAction] = useFormState(submitTailoredTripForm, initialState);
-  const formRef = useRef<HTMLFormElement>(null);
+  const [formStatus, setFormStatus] = useState<{ success: boolean; message: string }>({ success: false, message: "" });
   
-  // Controlled component state
-  const [destination, setDestination] = useState('');
-  const [startDate, setStartDate] = useState<Date | undefined>();
-  const [endDate, setEndDate] = useState<Date | undefined>();
-  const [adults, setAdults] = useState('');
-  const [kids, setKids] = useState('');
-  const [inclusions, setInclusions] = useState<string[]>([]);
-  const [otherInclusion, setOtherInclusion] = useState('');
-  const [comments, setComments] = useState('');
-  const [email, setEmail] = useState('');
-  const [mobile, setMobile] = useState('');
+  const form = useForm<TailoredTripFormData>({
+    resolver: zodResolver(tailoredTripFormSchema),
+    defaultValues: {
+      destination: "",
+      adults: "",
+      kids: "",
+      inclusions: [],
+      otherInclusion: "",
+      comments: "",
+      email: "",
+      mobile: "",
+    },
+  });
 
+  const { isSubmitting } = form.formState;
 
-  const handleInclusionChange = (checked: boolean, id: string) => {
-    if (checked) {
-      setInclusions(prev => [...prev, id]);
-    } else {
-      setInclusions(prev => prev.filter(item => item !== id));
+  const onSubmit = async (data: TailoredTripFormData) => {
+    setFormStatus({ success: false, message: "" });
+    const result = await submitTailoredTripForm(data);
+    setFormStatus({ success: result.success, message: result.message });
+    if (result.success) {
+      form.reset();
+      setTimeout(() => setOpen(false), 2000);
     }
   };
-
-  const resetForm = () => {
-      setDestination('');
-      setStartDate(undefined);
-      setEndDate(undefined);
-      setAdults('');
-      setKids('');
-      setInclusions([]);
-      setOtherInclusion('');
-      setComments('');
-      setEmail('');
-      setMobile('');
-  };
-
-
-  useEffect(() => {
-    if (state.success) {
-      resetForm();
-      setTimeout(() => {
-        setOpen(false);
-        // Reset server state after closing to allow for fresh form next time
-        state.success = false;
-        state.message = "";
-        state.data = undefined;
-      }, 2000);
-    }
-
-    // Re-hydrate form on validation error
-    if (!state.success && state.data) {
-        setDestination(state.data.destination || '');
-        if (state.data.startDate) {
-          const parsedDate = new Date(state.data.startDate);
-          if (!isNaN(parsedDate.getTime())) setStartDate(parsedDate);
-        } else {
-          setStartDate(undefined);
-        }
-        if (state.data.endDate) {
-          const parsedDate = new Date(state.data.endDate);
-          if (!isNaN(parsedDate.getTime())) setEndDate(parsedDate);
-        } else {
-          setEndDate(undefined);
-        }
-        setAdults(state.data.adults || '');
-        setKids(state.data.kids || '');
-        setInclusions(state.data.inclusions || []);
-        setOtherInclusion(state.data.otherInclusion || '');
-        setComments(state.data.comments || '');
-        setEmail(state.data.email || '');
-        setMobile(state.data.mobile || '');
-    }
-  }, [state]);
-
+  
+  const watchInclusions = form.watch("inclusions", []);
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
@@ -156,149 +90,272 @@ export function TailoredTripForm() {
             Fill in the details below and our experts will craft a personalized itinerary just for you.
           </DialogDescription>
         </DialogHeader>
-        <form ref={formRef} action={formAction} className="flex-grow min-h-0 flex flex-col">
-          <div className="flex-grow overflow-y-auto p-6 space-y-4">
-            <div className="space-y-2">
-                <Label htmlFor="destination">Destination</Label>
-                <Input id="destination" name="destination" placeholder="e.g., Paris, France" value={destination} onChange={e => setDestination(e.target.value)} />
-                {state.errors?.destination && <p className="text-sm font-medium text-destructive">{state.errors.destination[0]}</p>}
-            </div>
-
-            <input type="hidden" name="startDate" value={startDate ? format(startDate, "PPP") : ""} />
-            <input type="hidden" name="endDate" value={endDate ? format(endDate, "PPP") : ""} />
-            
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div className="space-y-2">
-                <Label htmlFor="startDate-popover">Start Date</Label>
-                <Popover>
-                  <PopoverTrigger asChild>
-                    <Button
-                      variant={"outline"}
-                      id="startDate-popover"
-                      className={cn(
-                        "w-full justify-start text-left font-normal",
-                        !startDate && "text-muted-foreground"
-                      )}
-                    >
-                      <CalendarIcon className="mr-2 h-4 w-4" />
-                      {startDate ? format(startDate, "PPP") : <span>Pick a date</span>}
-                    </Button>
-                  </PopoverTrigger>
-                  <PopoverContent className="w-auto p-0" align="start" side="bottom">
-                    <Calendar
-                      mode="single"
-                      selected={startDate}
-                      onSelect={setStartDate}
-                      disabled={(date) => date < new Date(new Date().setHours(0,0,0,0)) }
-                      initialFocus
-                    />
-                  </PopoverContent>
-                </Popover>
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="endDate-popover">End Date</Label>
-                <Popover>
-                  <PopoverTrigger asChild>
-                    <Button
-                      variant={"outline"}
-                      id="endDate-popover"
-                      className={cn(
-                        "w-full justify-start text-left font-normal",
-                        !endDate && "text-muted-foreground"
-                      )}
-                    >
-                      <CalendarIcon className="mr-2 h-4 w-4" />
-                      {endDate ? format(endDate, "PPP") : <span>Pick a date</span>}
-                    </Button>
-                  </PopoverTrigger>
-                  <PopoverContent className="w-auto p-0" align="start" side="bottom">
-                    <Calendar
-                      mode="single"
-                      selected={endDate}
-                      onSelect={setEndDate}
-                      disabled={(date) => startDate ? date <= startDate : date < new Date(new Date().setHours(0,0,0,0)) }
-                      initialFocus
-                    />
-                  </PopoverContent>
-                </Popover>
-              </div>
-            </div>
-
-            <div className="grid grid-cols-2 gap-4">
-              <div className="space-y-2">
-                <Label htmlFor="adults">Adults</Label>
-                <Input id="adults" name="adults" type="number" placeholder="2" min="0" value={adults} onChange={e => setAdults(e.target.value)} />
-                {state.errors?.adults && <p className="text-sm font-medium text-destructive">{state.errors.adults[0]}</p>}
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="kids">Kids (Below 12)</Label>
-                <Input id="kids" name="kids" type="number" placeholder="0" min="0" value={kids} onChange={e => setKids(e.target.value)} />
-              </div>
-            </div>
-
-            <div className="space-y-2">
-              <Label>Desired Inclusions</Label>
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 rounded-md border p-4">
-                {inclusionsOptions.map((item) => (
-                  <div key={item.id} className="flex items-center space-x-2">
-                    <Checkbox 
-                      id={item.id} 
-                      name="inclusions" 
-                      value={item.id}
-                      checked={inclusions.includes(item.id)}
-                      onCheckedChange={(checked) => handleInclusionChange(!!checked, item.id)}
-                    />
-                    <Label htmlFor={item.id} className="font-normal cursor-pointer">{item.label}</Label>
-                  </div>
-                ))}
-              </div>
-              {inclusions.includes('other') && (
-                <div className="space-y-2 pt-2">
-                    <Label htmlFor="otherInclusion" className="sr-only">Other inclusion details</Label>
-                    <Input id="otherInclusion" name="otherInclusion" placeholder="Please specify other inclusion" value={otherInclusion} onChange={e => setOtherInclusion(e.target.value)} />
-                </div>
-              )}
-            </div>
-            
-            <div className="space-y-2">
-              <Label htmlFor="comments">Comments / Special Requests</Label>
-              <Textarea
-                id="comments"
-                name="comments"
-                placeholder="Any additional information or requests..."
-                className="min-h-[100px]"
-                value={comments}
-                onChange={e => setComments(e.target.value)}
+        <Form {...form}>
+          <form onSubmit={form.handleSubmit(onSubmit)} className="flex-grow min-h-0 flex flex-col">
+            <div className="flex-grow overflow-y-auto p-6 space-y-4">
+              <FormField
+                control={form.control}
+                name="destination"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Destination</FormLabel>
+                    <FormControl>
+                      <Input placeholder="e.g., Paris, France" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
               />
-            </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div className="space-y-2">
-                <Label htmlFor="email">Email</Label>
-                <Input id="email" name="email" type="email" placeholder="you@example.com" value={email} onChange={e => setEmail(e.target.value)} />
-                {state.errors?.email && <p className="text-sm font-medium text-destructive">{state.errors.email[0]}</p>}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <FormField
+                  control={form.control}
+                  name="startDate"
+                  render={({ field }) => (
+                    <FormItem className="flex flex-col">
+                      <FormLabel>Start Date</FormLabel>
+                      <Popover>
+                        <PopoverTrigger asChild>
+                          <FormControl>
+                            <Button
+                              variant={"outline"}
+                              className={cn(
+                                "w-full pl-3 text-left font-normal",
+                                !field.value && "text-muted-foreground"
+                              )}
+                            >
+                              {field.value ? (
+                                format(field.value, "PPP")
+                              ) : (
+                                <span>Pick a date</span>
+                              )}
+                              <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
+                            </Button>
+                          </FormControl>
+                        </PopoverTrigger>
+                        <PopoverContent className="w-auto p-0" align="start" side="bottom">
+                          <Calendar
+                            mode="single"
+                            selected={field.value}
+                            onSelect={field.onChange}
+                            disabled={(date) => date < new Date(new Date().setHours(0,0,0,0))}
+                            initialFocus
+                          />
+                        </PopoverContent>
+                      </Popover>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                 <FormField
+                  control={form.control}
+                  name="endDate"
+                  render={({ field }) => (
+                    <FormItem className="flex flex-col">
+                      <FormLabel>End Date</FormLabel>
+                      <Popover>
+                        <PopoverTrigger asChild>
+                          <FormControl>
+                            <Button
+                              variant={"outline"}
+                              className={cn(
+                                "w-full pl-3 text-left font-normal",
+                                !field.value && "text-muted-foreground"
+                              )}
+                            >
+                              {field.value ? (
+                                format(field.value, "PPP")
+                              ) : (
+                                <span>Pick a date</span>
+                              )}
+                              <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
+                            </Button>
+                          </FormControl>
+                        </PopoverTrigger>
+                        <PopoverContent className="w-auto p-0" align="start" side="bottom">
+                          <Calendar
+                            mode="single"
+                            selected={field.value}
+                            onSelect={field.onChange}
+                            disabled={(date) => {
+                                const startDate = form.getValues("startDate");
+                                return startDate ? date <= startDate : date < new Date(new Date().setHours(0,0,0,0));
+                            }}
+                            initialFocus
+                          />
+                        </PopoverContent>
+                      </Popover>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
               </div>
-              <div className="space-y-2">
-                <Label htmlFor="mobile">Mobile Number (Required)</Label>
-                <Input id="mobile" name="mobile" type="tel" placeholder="9876543210" value={mobile} onChange={e => setMobile(e.target.value)} />
-                {state.errors?.mobile && <p className="text-sm font-medium text-destructive">{state.errors.mobile[0]}</p>}
+
+              <div className="grid grid-cols-2 gap-4">
+                 <FormField
+                    control={form.control}
+                    name="adults"
+                    render={({ field }) => (
+                        <FormItem>
+                            <FormLabel>Adults</FormLabel>
+                            <FormControl>
+                                <Input type="number" placeholder="2" min="0" {...field} />
+                            </FormControl>
+                            <FormMessage />
+                        </FormItem>
+                    )}
+                    />
+                <FormField
+                    control={form.control}
+                    name="kids"
+                    render={({ field }) => (
+                        <FormItem>
+                            <FormLabel>Kids (Below 12)</FormLabel>
+                            <FormControl>
+                                <Input type="number" placeholder="0" min="0" {...field} />
+                            </FormControl>
+                             <FormMessage />
+                        </FormItem>
+                    )}
+                    />
+              </div>
+
+              <FormField
+                control={form.control}
+                name="inclusions"
+                render={() => (
+                  <FormItem>
+                    <div className="mb-4">
+                      <FormLabel className="text-base">Desired Inclusions</FormLabel>
+                    </div>
+                    <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 rounded-md border p-4">
+                        {inclusionsOptions.map((item) => (
+                        <FormField
+                            key={item.id}
+                            control={form.control}
+                            name="inclusions"
+                            render={({ field }) => {
+                            return (
+                                <FormItem
+                                key={item.id}
+                                className="flex flex-row items-start space-x-3 space-y-0"
+                                >
+                                <FormControl>
+                                    <Checkbox
+                                        checked={field.value?.includes(item.id)}
+                                        onCheckedChange={(checked) => {
+                                            return checked
+                                            ? field.onChange([...(field.value || []), item.id])
+                                            : field.onChange(
+                                                field.value?.filter(
+                                                    (value) => value !== item.id
+                                                )
+                                                );
+                                        }}
+                                    />
+                                </FormControl>
+                                <FormLabel className="font-normal cursor-pointer">
+                                    {item.label}
+                                </FormLabel>
+                                </FormItem>
+                            );
+                            }}
+                        />
+                        ))}
+                    </div>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              
+              {watchInclusions.includes('other') && (
+                 <FormField
+                    control={form.control}
+                    name="otherInclusion"
+                    render={({ field }) => (
+                        <FormItem>
+                            <FormLabel htmlFor="otherInclusion" className="sr-only">Other inclusion details</FormLabel>
+                             <FormControl>
+                                <Input placeholder="Please specify other inclusion" {...field} />
+                            </FormControl>
+                             <FormMessage />
+                        </FormItem>
+                    )}
+                />
+              )}
+              
+              <FormField
+                control={form.control}
+                name="comments"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Comments / Special Requests</FormLabel>
+                    <FormControl>
+                      <Textarea
+                        placeholder="Any additional information or requests..."
+                        className="min-h-[100px]"
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <FormField
+                  control={form.control}
+                  name="email"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Email</FormLabel>
+                      <FormControl>
+                        <Input type="email" placeholder="you@example.com" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="mobile"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Mobile Number</FormLabel>
+                      <FormControl>
+                        <Input type="tel" placeholder="9876543210" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
               </div>
             </div>
-          </div>
-          
-          <DialogFooter className="p-6 pt-4 shrink-0 border-t !mt-0 flex-col gap-2">
-              {state.success && (
-              <div className="flex items-center gap-2 text-green-600 font-medium p-3 bg-green-100 rounded-md">
-                <CheckCircle className="h-5 w-5" />
-                <p>{state.message}</p>
-              </div>
-            )}
-            {state.message && !state.success && (
-              <p className="text-sm font-medium text-destructive text-center">{state.message}</p>
-            )}
-            <SubmitButton />
-          </DialogFooter>
-        </form>
+            
+            <DialogFooter className="p-6 pt-4 shrink-0 border-t !mt-0 flex-col gap-2">
+                {formStatus.message && (
+                    formStatus.success ? (
+                        <div className="flex items-center gap-2 text-green-600 font-medium p-3 bg-green-100 rounded-md">
+                        <CheckCircle className="h-5 w-5" />
+                        <p>{formStatus.message}</p>
+                        </div>
+                    ) : (
+                        <p className="text-sm font-medium text-destructive text-center">{formStatus.message}</p>
+                    )
+                )}
+                <Button type="submit" className="w-full" disabled={isSubmitting}>
+                    {isSubmitting ? (
+                        <>
+                        <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                        Submitting...
+                        </>
+                    ) : (
+                        "Submit Request"
+                    )}
+                </Button>
+            </DialogFooter>
+          </form>
+        </Form>
       </DialogContent>
     </Dialog>
   );
