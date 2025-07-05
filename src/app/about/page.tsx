@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 };
 
 const teamMembers = [
-  { name: "Aarav Patel", role: "Founder & CEO", image: "https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg", dataAiHint: "man portrait" },
+  { name: "Mohit Sharma", role: "Founder & CEO", image: "https://media.licdn.com/dms/image/v2/D4D03AQEby5crkpPERQ/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1719289726893?e=2147483647&v=beta&t=QtcfIgIbkwq1Jr2IB7BXeVfOr89PuLox_Y5crNwBcB0", dataAiHint: "man portrait" },
   { name: "Priya Singh", role: "Head of Operations", image: "https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg", dataAiHint: "woman portrait" },
   { name: "Rohan Mehta", role: "Lead Travel Consultant", image: "https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg", dataAiHint: "man portrait" },
 ];
@@ -93,14 +93,14 @@ export default function AboutPage() {
             </div>
             <div className="flex flex-col items-center">
                 <div className="mb-4 flex items-center justify-center h-16">
-                    <Image src="https://www.adbhuttravel.com/wp-content/uploads/2024/06/Screenshot_2023-01-24_at_1.52.15_PM-removebg-preview.png" alt="North Cab Logo" width={200} height={80} className="max-h-12 w-auto object-contain" />
+                    <Image src="https://www.adbhuttravel.com/wp-content/uploads/2024/06/Screenshot-2024-06-27-at-11.23.46%E2%80%AFAM.png" alt="North Cab Logo" width={200} height={80} className="max-h-12 w-auto object-contain" />
                 </div>
                 <h3 className="text-xl font-headline font-semibold">North Cab</h3>
                 <p className="text-muted-foreground mt-2">Reliable and comfortable taxi services for all your travel needs across North India.</p>
             </div>
             <div className="flex flex-col items-center">
                 <div className="mb-4 flex items-center justify-center h-16">
-                    <Image src="https://www.adbhuttravel.com/wp-content/uploads/2024/06/Screenshot-2024-06-27-at-11.17.15%E2%80%AFAM-1.png" alt="VisitKurukshetra.in Logo" width={250} height={80} className="max-h-12 w-auto object-contain" />
+                    <Image src="https://www.adbhuttravel.com/wp-content/uploads/2024/06/Screenshot_2023-01-24_at_1.52.15_PM-removebg-preview.png" alt="Visit Kurukshetra Logo" width={250} height={80} className="max-h-12 w-auto object-contain" />
                 </div>
                 <h3 className="text-xl font-headline font-semibold">Visit Kurukshetra</h3>
                 <p className="text-muted-foreground mt-2">Your dedicated guide to exploring the rich history and culture of Kurukshetra.</p>
