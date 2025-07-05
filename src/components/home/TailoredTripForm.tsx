@@ -101,6 +101,12 @@ export function TailoredTripForm() {
         </DialogHeader>
         <form ref={formRef} action={formAction} className="flex-grow min-h-0 flex flex-col">
           <div className="flex-grow overflow-y-auto p-6 space-y-4">
+            <div className="space-y-2">
+                <Label htmlFor="destination">Destination</Label>
+                <Input id="destination" name="destination" placeholder="e.g., Paris, France" />
+                {state.errors?.destination && <p className="text-sm font-medium text-destructive">{state.errors.destination[0]}</p>}
+            </div>
+
             <input type="hidden" name="startDate" value={startDate ? format(startDate, "PPP") : ""} />
             <input type="hidden" name="endDate" value={endDate ? format(endDate, "PPP") : ""} />
             
@@ -164,7 +170,7 @@ export function TailoredTripForm() {
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-2">
                 <Label htmlFor="adults">Adults</Label>
-                <Input id="adults" name="adults" type="number" placeholder="2" min="1" />
+                <Input id="adults" name="adults" type="number" placeholder="2" min="0" />
                 {state.errors?.adults && <p className="text-sm font-medium text-destructive">{state.errors.adults[0]}</p>}
               </div>
               <div className="space-y-2">

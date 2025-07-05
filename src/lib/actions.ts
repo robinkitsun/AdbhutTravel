@@ -115,20 +115,22 @@ export async function submitContactForm(
 }
 
 const tailoredTripFormSchema = z.object({
+  destination: z.string().optional(),
   startDate: z.string().optional(),
   endDate: z.string().optional(),
-  adults: z.string().min(1, { message: "Please specify number of adults."}),
+  adults: z.string().optional(),
   kids: z.string().default('0'),
   inclusions: z.array(z.string()).optional(),
   otherInclusion: z.string().optional(),
   comments: z.string().optional(),
-  email: z.string().email({ message: "Please enter a valid email address." }),
+  email: z.string().email({ message: "Please enter a valid email address." }).optional().or(z.literal('')),
   mobile: z.string().min(10, { message: "Please enter a valid mobile number." }),
 });
 
 type TailoredTripFormState = {
   message: string;
   errors?: {
+    destination?: string[];
     startDate?: string[];
     endDate?: string[];
     adults?: string[];
@@ -148,6 +150,7 @@ export async function submitTailoredTripForm(
 ): Promise<TailoredTripFormState> {
   const inclusions = formData.getAll('inclusions');
   const validatedFields = tailoredTripFormSchema.safeParse({
+    destination: formData.get('destination'),
     startDate: formData.get('startDate'),
     endDate: formData.get('endDate'),
     adults: formData.get('adults'),
@@ -167,7 +170,7 @@ export async function submitTailoredTripForm(
     };
   }
 
-  const { startDate, endDate, adults, kids, email, mobile, otherInclusion, comments } = validatedFields.data;
+  const { destination, startDate, endDate, adults, kids, email, mobile, otherInclusion, comments } = validatedFields.data;
   const selectedInclusions = validatedFields.data.inclusions;
 
   try {
@@ -176,6 +179,7 @@ export async function submitTailoredTripForm(
     console.log("Tailored Trip form submitted successfully:");
     console.log({
       to: "ankitsundriyal0@gmail.com",
+      destination,
       startDate,
       endDate,
       adults,
