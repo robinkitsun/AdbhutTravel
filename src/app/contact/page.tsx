@@ -56,27 +56,27 @@ export default function ContactPage() {
                         </div>
                         <div>
                             <h3 className="font-semibold text-lg mb-2">Email Us</h3>
-                            <div className="text-muted-foreground space-y-2">
-                                <div>
-                                    <p className="font-medium text-foreground/90">For General Inquiries:</p>
-                                    <Link href="mailto:info@adbhuttravel.in" className="hover:text-primary">info@adbhuttravel.in</Link>
-                                </div>
-                                 <div>
-                                    <p className="font-medium text-foreground/90">For Sales related Inquiries:</p>
-                                    <Link href="mailto:sales@adbhuttravel.in" className="hover:text-primary">sales@adbhuttravel.in</Link>
-                                </div>
-                                 <div>
-                                    <p className="font-medium text-foreground/90">For Accounts related Inquiries:</p>
-                                    <Link href="mailto:accounts@adbhuttravel.in" className="hover:text-primary">accounts@adbhuttravel.in</Link>
-                                </div>
-                                 <div>
-                                    <p className="font-medium text-foreground/90">For Tie-up Inquiries:</p>
-                                    <Link href="mailto:ops@adbhuttravel.in" className="hover:text-primary">ops@adbhuttravel.in</Link>
-                                </div>
-                                <div>
-                                    <p className="font-medium text-foreground/90">For Investment Related Inquiries:</p>
-                                    <Link href="mailto:invest@adbhuttravel.in" className="hover:text-primary">invest@adbhuttravel.in</Link>
-                                </div>
+                            <div className="space-y-2">
+                                <p className="text-muted-foreground">
+                                    <span className="font-medium text-foreground/90">For General Inquiries:</span>
+                                    <Link href="mailto:info@adbhuttravel.in" className="hover:text-primary ml-2">info@adbhuttravel.in</Link>
+                                </p>
+                                 <p className="text-muted-foreground">
+                                    <span className="font-medium text-foreground/90">For Sales related Inquiries:</span>
+                                    <Link href="mailto:sales@adbhuttravel.in" className="hover:text-primary ml-2">sales@adbhuttravel.in</Link>
+                                </p>
+                                 <p className="text-muted-foreground">
+                                    <span className="font-medium text-foreground/90">For Accounts related Inquiries:</span>
+                                    <Link href="mailto:accounts@adbhuttravel.in" className="hover:text-primary ml-2">accounts@adbhuttravel.in</Link>
+                                </p>
+                                 <p className="text-muted-foreground">
+                                    <span className="font-medium text-foreground/90">For Tie-up Inquiries:</span>
+                                    <Link href="mailto:ops@adbhuttravel.in" className="hover:text-primary ml-2">ops@adbhuttravel.in</Link>
+                                </p>
+                                <p className="text-muted-foreground">
+                                    <span className="font-medium text-foreground/90">For Investment Related Inquiries:</span>
+                                    <Link href="mailto:invest@adbhuttravel.in" className="hover:text-primary ml-2">invest@adbhuttravel.in</Link>
+                                </p>
                             </div>
                         </div>
                      </div>
