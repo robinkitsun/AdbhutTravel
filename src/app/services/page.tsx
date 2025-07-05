@@ -24,8 +24,8 @@ const services = [
     title: "Flight Bookings",
     description: "Navigating the world of air travel can be complex. Let us handle it for you. We leverage our expertise to find the most efficient routes, optimal layovers, and competitive fares across a global network of airlines. Our goal is a seamless, stress-free booking experience from start to finish.",
     example: "Example: For a multi-city European holiday, we can book a complex open-jaw ticket, flying you into Rome and out of Paris, with a convenient and cost-effective flight to Barcelona in between, saving you both time and money.",
-    images: ["https://images.pexels.com/photos/385997/pexels-photo-385997.jpeg"],
-    dataAiHints: ["airplane window view"],
+    images: ["https://images.pexels.com/photos/46148/aircraft-jet-landing-cloud-46148.jpeg"],
+    dataAiHints: ["airplane wing"],
   },
   {
     icon: Hotel,
