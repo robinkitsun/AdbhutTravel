@@ -238,7 +238,7 @@ export function TailoredTripForm() {
               </div>
             )}
             {state.message && !state.success && (
-              <p className="text-sm font-medium text-destructive">{state.message}</p>
+              <p className="text-sm font-medium text-destructive text-center">{state.message}</p>
             )}
             <SubmitButton />
           </DialogFooter>

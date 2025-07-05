@@ -2,6 +2,7 @@
 
 import { chatWithAgent } from "@/ai/flows/chat-flow";
 import { z } from 'zod';
+import { Resend } from 'resend';
 
 type ChatState = {
   messages: { role: 'user' | 'assistant', content: string }[];
@@ -123,8 +124,11 @@ const tailoredTripFormSchema = z.object({
   inclusions: z.array(z.string()).optional(),
   otherInclusion: z.string().optional(),
   comments: z.string().optional(),
-  email: z.string().email({ message: "Please enter a valid email address." }).optional().or(z.literal('')),
-  mobile: z.string().min(10, { message: "Please enter a valid mobile number." }),
+  email: z.string().email({ message: "Please enter a valid email." }).optional().or(z.literal('')),
+  mobile: z.string().optional(),
+}).refine(data => !!data.email || !!data.mobile, {
+    message: "Either Email or Mobile Number must be provided.",
+    path: ["email"], // This will show the error message under the email field
 });
 
 type TailoredTripFormState = {
@@ -164,31 +168,50 @@ export async function submitTailoredTripForm(
 
   if (!validatedFields.success) {
     return {
-      message: "Validation failed. Please check your input.",
+      message: "Validation failed. Please provide either an email or mobile number.",
       errors: validatedFields.error.flatten().fieldErrors,
       success: false,
     };
   }
 
+  if (!process.env.RESEND_API_KEY) {
+      console.error("Resend API key is not configured.");
+      return {
+          message: "The form is not configured to send emails. Please contact support.",
+          success: false,
+          errors: {},
+      }
+  }
+
   const { destination, startDate, endDate, adults, kids, email, mobile, otherInclusion, comments } = validatedFields.data;
   const selectedInclusions = validatedFields.data.inclusions;
+  
+  const resend = new Resend(process.env.RESEND_API_KEY);
 
   try {
-    // In a real application, you would integrate an email service here.
-    // The email should be sent to: ankitsundriyal0@gmail.com
-    console.log("Tailored Trip form submitted successfully:");
-    console.log({
-      to: "ankitsundriyal0@gmail.com",
-      destination,
-      startDate,
-      endDate,
-      adults,
-      kids,
-      inclusions: selectedInclusions,
-      otherInclusion,
-      comments,
-      email,
-      mobile,
+    const emailHtml = `
+      <h1>New Custom Trip Request</h1>
+      <p><strong>Destination:</strong> ${destination || 'Not provided'}</p>
+      <p><strong>Start Date:</strong> ${startDate || 'Not provided'}</p>
+      <p><strong>End Date:</strong> ${endDate || 'Not provided'}</p>
+      <p><strong>Adults:</strong> ${adults || 'Not provided'}</p>
+      <p><strong>Kids:</strong> ${kids || '0'}</p>
+      <p><strong>Inclusions:</strong></p>
+      <ul>
+        ${selectedInclusions?.map(i => `<li>${i}</li>`).join('') || '<li>None selected</li>'}
+        ${otherInclusion ? `<li><strong>Other:</strong> ${otherInclusion}</li>` : ''}
+      </ul>
+      <p><strong>Comments:</strong> ${comments || 'None'}</p>
+      <hr>
+      <p><strong>Contact Email:</strong> ${email || 'Not provided'}</p>
+      <p><strong>Contact Mobile:</strong> ${mobile || 'Not provided'}</p>
+    `;
+
+    await resend.emails.send({
+      from: 'onboarding@resend.dev',
+      to: 'ankitsundriyal0@gmail.com',
+      subject: 'New Custom Trip Request from Adbhut Website',
+      html: emailHtml
     });
 
     return {
@@ -198,9 +221,9 @@ export async function submitTailoredTripForm(
     };
 
   } catch (error) {
-    console.error("Failed to process tailored trip form:", error);
+    console.error("Failed to send email via Resend:", error);
     return {
-      message: "Something went wrong. Please try again later.",
+      message: "Something went wrong and we couldn't send your request. Please try again later.",
       success: false,
       errors: {},
     };
