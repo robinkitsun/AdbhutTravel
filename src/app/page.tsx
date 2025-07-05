@@ -16,12 +16,9 @@ const domesticPackages: Package[] = [
     packageType: '(Couple)',
     facilities: ['flight', 'hotel', 'transport', 'meals', 'sightseeing'],
     gallery: [
-        "https://images.pexels.com/photos/159516/kashmir-india-lake-boat-159516.jpeg",
-        "https://images.pexels.com/photos/1603650/pexels-photo-1603650.jpeg",
-        "https://images.pexels.com/photos/247597/pexels-photo-247597.jpeg",
-        "https://images.pexels.com/photos/7904033/pexels-photo-7904033.jpeg",
+        'https://www.adbhuttravel.com/wp-content/uploads/elementor/thumbs/0231360a-2d4d-4083-b845-af0ab6a5f939-qbf1rtwnf6x8mcl6p8q8bo24o3cudvotd7j9z0ato8.jpg'
     ],
-    galleryHints: ["kashmir dal lake", "gulmarg meadow", "pahalgam valley", "kashmir shikara"],
+    galleryHints: ["Kashmir snow couple"],
     itinerary: [
       { day: 1, title: 'Arrival in Srinagar & Dal Lake', details: ['Arrive at Srinagar Airport, where our representative will greet you and escort you to your charming houseboat on Dal Lake. After settling in, embark on a serene Shikara ride, gliding across the tranquil waters to witness floating gardens and vibrant markets.'] },
       { day: 2, title: 'Gulmarg Gondola & Alpine Views', details: ['Journey to Gulmarg, the "Meadow of Flowers." Ascend via the famous Gulmarg Gondola to Kongdoori Station, where you\'ll be met with breathtaking panoramic views of snow-capped peaks. Spend the afternoon exploring the alpine meadows before returning to Srinagar.'] },
@@ -39,12 +36,9 @@ const domesticPackages: Package[] = [
     packageType: '(4 Person)',
     facilities: ['hotel', 'transport', 'meals', 'sightseeing', 'guide'],
     gallery: [
-        "https://images.pexels.com/photos/594371/pexels-photo-594371.jpeg",
-        "https://images.pexels.com/photos/2113333/pexels-photo-2113333.jpeg",
-        "https://images.pexels.com/photos/1666989/pexels-photo-1666989.jpeg",
-        "https://images.pexels.com/photos/12944640/pexels-photo-12944640.jpeg",
+       'https://www.adbhuttravel.com/wp-content/uploads/elementor/thumbs/2f3139a7-93e8-4446-ab1e-49abfc63c708-qbf1rs0z1iunz4nx07wz6oj7hbm3yhhcoy8b0gdm0o.jpg'
     ],
-    galleryHints: ["pangong lake", "nubra valley camels", "khardung la", "thiksey monastery"],
+    galleryHints: ["Ladakh mountains snow"],
     itinerary: [
       { day: 1, title: 'Arrival & Acclimatization in Leh', details: ['Fly into Leh and take the full day to acclimatize to the high altitude (11,500 ft), which is crucial for a healthy trip. In the evening, take a gentle stroll to Shanti Stupa for a panoramic sunset view over the valley.'] },
       { day: 2, title: 'Monastery Tour & Local Culture', details: ['Immerse yourself in Ladakhi culture with visits to the region\'s most famous monasteries. Explore the grandeur of Thiksey Monastery and the ancient treasures of Hemis Monastery, the largest in Ladakh.'] },
@@ -62,12 +56,9 @@ const domesticPackages: Package[] = [
     packageType: '(Group)',
     facilities: ['hotel', 'transport', 'meals', 'guide', 'permit'],
     gallery: [
-        "https://images.pexels.com/photos/10178125/pexels-photo-10178125.jpeg",
-        "https://images.pexels.com/photos/1131466/pexels-photo-1131466.jpeg",
-        "https://images.pexels.com/photos/7209700/pexels-photo-7209700.jpeg",
-        "https://images.pexels.com/photos/15983637/pexels-photo-15983637.jpeg",
+       'https://www.adbhuttravel.com/wp-content/uploads/elementor/thumbs/tourists-taking-photos-beautiful-scenery-skiing-around-deogyusan-qbf1rtwnf6x8mcl6p8q8bo24o3cudvotd7j9z0ato8.jpg'
     ],
-    galleryHints: ["kedarnath temple", "badrinath temple", "gangotri glacier", "yamunotri temple"],
+    galleryHints: ["himalayas temple pilgrimage"],
     itinerary: [
       { day: 1, title: 'Delhi to Haridwar', details: ['Your spiritual journey begins as we drive from Delhi to the holy city of Haridwar. In the evening, witness the captivating Ganga Aarti ceremony at Har Ki Pauri, a truly divine experience.'] },
       { day: 2, title: 'Haridwar to Barkot', details: ['Travel to Barkot, the gateway to Yamunotri. The scenic drive takes you through Mussoorie, offering beautiful views of the Himalayan foothills.'] },
@@ -93,12 +84,9 @@ const internationalPackages: Package[] = [
     packageType: '(Couple)',
     facilities: ['flight', 'hotel', 'transport', 'meals', 'visa'],
     gallery: [
-        "https://images.pexels.com/photos/1098460/pexels-photo-1098460.jpeg",
-        "https://images.pexels.com/photos/3979183/pexels-photo-3979183.jpeg",
-        "https://images.pexels.com/photos/237272/pexels-photo-237272.jpeg",
-        "https://images.pexels.com/photos/1660995/pexels-photo-1660995.jpeg",
+        'https://www.adbhuttravel.com/wp-content/uploads/elementor/thumbs/cityscape-singapore-city-skyline-qbf1ruuhm0yixyjtjr4uw5tl9h87lksjpc6rga9fi0.jpg'
     ],
-    galleryHints: ["kuala lumpur towers", "batu caves", "langkawi beach", "penang street art"],
+    galleryHints: ["Malaysia city skyline"],
     itinerary: [
       { day: 1, title: 'Arrival in Kuala Lumpur', details: ['Arrive at Kuala Lumpur International Airport (KUL) and transfer to your hotel. Spend the evening at leisure, perhaps exploring the vibrant Bukit Bintang shopping and entertainment district.'] },
       { day: 2, title: 'City Tour & Cultural Landmarks', details: ['Discover Kuala Lumpur\'s icons. Pose for photos at the magnificent Petronas Twin Towers, visit the historic Independence Square, and climb the steps to the sacred Batu Caves, a Hindu shrine set within a limestone hill.'] },
@@ -116,12 +104,9 @@ const internationalPackages: Package[] = [
     packageType: '(One Person)',
     facilities: ['flight', 'hotel', 'sightseeing', 'guide', 'insurance'],
     gallery: [
-        "https://images.pexels.com/photos/1850619/pexels-photo-1850619.jpeg",
-        "https://images.pexels.com/photos/2363/france-paris-louvre-museum.jpg",
-        "https://images.pexels.com/photos/2224795/pexels-photo-2224795.jpeg",
-        "https://images.pexels.com/photos/338589/pexels-photo-338589.jpeg",
+        'https://www.adbhuttravel.com/wp-content/uploads/elementor/thumbs/famous-eiffel-tower-paris-with-gorgeous-colors-qbf1rs0z1iunz4nx07wz6oj7hbm3yhhcoy8b0gdm0o.jpg'
     ],
-    galleryHints: ["eiffel tower", "louvre museum", "seine river", "montmartre paris"],
+    galleryHints: ["Eiffel Tower"],
     itinerary: [
       { day: 1, title: 'Arrival in Paris & First Impressions', details: ['Bienvenue à Paris! Arrive at Charles de Gaulle Airport (CDG) and transfer to your hotel. Settle in and take a leisurely walk through your neighborhood, soaking in the city\'s unique atmosphere and charm.'] },
       { day: 2, title: 'Iconic Landmarks & Masterpieces', details: ['Ascend the Eiffel Tower for breathtaking views of the city. Later, immerse yourself in art history at the Louvre Museum, where you\'ll come face-to-face with timeless masterpieces like the Mona Lisa and the Venus de Milo.'] },
@@ -139,12 +124,9 @@ const internationalPackages: Package[] = [
     packageType: '(Honeymoon Couple)',
     facilities: ['flight', 'hotel', 'transport', 'meals', 'sightseeing', 'spa'],
     gallery: [
-        "https://images.pexels.com/photos/2104152/pexels-photo-2104152.jpeg",
-        "https://images.pexels.com/photos/1020052/pexels-photo-1020052.jpeg",
-        "https://images.pexels.com/photos/1591373/pexels-photo-1591373.jpeg",
-        "https://images.pexels.com/photos/261102/pexels-photo-261102.jpeg",
+      'https://www.adbhuttravel.com/wp-content/uploads/elementor/thumbs/bali-pagoda-indonesia-qbf1rvsbsuzt9kige9jhgnl1uv3kt9wa1gu8xk81bs.jpg'
     ],
-    galleryHints: ["bali rice terrace", "bali temple", "beach sunset bali", "bali villa pool"],
+    galleryHints: ["Bali temple lake"],
     itinerary: [
       { day: 1, title: 'Arrival in Cultural Ubud', details: ['Welcome to Bali! Arrive at Denpasar Airport (DPS) and be whisked away to your private villa in the heart of cultural Ubud. Settle in and enjoy a romantic welcome dinner surrounded by lush greenery.'] },
       { day: 2, title: 'Ubud\'s Rice Terraces & Monkey Forest', details: ['Explore the iconic Tegalalang Rice Terraces, a stunning example of Bali\'s subak irrigation system. Afterwards, visit the Sacred Monkey Forest Sanctuary to meet its playful inhabitants.'] },

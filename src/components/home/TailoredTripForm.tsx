@@ -34,7 +34,7 @@ const initialState = {
   message: "",
   errors: {},
   success: false,
-  data: {},
+  data: undefined,
 };
 
 const inclusions: { id: string; label: string }[] = [
@@ -83,7 +83,7 @@ export function TailoredTripForm() {
         // Reset state after closing to allow for fresh form
         state.success = false;
         state.message = "";
-        state.data = {};
+        state.data = undefined;
       }, 2000);
     }
   }, [state]);
@@ -105,6 +105,8 @@ export function TailoredTripForm() {
         }
         if (state.data.inclusions?.includes('other')) {
             setShowOtherInput(true);
+        } else {
+            setShowOtherInput(false);
         }
     }
   }, [state.data, state.success])
@@ -152,7 +154,7 @@ export function TailoredTripForm() {
                       {startDate ? format(startDate, "PPP") : <span>Pick a date</span>}
                     </Button>
                   </PopoverTrigger>
-                  <PopoverContent className="w-auto p-0">
+                  <PopoverContent className="w-auto p-0" align="start" side="bottom">
                     <Calendar
                       mode="single"
                       selected={startDate}
@@ -179,7 +181,7 @@ export function TailoredTripForm() {
                       {endDate ? format(endDate, "PPP") : <span>Pick a date</span>}
                     </Button>
                   </PopoverTrigger>
-                  <PopoverContent className="w-auto p-0">
+                  <PopoverContent className="w-auto p-0" align="start" side="bottom">
                     <Calendar
                       mode="single"
                       selected={endDate}
