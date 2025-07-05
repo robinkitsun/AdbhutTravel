@@ -113,3 +113,84 @@ export async function submitContactForm(
     };
   }
 }
+
+const tailoredTripFormSchema = z.object({
+  departureDate: z.string().optional(),
+  duration: z.string().min(1, { message: "Please specify the trip duration." }),
+  adults: z.string().min(1, { message: "Please specify number of adults."}),
+  kids: z.string().default('0'),
+  inclusions: z.array(z.string()).optional(),
+  email: z.string().email({ message: "Please enter a valid email address." }),
+  mobile: z.string().min(10, { message: "Please enter a valid mobile number." }),
+});
+
+type TailoredTripFormState = {
+  message: string;
+  errors?: {
+    departureDate?: string[];
+    duration?: string[];
+    adults?: string[];
+    kids?: string[];
+    inclusions?: string[];
+    email?: string[];
+    mobile?: string[];
+  };
+  success: boolean;
+};
+
+export async function submitTailoredTripForm(
+  prevState: TailoredTripFormState,
+  formData: FormData
+): Promise<TailoredTripFormState> {
+  const inclusions = formData.getAll('inclusions');
+  const validatedFields = tailoredTripFormSchema.safeParse({
+    departureDate: formData.get('departureDate'),
+    duration: formData.get('duration'),
+    adults: formData.get('adults'),
+    kids: formData.get('kids'),
+    inclusions: inclusions,
+    email: formData.get('email'),
+    mobile: formData.get('mobile'),
+  });
+
+  if (!validatedFields.success) {
+    return {
+      message: "Validation failed. Please check your input.",
+      errors: validatedFields.error.flatten().fieldErrors,
+      success: false,
+    };
+  }
+
+  const { departureDate, duration, adults, kids, email, mobile } = validatedFields.data;
+  const selectedInclusions = validatedFields.data.inclusions;
+
+  try {
+    // In a real application, you would integrate an email service here.
+    // The email should be sent to: ankitsundriyal0@gmail.com
+    console.log("Tailored Trip form submitted successfully:");
+    console.log({
+      to: "ankitsundriyal0@gmail.com",
+      departureDate,
+      duration,
+      adults,
+      kids,
+      inclusions: selectedInclusions,
+      email,
+      mobile,
+    });
+
+    return {
+      message: "Your request has been sent! We will contact you shortly.",
+      success: true,
+      errors: {},
+    };
+
+  } catch (error) {
+    console.error("Failed to process tailored trip form:", error);
+    return {
+      message: "Something went wrong. Please try again later.",
+      success: false,
+      errors: {},
+    };
+  }
+}

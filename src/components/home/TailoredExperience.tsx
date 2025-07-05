@@ -1,7 +1,6 @@
 import Image from "next/image";
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
 import { Check } from "lucide-react";
+import { TailoredTripForm } from "./TailoredTripForm";
 
 export default function TailoredExperience() {
   return (
@@ -39,9 +38,7 @@ export default function TailoredExperience() {
                 <span>Exclusive access and unique local experiences.</span>
               </li>
             </ul>
-            <Button asChild size="lg" className="transition-transform duration-300 hover:-translate-y-1">
-              <Link href="/contact">Start Planning</Link>
-            </Button>
+            <TailoredTripForm />
           </div>
         </div>
       </div>
