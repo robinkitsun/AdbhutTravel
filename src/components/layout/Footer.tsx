@@ -50,7 +50,7 @@ export default function Footer() {
             </Link>
              <p className="font-semibold text-foreground">Adbhut Travel And Event Pvt. Ltd.</p>
             <p className="text-sm text-muted-foreground">
-              Crafting unforgettable travel experiences. <br />
+              Our Effort Your Comfort <br />
               CIN: U63090HR2020PTC086874
             </p>
           </div>
