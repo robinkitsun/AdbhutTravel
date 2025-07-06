@@ -8,13 +8,13 @@ body {
 
 @layer base {
   :root {
-    --background: 60 20% 92%; /* #F5F5DC - Very light beige */
+    --background: 0 0% 100%;
     --foreground: 20 14.3% 4.1%;
-    --card: 28 56% 94%; /* #f3ece7 - Primary/Luxury */
+    --card: 0 0% 100%;
     --card-foreground: 20 14.3% 4.1%;
-    --popover: 28 56% 94%;
+    --popover: 0 0% 100%;
     --popover-foreground: 20 14.3% 4.1%;
-    --primary: 25 84% 54%; /* #ed782a - Accent/CTA */
+    --primary: 25 84% 54%;
     --primary-foreground: 0 0% 100%;
     --secondary: 28 56% 94%;
     --secondary-foreground: 25 84% 54%;
