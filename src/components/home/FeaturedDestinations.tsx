@@ -1,12 +1,70 @@
-import Image from "next/image";
-import { Card, CardContent } from "@/components/ui/card";
-import { ArrowRight } from "lucide-react";
-import Link from "next/link";
+import PackageCard from "@/components/shared/PackageCard";
+import type { Package } from "@/lib/types";
 
-const destinations = [
-  { name: "Majestic Peaks of the Alps", image: "https://images.pexels.com/photos/1624496/pexels-photo-1624496.jpeg", dataAiHint: "Alps mountains" },
-  { name: "Serene Shores of the Maldives", image: "https://images.pexels.com/photos/3601425/pexels-photo-3601425.jpeg", dataAiHint: "Maldives beach" },
-  { name: "Vibrant Streets of Tokyo", image: "https://images.pexels.com/photos/317377/pexels-photo-317377.jpeg", dataAiHint: "Tokyo street" },
+const featuredPackages: Package[] = [
+  {
+    id: '1',
+    name: 'Couple Kashmir Package',
+    image: 'https://www.adbhuttravel.com/wp-content/uploads/elementor/thumbs/0231360a-2d4d-4083-b845-af0ab6a5f939-qbf1rtwnf6x8mcl6p8q8bo24o3cudvotd7j9z0ato8.jpg',
+    dataAiHint: 'Kashmir snow couple',
+    duration: '04 Nights / 05 Days',
+    packageType: '(Couple)',
+    facilities: ['flight', 'hotel', 'transport', 'meals', 'sightseeing'],
+    gallery: [
+        'https://www.adbhuttravel.com/wp-content/uploads/elementor/thumbs/0231360a-2d4d-4083-b845-af0ab6a5f939-qbf1rtwnf6x8mcl6p8q8bo24o3cudvotd7j9z0ato8.jpg'
+    ],
+    galleryHints: ["Kashmir snow couple"],
+    itinerary: [
+      { day: 1, title: 'Arrival in Srinagar & Dal Lake', details: ['Arrive at Srinagar Airport, where our representative will greet you and escort you to your charming houseboat on Dal Lake. After settling in, embark on a serene Shikara ride, gliding across the tranquil waters to witness floating gardens and vibrant markets.'] },
+      { day: 2, title: 'Gulmarg Gondola & Alpine Views', details: ['Journey to Gulmarg, the "Meadow of Flowers." Ascend via the famous Gulmarg Gondola to Kongdoori Station, where you\'ll be met with breathtaking panoramic views of snow-capped peaks. Spend the afternoon exploring the alpine meadows before returning to Srinagar.'] },
+      { day: 3, title: 'Pahalgam\'s Valleys & Scenery', details: ['Travel to Pahalgam, the "Valley of Shepherds." Discover the stunning beauty of Aru Valley and Betaab Valley, settings for many Bollywood films. Enjoy a peaceful walk along the Lidder River, surrounded by pristine nature.'] },
+      { day: 4, title: 'Sonmarg, the Meadow of Gold', details: ['Explore Sonmarg, known for its golden meadows and dramatic landscapes. Take an optional pony ride to the Thajiwas Glacier to witness its grandeur up close. The day is filled with incredible photo opportunities and fresh mountain air.'] },
+      { day: 5, title: 'Departure from Srinagar', details: ['After a final Kashmiri breakfast, we will transfer you to Srinagar Airport for your departure, leaving you with unforgettable memories of your romantic escape.'] }
+    ]
+  },
+  {
+    id: '5',
+    name: 'Paris tour',
+    image: 'https://www.adbhuttravel.com/wp-content/uploads/elementor/thumbs/famous-eiffel-tower-paris-with-gorgeous-colors-qbf1rs0z1iunz4nx07wz6oj7hbm3yhhcoy8b0gdm0o.jpg',
+    dataAiHint: 'Eiffel Tower',
+    duration: '04 Nights / 05 Days',
+    packageType: '(One Person)',
+    facilities: ['flight', 'hotel', 'sightseeing', 'guide', 'insurance'],
+    gallery: [
+        'https://www.adbhuttravel.com/wp-content/uploads/elementor/thumbs/famous-eiffel-tower-paris-with-gorgeous-colors-qbf1rs0z1iunz4nx07wz6oj7hbm3yhhcoy8b0gdm0o.jpg'
+    ],
+    galleryHints: ["Eiffel Tower"],
+    itinerary: [
+      { day: 1, title: 'Arrival in Paris & First Impressions', details: ['Bienvenue à Paris! Arrive at Charles de Gaulle Airport (CDG) and transfer to your hotel. Settle in and take a leisurely walk through your neighborhood, soaking in the city\'s unique atmosphere and charm.'] },
+      { day: 2, title: 'Iconic Landmarks & Masterpieces', details: ['Ascend the Eiffel Tower for breathtaking views of the city. Later, immerse yourself in art history at the Louvre Museum, where you\'ll come face-to-face with timeless masterpieces like the Mona Lisa and the Venus de Milo.'] },
+      { day: 3, title: 'Artistic Montmartre & River Cruise', details: ['Explore the cobblestone streets of Montmartre, visit the beautiful Sacré-Cœur Basilica, and watch artists at work in Place du Tertre. In the evening, enjoy a relaxing cruise along the Seine River for a magical perspective of Paris by night.'] },
+      { day: 4, title: 'The Splendor of Versailles', details: ['Take a day trip to the magnificent Palace of Versailles, a symbol of absolute monarchy. Wander through the opulent Hall of Mirrors, the lavish royal apartments, and the vast, manicured gardens designed by Le Nôtre.'] },
+      { day: 5, title: 'Au Revoir, Paris', details: ['Enjoy one last Parisian breakfast with a croissant and café au lait before heading to the airport for your departure, carrying with you the unforgettable memories of your solo adventure in the City of Light.'] }
+    ]
+  },
+  {
+    id: '6',
+    name: 'Honeymoon in Bali',
+    image: 'https://www.adbhuttravel.com/wp-content/uploads/elementor/thumbs/bali-pagoda-indonesia-qbf1rvsbsuzt9kige9jhgnl1uv3kt9wa1gu8xk81bs.jpg',
+    dataAiHint: 'Bali temple lake',
+    duration: '7 night 8 days',
+    packageType: '(Honeymoon Couple)',
+    facilities: ['flight', 'hotel', 'transport', 'meals', 'sightseeing', 'spa'],
+    gallery: [
+      'https://www.adbhuttravel.com/wp-content/uploads/elementor/thumbs/bali-pagoda-indonesia-qbf1rvsbsuzt9kige9jhgnl1uv3kt9wa1gu8xk81bs.jpg'
+    ],
+    galleryHints: ["Bali temple lake"],
+    itinerary: [
+      { day: 1, title: 'Arrival in Cultural Ubud', details: ['Welcome to Bali! Arrive at Denpasar Airport (DPS) and be whisked away to your private villa in the heart of cultural Ubud. Settle in and enjoy a romantic welcome dinner surrounded by lush greenery.'] },
+      { day: 2, title: 'Ubud\'s Rice Terraces & Monkey Forest', details: ['Explore the iconic Tegalalang Rice Terraces, a stunning example of Bali\'s subak irrigation system. Afterwards, visit the Sacred Monkey Forest Sanctuary to meet its playful inhabitants.'] },
+      { day: 3, title: 'Volcano Views & Spiritual Cleansing', details: ['Journey to Kintamani to witness the majestic Mount Batur volcano and its crater lake. Later, experience a traditional purification ceremony at the holy water temple of Tirta Empul.'] },
+      { day: 4, title: 'Relaxation & Transfer to Seminyak', details: ['Indulge in a leisurely morning with a traditional Balinese couple\'s spa treatment at your villa. In the afternoon, travel to the stylish beach town of Seminyak, known for its chic boutiques and vibrant sunsets.'] },
+      { day: 5, title: 'Uluwatu Temple & Sunset Kecak Dance', details: ['Spend the morning enjoying water sports or relaxing on the beach. In the evening, visit the dramatic Uluwatu Temple, perched on a cliff edge, and witness the captivating Kecak fire dance at sunset.'] },
+      { day: 6, title: 'Island Escape to Nusa Penida', details: ['Embark on an exciting day trip to the pristine island of Nusa Penida. Discover breathtaking landscapes, including the famous Kelingking "T-Rex" Beach and the natural infinity pool of Angel\'s Billabong.'] },
+      { day: 7, title: 'Leisure and Lasting Memories', details: ['Enjoy your final full day in paradise at your own pace. Relax on Seminyak beach, shop for unique souvenirs, or explore the area\'s renowned cafes and restaurants for a final taste of Bali.'] },
+      { day: 8, title: 'Departure from Paradise', details: ['After a final breakfast, we will transfer you to the airport for your flight home, with hearts full of cherished honeymoon memories.'] }
+    ]
+  },
 ];
 
 export default function FeaturedDestinations() {
@@ -14,37 +72,14 @@ export default function FeaturedDestinations() {
     <section className="py-12 md:py-24 bg-secondary">
       <div className="container">
         <h2 className="text-3xl md:text-4xl font-headline font-bold text-center mb-2">
-          Featured Destinations
+          Featured Packages
         </h2>
         <p className="text-center text-muted-foreground max-w-2xl mx-auto mb-10">
-          Explore breathtaking destinations handpicked by our travel experts.
+          Explore breathtaking journeys handpicked by our travel experts.
         </p>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {destinations.map((dest) => (
-            <Link href="/services" key={dest.name} className="block h-full">
-                <Card className="overflow-hidden group border-0 shadow-lg transform hover:-translate-y-2 transition-transform duration-300 h-full">
-                <CardContent className="p-0 relative">
-                    <Image
-                    src={dest.image}
-                    alt={dest.name}
-                    width={400}
-                    height={500}
-                    className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-                    data-ai-hint={dest.dataAiHint}
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
-                    <div className="absolute bottom-0 left-0 p-6">
-                    <h3 className="text-2xl font-headline font-bold text-white">
-                        {dest.name}
-                    </h3>
-                    <div className="flex items-center text-primary mt-2">
-                        <span>Explore</span>
-                        <ArrowRight className="h-4 w-4 ml-2 transform group-hover:translate-x-1 transition-transform duration-300" />
-                    </div>
-                    </div>
-                </CardContent>
-                </Card>
-            </Link>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {featuredPackages.map((pkg) => (
+            <PackageCard key={pkg.id} pkg={pkg} />
           ))}
         </div>
       </div>

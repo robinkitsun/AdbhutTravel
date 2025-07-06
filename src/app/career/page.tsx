@@ -60,7 +60,7 @@ export default function CareerPage() {
                 </CardContent>
                 <CardFooter>
                   <Button asChild className="w-full">
-                    <Link href={`mailto:info@adbhuttravel.in?subject=Application for ${job.title}`}>Apply Now</Link>
+                    <Link href={`mailto:info@adbhuttravel.in?subject=Application for ${job.title}`} target="_blank" rel="noopener noreferrer">Apply Now</Link>
                   </Button>
                 </CardFooter>
               </Card>

@@ -35,6 +35,7 @@ const morePageLinks = [
     { href: "/trademarks", label: "Trademarks" },
     { href: "/affiliations", label: "Affiliations" },
     { href: "/north-cab", label: "North Cab" },
+    { href: "https://visitkurukshetra.in", label: "Visit Kurukshetra" },
 ];
 
 export default function Header() {
@@ -125,7 +126,13 @@ export default function Header() {
                 <DropdownMenuContent align="end">
                     {morePageLinks.map((link) => (
                         <DropdownMenuItem key={link.href} asChild>
-                            <Link href={link.href} className="w-full">{link.label}</Link>
+                            <Link 
+                                href={link.href} 
+                                className="w-full"
+                                {...(link.href.startsWith('http') && { target: '_blank', rel: 'noopener noreferrer' })}
+                            >
+                                {link.label}
+                            </Link>
                         </DropdownMenuItem>
                     ))}
                 </DropdownMenuContent>
@@ -169,7 +176,13 @@ export default function Header() {
                      <h3 className="px-4 py-2 text-sm font-semibold text-muted-foreground">More Options</h3>
                      {morePageLinks.map((link) => (
                          <SheetClose asChild key={link.href}>
-                             <Link href={link.href} className={cn("block px-4 py-2 rounded-md hover:text-primary hover:bg-muted transition-colors", pathname === link.href ? "text-foreground bg-muted" : "text-muted-foreground")}>{link.label}</Link>
+                             <Link 
+                                href={link.href} 
+                                className={cn("block px-4 py-2 rounded-md hover:text-primary hover:bg-muted transition-colors", pathname === link.href ? "text-foreground bg-muted" : "text-muted-foreground")}
+                                {...(link.href.startsWith('http') && { target: '_blank', rel: 'noopener noreferrer' })}
+                             >
+                                 {link.label}
+                            </Link>
                          </SheetClose>
                      ))}
                 </div>
