@@ -8,7 +8,6 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Award, Globe, HeartHandshake } from "lucide-react";
 import { Logo } from "@/components/shared/Logo";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
-import Autoplay from "embla-carousel-react";
 
 const teamMembers = [
   { name: "Mohit Sharma", role: "Founder & Managing Director", image: "https://media.licdn.com/dms/image/v2/D4D03AQEby5crkpPERQ/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1719289726893?e=2147483647&v=beta&t=QtcfIgIbkwq1Jr2IB7BXeVfOr89PuLox_Y5crNwBcB0", dataAiHint: "man portrait" },
@@ -25,10 +24,6 @@ const youtubeVideos = [
 ];
 
 export default function AboutPage() {
-  const plugin = React.useRef(
-    Autoplay({ delay: 5000, stopOnInteraction: true })
-  );
-
   return (
     <>
       <section className="bg-secondary py-8 md:py-12">
@@ -76,11 +71,8 @@ export default function AboutPage() {
           <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl font-headline font-bold text-center mb-12">Discover Our Journey</h2>
              <Carousel
-                plugins={[plugin.current]}
                 className="w-full relative"
                 opts={{ loop: true }}
-                onMouseEnter={plugin.current.stop}
-                onMouseLeave={plugin.current.reset}
                 >
               <CarouselContent>
                 {youtubeVideos.map(video => (
