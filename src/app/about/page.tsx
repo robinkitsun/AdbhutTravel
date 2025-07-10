@@ -1,7 +1,7 @@
 
 "use client"; // Required for carousel state and plugins
 
-import { useRef } from 'react';
+import React, { useRef } from 'react';
 import Image from "next/image";
 import { Card, CardContent } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -175,5 +175,3 @@ export default function AboutPage() {
     </>
   );
 }
-
-    
