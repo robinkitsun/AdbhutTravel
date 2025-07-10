@@ -1,5 +1,5 @@
 
-import { Plane, Hotel, Compass, Users, Star, Briefcase, FileText, ShieldCheck, Car } from "lucide-react";
+import { Plane, Hotel, Compass, Users, Star, Briefcase, FileText, ShieldCheck, Car, Ship } from "lucide-react";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -80,6 +80,16 @@ const services = [
         "https://images.pexels.com/photos/3830745/pexels-photo-3830745.jpeg"
     ],
     dataAiHints: ["taxi car city"],
+  },
+  {
+    icon: Ship,
+    title: "Cruise Packages",
+    description: "Set sail on the seas with our premier cruise packages. We partner with world-renowned cruise lines like Star Cruise, MSC Cruises, Royal Caribbean, and Norwegian Cruise Line to bring you exceptional voyages. We also specialize in organizing combo packages that pair your dream cruise with exciting land excursions for a complete holiday experience.",
+    example: "Example: Embark on a 7-night Royal Caribbean cruise through the Mediterranean, then spend 3 days exploring the historic wonders of Rome, with all hotels and transfers seamlessly arranged by our team.",
+    images: [
+        "https://images.pexels.com/photos/1654859/pexels-photo-1654859.jpeg",
+    ],
+    dataAiHints: ["cruise ship ocean"],
   },
   {
     icon: Star,
@@ -170,5 +180,3 @@ export default function ServicesPage() {
     </>
   );
 }
-
-    
