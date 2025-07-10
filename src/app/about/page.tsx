@@ -72,11 +72,11 @@ export default function AboutPage() {
             <h2 className="text-3xl font-headline font-bold text-center mb-12">Discover Our Journey</h2>
              <Carousel
                 className="w-full relative"
-                opts={{ loop: true }}
+                opts={{ loop: true, align: "center", slidesToScroll: 1 }}
                 >
-              <CarouselContent>
+              <CarouselContent className="-ml-8">
                 {youtubeVideos.map(video => (
-                  <CarouselItem key={video.id}>
+                  <CarouselItem key={video.id} className="pl-8 md:basis-10/12">
                     <div className="relative h-0 pb-[56.25%] rounded-lg overflow-hidden shadow-2xl">
                       <iframe
                         className="absolute top-0 left-0 w-full h-full"
@@ -89,8 +89,8 @@ export default function AboutPage() {
                   </CarouselItem>
                 ))}
               </CarouselContent>
-               <CarouselPrevious className="absolute left-[-50px] top-1/2 -translate-y-1/2 z-10 bg-white/50 hover:bg-white/80 text-foreground" />
-               <CarouselNext className="absolute right-[-50px] top-1/2 -translate-y-1/2 z-10 bg-white/50 hover:bg-white/80 text-foreground" />
+               <CarouselPrevious className="absolute left-0 top-1/2 -translate-y-1/2 z-10 size-10 bg-white/60 hover:bg-white/90 text-foreground animate-pulse hover:animate-none" />
+               <CarouselNext className="absolute right-0 top-1/2 -translate-y-1/2 z-10 size-10 bg-white/60 hover:bg-white/90 text-foreground animate-pulse hover:animate-none" />
             </Carousel>
           </div>
         </div>
