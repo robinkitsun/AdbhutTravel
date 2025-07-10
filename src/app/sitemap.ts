@@ -16,7 +16,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/affiliations',
     '/north-cab',
     '/legal',
-    '/privacy-policy',
     '/terms-of-service',
   ];
 
