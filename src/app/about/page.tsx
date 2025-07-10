@@ -4,6 +4,8 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Award, Globe, HeartHandshake } from "lucide-react";
 import type { Metadata } from "next";
 import { Logo } from "@/components/shared/Logo";
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
+
 
 export const metadata: Metadata = {
   title: "About Us",
@@ -43,9 +45,17 @@ export default function AboutPage() {
             </div>
             <div>
               <h2 className="text-3xl font-headline font-bold mb-4">Our Story</h2>
-              <p className="text-muted-foreground">
-                ADBHUT TRAVEL is a family run and operated business that has been providing service for tourists to all over world since 2017. ADBHUT is specialised in Personals Travel, Groups , Corporate Tours and MICE who are looking for the real Cultural experience. ADBHUT is affiliated with MOT, IATA, TAAI, TAFI, ETAA, ADTOI, OTOAI, IGCC, HCCI, State Tourism, ISO 9001: 2015 and many more.
-              </p>
+              <div className="text-muted-foreground space-y-4">
+                <p>
+                  Adbhut Travel and Event Pvt. Ltd. is one of India’s emerging names in the travel and tourism industry, delivering excellence across domestic and international travel solutions. We specialize in providing comprehensive travel services, including MICE (Meetings, Incentives, Conferences, Exhibitions), Corporate Travel, Group Tours, Tour Packages, Flight Bookings, Hotel Reservations, Visa Assistance, and Cab Services.
+                </p>
+                <p>
+                  <span className="font-semibold text-foreground/90">Incorporation Date:</span> Originally established as a proprietorship firm on 5th July 2017 by Mr. Mohit Sharma, Adbhut started its journey with a vision to deliver exceptional travel experiences. With continued growth and dedication, the company was incorporated as Adbhut Travel and Event Pvt. Ltd. on 18th June 2020.
+                </p>
+                <p>
+                  Our organization is led by a team of highly qualified and experienced professionals who have specialized in tourism studies. The senior management brings a wealth of industry knowledge, ensuring every client receives personalized and world-class service.
+                </p>
+              </div>
             </div>
           </div>
         </div>
@@ -55,24 +65,34 @@ export default function AboutPage() {
         <div className="container">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl font-headline font-bold text-center mb-12">Discover Our Journey</h2>
-            <div className="relative h-0 pb-[56.25%] rounded-lg overflow-hidden shadow-2xl mb-12">
-              <iframe
-                className="absolute top-0 left-0 w-full h-full"
-                src="https://www.youtube.com/embed/SOYiaKA5sRk?si=2WdEVM6oot_jdX0d"
-                title="YouTube video player"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowFullScreen
-              ></iframe>
-            </div>
-            <div className="relative h-0 pb-[56.25%] rounded-lg overflow-hidden shadow-2xl">
-              <iframe
-                className="absolute top-0 left-0 w-full h-full"
-                src="https://www.youtube.com/embed/IfBDSc2Lb7U"
-                title="ADBHUT Profile Video"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowFullScreen
-              ></iframe>
-            </div>
+            <Carousel className="w-full relative" opts={{ loop: true }}>
+              <CarouselContent>
+                <CarouselItem>
+                  <div className="relative h-0 pb-[56.25%] rounded-lg overflow-hidden shadow-2xl">
+                    <iframe
+                      className="absolute top-0 left-0 w-full h-full"
+                      src="https://www.youtube.com/embed/SOYiaKA5sRk?si=2WdEVM6oot_jdX0d"
+                      title="YouTube video player"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      allowFullScreen
+                    ></iframe>
+                  </div>
+                </CarouselItem>
+                <CarouselItem>
+                  <div className="relative h-0 pb-[56.25%] rounded-lg overflow-hidden shadow-2xl">
+                    <iframe
+                      className="absolute top-0 left-0 w-full h-full"
+                      src="https://www.youtube.com/embed/IfBDSc2Lb7U"
+                      title="ADBHUT Profile Video"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      allowFullScreen
+                    ></iframe>
+                  </div>
+                </CarouselItem>
+              </CarouselContent>
+               <CarouselPrevious className="absolute left-[-50px] top-1/2 -translate-y-1/2 z-10 bg-white/50 hover:bg-white/80 text-foreground" />
+               <CarouselNext className="absolute right-[-50px] top-1/2 -translate-y-1/2 z-10 bg-white/50 hover:bg-white/80 text-foreground" />
+            </Carousel>
           </div>
         </div>
       </section>
