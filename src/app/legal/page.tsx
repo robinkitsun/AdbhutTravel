@@ -15,7 +15,7 @@ export default function LegalPage() {
         <div className="container text-center">
           <h1 className="text-4xl md:text-5xl font-headline font-bold">Legal Information</h1>
           <p className="mt-4 max-w-3xl mx-auto text-lg text-muted-foreground">
-            Important documents governing your use of our services.
+            Important documents governing your use of our services and how we handle your data.
           </p>
         </div>
       </section>
@@ -29,7 +29,7 @@ export default function LegalPage() {
                             <CardTitle className="font-headline">Privacy Policy</CardTitle>
                         </CardHeader>
                         <CardContent>
-                            <p className="text-muted-foreground">Learn how we collect, use, and protect your personal data when you use our services.</p>
+                            <p className="text-muted-foreground">Learn how we collect, use, and protect your personal data when you use our travel services.</p>
                         </CardContent>
                     </Card>
                 </Link>
@@ -40,7 +40,7 @@ export default function LegalPage() {
                             <CardTitle className="font-headline">Terms of Service</CardTitle>
                         </CardHeader>
                         <CardContent>
-                            <p className="text-muted-foreground">Read the terms and conditions that govern your access to and use of our website and services.</p>
+                            <p className="text-muted-foreground">Read the terms and conditions that govern your access to and use of our website and booking services.</p>
                         </CardContent>
                     </Card>
                 </Link>
