@@ -16,6 +16,12 @@ const legalLinks = [
         description: "Read the terms, conditions, and policies that govern your use of our website and booking services."
     },
     {
+        href: "/cancellation-policy",
+        icon: FileText,
+        title: "Cancellation & Refund Policy",
+        description: "Understand the terms for cancelling or modifying your booking, and how refunds are processed."
+    },
+    {
         href: "/affiliations",
         icon: Award,
         title: "Affiliations & Accreditations",
@@ -42,7 +48,7 @@ export default function LegalPage() {
       </section>
       <section className="py-16 md:py-24">
         <div className="container max-w-5xl">
-           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+           <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-8">
                 {legalLinks.map((link) => (
                      <Link href={link.href} key={link.title}>
                         <Card className="hover:shadow-lg hover:-translate-y-1 transition-all duration-300 h-full">

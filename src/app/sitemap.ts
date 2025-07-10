@@ -17,6 +17,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/north-cab',
     '/legal',
     '/terms-of-service',
+    '/cancellation-policy',
   ];
 
   const staticPageEntries = staticPages.map((path) => ({
