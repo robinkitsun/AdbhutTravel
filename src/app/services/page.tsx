@@ -1,4 +1,5 @@
-import { Plane, Hotel, Compass, Users, Star, Briefcase } from "lucide-react";
+
+import { Plane, Hotel, Compass, Users, Star, Briefcase, FileText, ShieldCheck, Car } from "lucide-react";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -13,7 +14,7 @@ export const metadata: Metadata = {
 const services = [
   {
     icon: Compass,
-    title: "Personalized Itineraries",
+    title: "Custom Tour Packages",
     description: "Your journey should be as unique as you are. We go beyond pre-packaged tours to design a travel blueprint that perfectly aligns with your passions, pace, and preferences. Our experts collaborate with you to craft a one-of-a-kind adventure, ensuring every detail reflects your personal travel style.",
     example: "Example: A 10-day culinary tour through Italy, featuring private cooking classes in Tuscany, wine tasting in a Chianti vineyard, and a guided food market exploration in Bologna, all tailored to your love for authentic Italian cuisine.",
     images: ["https://images.pexels.com/photos/797793/pexels-photo-797793.jpeg"],
@@ -24,12 +25,12 @@ const services = [
     title: "Flight Bookings",
     description: "Navigating the world of air travel can be complex. Let us handle it for you. We leverage our expertise to find the most efficient routes, optimal layovers, and competitive fares across a global network of airlines. Our goal is a seamless, stress-free booking experience from start to finish.",
     example: "Example: For a multi-city European holiday, we can book a complex open-jaw ticket, flying you into Rome and out of Paris, with a convenient and cost-effective flight to Barcelona in between, saving you both time and money.",
-    images: ["https://images.pexels.com/photos/46148/aircraft-jet-landing-cloud-46148.jpeg"],
-    dataAiHints: ["airplane wing"],
+    images: ["https://images.pexels.com/photos/3771691/pexels-photo-3771691.jpeg"],
+    dataAiHints: ["airplane wing clouds"],
   },
   {
     icon: Hotel,
-    title: "Accommodation",
+    title: "Hotel Bookings",
     description: "Where you stay is a crucial part of your travel experience. We handpick and book accommodations that promise comfort, quality, and character. From world-class luxury resorts and charming boutique hotels to cozy B&Bs, we ensure your home away from home meets our high standards and your expectations.",
     example: "Example: On a romantic honeymoon in Bali, we can arrange a stay in a private pool villa overlooking the serene rice paddies of Ubud, followed by a chic beachfront resort to catch the stunning sunsets in Seminyak.",
     images: [
@@ -40,7 +41,7 @@ const services = [
   },
   {
     icon: Users,
-    title: "Group Tours",
+    title: "Domestic & International Group Tours",
     description: "Discover the world with like-minded individuals on our expertly curated group tours. We keep our groups small to foster a sense of community and provide a more intimate experience. Led by knowledgeable local guides, our tours offer a perfect balance of planned activities and personal free time for exploration.",
     example: "Example: Join our 'Wonders of Peru' tour to hike the historic Inca Trail to Machu Picchu. You’ll share the journey with a small group of fellow adventurers and be led by a local guide who brings the ancient Incan world to life.",
     images: [
@@ -48,6 +49,37 @@ const services = [
         "https://images.pexels.com/photos/2422290/pexels-photo-2422290.jpeg"
     ],
     dataAiHints: ["friends traveling together", "group friends"],
+  },
+   {
+    icon: Briefcase,
+    title: "MICE & Corporate Travel",
+    description: "Elevate your business events with our professional MICE (Meetings, Incentives, Conferences, and Exhibitions) services and corporate travel management. We provide end-to-end solutions, from strategic planning and venue sourcing to seamless on-site logistics, ensuring your event is both successful and memorable.",
+    example: "Example: We can organize a week-long sales incentive trip to Dubai for your top performers, including 5-star accommodation, team-building desert safaris, and a formal gala dinner at an exclusive venue with city skyline views.",
+    images: [
+        "https://images.pexels.com/photos/1181414/pexels-photo-1181414.jpeg",
+        "https://images.pexels.com/photos/3184306/pexels-photo-3184306.jpeg"
+    ],
+    dataAiHints: ["corporate conference", "business meeting"],
+  },
+  {
+    icon: FileText,
+    title: "Visa & Travel Insurance Assistance",
+    description: "Navigating the complexities of international travel documentation can be daunting. Our dedicated team simplifies the process by providing expert guidance on visa requirements and applications, ensuring you have all the necessary paperwork. We also help you choose the right travel insurance plan for complete peace of mind on your journey.",
+    example: "Example: Planning a trip to Europe? We'll guide you through the Schengen visa application process, from filling out forms to gathering documents, and help you select a comprehensive insurance policy that covers medical emergencies and trip cancellations.",
+    images: [
+        "https://images.pexels.com/photos/7249183/pexels-photo-7249183.jpeg",
+    ],
+    dataAiHints: ["passport visa stamps"],
+  },
+  {
+    icon: Car,
+    title: "Airport & Local Cab Services",
+    description: "Start and end your journey with convenient and reliable transportation. We arrange seamless airport transfers to and from your accommodation. Additionally, our local cab services, powered by North Cab, are available for sightseeing, business meetings, or simply exploring the city at your own pace, ensuring you travel comfortably and safely.",
+    example: "Example: Upon landing in Delhi, your pre-booked cab will be waiting to take you directly to your hotel. The next day, you can book the same trusted service for a full-day city tour, visiting all the major landmarks without any hassle.",
+    images: [
+        "https://images.pexels.com/photos/3830745/pexels-photo-3830745.jpeg"
+    ],
+    dataAiHints: ["taxi car city"],
   },
   {
     icon: Star,
@@ -59,17 +91,6 @@ const services = [
         "https://images.pexels.com/photos/2832034/pexels-photo-2832034.jpeg"
     ],
     dataAiHints: ["hot air balloon sunrise", "couple boat"],
-  },
-  {
-    icon: Briefcase,
-    title: "Corporate & MICE",
-    description: "Elevate your business events with our professional MICE (Meetings, Incentives, Conferences, and Exhibitions) services. We provide end-to-end solutions, from strategic planning and venue sourcing to seamless on-site logistics and management, ensuring your corporate event is both successful and memorable.",
-    example: "Example: We can organize a week-long sales incentive trip to Dubai for your top performers, including 5-star accommodation, team-building desert safaris, and a formal gala dinner at an exclusive venue with city skyline views.",
-    images: [
-        "https://images.pexels.com/photos/1181414/pexels-photo-1181414.jpeg",
-        "https://images.pexels.com/photos/3184306/pexels-photo-3184306.jpeg"
-    ],
-    dataAiHints: ["corporate conference", "business meeting"],
   },
 ];
 
@@ -149,3 +170,5 @@ export default function ServicesPage() {
     </>
   );
 }
+
+    

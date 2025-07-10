@@ -1,16 +1,14 @@
+
+"use client"; // Required for carousel state and plugins
+
+import { useRef } from 'react';
 import Image from "next/image";
 import { Card, CardContent } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Award, Globe, HeartHandshake } from "lucide-react";
-import type { Metadata } from "next";
 import { Logo } from "@/components/shared/Logo";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
-
-
-export const metadata: Metadata = {
-  title: "About Us",
-  description: "Learn about the story, values, and passionate team behind Adbhut Travel. Discover our commitment to creating extraordinary journeys and unforgettable memories.",
-};
+import Autoplay from "embla-carousel-react";
 
 const teamMembers = [
   { name: "Mohit Sharma", role: "Founder & Managing Director", image: "https://media.licdn.com/dms/image/v2/D4D03AQEby5crkpPERQ/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1719289726893?e=2147483647&v=beta&t=QtcfIgIbkwq1Jr2IB7BXeVfOr89PuLox_Y5crNwBcB0", dataAiHint: "man portrait" },
@@ -18,7 +16,17 @@ const teamMembers = [
   { name: "Sachin", role: "Operation Manager", image: "", dataAiHint: "man portrait" },
 ];
 
+const youtubeVideos = [
+    { id: "SOYiaKA5sRk", title: "Adbhut Travel Corporate Film" },
+    { id: "IfBDSc2Lb7U", title: "ADBHUT Profile Video" },
+    { id: "pAlKLcYQ6wE", title: "Adbhut Travel Customer Testimonial" },
+    { id: "Y-zFCOX7eBE", title: "Adbhut Travel Customer Testimonial 2" },
+    { id: "JZbbO89Cr2U", title: "Adbhut Travel Customer Testimonial 3" }
+];
+
 export default function AboutPage() {
+   const autoplayPlugin = useRef(Autoplay({ delay: 5000, stopOnInteraction: true, stopOnMouseEnter: true }));
+
   return (
     <>
       <section className="bg-secondary py-8 md:py-12">
@@ -65,30 +73,25 @@ export default function AboutPage() {
         <div className="container">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl font-headline font-bold text-center mb-12">Discover Our Journey</h2>
-            <Carousel className="w-full relative" opts={{ loop: true }}>
+             <Carousel 
+                className="w-full relative" 
+                opts={{ loop: true }}
+                plugins={[autoplayPlugin.current]}
+                >
               <CarouselContent>
-                <CarouselItem>
-                  <div className="relative h-0 pb-[56.25%] rounded-lg overflow-hidden shadow-2xl">
-                    <iframe
-                      className="absolute top-0 left-0 w-full h-full"
-                      src="https://www.youtube.com/embed/SOYiaKA5sRk?si=2WdEVM6oot_jdX0d"
-                      title="YouTube video player"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                      allowFullScreen
-                    ></iframe>
-                  </div>
-                </CarouselItem>
-                <CarouselItem>
-                  <div className="relative h-0 pb-[56.25%] rounded-lg overflow-hidden shadow-2xl">
-                    <iframe
-                      className="absolute top-0 left-0 w-full h-full"
-                      src="https://www.youtube.com/embed/IfBDSc2Lb7U"
-                      title="ADBHUT Profile Video"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                      allowFullScreen
-                    ></iframe>
-                  </div>
-                </CarouselItem>
+                {youtubeVideos.map(video => (
+                  <CarouselItem key={video.id}>
+                    <div className="relative h-0 pb-[56.25%] rounded-lg overflow-hidden shadow-2xl">
+                      <iframe
+                        className="absolute top-0 left-0 w-full h-full"
+                        src={`https://www.youtube.com/embed/${video.id}?si=2WdEVM6oot_jdX0d`}
+                        title={video.title}
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowFullScreen
+                      ></iframe>
+                    </div>
+                  </CarouselItem>
+                ))}
               </CarouselContent>
                <CarouselPrevious className="absolute left-[-50px] top-1/2 -translate-y-1/2 z-10 bg-white/50 hover:bg-white/80 text-foreground" />
                <CarouselNext className="absolute right-[-50px] top-1/2 -translate-y-1/2 z-10 bg-white/50 hover:bg-white/80 text-foreground" />
@@ -172,3 +175,5 @@ export default function AboutPage() {
     </>
   );
 }
+
+    
