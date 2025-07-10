@@ -1,5 +1,5 @@
 
-import { Plane, Hotel, Compass, Users, Star, Briefcase, FileText, ShieldCheck, Car, Ship } from "lucide-react";
+import { Plane, Hotel, Compass, Users, Star, Briefcase, FileText, Car, Ship } from "lucide-react";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -84,12 +84,17 @@ const services = [
   {
     icon: Ship,
     title: "Cruise Packages",
-    description: "Set sail on the seas with our premier cruise packages. We partner with world-renowned cruise lines like Star Cruise, MSC Cruises, Royal Caribbean, and Norwegian Cruise Line to bring you exceptional voyages. We also specialize in organizing combo packages that pair your dream cruise with exciting land excursions for a complete holiday experience.",
+    description: "Set sail on the seas with our premier cruise packages. We partner with world-renowned cruise lines to bring you exceptional voyages. We also specialize in organizing combo packages that pair your dream cruise with exciting land excursions for a complete holiday experience. We proudly offer packages for:",
     example: "Example: Embark on a 7-night Royal Caribbean cruise through the Mediterranean, then spend 3 days exploring the historic wonders of Rome, with all hotels and transfers seamlessly arranged by our team.",
-    images: [
-        "https://images.pexels.com/photos/1654859/pexels-photo-1654859.jpeg",
+    images: [ "https://images.pexels.com/photos/1654859/pexels-photo-1654859.jpeg" ],
+    dataAiHints: [ "cruise ship ocean" ],
+    listItems: [
+        "Star Cruise",
+        "Nile Cruise",
+        "MSC Cruises",
+        "Royal Caribbean",
+        "Norwegian Cruise Line",
     ],
-    dataAiHints: ["cruise ship ocean"],
   },
   {
     icon: Star,
@@ -159,6 +164,13 @@ export default function ServicesPage() {
                   <h2 className="text-3xl font-headline font-bold">{service.title}</h2>
                 </div>
                 <p className="text-muted-foreground mb-4">{service.description}</p>
+                {service.listItems && (
+                  <ul className="list-disc pl-5 space-y-1 mb-4 text-muted-foreground">
+                    {service.listItems.map((item) => (
+                      <li key={item}>{item}</li>
+                    ))}
+                  </ul>
+                )}
                 <p className="text-sm italic text-muted-foreground/80 border-l-4 border-primary/50 pl-4 py-2">{service.example}</p>
               </div>
             </div>
@@ -170,7 +182,7 @@ export default function ServicesPage() {
         <div className="container text-center">
           <h2 className="text-3xl font-headline font-bold">Ready to Start Your Journey?</h2>
           <p className="mt-2 max-w-2xl mx-auto text-muted-foreground">
-            Whether you're dreaming of a custom adventure or planning a corporate event, our experts are here to help.
+            Whether you're dreaming of a custom adventure or a corporate event, our experts are here to help.
           </p>
           <Button asChild size="lg" className="mt-8">
             <Link href="/contact">Get in Touch</Link>
