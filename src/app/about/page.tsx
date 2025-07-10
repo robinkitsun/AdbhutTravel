@@ -1,7 +1,7 @@
 
 "use client"; // Required for carousel state and plugins
 
-import React, { useRef } from 'react';
+import React, { useRef, useEffect } from 'react';
 import Image from "next/image";
 import { Card, CardContent } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -25,7 +25,9 @@ const youtubeVideos = [
 ];
 
 export default function AboutPage() {
-   const autoplayPlugin = useRef(Autoplay({ delay: 5000, stopOnInteraction: true, stopOnMouseEnter: true }));
+   const plugin = React.useRef(
+    Autoplay({ delay: 5000, stopOnInteraction: true })
+  );
 
   return (
     <>
@@ -74,9 +76,11 @@ export default function AboutPage() {
           <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl font-headline font-bold text-center mb-12">Discover Our Journey</h2>
              <Carousel 
+                plugins={[plugin.current]}
                 className="w-full relative" 
                 opts={{ loop: true }}
-                plugins={[autoplayPlugin.current]}
+                onMouseEnter={plugin.current.stop}
+                onMouseLeave={plugin.current.reset}
                 >
               <CarouselContent>
                 {youtubeVideos.map(video => (
