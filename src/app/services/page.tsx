@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 const services = [
   {
     icon: Compass,
-    title: "Custom Tour Packages",
+    title: "Personalized Itineraries",
     description: "Your journey should be as unique as you are. We go beyond pre-packaged tours to design a travel blueprint that perfectly aligns with your passions, pace, and preferences. Our experts collaborate with you to craft a one-of-a-kind adventure, ensuring every detail reflects your personal travel style.",
     example: "Example: A 10-day culinary tour through Italy, featuring private cooking classes in Tuscany, wine tasting in a Chianti vineyard, and a guided food market exploration in Bologna, all tailored to your love for authentic Italian cuisine.",
     images: ["https://images.pexels.com/photos/797793/pexels-photo-797793.jpeg"],
@@ -25,7 +25,7 @@ const services = [
     title: "Flight Bookings",
     description: "Navigating the world of air travel can be complex. Let us handle it for you. We leverage our expertise to find the most efficient routes, optimal layovers, and competitive fares across a global network of airlines. Our goal is a seamless, stress-free booking experience from start to finish.",
     example: "Example: For a multi-city European holiday, we can book a complex open-jaw ticket, flying you into Rome and out of Paris, with a convenient and cost-effective flight to Barcelona in between, saving you both time and money.",
-    images: ["https://images.pexels.com/photos/3771691/pexels-photo-3771691.jpeg"],
+    images: ["https://images.pexels.com/photos/46148/aircraft-jet-landing-cloud-46148.jpeg"],
     dataAiHints: ["airplane wing clouds"],
   },
   {
