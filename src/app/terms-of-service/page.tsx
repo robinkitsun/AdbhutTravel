@@ -31,7 +31,7 @@ export default function TermsOfServicePage() {
             <h2 className="font-headline">4. Bookings, Payments, and Cancellations</h2>
             <p><strong>Bookings:</strong> All bookings are subject to availability and confirmation by the third-party supplier.</p>
             <p><strong>Payments:</strong> Payment schedules will be communicated at the time of booking. Failure to pay on time may result in cancellation.</p>
-            <p><strong>Cancellations and Amendments:</strong> If you wish to cancel or amend your booking, you must notify us in writing. Cancellation and amendment charges from third-party suppliers will apply, in addition to any service fees charged by Adbhut Travel. We strongly recommend comprehensive travel insurance.</p>
+            <p><strong>Cancellations and Amendments:</strong> All cancellations and amendments are governed by our <Link href="/cancellation-policy" className="text-primary underline">Cancellation & Refund Policy</Link>. We strongly recommend you review it carefully. Travel insurance is highly recommended.</p>
 
             <h2 className="font-headline">5. User Responsibilities</h2>
             <p>It is your responsibility to ensure that all travel documents are in order, including but not limited to:</p>
