@@ -1,11 +1,11 @@
 
 "use client";
 
-import React from 'react';
+import React, { useRef } from 'react';
 import Image from "next/image";
 import { Card, CardContent } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Award, Globe, HeartHandshake } from "lucide-react";
+import { Award, Globe, HeartHandshake, CheckCircle2 } from "lucide-react";
 import { Logo } from "@/components/shared/Logo";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 
@@ -21,6 +21,15 @@ const youtubeVideos = [
     { id: "pAlKLcYQ6wE", title: "Adbhut Travel Customer Testimonial" },
     { id: "Y-zFCOX7eBE", title: "Adbhut Travel Customer Testimonial 2" },
     { id: "JZbbO89Cr2U", title: "Adbhut Travel Customer Testimonial 3" }
+];
+
+const strengths = [
+    "Strong Industry Experience",
+    "Highly Qualified & Tourism-Educated Management Team",
+    "End-to-End Travel Solutions under One Roof",
+    "Personalized Itinerary Planning & 24/7 Customer Support",
+    "Trusted Network of Global Partners",
+    "Focus on Client Satisfaction, Quality, and Transparency",
 ];
 
 export default function AboutPage() {
@@ -68,6 +77,38 @@ export default function AboutPage() {
 
       <section className="py-16 md:py-24 bg-secondary/50">
         <div className="container">
+            <div className="grid md:grid-cols-2 gap-12 items-start">
+                <div>
+                    <h2 className="text-3xl font-headline font-bold mb-4">Our Strengths</h2>
+                    <ul className="space-y-3 text-muted-foreground">
+                        {strengths.map((strength, index) => (
+                        <li key={index} className="flex items-start gap-3">
+                            <CheckCircle2 className="h-5 w-5 text-primary mt-1 flex-shrink-0" />
+                            <span>{strength}</span>
+                        </li>
+                        ))}
+                    </ul>
+                </div>
+                <div className="space-y-8">
+                    <div>
+                        <h2 className="text-3xl font-headline font-bold mb-4">Vision</h2>
+                        <p className="text-muted-foreground italic">“To become a globally admired travel company known for innovation, trust, and excellence in delivering travel experiences.”</p>
+                    </div>
+                     <div>
+                        <h2 className="text-3xl font-headline font-bold mb-4">Mission</h2>
+                        <ul className="space-y-2 text-muted-foreground list-disc pl-5">
+                            <li>To offer seamless and memorable travel solutions to every customer.</li>
+                            <li>To build long-term relationships based on transparency, trust, and quality service.</li>
+                            <li>To continuously enhance our offerings through innovation and customer feedback.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </section>
+
+      <section className="py-16 md:py-24">
+        <div className="container">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl font-headline font-bold text-center mb-12">Discover Our Journey</h2>
              <Carousel
@@ -96,7 +137,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="py-16 md:py-24">
+      <section className="py-16 md:py-24 bg-secondary">
         <div className="container">
           <h2 className="text-3xl font-headline font-bold text-center mb-4">Our Brands</h2>
           <p className="text-center text-muted-foreground max-w-3xl mx-auto mb-12">
@@ -128,7 +169,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="py-16 md:py-24 bg-secondary">
+      <section className="py-16 md:py-24 bg-background">
         <div className="container">
           <h2 className="text-3xl font-headline font-bold text-center mb-12">Our Values</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">

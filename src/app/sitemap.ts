@@ -15,6 +15,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/trademarks',
     '/affiliations',
     '/north-cab',
+    '/legal',
+    '/privacy-policy',
+    '/terms-of-service',
   ];
 
   const staticPageEntries = staticPages.map((path) => ({
