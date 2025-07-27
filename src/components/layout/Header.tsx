@@ -1,6 +1,7 @@
 
 "use client";
 
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { Menu, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -39,10 +40,25 @@ const morePageLinks = [
 
 export default function Header() {
   const pathname = usePathname();
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 10);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur-sm">
-      <div className="container flex h-16 items-center justify-between px-4 md:px-8">
+    <header className={cn(
+        "sticky top-0 z-50 w-full transition-all duration-300 ease-out",
+        isScrolled ? "bg-background/95 backdrop-blur-sm border-b shadow-sm" : "bg-transparent border-b border-transparent"
+    )}>
+      <div className={cn(
+        "container flex items-center justify-between px-4 md:px-8 transition-all duration-300 ease-out",
+        isScrolled ? "h-16" : "h-20"
+      )}>
         <Link href="/">
           <Logo />
         </Link>
@@ -54,7 +70,7 @@ export default function Header() {
               href={href}
               className={cn(
                 "text-base transition-colors duration-300 hover:text-primary whitespace-nowrap animated-underline pb-1",
-                pathname === href ? "text-primary font-semibold" : "text-muted-foreground"
+                pathname === href ? "text-primary font-semibold" : isScrolled ? "text-muted-foreground" : "text-white [text-shadow:0_1px_2px_rgba(0,0,0,0.5)]",
               )}
             >
               {label}
@@ -63,7 +79,8 @@ export default function Header() {
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <button className={cn(
-                "text-base transition-colors duration-300 hover:text-primary whitespace-nowrap animated-underline pb-1 flex items-center gap-1 group text-muted-foreground"
+                "text-base transition-colors duration-300 hover:text-primary whitespace-nowrap animated-underline pb-1 flex items-center gap-1 group",
+                 pathname === "/more" ? "text-primary font-semibold" : isScrolled ? "text-muted-foreground" : "text-white [text-shadow:0_1px_2px_rgba(0,0,0,0.5)]"
               )}>
                 More
                 <ChevronDown className="h-4 w-4 transition-transform duration-200 group-data-[state=open]:rotate-180" />
@@ -85,14 +102,14 @@ export default function Header() {
           </DropdownMenu>
         </nav>
 
-        <div className="flex items-center">
-          <Button asChild className="hidden md:inline-flex">
+        <div className="flex items-center gap-2">
+          <Button asChild className="hidden md:inline-flex" variant={isScrolled ? "default" : "secondary"}>
             <Link href="/contact">Get Free Consultation</Link>
           </Button>
           
           <Sheet>
             <SheetTrigger asChild>
-              <Button variant="outline" size="icon" className="md:hidden">
+              <Button variant="outline" size="icon" className={cn("md:hidden", !isScrolled && "text-white bg-white/20 border-white/50 hover:bg-white/30 hover:text-white")}>
                 <Menu className="h-5 w-5" />
                 <span className="sr-only">Toggle navigation menu</span>
               </Button>
