@@ -5,15 +5,15 @@ import type { Testimonial } from "@/lib/types";
 const testimonials: Testimonial[] = [
   {
     id: "1",
-    quote: "An absolutely magical experience from start to finish. Adbhut Explorer took care of every detail, allowing us to just relax and enjoy. Highly recommended!",
-    author: "Anjali Sharma",
-    location: "Mumbai, India",
+    quote: "I recently went on a business trip to Goa arranged by Adbhut Travel Agency, and seriously, it was just amazing! Everything was perfectly planned — from flights to hotel bookings to local transport. The whole trip felt super smooth and...",
+    author: "Ajay Yadav",
+    location: "Local Guide",
   },
   {
     id: "2",
-    quote: "The AI planner was a game-changer! It created the perfect itinerary for our family, balancing adventure for the kids and relaxation for us. A truly personalized trip.",
-    author: "David Chen",
-    location: "Singapore",
+    quote: "I recently booked a tour with them and it was truly a fantastic experience! From the moment we started planning to the end of our journey, everything was smooth and well-organized. The itinerary was perfectly balanced with sightseeing,...",
+    author: "Apurva",
+    location: "Google Review",
   },
   {
     id: "3",
