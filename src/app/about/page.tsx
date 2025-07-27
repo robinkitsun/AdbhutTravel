@@ -11,8 +11,8 @@ import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious
 
 const teamMembers = [
   { name: "Mohit Sharma", role: "Founder & CEO", image: "https://media.licdn.com/dms/image/v2/D4D03AQEby5crkpPERQ/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1719289726893?e=2147483647&v=beta&t=QtcfIgIbkwq1Jr2IB7BXeVfOr89PuLox_Y5crNwBcB0", dataAiHint: "man portrait" },
-  { name: "Mrs Aditi Sharma", role: "Sales Director", image: "", dataAiHint: "woman portrait" },
-  { name: "Sachin", role: "OPS Manager", image: "", dataAiHint: "man portrait" },
+  { name: "Mrs Aditi Sharma", role: "Sales Director", image: "https://www.adbhuttravel.com/wp-content/uploads/2025/07/Mrs.-Aditi-Sharma-Sales-Director.png", dataAiHint: "woman portrait" },
+  { name: "Sachin", role: "OPS Manager", image: "https://www.adbhuttravel.com/wp-content/uploads/2025/07/Sachin-OPS-Manager-Adbhut-Travel-Event-Pvt.-Ltd.png", dataAiHint: "man portrait" },
   { name: "Ankit", role: "Business Development Manager (BDM)", image: "", dataAiHint: "man portrait" },
 ];
 
