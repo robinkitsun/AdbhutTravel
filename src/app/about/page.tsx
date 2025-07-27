@@ -10,9 +10,10 @@ import { Logo } from "@/components/shared/Logo";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 
 const teamMembers = [
-  { name: "Mohit Sharma", role: "Founder & Managing Director", image: "https://media.licdn.com/dms/image/v2/D4D03AQEby5crkpPERQ/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1719289726893?e=2147483647&v=beta&t=QtcfIgIbkwq1Jr2IB7BXeVfOr89PuLox_Y5crNwBcB0", dataAiHint: "man portrait" },
-  { name: "Aditi Sharma", role: "Director Sales", image: "", dataAiHint: "woman portrait" },
-  { name: "Sachin", role: "Operation Manager", image: "", dataAiHint: "man portrait" },
+  { name: "Mohit Sharma", role: "Founder & CEO", image: "https://media.licdn.com/dms/image/v2/D4D03AQEby5crkpPERQ/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1719289726893?e=2147483647&v=beta&t=QtcfIgIbkwq1Jr2IB7BXeVfOr89PuLox_Y5crNwBcB0", dataAiHint: "man portrait" },
+  { name: "Mrs Aditi Sharma", role: "Sales Director", image: "", dataAiHint: "woman portrait" },
+  { name: "Sachin", role: "OPS Manager", image: "", dataAiHint: "man portrait" },
+  { name: "Ankit", role: "Business Development Manager (BDM)", image: "", dataAiHint: "man portrait" },
 ];
 
 const youtubeVideos = [
@@ -194,8 +195,8 @@ export default function AboutPage() {
 
       <section className="py-16 md:py-24">
         <div className="container">
-          <h2 className="text-3xl font-headline font-bold text-center mb-12">Meet the Team</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          <h2 className="text-3xl font-headline font-bold text-center mb-12">Senior Management</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             {teamMembers.map((member) => (
               <Card key={member.name} className="p-6 text-center border-0 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
                 <Avatar className="w-24 h-24 mx-auto mb-4">
@@ -212,3 +213,5 @@ export default function AboutPage() {
     </>
   );
 }
+
+    
