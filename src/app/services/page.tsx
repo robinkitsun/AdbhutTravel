@@ -45,11 +45,12 @@ const services = [
     description: "Discover the world with like-minded individuals on our expertly curated group tours. We keep our groups small to foster a sense of community and provide a more intimate experience. Led by knowledgeable local guides, our tours offer a perfect balance of planned activities and personal free time for exploration.",
     example: "Example: Join our 'Wonders of Peru' tour to hike the historic Inca Trail to Machu Picchu. You’ll share the journey with a small group of fellow adventurers and be led by a local guide who brings the ancient Incan world to life.",
     images: [
+        "https://www.adbhuttravel.com/wp-content/uploads/2023/08/IMG-9291-scaled.jpg",
         "https://www.adbhuttravel.com/wp-content/uploads/2023/08/3ce2ac17-ec82-47eb-949f-4acbd0fa212b.jpg",
         "https://images.pexels.com/photos/1268855/pexels-photo-1268855.jpeg",
         "https://images.pexels.com/photos/2422290/pexels-photo-2422290.jpeg",
     ],
-    dataAiHints: ["corporate group photo", "friends traveling together", "group friends"],
+    dataAiHints: ["group travel friends", "corporate group photo", "friends traveling together", "group friends"],
   },
    {
     icon: Briefcase,
