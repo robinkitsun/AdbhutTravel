@@ -42,22 +42,24 @@ export default function Header() {
   const pathname = usePathname();
 
   return (
-    <header className="sticky top-0 z-50 w-full bg-primary/80 backdrop-blur-sm border-b shadow-sm">
+    <header className="sticky top-0 z-50 w-full bg-primary border-b shadow-sm">
       <div className="container flex items-center justify-between h-20">
-        <Link href="/">
-          <Logo />
-        </Link>
+        <div className="flex-shrink-0">
+          <Link href="/">
+            <Logo />
+          </Link>
+        </div>
 
         {/* Desktop Navigation */}
         <div className="hidden md:flex flex-grow items-center justify-center">
-            <nav className="flex items-center gap-10 font-medium">
+            <nav className="flex items-center gap-10 text-black">
             {navLinks.map(({ href, label }) => (
                 <Link
                 key={href}
                 href={href}
                 className={cn(
-                    "text-base transition-colors duration-300 pb-1 animated-underline",
-                    pathname === href ? "font-semibold" : ""
+                    "text-base font-bold transition-colors duration-300 pb-1 animated-underline",
+                    pathname === href ? "text-accent" : ""
                 )}
                 >
                 {label}
@@ -66,8 +68,8 @@ export default function Header() {
             <DropdownMenu>
                 <DropdownMenuTrigger asChild>
                 <button className={cn(
-                    "text-base transition-colors duration-300 pb-1 flex items-center gap-1 group animated-underline",
-                    pathname.startsWith('/more') && "font-semibold"
+                    "text-base font-bold transition-colors duration-300 pb-1 flex items-center gap-1 group animated-underline",
+                    pathname.startsWith('/more') && "text-accent"
                 )}>
                     More
                     <ChevronDown className="h-4 w-4 transition-transform duration-200 group-data-[state=open]:rotate-180" />
@@ -92,7 +94,7 @@ export default function Header() {
 
 
         <div className="flex items-center gap-2">
-          <Button asChild className="hidden md:inline-flex" variant="secondary">
+          <Button asChild className="hidden md:inline-flex">
             <Link href="/contact">Get Free Consultation</Link>
           </Button>
           

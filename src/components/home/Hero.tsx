@@ -4,7 +4,7 @@ import Image from "next/image";
 
 export default function Hero() {
   return (
-    <section className="relative h-[calc(90vh)] w-full">
+    <section className="relative h-[calc(80vh)] w-full">
       <Image
         src="https://images.pexels.com/photos/221471/pexels-photo-221471.jpeg"
         alt="Tropical beach background"
@@ -14,8 +14,8 @@ export default function Hero() {
         data-ai-hint="tropical beach"
       />
       <div className="absolute inset-0 bg-black/50" />
-      <div className="relative z-10 flex flex-col items-center justify-center h-full text-center text-white p-4">
-        <h1 className="font-headline text-5xl md:text-7xl font-bold !text-primary-foreground leading-tight [text-shadow:0_2px_4px_rgba(0,0,0,0.8)]">
+      <div className="relative z-10 flex flex-col items-center justify-center h-full text-center p-4">
+        <h1 className="font-headline text-5xl md:text-7xl font-bold text-primary-foreground leading-tight [text-shadow:0_2px_4px_rgba(0,0,0,0.8)]">
           Discover Your Next Adventure
         </h1>
         <p className="mt-4 max-w-3xl text-lg md:text-xl text-primary-foreground/90 [text-shadow:0_2px_4px_rgba(0,0,0,0.8)]">
