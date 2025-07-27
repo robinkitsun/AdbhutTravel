@@ -84,7 +84,7 @@ export default function AboutPage() {
                     <ul className="space-y-3 text-muted-foreground">
                         {strengths.map((strength, index) => (
                         <li key={index} className="flex items-start gap-3">
-                            <CheckCircle2 className="h-5 w-5 text-primary mt-1 flex-shrink-0" />
+                            <CheckCircle2 className="h-5 w-5 text-accent mt-1 flex-shrink-0" />
                             <span>{strength}</span>
                         </li>
                         ))}
@@ -175,17 +175,17 @@ export default function AboutPage() {
           <h2 className="text-3xl font-headline font-bold text-center mb-12">Our Values</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
             <Card className="p-6 border-0 shadow-lg hover:-translate-y-1 transition-all duration-300">
-              <HeartHandshake className="h-12 w-12 mx-auto text-primary mb-4" />
+              <HeartHandshake className="h-12 w-12 mx-auto text-accent mb-4" />
               <h3 className="text-xl font-headline font-semibold mb-2">Customer First</h3>
               <p className="text-muted-foreground">Your journey is our priority. We are committed to providing impeccable service and support.</p>
             </Card>
             <Card className="p-6 border-0 shadow-lg hover:-translate-y-1 transition-all duration-300">
-              <Globe className="h-12 w-12 mx-auto text-primary mb-4" />
+              <Globe className="h-12 w-12 mx-auto text-accent mb-4" />
               <h3 className="text-xl font-headline font-semibold mb-2">Authentic Experiences</h3>
               <p className="text-muted-foreground">We connect you with the local culture for travel that is genuine and enriching.</p>
             </Card>
             <Card className="p-6 border-0 shadow-lg hover:-translate-y-1 transition-all duration-300">
-              <Award className="h-12 w-12 mx-auto text-primary mb-4" />
+              <Award className="h-12 w-12 mx-auto text-accent mb-4" />
               <h3 className="text-xl font-headline font-semibold mb-2">Unmatched Quality</h3>
               <p className="text-muted-foreground">From planning to execution, we ensure the highest standards in every aspect of your trip.</p>
             </Card>
@@ -204,7 +204,7 @@ export default function AboutPage() {
                   <AvatarFallback>{member.name.charAt(0)}</AvatarFallback>
                 </Avatar>
                 <h3 className="text-lg md:text-xl font-headline font-semibold">{member.name}</h3>
-                <p className="text-primary text-sm md:text-base">{member.role}</p>
+                <p className="text-accent text-sm md:text-base font-medium">{member.role}</p>
               </Card>
             ))}
           </div>
