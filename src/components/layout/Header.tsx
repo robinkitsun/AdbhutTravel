@@ -43,26 +43,30 @@ export default function Header() {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
+    let lastScrollY = window.scrollY;
+
     const handleScroll = () => {
-      const isScrolled = window.scrollY > 50;
-      if (isScrolled !== scrolled) {
-        setScrolled(isScrolled);
+      const currentScrollY = window.scrollY;
+      // Set scrolled to true if scrolling down, false if scrolling up
+      if (currentScrollY > lastScrollY && currentScrollY > 50) {
+        setScrolled(true);
+      } else {
+        setScrolled(false);
       }
+      lastScrollY = currentScrollY;
     };
 
-    document.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
     return () => {
-      document.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("scroll", handleScroll);
     };
-  }, [scrolled]);
+  }, []);
 
 
   return (
-    <header className={cn(
-        "sticky top-0 z-50 w-full transition-all duration-300",
-        scrolled ? "bg-secondary/80 backdrop-blur-sm shadow-md" : "bg-transparent",
-      )}>
-      <div className={cn("container flex items-center justify-between transition-all duration-300", scrolled ? "h-20" : "h-24")}>
+    <header className="sticky top-0 z-50 w-full transition-all duration-300 bg-secondary/80 backdrop-blur-sm shadow-md">
+      <div className="container flex items-center justify-between h-24">
         <div className="flex-shrink-0">
           <Link href="/">
             <Logo />
@@ -71,7 +75,7 @@ export default function Header() {
 
         {/* Desktop Navigation */}
         <div className="hidden md:flex flex-grow items-center justify-center">
-            <nav className={cn("flex items-center transition-all duration-300", scrolled ? "gap-6" : "gap-10")}>
+            <nav className={cn("flex items-center transition-all duration-500", scrolled ? "gap-10" : "gap-6")}>
             {navLinks.map(({ href, label }) => (
                 <Link
                 key={href}
