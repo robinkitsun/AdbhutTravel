@@ -97,7 +97,7 @@ export default function MicePage() {
                 <Card key={pillar.title} className="text-center shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300 p-4">
                     <CardHeader className="p-2">
                         <div className="mx-auto bg-primary/20 rounded-full w-16 h-16 flex items-center justify-center mb-4">
-                            <pillar.icon className="w-8 h-8 text-primary" />
+                            <pillar.icon className="w-8 h-8 text-accent" />
                         </div>
                         <CardTitle className="font-headline text-xl">{pillar.title}</CardTitle>
                     </CardHeader>
@@ -175,7 +175,7 @@ export default function MicePage() {
               <Card key={service.title} className="text-center shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300 border-0 p-4">
                 <CardHeader className="p-2">
                   <div className="mx-auto bg-primary/20 rounded-full w-16 h-16 flex items-center justify-center mb-4">
-                    <service.icon className="w-8 h-8 text-primary" />
+                    <service.icon className="w-8 h-8 text-accent" />
                   </div>
                   <CardTitle className="font-headline text-xl">{service.title}</CardTitle>
                 </CardHeader>

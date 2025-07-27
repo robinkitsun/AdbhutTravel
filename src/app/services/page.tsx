@@ -46,9 +46,10 @@ const services = [
     example: "Example: Join our 'Wonders of Peru' tour to hike the historic Inca Trail to Machu Picchu. You’ll share the journey with a small group of fellow adventurers and be led by a local guide who brings the ancient Incan world to life.",
     images: [
         "https://images.pexels.com/photos/1268855/pexels-photo-1268855.jpeg",
-        "https://images.pexels.com/photos/2422290/pexels-photo-2422290.jpeg"
+        "https://images.pexels.com/photos/2422290/pexels-photo-2422290.jpeg",
+        "https://www.adbhuttravel.com/wp-content/uploads/2023/08/3ce2ac17-ec82-47eb-949f-4acbd0fa212b.jpg"
     ],
-    dataAiHints: ["friends traveling together", "group friends"],
+    dataAiHints: ["friends traveling together", "group friends", "corporate group photo"],
   },
    {
     icon: Briefcase,
@@ -57,9 +58,10 @@ const services = [
     example: "Example: We can organize a week-long sales incentive trip to Dubai for your top performers, including 5-star accommodation, team-building desert safaris, and a formal gala dinner at an exclusive venue with city skyline views.",
     images: [
         "https://images.pexels.com/photos/1181414/pexels-photo-1181414.jpeg",
-        "https://images.pexels.com/photos/3184306/pexels-photo-3184306.jpeg"
+        "https://images.pexels.com/photos/3184306/pexels-photo-3184306.jpeg",
+        "https://www.adbhuttravel.com/wp-content/uploads/2023/08/3ce2ac17-ec82-47eb-949f-4acbd0fa212b.jpg"
     ],
-    dataAiHints: ["corporate conference", "business meeting"],
+    dataAiHints: ["corporate conference", "business meeting", "corporate group photo"],
   },
   {
     icon: FileText,
@@ -159,7 +161,7 @@ export default function ServicesPage() {
               <div>
                 <div className="flex items-center gap-4 mb-4">
                   <div className="bg-primary/20 p-3 rounded-full">
-                    <service.icon className="w-8 h-8 text-primary" />
+                    <service.icon className="w-8 h-8 text-accent" />
                   </div>
                   <h2 className="text-3xl font-headline font-bold">{service.title}</h2>
                 </div>
