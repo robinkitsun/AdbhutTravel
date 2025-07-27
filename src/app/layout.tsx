@@ -67,7 +67,7 @@ export default function RootLayout({
     <html lang="en" className={`${ptSans.variable} ${playfairDisplay.variable} scroll-smooth`} suppressHydrationWarning>
       <head>
       </head>
-      <body className="font-body antialiased flex flex-col min-h-screen">
+      <body className="font-body antialiased flex flex-col min-h-screen bg-background">
         <CustomCursor />
         <Header />
         <main className="flex-grow">{children}</main>

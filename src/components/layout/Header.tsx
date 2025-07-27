@@ -1,7 +1,7 @@
 
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import { Menu, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -40,46 +40,24 @@ const morePageLinks = [
 
 export default function Header() {
   const pathname = usePathname();
-  const [scrollPosition, setScrollPosition] = useState(0);
-
-  const handleScroll = () => {
-    const position = window.scrollY;
-    setScrollPosition(position);
-  };
-
-  useEffect(() => {
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
-  
-  // Animate after scrolling 50px
-  const isScrolled = scrollPosition > 50;
 
   return (
-    <header className={cn(
-        "sticky top-0 z-50 w-full transition-all duration-300 ease-in-out",
-        isScrolled ? "bg-background/95 backdrop-blur-sm border-b shadow-md" : "bg-transparent border-transparent"
-    )}>
-      <div className={cn(
-        "container flex items-center justify-between transition-all duration-300 ease-in-out",
-        isScrolled ? "h-16" : "h-24"
-      )}>
-        <Link href="/" className={cn("transition-transform duration-300", isScrolled ? "scale-90" : "scale-100")}>
+    <header className="sticky top-0 z-50 w-full bg-primary/80 backdrop-blur-sm border-b shadow-sm">
+      <div className="container flex items-center justify-between h-20">
+        <Link href="/">
           <Logo />
         </Link>
 
         {/* Desktop Navigation */}
         <div className="hidden md:flex flex-grow items-center justify-center">
-            <nav className={cn("flex items-center font-medium transition-all duration-300 ease-in-out", isScrolled ? "gap-6" : "gap-10")}>
+            <nav className="flex items-center gap-10 font-medium">
             {navLinks.map(({ href, label }) => (
                 <Link
                 key={href}
                 href={href}
                 className={cn(
-                    "text-base transition-colors duration-300 hover:text-primary whitespace-nowrap animated-underline pb-1",
-                    pathname === href ? "text-primary font-semibold" : isScrolled ? "text-muted-foreground" : "text-white [text-shadow:0_1px_2px_rgba(0,0,0,0.5)]"
+                    "text-base transition-colors duration-300 pb-1 animated-underline",
+                    pathname === href ? "font-semibold" : ""
                 )}
                 >
                 {label}
@@ -88,8 +66,8 @@ export default function Header() {
             <DropdownMenu>
                 <DropdownMenuTrigger asChild>
                 <button className={cn(
-                    "text-base transition-colors duration-300 hover:text-primary whitespace-nowrap animated-underline pb-1 flex items-center gap-1 group",
-                    pathname.startsWith('/more') ? "text-primary font-semibold" : isScrolled ? "text-muted-foreground" : "text-white [text-shadow:0_1px_2px_rgba(0,0,0,0.5)]"
+                    "text-base transition-colors duration-300 pb-1 flex items-center gap-1 group animated-underline",
+                    pathname.startsWith('/more') && "font-semibold"
                 )}>
                     More
                     <ChevronDown className="h-4 w-4 transition-transform duration-200 group-data-[state=open]:rotate-180" />
@@ -114,14 +92,14 @@ export default function Header() {
 
 
         <div className="flex items-center gap-2">
-          <Button asChild className={cn("hidden md:inline-flex transition-transform duration-300", isScrolled ? "scale-90" : "scale-100")} variant={isScrolled ? "default" : "secondary"}>
+          <Button asChild className="hidden md:inline-flex" variant="secondary">
             <Link href="/contact">Get Free Consultation</Link>
           </Button>
           
           {/* Mobile Navigation */}
           <Sheet>
             <SheetTrigger asChild>
-              <Button variant="outline" size="icon" className={cn("md:hidden", !isScrolled && "text-white bg-white/20 border-white/50 hover:bg-white/30 hover:text-white")}>
+              <Button variant="outline" size="icon" className="md:hidden">
                 <Menu className="h-5 w-5" />
                 <span className="sr-only">Toggle navigation menu</span>
               </Button>
@@ -136,7 +114,7 @@ export default function Header() {
                     <Link
                       href={href}
                       className={cn(
-                        "block px-4 py-2 rounded-md hover:text-primary hover:bg-muted transition-colors",
+                        "block px-4 py-2 rounded-md hover:text-accent hover:bg-muted transition-colors",
                         pathname === href ? "text-foreground bg-muted" : "text-muted-foreground"
                       )}
                     >
@@ -150,7 +128,7 @@ export default function Header() {
                          <SheetClose asChild key={link.href}>
                              <Link 
                                 href={link.href} 
-                                className={cn("block px-4 py-2 rounded-md hover:text-primary hover:bg-muted transition-colors text-muted-foreground", pathname === link.href && "text-foreground bg-muted" )}
+                                className={cn("block px-4 py-2 rounded-md hover:text-accent hover:bg-muted transition-colors text-muted-foreground", pathname === link.href && "text-foreground bg-muted" )}
                                 {...(link.href.startsWith('http') && { target: '_blank', rel: 'noopener noreferrer' })}
                              >
                                  {link.label}

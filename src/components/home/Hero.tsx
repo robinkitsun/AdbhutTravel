@@ -4,7 +4,7 @@ import Image from "next/image";
 
 export default function Hero() {
   return (
-    <section className="relative h-[calc(80vh)] w-full">
+    <section className="relative h-[calc(90vh)] w-full">
       <Image
         src="https://images.pexels.com/photos/221471/pexels-photo-221471.jpeg"
         alt="Tropical beach background"
