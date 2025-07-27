@@ -10,7 +10,7 @@ import { Logo } from "@/components/shared/Logo";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 
 const teamMembers = [
-  { name: "Mohit Sharma", role: "Founder & CEO", image: "https://media.licdn.com/dms/image/v2/D4D03AQEby5crkpPERQ/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1719289726893?e=2147483647&v=beta&t=QtcfIgIbkwq1Jr2IB7BXeVfOr89PuLox_Y5crNwBcB0", dataAiHint: "man portrait" },
+  { name: "Mohit Sharma", role: "Founder & CEO", image: "https://www.adbhuttravel.com/wp-content/uploads/2025/07/Mohit-Adbhut-Founder.jpeg", dataAiHint: "man portrait" },
   { name: "Mrs Aditi Sharma", role: "Sales Director", image: "https://www.adbhuttravel.com/wp-content/uploads/2025/07/Mrs.-Aditi-Sharma-Sales-Director.png", dataAiHint: "woman portrait" },
   { name: "Sachin", role: "OPS Manager", image: "https://www.adbhuttravel.com/wp-content/uploads/2025/07/Sachin-OPS-Manager-Adbhut-Travel-Event-Pvt.-Ltd.png", dataAiHint: "man portrait" },
   { name: "Ankit", role: "Business Development Manager (BDM)", image: "", dataAiHint: "man portrait" },
@@ -50,7 +50,7 @@ export default function AboutPage() {
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="rounded-lg overflow-hidden shadow-xl">
               <Image
-                src="https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg"
+                src="https://www.adbhuttravel.com/wp-content/uploads/2025/07/Our-Story.jpeg"
                 alt="Our team working together on a travel plan"
                 width={600}
                 height={500}
@@ -154,7 +154,7 @@ export default function AboutPage() {
             </div>
             <div className="flex flex-col items-center">
                 <div className="mb-4 flex items-center justify-center h-16">
-                    <Image src="https://www.adbhuttravel.com/wp-content/uploads/2024/06/Screenshot-2024-06-27-at-11.23.46%E2%80%AFAM.png" alt="North Cab Logo" width={200} height={80} className="max-h-12 w-auto object-contain" />
+                    <Image src="https://www.adbhuttravel.com/wp-content/uploads/2025/07/NorthCabs.png" alt="North Cab Logo" width={200} height={80} className="max-h-12 w-auto object-contain" />
                 </div>
                 <h3 className="text-xl font-headline font-semibold">North Cab</h3>
                 <p className="text-muted-foreground mt-2">Reliable and comfortable taxi services for all your travel needs across North India.</p>

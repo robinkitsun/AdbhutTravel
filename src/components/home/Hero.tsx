@@ -6,7 +6,7 @@ export default function Hero() {
   return (
     <section className="relative h-[calc(80vh)] w-full">
       <Image
-        src="https://images.pexels.com/photos/221471/pexels-photo-221471.jpeg"
+        src="https://www.adbhuttravel.com/wp-content/uploads/2025/07/Home-Page-Hero.jpeg"
         alt="Tropical beach background"
         fill
         priority

@@ -41,7 +41,7 @@ export const metadata: Metadata = {
     siteName: 'Adbhut Travel',
     images: [
       {
-        url: 'https://images.pexels.com/photos/221471/pexels-photo-221471.jpeg', // Default OG image
+        url: 'https://www.adbhuttravel.com/wp-content/uploads/2025/07/Home-Page-Hero.jpeg', // Default OG image
         width: 1200,
         height: 630,
         alt: 'A beautiful tropical beach with a boat, representing travel destinations.',
@@ -54,7 +54,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: "Adbhut Travel | Unforgettable Journeys & Custom Itineraries",
     description: "Explore the world's most breathtaking destinations with Adbhut Travel.",
-     images: ['https://images.pexels.com/photos/221471/pexels-photo-221471.jpeg'], // Default Twitter image
+     images: ['https://www.adbhuttravel.com/wp-content/uploads/2025/07/Home-Page-Hero.jpeg'], // Default Twitter image
   },
 };
 

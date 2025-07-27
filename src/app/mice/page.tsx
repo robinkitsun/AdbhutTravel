@@ -73,7 +73,7 @@ export default function MicePage() {
       <section className="relative py-20 md:py-24 bg-secondary">
          <div 
           className="absolute inset-0 bg-cover bg-center bg-fixed opacity-10"
-          style={{ backgroundImage: "url('https://images.pexels.com/photos/1181396/pexels-photo-1181396.jpeg')" }}
+          style={{ backgroundImage: "url('https://www.adbhuttravel.com/wp-content/uploads/2025/07/Mice-Hero-1.jpeg')" }}
           data-ai-hint="corporate meeting"
         ></div>
         <div className="container relative text-center">
@@ -124,7 +124,7 @@ export default function MicePage() {
             </div>
             <div className="rounded-lg overflow-hidden shadow-xl">
               <Image
-                src="https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg"
+                src="https://www.adbhuttravel.com/wp-content/uploads/2025/07/Mice-Incentices.jpeg"
                 alt="Corporate event presentation in a large hall"
                 width={600}
                 height={500}
@@ -141,7 +141,7 @@ export default function MicePage() {
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="rounded-lg overflow-hidden shadow-xl order-first md:order-last">
               <Image
-                src="https://images.pexels.com/photos/1601775/pexels-photo-1601775.jpeg"
+                src="https://www.adbhuttravel.com/wp-content/uploads/2025/07/Mice-Incentices-2.png"
                 alt="Team celebrating success on a mountain top"
                 width={600}
                 height={500}

@@ -17,7 +17,7 @@ const services = [
     title: "Personalized Itineraries",
     description: "Your journey should be as unique as you are. We go beyond pre-packaged tours to design a travel blueprint that perfectly aligns with your passions, pace, and preferences. Our experts collaborate with you to craft a one-of-a-kind adventure, ensuring every detail reflects your personal travel style.",
     example: "Example: A 10-day culinary tour through Italy, featuring private cooking classes in Tuscany, wine tasting in a Chianti vineyard, and a guided food market exploration in Bologna, all tailored to your love for authentic Italian cuisine.",
-    images: ["https://images.pexels.com/photos/797793/pexels-photo-797793.jpeg"],
+    images: ["https://www.adbhuttravel.com/wp-content/uploads/2025/07/Personalised-Itn.png"],
     dataAiHints: ["travel map planning"],
   },
   {
@@ -25,7 +25,7 @@ const services = [
     title: "Flight Bookings",
     description: "Navigating the world of air travel can be complex. Let us handle it for you. We leverage our expertise to find the most efficient routes, optimal layovers, and competitive fares across a global network of airlines. Our goal is a seamless, stress-free booking experience from start to finish.",
     example: "Example: For a multi-city European holiday, we can book a complex open-jaw ticket, flying you into Rome and out of Paris, with a convenient and cost-effective flight to Barcelona in between, saving you both time and money.",
-    images: ["https://images.pexels.com/photos/46148/aircraft-jet-landing-cloud-46148.jpeg"],
+    images: ["https://www.adbhuttravel.com/wp-content/uploads/2025/07/Flight-Booking-scaled.jpeg"],
     dataAiHints: ["airplane wing clouds"],
   },
   {
@@ -34,8 +34,8 @@ const services = [
     description: "Where you stay is a crucial part of your travel experience. We handpick and book accommodations that promise comfort, quality, and character. From world-class luxury resorts and charming boutique hotels to cozy B&Bs, we ensure your home away from home meets our high standards and your expectations.",
     example: "Example: On a romantic honeymoon in Bali, we can arrange a stay in a private pool villa overlooking the serene rice paddies of Ubud, followed by a chic beachfront resort to catch the stunning sunsets in Seminyak.",
     images: [
-      "https://images.pexels.com/photos/261102/pexels-photo-261102.jpeg", 
-      "https://images.pexels.com/photos/271624/pexels-photo-271624.jpeg"
+      "https://www.adbhuttravel.com/wp-content/uploads/2025/07/Hotel-Booking-1.jpeg", 
+      "https://www.adbhuttravel.com/wp-content/uploads/2025/07/Hotel-Booking-2.jpeg"
     ],
     dataAiHints: ["luxury hotel room", "hotel suite"],
   },
@@ -47,10 +47,11 @@ const services = [
     images: [
         "https://www.adbhuttravel.com/wp-content/uploads/2023/08/IMG-9291-scaled.jpg",
         "https://www.adbhuttravel.com/wp-content/uploads/2023/08/3ce2ac17-ec82-47eb-949f-4acbd0fa212b.jpg",
-        "https://images.pexels.com/photos/1268855/pexels-photo-1268855.jpeg",
-        "https://images.pexels.com/photos/2422290/pexels-photo-2422290.jpeg",
+        "https://www.adbhuttravel.com/wp-content/uploads/2025/07/Group-Tour-1-scaled.jpeg",
+        "https://www.adbhuttravel.com/wp-content/uploads/2025/07/Group-Tour-2.jpeg",
+        "https://www.adbhuttravel.com/wp-content/uploads/2025/07/Group-Tour-3.jpeg"
     ],
-    dataAiHints: ["group travel friends", "corporate group photo", "friends traveling together", "group friends"],
+    dataAiHints: ["group travel friends", "corporate group photo", "friends traveling together", "group friends", "outdoor group"],
   },
    {
     icon: Briefcase,
@@ -59,10 +60,10 @@ const services = [
     example: "Example: We can organize a week-long sales incentive trip to Dubai for your top performers, including 5-star accommodation, team-building desert safaris, and a formal gala dinner at an exclusive venue with city skyline views.",
     images: [
         "https://www.adbhuttravel.com/wp-content/uploads/2023/08/3ce2ac17-ec82-47eb-949f-4acbd0fa212b.jpg",
+        "https://www.adbhuttravel.com/wp-content/uploads/2025/07/MICE-Corporate-Travel-2.jpeg",
         "https://images.pexels.com/photos/1181414/pexels-photo-1181414.jpeg",
-        "https://images.pexels.com/photos/3184306/pexels-photo-3184306.jpeg",
     ],
-    dataAiHints: ["corporate group photo", "corporate conference", "business meeting"],
+    dataAiHints: ["corporate group photo", "business meeting", "corporate conference"],
   },
   {
     icon: FileText,
@@ -70,7 +71,7 @@ const services = [
     description: "Navigating the complexities of international travel documentation can be daunting. Our dedicated team simplifies the process by providing expert guidance on visa requirements and applications, ensuring you have all the necessary paperwork. We also help you choose the right travel insurance plan for complete peace of mind on your journey.",
     example: "Example: Planning a trip to Europe? We'll guide you through the Schengen visa application process, from filling out forms to gathering documents, and help you select a comprehensive insurance policy that covers medical emergencies and trip cancellations.",
     images: [
-        "https://images.pexels.com/photos/7249183/pexels-photo-7249183.jpeg",
+        "https://www.adbhuttravel.com/wp-content/uploads/2025/07/Visa-and-Passport.png",
     ],
     dataAiHints: ["passport visa stamps"],
   },
@@ -80,16 +81,18 @@ const services = [
     description: "Start and end your journey with convenient and reliable transportation. We arrange seamless airport transfers to and from your accommodation. Additionally, our local cab services, powered by North Cab, are available for sightseeing, business meetings, or simply exploring the city at your own pace, ensuring you travel comfortably and safely.",
     example: "Example: Upon landing in Delhi, your pre-booked cab will be waiting to take you directly to your hotel. The next day, you can book the same trusted service for a full-day city tour, visiting all the major landmarks without any hassle.",
     images: [
-        "https://images.pexels.com/photos/3830745/pexels-photo-3830745.jpeg"
+        "https://www.adbhuttravel.com/wp-content/uploads/2025/07/Airport-Cab.png",
+        "https://www.adbhuttravel.com/wp-content/uploads/2025/07/Airport-cab-2.png",
+        "https://www.adbhuttravel.com/wp-content/uploads/2025/07/Airport-Cab-3.png"
     ],
-    dataAiHints: ["taxi car city"],
+    dataAiHints: ["taxi car city", "person entering cab", "cab interior"],
   },
   {
     icon: Ship,
     title: "Cruise Packages",
     description: "Set sail on the seas with our premier cruise packages. We partner with world-renowned cruise lines to bring you exceptional voyages. We also specialize in organizing combo packages that pair your dream cruise with exciting land excursions for a complete holiday experience. We proudly offer packages for:",
     example: "Example: Embark on a 7-night Royal Caribbean cruise through the Mediterranean, then spend 3 days exploring the historic wonders of Rome, with all hotels and transfers seamlessly arranged by our team.",
-    images: [ "https://images.pexels.com/photos/1654859/pexels-photo-1654859.jpeg" ],
+    images: [ "https://www.adbhuttravel.com/wp-content/uploads/2025/07/Service-Cruise.jpeg" ],
     dataAiHints: [ "cruise ship ocean" ],
     listItems: [
         "Star Cruise",
@@ -105,8 +108,8 @@ const services = [
     description: "We believe in creating moments that last a lifetime. Our connections provide you with access to unique local experiences, private tours, and activities that go far beyond the standard tourist trail. Let us add that 'wow' factor to your itinerary with moments you won't find in a guidebook.",
     example: "Example: Imagine a private, after-hours tour of the Vatican Museums, a serene sunrise hot air balloon ride over the ancient temples of Bagan, or a thrilling helicopter journey over Iceland's dramatic volcanic landscapes.",
     images: [
-        "https://images.pexels.com/photos/373406/pexels-photo-373406.jpeg",
-        "https://images.pexels.com/photos/2832034/pexels-photo-2832034.jpeg"
+        "https://www.adbhuttravel.com/wp-content/uploads/2025/07/Exclusive-Experience-1-scaled.jpeg",
+        "https://www.adbhuttravel.com/wp-content/uploads/2025/07/Exclusive-Experience-2.jpeg"
     ],
     dataAiHints: ["hot air balloon sunrise", "couple boat"],
   },
