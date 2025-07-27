@@ -1,17 +1,104 @@
+
 import type { Metadata } from "next";
+import Image from "next/image";
+import { OfferModal } from "@/components/offers/OfferModal";
 
 export const metadata: Metadata = {
   title: "Special Offers",
-  description: "Find exciting offers and exclusive deals on our travel packages. Check back soon for the best travel experiences curated by Adbhut Travel.",
+  description: "Find exciting offers and exclusive deals on our travel packages. Explore our curated travel experiences by Adbhut Travel.",
 };
+
+const offers = [
+    {
+        title: "Morni Hills 1N/2D Package",
+        imageUrl: "https://www.adbhuttravel.com/wp-content/uploads/2024/06/MORNI-1N2D-scaled.jpg",
+        dataAiHint: "hills landscape"
+    },
+    {
+        title: "Shimla 2N/3D Tour",
+        imageUrl: "https://www.adbhuttravel.com/wp-content/uploads/2024/06/SHIMLA-2N3D-scaled.jpg",
+        dataAiHint: "mountain town"
+    },
+    {
+        title: "Mussoorie 2N/3D Getaway",
+        imageUrl: "https://www.adbhuttravel.com/wp-content/uploads/2024/06/MUSSOORIE-2N3D-scaled.jpg",
+        dataAiHint: "himalayan valley"
+    },
+    {
+        title: "Manali 3N/5D Adventure",
+        imageUrl: "https://www.adbhuttravel.com/wp-content/uploads/2024/06/MANALI-3NIGHTS-5-DAYS-scaled.jpg",
+        dataAiHint: "snowy mountains"
+    },
+    {
+        title: "Explore the World with Us",
+        imageUrl: "https://www.adbhuttravel.com/wp-content/uploads/2024/06/Copy-of-TRAVEL-VIDEO-AD.jpg",
+        dataAiHint: "travel collage"
+    },
+    {
+        title: "Trio Island Special by Adbhut",
+        imageUrl: "https://www.adbhuttravel.com/wp-content/uploads/2024/06/TRIO-ISLAND-BY-ADBHUT.png",
+        dataAiHint: "tropical islands"
+    },
+    {
+        title: "Honeymoon Special by Adbhut",
+        imageUrl: "https://www.adbhuttravel.com/wp-content/uploads/2024/06/Honeymoon-special-BY-ADBHUT-scaled.jpg",
+        dataAiHint: "honeymoon couple"
+    },
+    {
+        title: "Amazing Thailand Tour",
+        imageUrl: "https://www.adbhuttravel.com/wp-content/uploads/2024/06/Copy-of-Thailand-Travel-Banner-Template-scaled.jpg",
+        dataAiHint: "thailand beach"
+    },
+    {
+        title: "Experience Dubai with Adbhut",
+        imageUrl: "https://www.adbhuttravel.com/wp-content/uploads/2024/06/Experience-DUBAI-BY-ADBHUT-scaled.jpg",
+        dataAiHint: "dubai skyline"
+    },
+    {
+        title: "Discover Adbhut Travel",
+        imageUrl: "https://www.adbhuttravel.com/wp-content/uploads/2024/06/ABOUT-ADBHUT-1-scaled.jpg",
+        dataAiHint: "travel agency"
+    }
+];
 
 export default function OffersPage() {
   return (
-    <div className="container py-24 text-center">
-      <h1 className="text-4xl md:text-5xl font-headline font-bold">Our Special Offers</h1>
-      <p className="mt-4 max-w-3xl mx-auto text-lg text-muted-foreground">
-        Check back soon for exciting offers and exclusive deals on our travel packages! We are curating the best travel experiences for you.
-      </p>
-    </div>
+     <>
+      <section className="bg-secondary py-12 md:py-16">
+        <div className="container text-center">
+          <h1 className="text-4xl md:text-5xl font-headline font-bold">Our Special Offers</h1>
+          <p className="mt-4 max-w-3xl mx-auto text-lg text-muted-foreground">
+            Explore our latest travel deals and exclusive packages. Click on any offer to see more details and book your next adventure.
+          </p>
+        </div>
+      </section>
+
+      <section className="py-12 md:py-16">
+        <div className="container">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            {offers.map((offer) => (
+                <OfferModal key={offer.title} offer={offer}>
+                    <div className="group rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1.5 cursor-pointer relative">
+                         <Image
+                            src={offer.imageUrl}
+                            alt={offer.title}
+                            width={400}
+                            height={400}
+                            className="w-full h-full object-cover aspect-square transition-transform duration-500 group-hover:scale-110"
+                            data-ai-hint={offer.dataAiHint}
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent"></div>
+                        <div className="absolute bottom-0 left-0 p-4">
+                            <h3 className="font-headline text-lg font-semibold text-white [text-shadow:1px_1px_3px_rgba(0,0,0,0.7)]">
+                                {offer.title}
+                            </h3>
+                        </div>
+                    </div>
+                </OfferModal>
+            ))}
+          </div>
+        </div>
+      </section>
+    </>
   );
 }
