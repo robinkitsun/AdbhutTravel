@@ -52,14 +52,14 @@ export default function Header() {
 
         {/* Desktop Navigation */}
         <div className="hidden md:flex flex-grow items-center justify-center">
-            <nav className="flex items-center gap-10 text-black">
+            <nav className="flex items-center gap-10">
             {navLinks.map(({ href, label }) => (
                 <Link
                 key={href}
                 href={href}
                 className={cn(
                     "text-base font-bold pb-1 animated-underline",
-                    pathname === href ? "text-accent" : ""
+                    pathname === href ? "text-accent" : "text-primary-foreground"
                 )}
                 >
                 {label}
@@ -69,7 +69,8 @@ export default function Header() {
                 <DropdownMenuTrigger asChild>
                 <button className={cn(
                     "text-base font-bold pb-1 flex items-center gap-1 group animated-underline",
-                    pathname.startsWith('/more') && "text-accent"
+                    pathname.startsWith('/more') && "text-accent",
+                    "text-primary-foreground"
                 )}>
                     More
                     <ChevronDown className="h-4 w-4 transition-transform duration-200 group-data-[state=open]:rotate-180" />
@@ -94,7 +95,7 @@ export default function Header() {
 
 
         <div className="flex items-center gap-2">
-          <Button asChild className="hidden md:inline-flex" variant="default" size="lg">
+          <Button asChild className="hidden md:inline-flex" size="lg">
             <Link href="/contact">Get Free Consultation</Link>
           </Button>
           

@@ -15,10 +15,10 @@ export default function Hero() {
       />
       <div className="absolute inset-0 bg-black/50" />
       <div className="relative z-10 flex flex-col items-center justify-center h-full text-center p-4">
-        <h1 className="font-headline text-5xl md:text-7xl font-bold text-primary-foreground leading-tight [text-shadow:0_2px_4px_rgba(0,0,0,0.8)]">
+        <h1 className="font-headline text-5xl md:text-7xl font-bold text-white leading-tight [text-shadow:0_2px_4px_rgba(0,0,0,0.8)]">
           Discover Your Next Adventure
         </h1>
-        <p className="mt-4 max-w-3xl text-lg md:text-xl text-primary-foreground/90 [text-shadow:0_2px_4px_rgba(0,0,0,0.8)]">
+        <p className="mt-4 max-w-3xl text-lg md:text-xl text-gray-200 [text-shadow:0_2px_4px_rgba(0,0,0,0.8)]">
           Explore the world's most breathtaking destinations with Adbhut Travel. From exotic beaches to thrilling mountain treks, we curate unforgettable travel experiences tailored just for you.
         </p>
         <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
