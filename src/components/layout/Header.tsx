@@ -44,6 +44,7 @@ export default function Header() {
 
   useEffect(() => {
     const handleScroll = () => {
+      // Set scrolled to true if user has scrolled down at all
       const isScrolled = window.scrollY > 10;
       setScrolled(isScrolled);
     };
@@ -58,9 +59,9 @@ export default function Header() {
 
   return (
     <header className={cn(
-      "sticky top-0 z-50 w-full transition-all duration-300 bg-secondary/50 backdrop-blur-sm shadow-md"
+      "sticky top-0 z-50 w-full transition-all duration-300 bg-primary backdrop-blur-sm shadow-md"
       )}>
-      <div className={cn("container flex items-center justify-between transition-all duration-300", scrolled ? 'h-20' : 'h-24')}>
+      <div className={cn("container flex items-center justify-between transition-all duration-300", scrolled ? 'h-24' : 'h-20')}>
         <div className="flex-shrink-0">
           <Link href="/">
             <Logo />
@@ -75,8 +76,8 @@ export default function Header() {
                 key={href}
                 href={href}
                 className={cn(
-                    "text-base font-bold pb-1 animated-underline",
-                    pathname === href ? "text-accent" : "text-foreground"
+                    "text-base font-bold pb-1 text-primary-foreground animated-underline",
+                    pathname === href ? "text-accent" : ""
                 )}
                 >
                 {label}
@@ -85,8 +86,8 @@ export default function Header() {
             <DropdownMenu>
                 <DropdownMenuTrigger asChild>
                 <button className={cn(
-                    "text-base font-bold pb-1 flex items-center gap-1 group animated-underline",
-                    morePageLinks.some(link => pathname.startsWith(link.href)) ? "text-accent" : "text-foreground"
+                    "text-base font-bold pb-1 flex items-center gap-1 group text-primary-foreground animated-underline",
+                     morePageLinks.some(link => pathname.startsWith(link.href)) ? "text-accent" : ""
                 )}>
                     More
                     <ChevronDown className="h-4 w-4 transition-transform duration-200 group-data-[state=open]:rotate-180" />
