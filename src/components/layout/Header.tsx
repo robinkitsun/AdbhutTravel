@@ -34,7 +34,7 @@ const morePageLinks = [
     { href: "/offers", label: "Offers" },
     { href: "/trademarks", label: "Trademarks" },
     { href: "/affiliations", label: "Affiliations" },
-    { href: "/north-cab", label: "Cab Booking" },
+    { href: "https://northcabs.in", label: "Cab Booking" },
     { href: "https://visitkurukshetra.in", label: "Visit Kurukshetra" },
 ];
 
