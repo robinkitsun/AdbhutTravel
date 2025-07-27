@@ -40,73 +40,85 @@ const morePageLinks = [
 
 export default function Header() {
   const pathname = usePathname();
-  const [isScrolled, setIsScrolled] = useState(false);
+  const [scrollPosition, setScrollPosition] = useState(0);
+
+  const handleScroll = () => {
+    const position = window.scrollY;
+    setScrollPosition(position);
+  };
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
     };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+  
+  // Animate after scrolling 50px
+  const isScrolled = scrollPosition > 50;
 
   return (
     <header className={cn(
-        "sticky top-0 z-50 w-full transition-all duration-300 ease-out",
-        isScrolled ? "bg-background/95 backdrop-blur-sm border-b shadow-sm" : "bg-transparent border-b border-transparent"
+        "sticky top-0 z-50 w-full transition-all duration-300 ease-in-out",
+        isScrolled ? "bg-background/95 backdrop-blur-sm border-b shadow-md" : "bg-transparent border-transparent"
     )}>
       <div className={cn(
-        "container flex items-center justify-between px-4 md:px-8 transition-all duration-300 ease-out",
-        isScrolled ? "h-16" : "h-20"
+        "container flex items-center justify-between transition-all duration-300 ease-in-out",
+        isScrolled ? "h-16" : "h-24"
       )}>
-        <Link href="/">
+        <Link href="/" className={cn("transition-transform duration-300", isScrolled ? "scale-90" : "scale-100")}>
           <Logo />
         </Link>
 
-        <nav className="hidden md:flex items-center gap-8 font-medium">
-          {navLinks.map(({ href, label }) => (
-            <Link
-              key={href}
-              href={href}
-              className={cn(
-                "text-base transition-colors duration-300 hover:text-primary whitespace-nowrap animated-underline pb-1",
-                pathname === href ? "text-primary font-semibold" : isScrolled ? "text-muted-foreground" : "text-white [text-shadow:0_1px_2px_rgba(0,0,0,0.5)]",
-              )}
-            >
-              {label}
-            </Link>
-          ))}
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <button className={cn(
-                "text-base transition-colors duration-300 hover:text-primary whitespace-nowrap animated-underline pb-1 flex items-center gap-1 group",
-                 pathname === "/more" ? "text-primary font-semibold" : isScrolled ? "text-muted-foreground" : "text-white [text-shadow:0_1px_2px_rgba(0,0,0,0.5)]"
-              )}>
-                More
-                <ChevronDown className="h-4 w-4 transition-transform duration-200 group-data-[state=open]:rotate-180" />
-              </button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end">
-              {morePageLinks.map((link) => (
-                <DropdownMenuItem key={link.href} asChild>
-                  <Link 
-                    href={link.href} 
-                    className="w-full"
-                    {...(link.href.startsWith('http') && { target: '_blank', rel: 'noopener noreferrer' })}
-                  >
-                    {link.label}
-                  </Link>
-                </DropdownMenuItem>
-              ))}
-            </DropdownMenuContent>
-          </DropdownMenu>
-        </nav>
+        {/* Desktop Navigation */}
+        <div className="hidden md:flex flex-grow items-center justify-center">
+            <nav className={cn("flex items-center font-medium transition-all duration-300 ease-in-out", isScrolled ? "gap-6" : "gap-10")}>
+            {navLinks.map(({ href, label }) => (
+                <Link
+                key={href}
+                href={href}
+                className={cn(
+                    "text-base transition-colors duration-300 hover:text-primary whitespace-nowrap animated-underline pb-1",
+                    pathname === href ? "text-primary font-semibold" : isScrolled ? "text-muted-foreground" : "text-white [text-shadow:0_1px_2px_rgba(0,0,0,0.5)]"
+                )}
+                >
+                {label}
+                </Link>
+            ))}
+            <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                <button className={cn(
+                    "text-base transition-colors duration-300 hover:text-primary whitespace-nowrap animated-underline pb-1 flex items-center gap-1 group",
+                    pathname.startsWith('/more') ? "text-primary font-semibold" : isScrolled ? "text-muted-foreground" : "text-white [text-shadow:0_1px_2px_rgba(0,0,0,0.5)]"
+                )}>
+                    More
+                    <ChevronDown className="h-4 w-4 transition-transform duration-200 group-data-[state=open]:rotate-180" />
+                </button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end">
+                {morePageLinks.map((link) => (
+                    <DropdownMenuItem key={link.href} asChild>
+                    <Link 
+                        href={link.href} 
+                        className="w-full"
+                        {...(link.href.startsWith('http') && { target: '_blank', rel: 'noopener noreferrer' })}
+                    >
+                        {link.label}
+                    </Link>
+                    </DropdownMenuItem>
+                ))}
+                </DropdownMenuContent>
+            </DropdownMenu>
+            </nav>
+        </div>
+
 
         <div className="flex items-center gap-2">
-          <Button asChild className="hidden md:inline-flex" variant={isScrolled ? "default" : "secondary"}>
+          <Button asChild className={cn("hidden md:inline-flex transition-transform duration-300", isScrolled ? "scale-90" : "scale-100")} variant={isScrolled ? "default" : "secondary"}>
             <Link href="/contact">Get Free Consultation</Link>
           </Button>
           
+          {/* Mobile Navigation */}
           <Sheet>
             <SheetTrigger asChild>
               <Button variant="outline" size="icon" className={cn("md:hidden", !isScrolled && "text-white bg-white/20 border-white/50 hover:bg-white/30 hover:text-white")}>
