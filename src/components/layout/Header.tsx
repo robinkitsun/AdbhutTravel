@@ -94,7 +94,7 @@ export default function Header() {
 
 
         <div className="flex items-center gap-2">
-          <Button asChild className="hidden md:inline-flex">
+          <Button asChild className="hidden md:inline-flex" variant="default" size="lg">
             <Link href="/contact">Get Free Consultation</Link>
           </Button>
           
