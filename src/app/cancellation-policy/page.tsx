@@ -2,8 +2,8 @@ import Link from "next/link";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Cancellation & Refund Policy",
-  description: "Read the Cancellation and Refund Policy for Adbhut Travel. Understand the terms for cancelling or modifying your booking.",
+  title: "Refund Policy",
+  description: "Read the Refund and Cancellation Policy for Adbhut Travel. Understand the terms for cancelling or modifying your booking.",
 };
 
 export default function CancellationPolicyPage() {
@@ -49,5 +49,3 @@ export default function CancellationPolicyPage() {
     </div>
   );
 }
-
-    

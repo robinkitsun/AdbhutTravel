@@ -18,7 +18,7 @@ const legalLinks = [
     {
         href: "/cancellation-policy",
         icon: FileText,
-        title: "Cancellation & Refund Policy",
+        title: "Refund Policy",
         description: "Understand the terms for cancelling or modifying your booking, and how refunds are processed."
     },
     {

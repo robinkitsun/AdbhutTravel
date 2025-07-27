@@ -84,7 +84,7 @@ export default function Footer() {
             <h3 className="font-headline font-semibold mb-4">Legal</h3>
             <ul className="space-y-2 text-sm">
               <li><Link href="/terms-of-service" className="text-muted-foreground hover:text-primary inline-block transition-transform duration-300 hover:-translate-y-1">Policy & Terms of Service</Link></li>
-              <li><Link href="/cancellation-policy" className="text-muted-foreground hover:text-primary inline-block transition-transform duration-300 hover:-translate-y-1">Cancellation & Refund Policy</Link></li>
+              <li><Link href="/cancellation-policy" className="text-muted-foreground hover:text-primary inline-block transition-transform duration-300 hover:-translate-y-1">Refund Policy</Link></li>
               <li><Link href="/legal" className="text-muted-foreground hover:text-primary inline-block transition-transform duration-300 hover:-translate-y-1">Legal Information</Link></li>
               <li><Link href="/career" className="text-muted-foreground hover:text-primary inline-block transition-transform duration-300 hover:-translate-y-1">Careers</Link></li>
             </ul>
