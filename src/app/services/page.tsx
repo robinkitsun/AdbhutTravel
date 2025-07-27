@@ -45,11 +45,11 @@ const services = [
     description: "Discover the world with like-minded individuals on our expertly curated group tours. We keep our groups small to foster a sense of community and provide a more intimate experience. Led by knowledgeable local guides, our tours offer a perfect balance of planned activities and personal free time for exploration.",
     example: "Example: Join our 'Wonders of Peru' tour to hike the historic Inca Trail to Machu Picchu. You’ll share the journey with a small group of fellow adventurers and be led by a local guide who brings the ancient Incan world to life.",
     images: [
+        "https://www.adbhuttravel.com/wp-content/uploads/2023/08/3ce2ac17-ec82-47eb-949f-4acbd0fa212b.jpg",
         "https://images.pexels.com/photos/1268855/pexels-photo-1268855.jpeg",
         "https://images.pexels.com/photos/2422290/pexels-photo-2422290.jpeg",
-        "https://www.adbhuttravel.com/wp-content/uploads/2023/08/3ce2ac17-ec82-47eb-949f-4acbd0fa212b.jpg"
     ],
-    dataAiHints: ["friends traveling together", "group friends", "corporate group photo"],
+    dataAiHints: ["corporate group photo", "friends traveling together", "group friends"],
   },
    {
     icon: Briefcase,
@@ -57,11 +57,11 @@ const services = [
     description: "Elevate your business events with our professional MICE (Meetings, Incentives, Conferences, and Exhibitions) services and corporate travel management. We provide end-to-end solutions, from strategic planning and venue sourcing to seamless on-site logistics, ensuring your event is both successful and memorable.",
     example: "Example: We can organize a week-long sales incentive trip to Dubai for your top performers, including 5-star accommodation, team-building desert safaris, and a formal gala dinner at an exclusive venue with city skyline views.",
     images: [
+        "https://www.adbhuttravel.com/wp-content/uploads/2023/08/3ce2ac17-ec82-47eb-949f-4acbd0fa212b.jpg",
         "https://images.pexels.com/photos/1181414/pexels-photo-1181414.jpeg",
         "https://images.pexels.com/photos/3184306/pexels-photo-3184306.jpeg",
-        "https://www.adbhuttravel.com/wp-content/uploads/2023/08/3ce2ac17-ec82-47eb-949f-4acbd0fa212b.jpg"
     ],
-    dataAiHints: ["corporate conference", "business meeting", "corporate group photo"],
+    dataAiHints: ["corporate group photo", "corporate conference", "business meeting"],
   },
   {
     icon: FileText,
@@ -138,7 +138,7 @@ export default function ServicesPage() {
                             alt={`${service.title} image ${i + 1}`}
                             width={600}
                             height={400}
-                            className="w-full h-full max-h-[400px] object-cover"
+                            className="w-full h-full max-h-[400px] object-cover transition-transform duration-300 hover:scale-105"
                             data-ai-hint={service.dataAiHints[i]}
                           />
                         </CarouselItem>
