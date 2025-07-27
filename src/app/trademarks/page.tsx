@@ -8,11 +8,11 @@ export const metadata: Metadata = {
 };
 
 const logos = [
-  { src: 'https://www.adbhuttravel.com/wp-content/uploads/2024/06/Screenshot_2023-01-24_at_1.52.15_PM-removebg-preview.png', alt: 'VisitKurukshetra.in Logo', width: 250, height: 80 },
-  { isComponent: true, alt: 'Adbhut Travel Agency Logo' },
-  { src: 'https://www.adbhuttravel.com/wp-content/uploads/2025/07/NorthCabs.png', alt: 'North Cabs Logo', width: 200, height: 80 },
-  { src: 'https://www.adbhuttravel.com/wp-content/uploads/2024/06/LOGO-ADBHUT-FOUNDATION.png', alt: 'Adbhut Foundation Logo', width: 250, height: 80 },
+  { src: 'https://www.adbhuttravel.com/wp-content/uploads/2024/06/Screenshot-2024-06-27-at-11.17.15%E2%80%AFAM-1.png', alt: 'Adbhut Travel Agency Logo', width: 250, height: 80 },
   { src: 'https://www.adbhuttravel.com/wp-content/uploads/2025/07/adb-scaled.png', alt: 'Adbhut Wordmark Logo', width: 250, height: 80 },
+  { src: 'https://www.adbhuttravel.com/wp-content/uploads/2024/06/Screenshot_2023-01-24_at_1.52.15_PM-removebg-preview.png', alt: 'VisitKurukshetra.in Logo', width: 250, height: 80 },
+  { src: 'https://www.adbhuttravel.com/wp-content/uploads/2024/06/LOGO-ADBHUT-FOUNDATION.png', alt: 'Adbhut Foundation Logo', width: 250, height: 80 },
+  { src: 'https://www.adbhuttravel.com/wp-content/uploads/2025/07/NorthCabs.png', alt: 'North Cabs Logo', width: 200, height: 80 },
 ];
 
 const wordmarks = [
@@ -37,18 +37,14 @@ export default function TrademarksPage() {
           <h2 className="text-2xl font-headline font-semibold text-foreground">Logos</h2>
           <div className="flex flex-wrap items-center gap-x-12 gap-y-6">
             {logos.map((logo) => (
-              logo.isComponent ? (
-                <Logo key={logo.alt}/>
-              ) : (
                 <Image
                   key={logo.alt}
-                  src={logo.src!}
+                  src={logo.src}
                   alt={logo.alt}
                   width={logo.width}
                   height={logo.height}
                   className="max-h-12 w-auto object-contain"
                 />
-              )
             ))}
           </div>
         </div>
