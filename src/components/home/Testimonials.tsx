@@ -37,7 +37,7 @@ export default function Testimonials() {
           {testimonials.map((testimonial) => (
             <Card key={testimonial.id} className="bg-secondary border-0 shadow-lg">
               <CardContent className="p-6">
-                <div className="flex text-primary mb-4">
+                <div className="flex text-yellow-500 mb-4">
                   {[...Array(5)].map((_, i) => (
                     <Star key={i} className="h-5 w-5 fill-current" />
                   ))}
