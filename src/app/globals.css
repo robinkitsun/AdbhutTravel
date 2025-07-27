@@ -14,19 +14,19 @@ body {
     --card-foreground: 20 14.3% 4.1%;
     --popover: 30 56% 98%;
     --popover-foreground: 20 14.3% 4.1%;
-    --primary: 30 56% 95%; /* Light skin color for header */
-    --primary-foreground: 20 14.3% 4.1%; /* Black text on header */
+    --primary: 276 80% 28%; /* #810390 */
+    --primary-foreground: 0 0% 100%;
     --secondary: 220 13% 91%;
     --secondary-foreground: 220 14% 10%;
     --muted: 220 9% 96%;
     --muted-foreground: 220 9% 45%;
-    --accent: 22 85% 55%; /* Orange accent for buttons/links */
+    --accent: 276 80% 28%; /* #810390 */
     --accent-foreground: 0 0% 100%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 60 9.1% 97.8%;
     --border: 20 5.9% 90%;
     --input: 20 5.9% 90%;
-    --ring: 22 85% 55%;
+    --ring: 276 80% 28%;
     --chart-1: 12 76% 61%;
     --chart-2: 173 58% 39%;
     --chart-3: 197 37% 24%;
@@ -41,19 +41,19 @@ body {
     --card-foreground: 60 9.1% 97.8%;
     --popover: 20 14.3% 4.1%;
     --popover-foreground: 60 9.1% 97.8%;
-    --primary: 22 85% 55%;
+    --primary: 276 80% 38%;
     --primary-foreground: 0 0% 100%;
     --secondary: 12 6.5% 15.1%;
     --secondary-foreground: 60 9.1% 97.8%;
     --muted: 12 6.5% 15.1%;
     --muted-foreground: 24 5.4% 63.9%;
-    --accent: 22 85% 55%;
+    --accent: 276 80% 38%;
     --accent-foreground: 0 0% 100%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 98%;
     --border: 12 6.5% 15.1%;
     --input: 12 6.5% 15.1%;
-    --ring: 22 85% 55%;
+    --ring: 276 80% 38%;
     --chart-1: 220 70% 50%;
     --chart-2: 160 60% 45%;
     --chart-3: 30 80% 55%;
@@ -75,10 +75,6 @@ body {
   .animated-underline {
     position: relative;
     text-decoration: none;
-    color: hsl(var(--primary-foreground));
-  }
-  .animated-underline:hover {
-    color: hsl(var(--primary-foreground));
   }
   .animated-underline::after {
     content: '';

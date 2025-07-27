@@ -1,7 +1,7 @@
 
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { Menu, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -40,10 +40,29 @@ const morePageLinks = [
 
 export default function Header() {
   const pathname = usePathname();
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const isScrolled = window.scrollY > 50;
+      if (isScrolled !== scrolled) {
+        setScrolled(isScrolled);
+      }
+    };
+
+    document.addEventListener("scroll", handleScroll);
+    return () => {
+      document.removeEventListener("scroll", handleScroll);
+    };
+  }, [scrolled]);
+
 
   return (
-    <header className="sticky top-0 z-50 w-full bg-primary border-b shadow-sm">
-      <div className="container flex items-center justify-between h-20">
+    <header className={cn(
+        "sticky top-0 z-50 w-full transition-all duration-300",
+        scrolled ? "bg-secondary/80 backdrop-blur-sm shadow-md" : "bg-transparent",
+      )}>
+      <div className={cn("container flex items-center justify-between transition-all duration-300", scrolled ? "h-20" : "h-24")}>
         <div className="flex-shrink-0">
           <Link href="/">
             <Logo />
@@ -52,14 +71,14 @@ export default function Header() {
 
         {/* Desktop Navigation */}
         <div className="hidden md:flex flex-grow items-center justify-center">
-            <nav className="flex items-center gap-10">
+            <nav className={cn("flex items-center transition-all duration-300", scrolled ? "gap-6" : "gap-10")}>
             {navLinks.map(({ href, label }) => (
                 <Link
                 key={href}
                 href={href}
                 className={cn(
                     "text-base font-bold pb-1 animated-underline",
-                    pathname === href ? "text-accent" : "text-primary-foreground"
+                    pathname === href ? "text-accent" : "text-foreground"
                 )}
                 >
                 {label}
@@ -69,8 +88,7 @@ export default function Header() {
                 <DropdownMenuTrigger asChild>
                 <button className={cn(
                     "text-base font-bold pb-1 flex items-center gap-1 group animated-underline",
-                    pathname.startsWith('/more') && "text-accent",
-                    "text-primary-foreground"
+                    morePageLinks.some(link => pathname.startsWith(link.href)) ? "text-accent" : "text-foreground"
                 )}>
                     More
                     <ChevronDown className="h-4 w-4 transition-transform duration-200 group-data-[state=open]:rotate-180" />
