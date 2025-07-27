@@ -74,8 +74,10 @@ body {
 @layer utilities {
   .animated-underline {
     position: relative;
-    color: black;
     text-decoration: none;
+  }
+  .animated-underline:hover {
+    color: black;
   }
   .animated-underline::after {
     content: '';

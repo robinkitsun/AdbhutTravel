@@ -58,7 +58,7 @@ export default function Header() {
                 key={href}
                 href={href}
                 className={cn(
-                    "text-base font-bold transition-colors duration-300 pb-1 animated-underline",
+                    "text-base font-bold pb-1 animated-underline",
                     pathname === href ? "text-accent" : ""
                 )}
                 >
@@ -68,7 +68,7 @@ export default function Header() {
             <DropdownMenu>
                 <DropdownMenuTrigger asChild>
                 <button className={cn(
-                    "text-base font-bold transition-colors duration-300 pb-1 flex items-center gap-1 group animated-underline",
+                    "text-base font-bold pb-1 flex items-center gap-1 group animated-underline",
                     pathname.startsWith('/more') && "text-accent"
                 )}>
                     More
