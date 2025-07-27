@@ -44,10 +44,8 @@ export default function Header() {
 
   useEffect(() => {
     const handleScroll = () => {
-      const isScrolled = window.scrollY > 50;
-      if (isScrolled !== scrolled) {
-        setScrolled(isScrolled);
-      }
+      const isScrolled = window.scrollY > 10;
+      setScrolled(isScrolled);
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
@@ -55,13 +53,12 @@ export default function Header() {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, [scrolled]);
+  }, []);
 
 
   return (
     <header className={cn(
-      "sticky top-0 z-50 w-full transition-all duration-300",
-      "bg-secondary/80 backdrop-blur-sm shadow-md"
+      "sticky top-0 z-50 w-full transition-all duration-300 bg-secondary/50 backdrop-blur-sm shadow-md"
       )}>
       <div className={cn("container flex items-center justify-between transition-all duration-300", scrolled ? 'h-20' : 'h-24')}>
         <div className="flex-shrink-0">
@@ -72,7 +69,7 @@ export default function Header() {
 
         {/* Desktop Navigation */}
         <div className="hidden md:flex flex-grow items-center justify-center">
-            <nav className={cn("flex items-center transition-all duration-500", scrolled ? "gap-6" : "gap-10")}>
+            <nav className={cn("flex items-center transition-all duration-500", scrolled ? "gap-10" : "gap-6")}>
             {navLinks.map(({ href, label }) => (
                 <Link
                 key={href}
