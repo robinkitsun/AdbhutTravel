@@ -1,3 +1,4 @@
+
 import { Card, CardContent } from "@/components/ui/card";
 import { Star } from "lucide-react";
 import type { Testimonial } from "@/lib/types";
@@ -17,9 +18,15 @@ const testimonials: Testimonial[] = [
   },
   {
     id: "3",
-    quote: "Professional, attentive, and incredibly knowledgeable. Our trip to the Swiss Alps was seamless and more beautiful than we could have ever imagined.",
-    author: "Emily White",
-    location: "London, UK",
+    quote: "Adbhut Travel and Event Company is exceptional! Their planning, attention to detail, and personalized service made everything seamless and memorable. Highly recommended for hassle-free travel and flawless events!",
+    author: "Ashutosh Mishra",
+    location: "Google Review",
+  },
+   {
+    id: "4",
+    quote: "Team work, wonderful experience with Adbhut Travel Agency, Pehowa. Superb experience.",
+    author: "Tanya Sharma",
+    location: "Google Review",
   },
 ];
 
@@ -33,11 +40,11 @@ export default function Testimonials() {
         <p className="text-center text-muted-foreground max-w-2xl mx-auto mb-10">
           Stories from travelers who embarked on their dream journeys with us.
         </p>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {testimonials.map((testimonial) => (
             <Card key={testimonial.id} className="bg-secondary border-0 shadow-lg">
               <CardContent className="p-6">
-                <div className="flex text-yellow-500 mb-4">
+                <div className="flex text-yellow-400 mb-4">
                   {[...Array(5)].map((_, i) => (
                     <Star key={i} className="h-5 w-5 fill-current" />
                   ))}
