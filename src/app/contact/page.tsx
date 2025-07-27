@@ -32,7 +32,7 @@ export default function ContactPage() {
                 <div className="space-y-6">
                      <div className="flex items-start gap-4">
                         <div className="bg-primary/20 p-3 rounded-full">
-                           <MapPin className="h-6 w-6 text-primary" />
+                           <MapPin className="h-6 w-6 text-accent" />
                         </div>
                         <div>
                             <h3 className="font-semibold text-lg">Our Office</h3>
@@ -41,42 +41,42 @@ export default function ContactPage() {
                      </div>
                      <div className="flex items-start gap-4">
                         <div className="bg-primary/20 p-3 rounded-full">
-                           <Phone className="h-6 w-6 text-primary" />
+                           <Phone className="h-6 w-6 text-accent" />
                         </div>
                         <div>
                             <h3 className="font-semibold text-lg">Call Us</h3>
                             <div className="text-muted-foreground space-y-1">
-                                <Link href="tel:18008905147" className="block hover:text-primary">Toll Free: 1800 890 5147</Link>
+                                <Link href="tel:18008905147" className="block hover:text-accent">Toll Free: 1800 890 5147</Link>
                                 <p>Whatsapp Number: (+91) 96718-25147</p>
                             </div>
                         </div>
                      </div>
                       <div className="flex items-start gap-4">
                         <div className="bg-primary/20 p-3 rounded-full">
-                           <Mail className="h-6 w-6 text-primary" />
+                           <Mail className="h-6 w-6 text-accent" />
                         </div>
                         <div>
                             <h3 className="font-semibold text-lg mb-2">Email Us</h3>
                             <div className="space-y-2">
                                 <p className="text-muted-foreground">
                                     <span className="font-medium text-foreground/90">For General Inquiries:</span>
-                                    <Link href="mailto:info@adbhuttravel.in" className="hover:text-primary ml-2">info@adbhuttravel.in</Link>
+                                    <Link href="mailto:info@adbhuttravel.in" className="hover:text-accent ml-2">info@adbhuttravel.in</Link>
                                 </p>
                                  <p className="text-muted-foreground">
                                     <span className="font-medium text-foreground/90">For Sales related Inquiries:</span>
-                                    <Link href="mailto:sales@adbhuttravel.in" className="hover:text-primary ml-2">sales@adbhuttravel.in</Link>
+                                    <Link href="mailto:sales@adbhuttravel.in" className="hover:text-accent ml-2">sales@adbhuttravel.in</Link>
                                  </p>
                                  <p className="text-muted-foreground">
                                     <span className="font-medium text-foreground/90">For Accounts related Inquiries:</span>
-                                    <Link href="mailto:accounts@adbhuttravel.in" className="hover:text-primary ml-2">accounts@adbhuttravel.in</Link>
+                                    <Link href="mailto:accounts@adbhuttravel.in" className="hover:text-accent ml-2">accounts@adbhuttravel.in</Link>
                                  </p>
                                  <p className="text-muted-foreground">
                                     <span className="font-medium text-foreground/90">For Tie-up Inquiries:</span>
-                                    <Link href="mailto:ops@adbhuttravel.in" className="hover:text-primary ml-2">ops@adbhuttravel.in</Link>
+                                    <Link href="mailto:ops@adbhuttravel.in" className="hover:text-accent ml-2">ops@adbhuttravel.in</Link>
                                  </p>
                                 <p className="text-muted-foreground">
                                     <span className="font-medium text-foreground/90">For Investment Related Inquiries:</span>
-                                    <Link href="mailto:invest@adbhuttravel.in" className="hover:text-primary ml-2">invest@adbhuttravel.in</Link>
+                                    <Link href="mailto:invest@adbhuttravel.in" className="hover:text-accent ml-2">invest@adbhuttravel.in</Link>
                                 </p>
                             </div>
                         </div>
@@ -88,19 +88,19 @@ export default function ContactPage() {
           <div className="text-center mt-16">
             <h3 className="font-semibold text-lg mb-4">Follow Us</h3>
             <div className="flex justify-center space-x-4">
-                <Link href="https://www.facebook.com/adbhuttravelagency" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary p-2 bg-primary/20 rounded-full transition-transform duration-300 hover:-translate-y-1">
+                <Link href="https://www.facebook.com/adbhuttravelagency" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-accent p-2 bg-primary/20 rounded-full transition-transform duration-300 hover:-translate-y-1">
                     <Facebook className="h-6 w-6" />
                 </Link>
-                <Link href="https://www.instagram.com/adbhut_travel_agency/?hl=en" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary p-2 bg-primary/20 rounded-full transition-transform duration-300 hover:-translate-y-1">
+                <Link href="https://www.instagram.com/adbhut_travel_agency/?hl=en" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-accent p-2 bg-primary/20 rounded-full transition-transform duration-300 hover:-translate-y-1">
                     <Instagram className="h-6 w-6" />
                 </Link>
-                <Link href="https://www.youtube.com/watch?v=IfBDSc2Lb7U" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary p-2 bg-primary/20 rounded-full transition-transform duration-300 hover:-translate-y-1">
+                <Link href="https://www.youtube.com/watch?v=IfBDSc2Lb7U" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-accent p-2 bg-primary/20 rounded-full transition-transform duration-300 hover:-translate-y-1">
                     <Youtube className="h-6 w-6" />
                 </Link>
-                <Link href="https://www.linkedin.com/in/mohit-sharma-8517221b8/" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary p-2 bg-primary/20 rounded-full transition-transform duration-300 hover:-translate-y-1">
+                <Link href="https://www.linkedin.com/in/mohit-sharma-8517221b8/" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-accent p-2 bg-primary/20 rounded-full transition-transform duration-300 hover:-translate-y-1">
                     <Linkedin className="h-6 w-6" />
                 </Link>
-                <Link href="https://x.com/AdbhutTravel" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary p-2 bg-primary/20 rounded-full transition-transform duration-300 hover:-translate-y-1">
+                <Link href="https://x.com/AdbhutTravel" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-accent p-2 bg-primary/20 rounded-full transition-transform duration-300 hover:-translate-y-1">
                     <Twitter className="h-6 w-6" />
                 </Link>
             </div>
