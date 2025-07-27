@@ -1,3 +1,4 @@
+
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
@@ -69,7 +70,7 @@ const miceServices = [
 export default function MicePage() {
   return (
     <>
-      <section className="relative py-24 md:py-32 bg-secondary">
+      <section className="relative py-20 md:py-24 bg-secondary">
          <div 
           className="absolute inset-0 bg-cover bg-center bg-fixed opacity-10"
           style={{ backgroundImage: "url('https://images.pexels.com/photos/1181396/pexels-photo-1181396.jpeg')" }}
@@ -83,7 +84,7 @@ export default function MicePage() {
         </div>
       </section>
 
-      <section className="py-16 md:py-24">
+      <section className="py-12 md:py-16">
         <div className="container">
           <div className="text-center">
             <h2 className="text-3xl font-headline font-bold">The Adbhut MICE Expertise</h2>
@@ -93,15 +94,15 @@ export default function MicePage() {
           </div>
           <div className="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {micePillars.map((pillar) => (
-                <Card key={pillar.title} className="text-center shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
-                    <CardHeader>
+                <Card key={pillar.title} className="text-center shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300 p-4">
+                    <CardHeader className="p-2">
                         <div className="mx-auto bg-primary/20 rounded-full w-16 h-16 flex items-center justify-center mb-4">
                             <pillar.icon className="w-8 h-8 text-primary" />
                         </div>
-                        <CardTitle className="font-headline">{pillar.title}</CardTitle>
+                        <CardTitle className="font-headline text-xl">{pillar.title}</CardTitle>
                     </CardHeader>
-                    <CardContent>
-                        <p className="text-muted-foreground">{pillar.description}</p>
+                    <CardContent className="p-2">
+                        <p className="text-muted-foreground text-sm">{pillar.description}</p>
                     </CardContent>
                 </Card>
             ))}
@@ -109,7 +110,7 @@ export default function MicePage() {
         </div>
       </section>
 
-      <section className="py-16 md:py-24 bg-secondary/30">
+      <section className="py-12 md:py-16 bg-secondary/30">
         <div className="container">
           <div className="grid md:grid-cols-2 gap-12 items-center">
              <div>
@@ -135,7 +136,7 @@ export default function MicePage() {
         </div>
       </section>
 
-      <section className="py-16 md:py-24">
+      <section className="py-12 md:py-16">
         <div className="container">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="rounded-lg overflow-hidden shadow-xl order-first md:order-last">
@@ -161,7 +162,7 @@ export default function MicePage() {
         </div>
       </section>
 
-       <section className="py-16 md:py-24 bg-secondary/30">
+       <section className="py-12 md:py-16 bg-secondary/30">
         <div className="container">
           <div className="text-center">
             <h2 className="text-3xl font-headline font-bold">Our Comprehensive MICE Services</h2>
@@ -171,15 +172,15 @@ export default function MicePage() {
           </div>
           <div className="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {miceServices.map((service) => (
-              <Card key={service.title} className="text-center shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300 border-0">
-                <CardHeader>
+              <Card key={service.title} className="text-center shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300 border-0 p-4">
+                <CardHeader className="p-2">
                   <div className="mx-auto bg-primary/20 rounded-full w-16 h-16 flex items-center justify-center mb-4">
                     <service.icon className="w-8 h-8 text-primary" />
                   </div>
                   <CardTitle className="font-headline text-xl">{service.title}</CardTitle>
                 </CardHeader>
-                <CardContent>
-                  <p className="text-muted-foreground">{service.description}</p>
+                <CardContent className="p-2">
+                  <p className="text-muted-foreground text-sm">{service.description}</p>
                 </CardContent>
               </Card>
             ))}
@@ -187,7 +188,7 @@ export default function MicePage() {
         </div>
       </section>
 
-      <section className="py-16 md:py-24">
+      <section className="py-12 md:py-16">
         <div className="container text-center">
           <h2 className="text-3xl font-headline font-bold">Let's Plan Your Next Corporate Event</h2>
           <p className="mt-2 max-w-2xl mx-auto text-muted-foreground">

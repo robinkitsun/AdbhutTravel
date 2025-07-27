@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState } from "react";
@@ -228,7 +229,7 @@ export function TailoredTripForm() {
                     <div className="mb-4">
                       <FormLabel className="text-base">Desired Inclusions</FormLabel>
                     </div>
-                    <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 rounded-md border p-4">
+                    <div className="grid grid-cols-2 sm:grid-cols-3 gap-x-4 gap-y-3 rounded-md border p-4">
                         {inclusionsOptions.map((item) => (
                         <FormField
                             key={item.id}
@@ -254,7 +255,7 @@ export function TailoredTripForm() {
                                         }}
                                     />
                                 </FormControl>
-                                <FormLabel className="font-normal cursor-pointer">
+                                <FormLabel className="font-normal cursor-pointer text-sm">
                                     {item.label}
                                 </FormLabel>
                                 </FormItem>

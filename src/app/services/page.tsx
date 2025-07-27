@@ -112,7 +112,7 @@ const services = [
 export default function ServicesPage() {
   return (
     <>
-      <section className="bg-secondary py-16 md:py-24">
+      <section className="bg-secondary py-12 md:py-16">
         <div className="container text-center">
           <h1 className="text-4xl md:text-5xl font-headline font-bold">Our Services</h1>
           <p className="mt-4 max-w-3xl mx-auto text-lg text-muted-foreground">
@@ -121,7 +121,7 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      <section className="py-16 md:py-24 space-y-16 md:space-y-24">
+      <section className="py-12 md:py-16 space-y-12 md:space-y-20">
         {services.map((service, index) => (
           <div key={service.title} className="container">
             <div className="grid md:grid-cols-2 gap-12 items-center">
@@ -142,8 +142,8 @@ export default function ServicesPage() {
                         </CarouselItem>
                       ))}
                     </CarouselContent>
-                    <CarouselPrevious className="absolute left-4 top-1/2 -translate-y-1/2 z-10 bg-white/50 hover:bg-white/80 text-foreground" />
-                    <CarouselNext className="absolute right-4 top-1/2 -translate-y-1/2 z-10 bg-white/50 hover:bg-white/80 text-foreground" />
+                    <CarouselPrevious className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 z-10 bg-white/50 hover:bg-white/80 text-foreground" />
+                    <CarouselNext className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 z-10 bg-white/50 hover:bg-white/80 text-foreground" />
                   </Carousel>
                 ) : (
                   <Image
@@ -178,7 +178,7 @@ export default function ServicesPage() {
         ))}
       </section>
 
-      <section className="py-16 md:py-24 bg-secondary">
+      <section className="py-12 md:py-16 bg-secondary">
         <div className="container text-center">
           <h2 className="text-3xl font-headline font-bold">Ready to Start Your Journey?</h2>
           <p className="mt-2 max-w-2xl mx-auto text-muted-foreground">

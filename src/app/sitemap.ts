@@ -1,5 +1,7 @@
 import { MetadataRoute } from 'next'
  
+export const dynamic = 'force-static';
+
 export default function sitemap(): MetadataRoute.Sitemap {
   // In a real app, you would get this from an environment variable
   const siteUrl = 'https://adbhuttravel.com'; 

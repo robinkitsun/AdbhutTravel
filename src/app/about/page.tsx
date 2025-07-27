@@ -45,7 +45,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="py-16 md:py-24">
+      <section className="py-12 md:py-16">
         <div className="container">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="rounded-lg overflow-hidden shadow-xl">
@@ -76,7 +76,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="py-16 md:py-24 bg-secondary/50">
+      <section className="py-12 md:py-16 bg-secondary/50">
         <div className="container">
             <div className="grid md:grid-cols-2 gap-12 items-start">
                 <div>
@@ -108,7 +108,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="py-16 md:py-24">
+      <section className="py-12 md:py-16">
         <div className="container">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl font-headline font-bold text-center mb-12">Discover Our Journey</h2>
@@ -116,9 +116,9 @@ export default function AboutPage() {
                 className="w-full relative"
                 opts={{ loop: true, align: "center", slidesToScroll: 1 }}
                 >
-              <CarouselContent className="-ml-8">
+              <CarouselContent className="-ml-4 md:-ml-8">
                 {youtubeVideos.map(video => (
-                  <CarouselItem key={video.id} className="pl-8 md:basis-10/12">
+                  <CarouselItem key={video.id} className="pl-4 md:pl-8 md:basis-10/12">
                     <div className="relative h-0 pb-[56.25%] rounded-lg overflow-hidden shadow-2xl">
                       <iframe
                         className="absolute top-0 left-0 w-full h-full"
@@ -131,14 +131,14 @@ export default function AboutPage() {
                   </CarouselItem>
                 ))}
               </CarouselContent>
-               <CarouselPrevious className="absolute left-0 top-1/2 -translate-y-1/2 z-10 size-10 bg-white/60 hover:bg-white/90 text-foreground animate-pulse [animation-duration:5s] hover:animate-none" />
-               <CarouselNext className="absolute right-0 top-1/2 -translate-y-1/2 z-10 size-10 bg-white/60 hover:bg-white/90 text-foreground animate-pulse [animation-duration:5s] hover:animate-none" />
+               <CarouselPrevious className="absolute left-0 top-1/2 -translate-y-1/2 z-10 size-8 md:size-10 bg-white/60 hover:bg-white/90 text-foreground animate-pulse [animation-duration:5s] hover:animate-none" />
+               <CarouselNext className="absolute right-0 top-1/2 -translate-y-1/2 z-10 size-8 md:size-10 bg-white/60 hover:bg-white/90 text-foreground animate-pulse [animation-duration:5s] hover:animate-none" />
             </Carousel>
           </div>
         </div>
       </section>
 
-      <section className="py-16 md:py-24 bg-secondary">
+      <section className="py-12 md:py-16 bg-secondary">
         <div className="container">
           <h2 className="text-3xl font-headline font-bold text-center mb-4">Our Brands</h2>
           <p className="text-center text-muted-foreground max-w-3xl mx-auto mb-12">
@@ -170,7 +170,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="py-16 md:py-24 bg-background">
+      <section className="py-12 md:py-16 bg-background">
         <div className="container">
           <h2 className="text-3xl font-headline font-bold text-center mb-12">Our Values</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
@@ -193,18 +193,18 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="py-16 md:py-24">
+      <section className="py-12 md:py-16">
         <div className="container">
           <h2 className="text-3xl font-headline font-bold text-center mb-12">Senior Management</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             {teamMembers.map((member) => (
-              <Card key={member.name} className="p-6 text-center border-0 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+              <Card key={member.name} className="p-4 md:p-6 text-center border-0 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
                 <Avatar className="w-24 h-24 mx-auto mb-4">
                   <AvatarImage src={member.image} alt={member.name} data-ai-hint={member.dataAiHint} className="object-cover" />
                   <AvatarFallback>{member.name.charAt(0)}</AvatarFallback>
                 </Avatar>
-                <h3 className="text-xl font-headline font-semibold">{member.name}</h3>
-                <p className="text-primary">{member.role}</p>
+                <h3 className="text-lg md:text-xl font-headline font-semibold">{member.name}</h3>
+                <p className="text-primary text-sm md:text-base">{member.role}</p>
               </Card>
             ))}
           </div>
@@ -213,5 +213,3 @@ export default function AboutPage() {
     </>
   );
 }
-
-    

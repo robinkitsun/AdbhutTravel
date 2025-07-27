@@ -90,7 +90,7 @@ export default function Header() {
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background">
-      <div className="container flex h-16 items-center justify-between overflow-x-hidden">
+      <div className="container flex h-16 items-center justify-between overflow-x-hidden px-4 md:px-8">
         <Link
           href="/"
           style={logoStyle}

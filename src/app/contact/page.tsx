@@ -1,3 +1,4 @@
+
 import ContactForm from "@/components/contact/ContactForm";
 import { Mail, Phone, MapPin, Facebook, Instagram, Youtube, Linkedin, Twitter } from "lucide-react";
 import Link from "next/link";
@@ -11,7 +12,7 @@ export const metadata: Metadata = {
 export default function ContactPage() {
   return (
     <>
-      <section className="bg-secondary py-2 md:py-4">
+      <section className="bg-secondary py-8 md:py-12">
         <div className="container text-center">
           <h1 className="text-4xl md:text-5xl font-headline font-bold">Contact Us</h1>
           <p className="mt-4 max-w-3xl mx-auto text-lg text-muted-foreground">
@@ -20,7 +21,7 @@ export default function ContactPage() {
         </div>
       </section>
 
-      <section className="py-16 md:py-24">
+      <section className="py-12 md:py-16">
         <div className="container">
           <div className="grid md:grid-cols-2 gap-16 items-start">
             <div className="space-y-8">
@@ -106,7 +107,7 @@ export default function ContactPage() {
           </div>
         </div>
       </section>
-      <section className="pb-16 md:pb-24">
+      <section className="pb-12 md:pb-16">
         <div className="container">
           <div className="rounded-lg overflow-hidden shadow-xl">
             <iframe
