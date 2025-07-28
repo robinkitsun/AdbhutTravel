@@ -1,3 +1,4 @@
+
 import { FileText, Shield, Gavel, Award, Gem, ListTree } from 'lucide-react';
 import Link from 'next/link';
 import type { Metadata } from "next";
@@ -53,7 +54,7 @@ export default function LegalPage() {
                      <Link href={link.href} key={link.title}>
                         <Card className="hover:shadow-lg hover:-translate-y-1 transition-all duration-300 h-full">
                             <CardHeader className="flex-row items-center gap-4">
-                                <link.icon className="w-8 h-8 text-primary"/>
+                                <link.icon className="w-8 h-8 text-accent"/>
                                 <CardTitle className="font-headline">{link.title}</CardTitle>
                             </CardHeader>
                             <CardContent>
@@ -64,7 +65,7 @@ export default function LegalPage() {
                 ))}
            </div>
            <div className="mt-12 text-center text-muted-foreground text-sm">
-                <p>If you have any questions regarding our legal policies, please <Link href="/contact" className="text-primary underline">contact us</Link>.</p>
+                <p>If you have any questions regarding our legal policies, please <Link href="/contact" className="text-accent underline underline-offset-4 hover:text-accent/80">contact us</Link>.</p>
            </div>
         </div>
       </section>
