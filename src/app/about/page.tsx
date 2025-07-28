@@ -195,7 +195,7 @@ export default function AboutPage() {
 
       <section className="py-12 md:py-16">
         <div className="container">
-          <h2 className="text-3xl font-headline font-bold text-center mb-12">Senior Management</h2>
+          <h2 className="text-3xl font-headline font-bold text-center mb-12">Our Leadership Team</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             {teamMembers.map((member) => (
               <Card key={member.name} className="p-4 md:p-6 text-center border-0 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
