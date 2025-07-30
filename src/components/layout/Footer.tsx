@@ -33,7 +33,7 @@ export default function Footer() {
         <div className="mb-8">
           <div className="flex justify-center items-center">
               <Image
-                src="https://www.adbhuttravel.com/wp-content/uploads/2025/01/Screenshot-2025-01-04-at-9.55.01%E2%80%AFAM-1536x113.png"
+                src="https://www.adbhuttravel.com/wp-content/uploads/2025/07/Adbhut-Affilications-Cetifications.png"
                 alt="Certifications and Affiliations"
                 width={1536}
                 height={113}
