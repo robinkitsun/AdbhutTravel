@@ -124,28 +124,20 @@ const ServiceSection = ({ service, index }: { service: typeof services[0], index
         const observer = new IntersectionObserver(
           (entries) => {
             entries.forEach((entry) => {
-              if (entry.isIntersecting) {
-                setIsCarouselVisible(true);
-                if (autoplayPlugin.current) {
-                    autoplayPlugin.current.play();
-                }
-              } else {
-                if (autoplayPlugin.current) {
-                    autoplayPlugin.current.stop();
-                }
-              }
+              setIsCarouselVisible(entry.isIntersecting);
             });
           },
           { threshold: 0.5 }
         );
     
-        if (carouselRef.current) {
-          observer.observe(carouselRef.current);
+        const currentRef = carouselRef.current;
+        if (currentRef) {
+          observer.observe(currentRef);
         }
     
         return () => {
-          if (carouselRef.current) {
-            observer.unobserve(carouselRef.current);
+          if (currentRef) {
+            observer.unobserve(currentRef);
           }
         };
       }, []);

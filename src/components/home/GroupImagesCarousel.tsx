@@ -35,24 +35,20 @@ export default function GroupImagesCarousel() {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setIsCarouselVisible(true);
-            autoplayPlugin.current.play();
-          } else {
-            autoplayPlugin.current.stop();
-          }
+          setIsCarouselVisible(entry.isIntersecting);
         });
       },
-      { threshold: 0.5 } // Trigger when 50% of the element is visible
+      { threshold: 0.5 }
     );
 
-    if (carouselRef.current) {
-      observer.observe(carouselRef.current);
+    const currentRef = carouselRef.current;
+    if (currentRef) {
+      observer.observe(currentRef);
     }
 
     return () => {
-      if (carouselRef.current) {
-        observer.unobserve(carouselRef.current);
+      if (currentRef) {
+        observer.unobserve(currentRef);
       }
     };
   }, []);

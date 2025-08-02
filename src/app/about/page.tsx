@@ -44,24 +44,20 @@ export default function AboutPage() {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setIsCarouselVisible(true);
-            autoplayPlugin.current.play();
-          } else {
-            autoplayPlugin.current.stop();
-          }
+          setIsCarouselVisible(entry.isIntersecting);
         });
       },
       { threshold: 0.5 }
     );
 
-    if (carouselRef.current) {
-      observer.observe(carouselRef.current);
+    const currentRef = carouselRef.current;
+    if (currentRef) {
+      observer.observe(currentRef);
     }
 
     return () => {
-      if (carouselRef.current) {
-        observer.unobserve(carouselRef.current);
+      if (currentRef) {
+        observer.unobserve(currentRef);
       }
     };
   }, []);

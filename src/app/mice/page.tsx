@@ -26,32 +26,25 @@ export default function MicePage() {
 
         const observer1 = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    setIsCarousel1Visible(true);
-                    autoplayPlugin.current.play();
-                } else {
-                    autoplayPlugin.current.stop();
-                }
+                setIsCarousel1Visible(entry.isIntersecting);
             });
         }, observerOptions);
 
         const observer2 = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    setIsCarousel2Visible(true);
-                    autoplayPlugin2.current.play();
-                } else {
-                    autoplayPlugin2.current.stop();
-                }
+                setIsCarousel2Visible(entry.isIntersecting);
             });
         }, observerOptions);
 
-        if (carousel1Ref.current) observer1.observe(carousel1Ref.current);
-        if (carousel2Ref.current) observer2.observe(carousel2Ref.current);
+        const currentCarousel1 = carousel1Ref.current;
+        const currentCarousel2 = carousel2Ref.current;
+
+        if (currentCarousel1) observer1.observe(currentCarousel1);
+        if (currentCarousel2) observer2.observe(currentCarousel2);
 
         return () => {
-            if (carousel1Ref.current) observer1.unobserve(carousel1Ref.current);
-            if (carousel2Ref.current) observer2.unobserve(carousel2Ref.current);
+            if (currentCarousel1) observer1.unobserve(currentCarousel1);
+            if (currentCarousel2) observer2.unobserve(currentCarousel2);
         };
     }, []);
 
