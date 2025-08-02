@@ -8,12 +8,13 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Award, Globe, HeartHandshake, CheckCircle2 } from "lucide-react";
 import { Logo } from "@/components/shared/Logo";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
+import Link from 'next/link';
 
 const teamMembers = [
-  { name: "Mohit Sharma", role: "Founder & CEO", image: "https://www.adbhuttravel.com/wp-content/uploads/2025/07/Mohit-Adbhut-Founder.jpeg", dataAiHint: "man portrait" },
-  { name: "Mrs Aditi Sharma", role: "Sales Director", image: "https://www.adbhuttravel.com/wp-content/uploads/2025/07/Mrs.-Aditi-Sharma-Sales-Director.png", dataAiHint: "woman portrait" },
-  { name: "Sachin", role: "OPS Manager", image: "https://www.adbhuttravel.com/wp-content/uploads/2025/07/Sachin-OPS-Manager-Adbhut-Travel-Event-Pvt.-Ltd.png", dataAiHint: "man portrait" },
-  { name: "Ankit", role: "Business Development Manager (BDM)", image: "", dataAiHint: "man portrait" },
+  { name: "Mr. Mohit Sharma", role: "Founder & CEO", image: "https://www.adbhuttravel.com/wp-content/uploads/2025/07/Mohit-Adbhut-Founder.jpeg", dataAiHint: "man portrait" },
+  { name: "Mrs. Aditi Sharma", role: "Sales Director", image: "https://www.adbhuttravel.com/wp-content/uploads/2025/07/Mrs.-Aditi-Sharma-Sales-Director.png", dataAiHint: "woman portrait" },
+  { name: "Mr. Sachin", role: "Head of Operations", image: "https://www.adbhuttravel.com/wp-content/uploads/2025/07/Sachin-OPS-Manager-Adbhut-Travel-Event-Pvt.-Ltd.png", dataAiHint: "man portrait" },
+  { name: "Mr. Ankit", role: "Business Development Manager (BDM)", image: "", dataAiHint: "man portrait" },
 ];
 
 const youtubeVideos = [
@@ -154,14 +155,18 @@ export default function AboutPage() {
             </div>
             <div className="flex flex-col items-center">
                 <div className="mb-4 flex items-center justify-center h-16">
-                    <Image src="https://www.adbhuttravel.com/wp-content/uploads/2025/07/NorthCabs.png" alt="North Cab Logo" width={200} height={80} className="max-h-12 w-auto object-contain" />
+                    <Link href="https://www.northcabs.in/" target="_blank" rel="noopener noreferrer">
+                        <Image src="https://www.adbhuttravel.com/wp-content/uploads/2025/07/NorthCabs.png" alt="North Cab Logo" width={200} height={80} className="max-h-12 w-auto object-contain" />
+                    </Link>
                 </div>
                 <h3 className="text-xl font-headline font-semibold">North Cab</h3>
                 <p className="text-muted-foreground mt-2">Reliable and comfortable taxi services for all your travel needs across North India.</p>
             </div>
             <div className="flex flex-col items-center">
                 <div className="mb-4 flex items-center justify-center h-16">
-                    <Image src="https://www.adbhuttravel.com/wp-content/uploads/2024/06/Screenshot_2023-01-24_at_1.52.15_PM-removebg-preview.png" alt="Visit Kurukshetra Logo" width={250} height={80} className="max-h-12 w-auto object-contain" />
+                    <Link href="https://visitkurukshetra.in/" target="_blank" rel="noopener noreferrer">
+                        <Image src="https://www.adbhuttravel.com/wp-content/uploads/2024/06/Screenshot_2023-01-24_at_1.52.15_PM-removebg-preview.png" alt="Visit Kurukshetra Logo" width={250} height={80} className="max-h-12 w-auto object-contain" />
+                    </Link>
                 </div>
                 <h3 className="text-xl font-headline font-semibold">Visit Kurukshetra</h3>
                 <p className="text-muted-foreground mt-2">Your dedicated guide to exploring the rich history and culture of Kurukshetra.</p>
@@ -213,3 +218,5 @@ export default function AboutPage() {
     </>
   );
 }
+
+    
