@@ -137,8 +137,8 @@ export default function MicePage() {
                 We offer our services across the world, from international trade fairs to conferences in the heart of India. Our vast network provides access to diverse venues and creative ideas, ensuring your meetings and conferences are both successful and memorable.
               </p>
             </div>
-            <div className="rounded-lg overflow-hidden shadow-xl">
-               <Carousel className="w-full relative" opts={{ loop: true, align: "center" }}>
+            <div className="rounded-lg overflow-hidden">
+               <Carousel className="w-full relative" opts={{ loop: true, align: "start" }}>
                     <CarouselContent className="-ml-4">
                       {strategicImages.map((img, i) => (
                         <CarouselItem key={i} className="pl-4 md:basis-10/12">
@@ -155,8 +155,8 @@ export default function MicePage() {
                         </CarouselItem>
                       ))}
                     </CarouselContent>
-                    <CarouselPrevious className="absolute left-0 top-1/2 -translate-y-1/2 z-10 size-8 md:size-10 bg-white/60 hover:bg-white/90 text-foreground animate-pulse [animation-duration:5s] hover:animate-none" />
-                    <CarouselNext className="absolute right-0 top-1/2 -translate-y-1/2 z-10 size-8 md:size-10 bg-white/60 hover:bg-white/90 text-foreground animate-pulse [animation-duration:5s] hover:animate-none" />
+                    <CarouselPrevious className="absolute -left-2 top-1/2 -translate-y-1/2 z-10 size-8 md:size-10 bg-white/60 hover:bg-white/90 text-foreground animate-pulse [animation-duration:5s] hover:animate-none" />
+                    <CarouselNext className="absolute -right-2 top-1/2 -translate-y-1/2 z-10 size-8 md:size-10 bg-white/60 hover:bg-white/90 text-foreground animate-pulse [animation-duration:5s] hover:animate-none" />
                   </Carousel>
             </div>
           </div>
@@ -166,8 +166,8 @@ export default function MicePage() {
       <section className="py-12 md:py-16">
         <div className="container">
           <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div className="rounded-lg overflow-hidden shadow-xl order-first md:order-last">
-              <Carousel className="w-full relative" opts={{ loop: true, align: "center" }}>
+            <div className="rounded-lg overflow-hidden order-first md:order-last">
+              <Carousel className="w-full relative" opts={{ loop: true, align: "start" }}>
                     <CarouselContent className="-ml-4">
                       {incentiveImages.map((img, i) => (
                         <CarouselItem key={i} className="pl-4 md:basis-10/12">
@@ -184,8 +184,8 @@ export default function MicePage() {
                         </CarouselItem>
                       ))}
                     </CarouselContent>
-                    <CarouselPrevious className="absolute left-0 top-1/2 -translate-y-1/2 z-10 size-8 md:size-10 bg-white/60 hover:bg-white/90 text-foreground animate-pulse [animation-duration:5s] hover:animate-none" />
-                    <CarouselNext className="absolute right-0 top-1/2 -translate-y-1/2 z-10 size-8 md:size-10 bg-white/60 hover:bg-white/90 text-foreground animate-pulse [animation-duration:5s] hover:animate-none" />
+                    <CarouselPrevious className="absolute -left-2 top-1/2 -translate-y-1/2 z-10 size-8 md:size-10 bg-white/60 hover:bg-white/90 text-foreground animate-pulse [animation-duration:5s] hover:animate-none" />
+                    <CarouselNext className="absolute -right-2 top-1/2 -translate-y-1/2 z-10 size-8 md:size-10 bg-white/60 hover:bg-white/90 text-foreground animate-pulse [animation-duration:5s] hover:animate-none" />
                   </Carousel>
             </div>
              <div className="order-last md:order-first">

@@ -131,35 +131,39 @@ export default function ServicesPage() {
         {services.map((service, index) => (
           <div key={service.title} className="container">
             <div className="grid md:grid-cols-2 gap-12 items-center">
-              <div className={`rounded-lg overflow-hidden shadow-xl ${index % 2 === 1 ? 'md:order-last' : ''}`}>
+              <div className={`rounded-lg overflow-hidden ${index % 2 === 1 ? 'md:order-last' : ''}`}>
                 {service.images.length > 1 ? (
-                  <Carousel className="w-full relative" opts={{ loop: true }}>
-                    <CarouselContent>
+                  <Carousel className="w-full relative" opts={{ loop: true, align: "start" }}>
+                    <CarouselContent className="-ml-4">
                       {service.images.map((img, i) => (
-                        <CarouselItem key={i}>
-                          <Image
-                            src={img}
-                            alt={`${service.title} image ${i + 1}`}
-                            width={600}
-                            height={400}
-                            className="w-full h-full max-h-[400px] object-cover transition-transform duration-300 hover:scale-105"
-                            data-ai-hint={service.dataAiHints[i]}
-                          />
+                        <CarouselItem key={i} className="pl-4 md:basis-10/12">
+                          <div className="overflow-hidden rounded-lg shadow-xl">
+                            <Image
+                              src={img}
+                              alt={`${service.title} image ${i + 1}`}
+                              width={600}
+                              height={400}
+                              className="w-full h-full max-h-[400px] object-cover transition-transform duration-300 hover:scale-105"
+                              data-ai-hint={service.dataAiHints[i]}
+                            />
+                          </div>
                         </CarouselItem>
                       ))}
                     </CarouselContent>
-                    <CarouselPrevious className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 z-10 bg-white/50 hover:bg-white/80 text-foreground" />
-                    <CarouselNext className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 z-10 bg-white/50 hover:bg-white/80 text-foreground" />
+                    <CarouselPrevious className="absolute -left-2 top-1/2 -translate-y-1/2 z-10 size-8 md:size-10 bg-white/60 hover:bg-white/90 text-foreground animate-pulse [animation-duration:5s] hover:animate-none" />
+                    <CarouselNext className="absolute -right-2 top-1/2 -translate-y-1/2 z-10 size-8 md:size-10 bg-white/60 hover:bg-white/90 text-foreground animate-pulse [animation-duration:5s] hover:animate-none" />
                   </Carousel>
                 ) : (
-                  <Image
-                    src={service.images[0]}
-                    alt={service.title}
-                    width={600}
-                    height={400}
-                    className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
-                    data-ai-hint={service.dataAiHints[0]}
-                  />
+                   <div className="overflow-hidden rounded-lg shadow-xl">
+                    <Image
+                      src={service.images[0]}
+                      alt={service.title}
+                      width={600}
+                      height={400}
+                      className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+                      data-ai-hint={service.dataAiHints[0]}
+                    />
+                   </div>
                 )}
               </div>
               <div>
