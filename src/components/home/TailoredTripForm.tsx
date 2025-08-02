@@ -30,7 +30,8 @@ import {
 } from "@/components/ui/popover";
 import { Calendar } from "@/components/ui/calendar";
 
-import { submitTailoredTripForm, tailoredTripFormSchema } from "@/lib/actions";
+import { submitTailoredTripForm } from "@/lib/actions";
+import { tailoredTripFormSchema } from "@/lib/schemas";
 import { cn } from "@/lib/utils";
 
 const inclusionsOptions: { id: string; label: string }[] = [
