@@ -26,15 +26,15 @@ export default function TailoredExperience() {
             </p>
             <ul className="space-y-4 mb-8">
               <li className="flex items-center gap-3">
-                <Check className="h-5 w-5 text-primary bg-primary/20 rounded-full p-1" />
+                <Check className="h-5 w-5 text-accent bg-primary/20 rounded-full p-1" />
                 <span>Custom itineraries built around your dreams.</span>
               </li>
               <li className="flex items-center gap-3">
-                <Check className="h-5 w-5 text-primary bg-primary/20 rounded-full p-1" />
+                <Check className="h-5 w-5 text-accent bg-primary/20 rounded-full p-1" />
                 <span>Expert guidance and 24/7 support.</span>
               </li>
               <li className="flex items-center gap-3">
-                <Check className="h-5 w-5 text-primary bg-primary/20 rounded-full p-1" />
+                <Check className="h-5 w-5 text-accent bg-primary/20 rounded-full p-1" />
                 <span>Exclusive access and unique local experiences.</span>
               </li>
             </ul>
