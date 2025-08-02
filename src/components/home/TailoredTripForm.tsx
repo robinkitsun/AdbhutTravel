@@ -322,7 +322,9 @@ export function TailoredTripForm() {
                   name="mobile"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Mobile Number</FormLabel>
+                      <FormLabel>
+                        Mobile Number <span className="text-destructive">*</span>
+                      </FormLabel>
                       <FormControl>
                         <Input type="tel" placeholder="9876543210" {...field} />
                       </FormControl>

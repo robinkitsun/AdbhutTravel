@@ -106,10 +106,11 @@ export const tailoredTripFormSchema = z.object({
   otherInclusion: z.string().optional(),
   comments: z.string().optional(),
   email: z.string().email({ message: "Please enter a valid email." }).optional().or(z.literal('')),
-  mobile: z.string({required_error: "Mobile number is required."})
+  mobile: z.string().min(1, { message: "Mobile number is required." })
     .min(10, { message: "Mobile number must be at least 10 digits." })
     .regex(/^\d{10,15}$/, { message: "Please enter a valid mobile number." }),
 });
+
 
 type TailoredTripFormState = {
   message: string;
