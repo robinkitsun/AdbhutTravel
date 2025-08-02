@@ -155,8 +155,8 @@ export default function MicePage() {
                         </CarouselItem>
                       ))}
                     </CarouselContent>
-                    <CarouselPrevious className="absolute -left-2 top-1/2 -translate-y-1/2 z-10 size-8 md:size-10 bg-white/60 hover:bg-white/90 text-foreground animate-pulse [animation-duration:5s] hover:animate-none" />
-                    <CarouselNext className="absolute -right-2 top-1/2 -translate-y-1/2 z-10 size-8 md:size-10 bg-white/60 hover:bg-white/90 text-foreground animate-pulse [animation-duration:5s] hover:animate-none" />
+                    <CarouselPrevious className="absolute left-0 top-1/2 -translate-y-1/2 z-10 size-8 md:size-10 bg-white/60 hover:bg-white/90 text-foreground animate-pulse [animation-duration:5s] hover:translate-y-0 hover:animate-none" />
+                    <CarouselNext className="absolute right-0 top-1/2 -translate-y-1/2 z-10 size-8 md:size-10 bg-white/60 hover:bg-white/90 text-foreground animate-pulse [animation-duration:5s] hover:translate-y-0 hover:animate-none" />
                   </Carousel>
             </div>
           </div>
@@ -184,8 +184,8 @@ export default function MicePage() {
                         </CarouselItem>
                       ))}
                     </CarouselContent>
-                    <CarouselPrevious className="absolute -left-2 top-1/2 -translate-y-1/2 z-10 size-8 md:size-10 bg-white/60 hover:bg-white/90 text-foreground animate-pulse [animation-duration:5s] hover:animate-none" />
-                    <CarouselNext className="absolute -right-2 top-1/2 -translate-y-1/2 z-10 size-8 md:size-10 bg-white/60 hover:bg-white/90 text-foreground animate-pulse [animation-duration:5s] hover:animate-none" />
+                    <CarouselPrevious className="absolute left-0 top-1/2 -translate-y-1/2 z-10 size-8 md:size-10 bg-white/60 hover:bg-white/90 text-foreground animate-pulse [animation-duration:5s] hover:translate-y-0 hover:animate-none" />
+                    <CarouselNext className="absolute right-0 top-1/2 -translate-y-1/2 z-10 size-8 md:size-10 bg-white/60 hover:bg-white/90 text-foreground animate-pulse [animation-duration:5s] hover:translate-y-0 hover:animate-none" />
                   </Carousel>
             </div>
              <div className="order-last md:order-first">
