@@ -78,6 +78,7 @@ const incentiveImages = [
     { src: "https://www.adbhuttravel.com/wp-content/uploads/2025/08/Mice-g3.jpg", alt: "Corporate group enjoying an outdoor activity", dataAiHint: "corporate activity" },
     { src: "https://www.adbhuttravel.com/wp-content/uploads/2025/08/Mice-g4.jpg", alt: "Team members collaborating during a workshop", dataAiHint: "team workshop" },
     { src: "https://www.adbhuttravel.com/wp-content/uploads/2025/07/Mice-Incentices-2.png", alt: "Team celebrating success on a mountain top", dataAiHint: "team success" },
+    { src: "https://www.adbhuttravel.com/wp-content/uploads/2023/08/3ce2ac17-ec82-47eb-949f-4acbd0fa212b.jpg", alt: "Corporate group photo at an outdoor event", dataAiHint: "corporate group photo" },
 ];
 
 
@@ -137,23 +138,25 @@ export default function MicePage() {
               </p>
             </div>
             <div className="rounded-lg overflow-hidden shadow-xl">
-               <Carousel className="w-full relative" opts={{ loop: true }}>
-                    <CarouselContent>
+               <Carousel className="w-full relative" opts={{ loop: true, align: "center" }}>
+                    <CarouselContent className="-ml-4">
                       {strategicImages.map((img, i) => (
-                        <CarouselItem key={i}>
-                          <Image
-                            src={img.src}
-                            alt={img.alt}
-                            width={600}
-                            height={500}
-                            className="w-full h-full max-h-[500px] object-cover transition-transform duration-300 hover:scale-105"
-                            data-ai-hint={img.dataAiHint}
-                          />
+                        <CarouselItem key={i} className="pl-4 md:basis-10/12">
+                           <div className="overflow-hidden rounded-lg">
+                              <Image
+                                src={img.src}
+                                alt={img.alt}
+                                width={600}
+                                height={500}
+                                className="w-full h-full aspect-[4/3] object-cover transition-transform duration-300 hover:scale-105"
+                                data-ai-hint={img.dataAiHint}
+                              />
+                           </div>
                         </CarouselItem>
                       ))}
                     </CarouselContent>
-                    <CarouselPrevious className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 z-10 bg-white/50 hover:bg-white/80 text-foreground" />
-                    <CarouselNext className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 z-10 bg-white/50 hover:bg-white/80 text-foreground" />
+                    <CarouselPrevious className="absolute left-0 top-1/2 -translate-y-1/2 z-10 size-8 md:size-10 bg-white/60 hover:bg-white/90 text-foreground animate-pulse [animation-duration:5s] hover:animate-none" />
+                    <CarouselNext className="absolute right-0 top-1/2 -translate-y-1/2 z-10 size-8 md:size-10 bg-white/60 hover:bg-white/90 text-foreground animate-pulse [animation-duration:5s] hover:animate-none" />
                   </Carousel>
             </div>
           </div>
@@ -164,23 +167,25 @@ export default function MicePage() {
         <div className="container">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="rounded-lg overflow-hidden shadow-xl order-first md:order-last">
-              <Carousel className="w-full relative" opts={{ loop: true }}>
-                    <CarouselContent>
+              <Carousel className="w-full relative" opts={{ loop: true, align: "center" }}>
+                    <CarouselContent className="-ml-4">
                       {incentiveImages.map((img, i) => (
-                        <CarouselItem key={i}>
-                          <Image
-                            src={img.src}
-                            alt={img.alt}
-                            width={600}
-                            height={500}
-                            className="w-full h-full max-h-[500px] object-cover transition-transform duration-300 hover:scale-105"
-                            data-ai-hint={img.dataAiHint}
-                          />
+                        <CarouselItem key={i} className="pl-4 md:basis-10/12">
+                          <div className="overflow-hidden rounded-lg">
+                            <Image
+                                src={img.src}
+                                alt={img.alt}
+                                width={600}
+                                height={500}
+                                className="w-full h-full aspect-[4/3] object-cover transition-transform duration-300 hover:scale-105"
+                                data-ai-hint={img.dataAiHint}
+                            />
+                          </div>
                         </CarouselItem>
                       ))}
                     </CarouselContent>
-                    <CarouselPrevious className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 z-10 bg-white/50 hover:bg-white/80 text-foreground" />
-                    <CarouselNext className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 z-10 bg-white/50 hover:bg-white/80 text-foreground" />
+                    <CarouselPrevious className="absolute left-0 top-1/2 -translate-y-1/2 z-10 size-8 md:size-10 bg-white/60 hover:bg-white/90 text-foreground animate-pulse [animation-duration:5s] hover:animate-none" />
+                    <CarouselNext className="absolute right-0 top-1/2 -translate-y-1/2 z-10 size-8 md:size-10 bg-white/60 hover:bg-white/90 text-foreground animate-pulse [animation-duration:5s] hover:animate-none" />
                   </Carousel>
             </div>
              <div className="order-last md:order-first">
