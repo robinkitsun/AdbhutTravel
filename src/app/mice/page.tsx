@@ -69,8 +69,8 @@ const miceServices = [
 ]
 
 const strategicImages = [
-    { src: "https://www.adbhuttravel.com/wp-content/uploads/2025/08/Mice-g1.jpg", alt: "Corporate event presentation in a large hall", dataAiHint: "corporate presentation" },
     { src: "https://www.adbhuttravel.com/wp-content/uploads/2025/08/Mice-g5.jpg", alt: "Business meeting in a modern office", dataAiHint: "business meeting" },
+    { src: "https://www.adbhuttravel.com/wp-content/uploads/2025/08/Mice-g1.jpg", alt: "Corporate event presentation in a large hall", dataAiHint: "corporate presentation" },
 ];
 
 const incentiveImages = [
@@ -138,10 +138,10 @@ export default function MicePage() {
               </p>
             </div>
             <div className="rounded-lg overflow-hidden">
-               <Carousel className="w-full relative" opts={{ loop: true, align: "start" }}>
-                    <CarouselContent className="-ml-4">
+               <Carousel className="w-full relative" opts={{ loop: true, align: "center", slidesToScroll: 1 }}>
+                    <CarouselContent className="-ml-4 md:-ml-8">
                       {strategicImages.map((img, i) => (
-                        <CarouselItem key={i} className="pl-4 md:basis-10/12">
+                        <CarouselItem key={i} className="pl-4 md:pl-8 md:basis-10/12">
                            <div className="overflow-hidden rounded-lg">
                               <Image
                                 src={img.src}
@@ -167,10 +167,10 @@ export default function MicePage() {
         <div className="container">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="rounded-lg overflow-hidden order-first md:order-last">
-              <Carousel className="w-full relative" opts={{ loop: true, align: "start" }}>
-                    <CarouselContent className="-ml-4">
+              <Carousel className="w-full relative" opts={{ loop: true, align: "center", slidesToScroll: 1 }}>
+                    <CarouselContent className="-ml-4 md:-ml-8">
                       {incentiveImages.map((img, i) => (
-                        <CarouselItem key={i} className="pl-4 md:basis-10/12">
+                        <CarouselItem key={i} className="pl-4 md:pl-8 md:basis-10/12">
                           <div className="overflow-hidden rounded-lg">
                             <Image
                                 src={img.src}
