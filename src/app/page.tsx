@@ -5,6 +5,7 @@ import PackageShowcase from "@/components/home/PackageShowcase";
 import Testimonials from "@/components/home/Testimonials";
 import TailoredExperience from "@/components/home/TailoredExperience";
 import type { Package } from "@/lib/types";
+import ClientLogos from "@/components/home/ClientLogos";
 
 const domesticPackages: Package[] = [
   {
@@ -144,6 +145,7 @@ export default function Home() {
   return (
     <div className="flex flex-col">
       <Hero />
+      <ClientLogos />
       <FeaturedDestinations />
       <PackageShowcase id="domestic-packages" title="Popular Domestic Packages" packages={domesticPackages} />
       <PackageShowcase id="international-packages" title="Popular International Packages" packages={internationalPackages} />

@@ -1,3 +1,4 @@
+
 "use client"
 
 import * as React from "react"
@@ -138,7 +139,7 @@ const Carousel = React.forwardRef<
         <div
           ref={ref}
           onKeyDownCapture={handleKeyDown}
-          className={cn("relative", className)}
+          className={cn("relative group", className)}
           role="region"
           aria-roledescription="carousel"
           {...props}
