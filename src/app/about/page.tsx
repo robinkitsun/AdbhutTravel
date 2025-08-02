@@ -148,14 +148,16 @@ export default function AboutPage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-start justify-items-center text-center">
             <div className="flex flex-col items-center">
                 <div className="mb-4 flex items-center justify-center h-16">
-                    <Logo />
+                    <Link href="https://www.adbhuttravel.com/" target="_blank" rel="noopener noreferrer" className="transition-transform duration-300 hover:-translate-y-1">
+                        <Logo />
+                    </Link>
                 </div>
                 <h3 className="text-xl font-headline font-semibold">Adbhut Travel</h3>
                 <p className="text-muted-foreground mt-2">Our flagship brand for crafting unforgettable domestic and international travel experiences.</p>
             </div>
             <div className="flex flex-col items-center">
                 <div className="mb-4 flex items-center justify-center h-16">
-                    <Link href="https://www.northcabs.in/" target="_blank" rel="noopener noreferrer">
+                    <Link href="https://www.northcabs.in/" target="_blank" rel="noopener noreferrer" className="transition-transform duration-300 hover:-translate-y-1">
                         <Image src="https://www.adbhuttravel.com/wp-content/uploads/2025/07/NorthCabs.png" alt="North Cab Logo" width={200} height={80} className="max-h-12 w-auto object-contain" />
                     </Link>
                 </div>
@@ -164,7 +166,7 @@ export default function AboutPage() {
             </div>
             <div className="flex flex-col items-center">
                 <div className="mb-4 flex items-center justify-center h-16">
-                    <Link href="https://visitkurukshetra.in/" target="_blank" rel="noopener noreferrer">
+                    <Link href="https://visitkurukshetra.in/" target="_blank" rel="noopener noreferrer" className="transition-transform duration-300 hover:-translate-y-1">
                         <Image src="https://www.adbhuttravel.com/wp-content/uploads/2024/06/Screenshot_2023-01-24_at_1.52.15_PM-removebg-preview.png" alt="Visit Kurukshetra Logo" width={250} height={80} className="max-h-12 w-auto object-contain" />
                     </Link>
                 </div>
