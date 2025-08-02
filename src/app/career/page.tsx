@@ -1,3 +1,4 @@
+
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Briefcase, MapPin } from "lucide-react";
@@ -12,21 +13,27 @@ export const metadata: Metadata = {
 const jobOpenings = [
   {
     title: "Senior Travel Consultant",
-    location: "Mumbai, India",
+    location: "Pehowa, India",
     type: "Full-time",
     description: "We are looking for an experienced travel consultant to create bespoke itineraries and manage client relationships. Must have 5+ years of experience."
   },
   {
     title: "Digital Marketing Manager",
-    location: "Remote",
+    location: "Pehowa, India",
     type: "Full-time",
     description: "Lead our digital marketing efforts, including SEO, SEM, and social media campaigns to grow our online presence."
   },
   {
     title: "Operations Executive",
-    location: "Jaipur, India",
+    location: "Pehowa, India",
     type: "Full-time",
     description: "Coordinate with suppliers, manage bookings, and ensure the smooth execution of all our travel packages."
+  },
+  {
+    title: "Sales Person",
+    location: "Pehowa, India",
+    type: "Full-time",
+    description: "We are seeking a motivated Sales Person to join our dynamic team. You will be responsible for selling travel packages and building strong customer relationships."
   }
 ];
 
