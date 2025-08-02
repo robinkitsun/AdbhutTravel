@@ -74,10 +74,10 @@ const strategicImages = [
 ];
 
 const incentiveImages = [
-    { src: "https://www.adbhuttravel.com/wp-content/uploads/2025/07/Mice-Incentices-2.png", alt: "Team celebrating success on a mountain top", dataAiHint: "team success" },
     { src: "https://www.adbhuttravel.com/wp-content/uploads/2025/08/Mice-g2.jpg", alt: "Group of colleagues on a travel incentive trip", dataAiHint: "team travel" },
     { src: "https://www.adbhuttravel.com/wp-content/uploads/2025/08/Mice-g3.jpg", alt: "Corporate group enjoying an outdoor activity", dataAiHint: "corporate activity" },
     { src: "https://www.adbhuttravel.com/wp-content/uploads/2025/08/Mice-g4.jpg", alt: "Team members collaborating during a workshop", dataAiHint: "team workshop" },
+    { src: "https://www.adbhuttravel.com/wp-content/uploads/2025/07/Mice-Incentices-2.png", alt: "Team celebrating success on a mountain top", dataAiHint: "team success" },
 ];
 
 
