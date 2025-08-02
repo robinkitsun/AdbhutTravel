@@ -1,4 +1,3 @@
-
 "use client";
 
 import React from "react";
@@ -13,24 +12,18 @@ import {
 } from "@/components/ui/carousel";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
-const logos = [
-  "https://www.adbhuttravel.com/wp-content/uploads/2025/07/TAAI-e1754152554284.png",
-  "https://www.adbhuttravel.com/wp-content/uploads/2025/07/TAFI-e1754152541312.png",
-  "https://www.adbhuttravel.com/wp-content/uploads/2025/07/IATA-e1754152528703.png",
-  "https://www.adbhuttravel.com/wp-content/uploads/2025/07/HARYANA-TOURISM-e1754152516429.png",
-  "https://www.adbhuttravel.com/wp-content/uploads/2025/07/OTOAI-e1754152503252.png",
-  "https://www.adbhuttravel.com/wp-content/uploads/2025/07/ADTOI-e1754152489812.png",
-  "https://www.adbhuttravel.com/wp-content/uploads/2025/07/ETAA-e1754152478531.png",
-  "https://www.adbhuttravel.com/wp-content/uploads/2025/07/MOT-e1754152464837.png",
+const images = [
+  "https://www.adbhuttravel.com/wp-content/uploads/2023/08/IMG-9291-scaled.jpg",
+  "https://www.adbhuttravel.com/wp-content/uploads/2023/08/IMG-9915-scaled.jpg"
 ];
 
-export default function ClientLogos() {
+export default function GroupImagesCarousel() {
   const plugin = React.useRef(
-    Autoplay({ delay: 2000, stopOnInteraction: true })
+    Autoplay({ delay: 3000, stopOnInteraction: true })
   );
 
   return (
-    <section className="py-8 bg-secondary/50">
+    <section className="py-12 bg-secondary/50">
       <div className="container">
         <Carousel
           plugins={[plugin.current]}
@@ -43,25 +36,25 @@ export default function ClientLogos() {
           }}
         >
           <CarouselContent className="-ml-8">
-            {logos.map((logoUrl, index) => (
+            {images.map((imageUrl, index) => (
               <CarouselItem
                 key={index}
-                className="pl-8 basis-1/2 md:basis-1/3 lg:basis-1/5"
+                className="pl-8 md:basis-1/2 lg:basis-1/3"
               >
-                <div className="p-1 flex items-center justify-center h-20">
+                <div className="p-1 flex items-center justify-center h-80 overflow-hidden rounded-lg shadow-lg">
                   <Image
-                    src={logoUrl}
-                    alt={`Client logo ${index + 1}`}
-                    width={150}
-                    height={80}
-                    className="object-contain h-full w-auto"
+                    src={imageUrl}
+                    alt={`Group tour image ${index + 1}`}
+                    width={600}
+                    height={400}
+                    className="object-cover h-full w-full transition-transform duration-500 hover:scale-110"
+                    data-ai-hint="group travel"
                   />
                 </div>
               </CarouselItem>
             ))}
           </CarouselContent>
           
-          {/* Custom Navigation Buttons */}
           <CarouselPrevious className="absolute left-[-1rem] top-1/2 -translate-y-1/2 z-10 size-10 rounded-full bg-background/50 hover:bg-background/80 shadow-md border-border border flex items-center justify-center group-hover:opacity-100 opacity-0 transition-opacity">
              <ChevronLeft className="size-6 text-foreground/70" />
           </CarouselPrevious>
