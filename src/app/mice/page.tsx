@@ -1,4 +1,6 @@
 
+"use client";
+
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
@@ -6,83 +8,87 @@ import { Presentation, Award, Users, Briefcase, Lightbulb, Map, Cog, Handshake, 
 import type { Metadata } from "next";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
-
-export const metadata: Metadata = {
-  title: "MICE & Corporate Travel",
-  description: "Elevate your corporate events with Adbhut Travel. We provide end-to-end solutions for Meetings, Incentives, Conferences, and Exhibitions (MICE), from strategic planning to flawless execution.",
-};
-
-const micePillars = [
-    {
-        icon: Users,
-        title: "Meetings",
-        description: "Targeted gatherings aimed at professional, academic, or special interest groups to facilitate discussion and collaboration."
-    },
-    {
-        icon: Award,
-        title: "Incentives",
-        description: "Reward and motivate your team with exceptionally planned travel programs that inspire performance and loyalty."
-    },
-    {
-        icon: Presentation,
-        title: "Conferences",
-        description: "Large-scale events focused on a specific theme or topic, bringing together experts and professionals to share knowledge."
-    },
-    {
-        icon: Briefcase,
-        title: "Exhibitions",
-        description: "Showcase your brand and products at trade fairs and exhibitions with our comprehensive logistical support."
-    }
-];
-
-const miceServices = [
-    {
-        icon: Handshake,
-        title: "Personalized Service",
-        description: "MICE events require unique solutions. We offer personalized services to ensure your event is strategized, organized, and implemented to perfection."
-    },
-    {
-        icon: Map,
-        title: "Extensive Global Network",
-        description: "Gain access to a vast range of hotels and services worldwide. We secure competitive rates without compromising on quality."
-    },
-    {
-        icon: CalendarDays,
-        title: "On-Site Management",
-        description: "Our dedicated client managers provide professional on-site management, handling every detail so you can focus on your objectives."
-    },
-    {
-        icon: Cog,
-        title: "Logistics Management",
-        description: "Let our experts manage the complexities of travel, accommodation, and event logistics for a seamless experience."
-    },
-    {
-        icon: Rocket,
-        title: "Team Building Activities",
-        description: "Enhance your event with creative outdoor and team-building activities designed to foster collaboration and break the ice."
-    },
-    {
-        icon: Lightbulb,
-        title: "Creative Event Theming",
-        description: "We design impressive and relevant themes for your meetings and events, backed by destination research to ensure you succeed."
-    }
-]
-
-const strategicImages = [
-    { src: "https://www.adbhuttravel.com/wp-content/uploads/2025/08/Mice-g5.jpg", alt: "Business meeting in a modern office", dataAiHint: "business meeting" },
-    { src: "https://www.adbhuttravel.com/wp-content/uploads/2025/08/Mice-g1.jpg", alt: "Corporate event presentation in a large hall", dataAiHint: "corporate presentation" },
-];
-
-const incentiveImages = [
-    { src: "https://www.adbhuttravel.com/wp-content/uploads/2025/08/Mice-g2.jpg", alt: "Group of colleagues on a travel incentive trip", dataAiHint: "team travel" },
-    { src: "https://www.adbhuttravel.com/wp-content/uploads/2025/08/Mice-g3.jpg", alt: "Corporate group enjoying an outdoor activity", dataAiHint: "corporate activity" },
-    { src: "https://www.adbhuttravel.com/wp-content/uploads/2025/08/Mice-g4.jpg", alt: "Team members collaborating during a workshop", dataAiHint: "team workshop" },
-    { src: "https://www.adbhuttravel.com/wp-content/uploads/2025/07/Mice-Incentices-2.png", alt: "Team celebrating success on a mountain top", dataAiHint: "team success" },
-    { src: "https://www.adbhuttravel.com/wp-content/uploads/2023/08/3ce2ac17-ec82-47eb-949f-4acbd0fa212b.jpg", alt: "Corporate group photo at an outdoor event", dataAiHint: "corporate group photo" },
-];
-
+import Autoplay from "embla-carousel-autoplay";
+import React from "react";
 
 export default function MicePage() {
+    const autoplayPlugin = React.useRef(Autoplay({ delay: 3000, stopOnInteraction: true }));
+    const autoplayPlugin2 = React.useRef(Autoplay({ delay: 3000, stopOnInteraction: true }));
+
+    const micePillars = [
+        {
+            icon: Users,
+            title: "Meetings",
+            description: "Targeted gatherings aimed at professional, academic, or special interest groups to facilitate discussion and collaboration."
+        },
+        {
+            icon: Award,
+            title: "Incentives",
+            description: "Reward and motivate your team with exceptionally planned travel programs that inspire performance and loyalty."
+        },
+        {
+            icon: Presentation,
+            title: "Conferences",
+            description: "Large-scale events focused on a specific theme or topic, bringing together experts and professionals to share knowledge."
+        },
+        {
+            icon: Briefcase,
+            title: "Exhibitions",
+            description: "Showcase your brand and products at trade fairs and exhibitions with our comprehensive logistical support."
+        }
+    ];
+
+    const miceServices = [
+        {
+            icon: Handshake,
+            title: "Personalized Service",
+            description: "MICE events require unique solutions. We offer personalized services to ensure your event is strategized, organized, and implemented to perfection."
+        },
+        {
+            icon: Map,
+            title: "Extensive Global Network",
+            description: "Gain access to a vast range of hotels and services worldwide. We secure competitive rates without compromising on quality."
+        },
+        {
+            icon: CalendarDays,
+            title: "On-Site Management",
+            description: "Our dedicated client managers provide professional on-site management, handling every detail so you can focus on your objectives."
+        },
+        {
+            icon: Cog,
+            title: "Logistics Management",
+            description: "Let our experts manage the complexities of travel, accommodation, and event logistics for a seamless experience."
+        },
+        {
+            icon: Rocket,
+            title: "Team Building Activities",
+            description: "Enhance your event with creative outdoor and team-building activities designed to foster collaboration and break the ice."
+        },
+        {
+            icon: Lightbulb,
+            title: "Creative Event Theming",
+            description: "We design impressive and relevant themes for your meetings and events, backed by destination research to ensure you succeed."
+        }
+    ]
+
+    const strategicImages = [
+        { src: "https://www.adbhuttravel.com/wp-content/uploads/2025/08/Mice-g5.jpg", alt: "Business meeting in a modern office", dataAiHint: "business meeting" },
+        { src: "https://www.adbhuttravel.com/wp-content/uploads/2025/08/Mice-g1.jpg", alt: "Corporate event presentation in a large hall", dataAiHint: "corporate presentation" },
+    ];
+
+    const incentiveImages = [
+        { src: "https://www.adbhuttravel.com/wp-content/uploads/2025/08/Mice-g2.jpg", alt: "Group of colleagues on a travel incentive trip", dataAiHint: "team travel" },
+        { src: "https://www.adbhuttravel.com/wp-content/uploads/2025/08/Mice-g3.jpg", alt: "Corporate group enjoying an outdoor activity", dataAiHint: "corporate activity" },
+        { src: "https://www.adbhuttravel.com/wp-content/uploads/2025/08/Mice-g4.jpg", alt: "Team members collaborating during a workshop", dataAiHint: "team workshop" },
+        { src: "https://www.adbhuttravel.com/wp-content/uploads/2025/07/Mice-Incentices-2.png", alt: "Team celebrating success on a mountain top", dataAiHint: "team success" },
+        { src: "https://www.adbhuttravel.com/wp-content/uploads/2023/08/3ce2ac17-ec82-47eb-949f-4acbd0fa212b.jpg", alt: "Corporate group photo at an outdoor event", dataAiHint: "corporate group photo" },
+    ];
+
+    const metadata: Metadata = {
+      title: "MICE & Corporate Travel",
+      description: "Elevate your corporate events with Adbhut Travel. We provide end-to-end solutions for Meetings, Incentives, Conferences, and Exhibitions (MICE), from strategic planning to flawless execution.",
+    };
+
   return (
     <>
       <section className="relative py-20 md:py-24 bg-secondary">
@@ -138,7 +144,13 @@ export default function MicePage() {
               </p>
             </div>
             <div className="rounded-lg overflow-hidden">
-               <Carousel className="w-full relative" opts={{ loop: true, align: "center", slidesToScroll: 1 }}>
+               <Carousel 
+                    plugins={[autoplayPlugin.current]}
+                    className="w-full relative"
+                    opts={{ loop: true, align: "center", slidesToScroll: 1 }}
+                    onMouseEnter={autoplayPlugin.current.stop}
+                    onMouseLeave={autoplayPlugin.current.reset}
+                >
                     <CarouselContent className="-ml-4 md:-ml-8">
                       {strategicImages.map((img, i) => (
                         <CarouselItem key={i} className="pl-4 md:pl-8 md:basis-10/12">
@@ -167,7 +179,13 @@ export default function MicePage() {
         <div className="container">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="rounded-lg overflow-hidden order-first md:order-last">
-              <Carousel className="w-full relative" opts={{ loop: true, align: "center", slidesToScroll: 1 }}>
+              <Carousel 
+                plugins={[autoplayPlugin2.current]}
+                className="w-full relative" 
+                opts={{ loop: true, align: "center", slidesToScroll: 1 }}
+                onMouseEnter={autoplayPlugin2.current.stop}
+                onMouseLeave={autoplayPlugin2.current.reset}
+              >
                     <CarouselContent className="-ml-4 md:-ml-8">
                       {incentiveImages.map((img, i) => (
                         <CarouselItem key={i} className="pl-4 md:pl-8 md:basis-10/12">
