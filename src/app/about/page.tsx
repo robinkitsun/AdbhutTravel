@@ -9,6 +9,7 @@ import { Award, Globe, HeartHandshake, CheckCircle2 } from "lucide-react";
 import { Logo } from "@/components/shared/Logo";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import Link from 'next/link';
+import Autoplay from 'embla-carousel-autoplay';
 
 const teamMembers = [
   { name: "Mr. Mohit Sharma", role: "Founder & CEO", image: "https://www.adbhuttravel.com/wp-content/uploads/2025/07/Mohit-Adbhut-Founder.jpeg", dataAiHint: "man portrait" },
@@ -35,6 +36,7 @@ const strengths = [
 ];
 
 export default function AboutPage() {
+  const autoplayPlugin = React.useRef(Autoplay({ delay: 4000, stopOnInteraction: true }));
   return (
     <>
       <section className="bg-secondary py-8 md:py-12">
@@ -114,8 +116,11 @@ export default function AboutPage() {
           <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl font-headline font-bold text-center mb-12">Discover Our Journey</h2>
              <Carousel
+                plugins={[autoplayPlugin.current]}
                 className="w-full relative"
                 opts={{ loop: true, align: "center", slidesToScroll: 1 }}
+                onMouseEnter={autoplayPlugin.current.stop}
+                onMouseLeave={autoplayPlugin.current.reset}
                 >
               <CarouselContent className="-ml-4 md:-ml-8">
                 {youtubeVideos.map(video => (
@@ -220,5 +225,3 @@ export default function AboutPage() {
     </>
   );
 }
-
-    
