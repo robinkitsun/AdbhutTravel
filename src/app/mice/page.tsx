@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Presentation, Award, Users, Briefcase, Lightbulb, Map, Cog, Handshake, CalendarDays, Rocket } from "lucide-react";
 import type { Metadata } from "next";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 
 export const metadata: Metadata = {
   title: "MICE & Corporate Travel",
@@ -67,6 +68,19 @@ const miceServices = [
     }
 ]
 
+const strategicImages = [
+    { src: "https://www.adbhuttravel.com/wp-content/uploads/2025/08/Mice-g1.jpg", alt: "Corporate event presentation in a large hall", dataAiHint: "corporate presentation" },
+    { src: "https://www.adbhuttravel.com/wp-content/uploads/2025/08/Mice-g5.jpg", alt: "Business meeting in a modern office", dataAiHint: "business meeting" },
+];
+
+const incentiveImages = [
+    { src: "https://www.adbhuttravel.com/wp-content/uploads/2025/07/Mice-Incentices-2.png", alt: "Team celebrating success on a mountain top", dataAiHint: "team success" },
+    { src: "https://www.adbhuttravel.com/wp-content/uploads/2025/08/Mice-g2.jpg", alt: "Group of colleagues on a travel incentive trip", dataAiHint: "team travel" },
+    { src: "https://www.adbhuttravel.com/wp-content/uploads/2025/08/Mice-g3.jpg", alt: "Corporate group enjoying an outdoor activity", dataAiHint: "corporate activity" },
+    { src: "https://www.adbhuttravel.com/wp-content/uploads/2025/08/Mice-g4.jpg", alt: "Team members collaborating during a workshop", dataAiHint: "team workshop" },
+];
+
+
 export default function MicePage() {
   return (
     <>
@@ -123,14 +137,24 @@ export default function MicePage() {
               </p>
             </div>
             <div className="rounded-lg overflow-hidden shadow-xl">
-              <Image
-                src="https://www.adbhuttravel.com/wp-content/uploads/2025/07/Mice-Incentices.jpeg"
-                alt="Corporate event presentation in a large hall"
-                width={600}
-                height={500}
-                className="w-full h-full object-cover"
-                data-ai-hint="conference room"
-              />
+               <Carousel className="w-full relative" opts={{ loop: true }}>
+                    <CarouselContent>
+                      {strategicImages.map((img, i) => (
+                        <CarouselItem key={i}>
+                          <Image
+                            src={img.src}
+                            alt={img.alt}
+                            width={600}
+                            height={500}
+                            className="w-full h-full max-h-[500px] object-cover transition-transform duration-300 hover:scale-105"
+                            data-ai-hint={img.dataAiHint}
+                          />
+                        </CarouselItem>
+                      ))}
+                    </CarouselContent>
+                    <CarouselPrevious className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 z-10 bg-white/50 hover:bg-white/80 text-foreground" />
+                    <CarouselNext className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 z-10 bg-white/50 hover:bg-white/80 text-foreground" />
+                  </Carousel>
             </div>
           </div>
         </div>
@@ -140,14 +164,24 @@ export default function MicePage() {
         <div className="container">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="rounded-lg overflow-hidden shadow-xl order-first md:order-last">
-              <Image
-                src="https://www.adbhuttravel.com/wp-content/uploads/2025/07/Mice-Incentices-2.png"
-                alt="Team celebrating success on a mountain top"
-                width={600}
-                height={500}
-                className="w-full h-full object-cover"
-                data-ai-hint="team success"
-              />
+              <Carousel className="w-full relative" opts={{ loop: true }}>
+                    <CarouselContent>
+                      {incentiveImages.map((img, i) => (
+                        <CarouselItem key={i}>
+                          <Image
+                            src={img.src}
+                            alt={img.alt}
+                            width={600}
+                            height={500}
+                            className="w-full h-full max-h-[500px] object-cover transition-transform duration-300 hover:scale-105"
+                            data-ai-hint={img.dataAiHint}
+                          />
+                        </CarouselItem>
+                      ))}
+                    </CarouselContent>
+                    <CarouselPrevious className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 z-10 bg-white/50 hover:bg-white/80 text-foreground" />
+                    <CarouselNext className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 z-10 bg-white/50 hover:bg-white/80 text-foreground" />
+                  </Carousel>
             </div>
              <div className="order-last md:order-first">
               <h2 className="text-3xl font-headline font-bold mb-4">Motivational Incentive Travel Programs</h2>

@@ -12,7 +12,7 @@ import Link from 'next/link';
 
 const teamMembers = [
   { name: "Mr. Mohit Sharma", role: "Founder & CEO", image: "https://www.adbhuttravel.com/wp-content/uploads/2025/07/Mohit-Adbhut-Founder.jpeg", dataAiHint: "man portrait" },
-  { name: "Mrs. Aditi Sharma", role: "Sales Director", image: "https://www.adbhuttravel.com/wp-content/uploads/2025/07/Mrs.-Aditi-Sharma-Sales-Director.png", dataAiHint: "woman portrait" },
+  { name: "Mrs. Aditi Sharma", role: "Sales Director", image: "https://www.adbhuttravel.com/wp-content/uploads/2025/08/Mrs.-Aditi-Sharma-e1754152464837.jpg", dataAiHint: "woman portrait" },
   { name: "Mr. Sachin", role: "Head of Operations", image: "https://www.adbhuttravel.com/wp-content/uploads/2025/07/Sachin-OPS-Manager-Adbhut-Travel-Event-Pvt.-Ltd.png", dataAiHint: "man portrait" },
   { name: "Mr. Ankit", role: "Business Development Manager (BDM)", image: "", dataAiHint: "man portrait" },
 ];
