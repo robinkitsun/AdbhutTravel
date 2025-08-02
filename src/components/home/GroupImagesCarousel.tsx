@@ -1,7 +1,7 @@
 
 "use client";
 
-import React from "react";
+import React, { useRef, useEffect, useState } from "react";
 import Image from "next/image";
 import Autoplay from "embla-carousel-autoplay";
 import {
@@ -25,17 +25,46 @@ const images = [
 ];
 
 export default function GroupImagesCarousel() {
-  const plugin = React.useRef(
-    Autoplay({ delay: 3000, stopOnInteraction: true })
+  const autoplayPlugin = React.useRef(
+    Autoplay({ delay: 3000, stopOnInteraction: true, stopOnFocusIn: true })
   );
+  const carouselRef = useRef<HTMLDivElement>(null);
+  const [isCarouselVisible, setIsCarouselVisible] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setIsCarouselVisible(true);
+            autoplayPlugin.current.play();
+          } else {
+            autoplayPlugin.current.stop();
+          }
+        });
+      },
+      { threshold: 0.5 } // Trigger when 50% of the element is visible
+    );
+
+    if (carouselRef.current) {
+      observer.observe(carouselRef.current);
+    }
+
+    return () => {
+      if (carouselRef.current) {
+        observer.unobserve(carouselRef.current);
+      }
+    };
+  }, []);
+
 
   return (
     <section className="py-12 bg-secondary/50">
-      <div className="container">
+      <div className="container" ref={carouselRef}>
         <Carousel
-          plugins={[plugin.current]}
-          onMouseEnter={plugin.current.stop}
-          onMouseLeave={plugin.current.reset}
+          plugins={isCarouselVisible ? [autoplayPlugin.current] : []}
+          onMouseEnter={autoplayPlugin.current.stop}
+          onMouseLeave={autoplayPlugin.current.play}
           className="w-full relative"
           opts={{
             align: "start",

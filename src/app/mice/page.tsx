@@ -9,11 +9,51 @@ import type { Metadata } from "next";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
-import React from "react";
+import React, { useRef, useEffect, useState } from "react";
 
 export default function MicePage() {
-    const autoplayPlugin = React.useRef(Autoplay({ delay: 3000, stopOnInteraction: true }));
-    const autoplayPlugin2 = React.useRef(Autoplay({ delay: 3000, stopOnInteraction: true }));
+    const autoplayPlugin = React.useRef(Autoplay({ delay: 3000, stopOnInteraction: true, stopOnFocusIn: true }));
+    const autoplayPlugin2 = React.useRef(Autoplay({ delay: 3000, stopOnInteraction: true, stopOnFocusIn: true }));
+    
+    const carousel1Ref = useRef<HTMLDivElement>(null);
+    const carousel2Ref = useRef<HTMLDivElement>(null);
+
+    const [isCarousel1Visible, setIsCarousel1Visible] = useState(false);
+    const [isCarousel2Visible, setIsCarousel2Visible] = useState(false);
+    
+    useEffect(() => {
+        const observerOptions = { threshold: 0.5 };
+
+        const observer1 = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    setIsCarousel1Visible(true);
+                    autoplayPlugin.current.play();
+                } else {
+                    autoplayPlugin.current.stop();
+                }
+            });
+        }, observerOptions);
+
+        const observer2 = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    setIsCarousel2Visible(true);
+                    autoplayPlugin2.current.play();
+                } else {
+                    autoplayPlugin2.current.stop();
+                }
+            });
+        }, observerOptions);
+
+        if (carousel1Ref.current) observer1.observe(carousel1Ref.current);
+        if (carousel2Ref.current) observer2.observe(carousel2Ref.current);
+
+        return () => {
+            if (carousel1Ref.current) observer1.unobserve(carousel1Ref.current);
+            if (carousel2Ref.current) observer2.unobserve(carousel2Ref.current);
+        };
+    }, []);
 
     const micePillars = [
         {
@@ -143,13 +183,13 @@ export default function MicePage() {
                 We offer our services across the world, from international trade fairs to conferences in the heart of India. Our vast network provides access to diverse venues and creative ideas, ensuring your meetings and conferences are both successful and memorable.
               </p>
             </div>
-            <div className="rounded-lg overflow-hidden">
+            <div className="rounded-lg overflow-hidden" ref={carousel1Ref}>
                <Carousel 
-                    plugins={[autoplayPlugin.current]}
+                    plugins={isCarousel1Visible ? [autoplayPlugin.current] : []}
                     className="w-full relative"
                     opts={{ loop: true, align: "center", slidesToScroll: 1 }}
                     onMouseEnter={autoplayPlugin.current.stop}
-                    onMouseLeave={autoplayPlugin.current.reset}
+                    onMouseLeave={autoplayPlugin.current.play}
                 >
                     <CarouselContent className="-ml-4 md:-ml-8">
                       {strategicImages.map((img, i) => (
@@ -178,13 +218,13 @@ export default function MicePage() {
       <section className="py-12 md:py-16">
         <div className="container">
           <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div className="rounded-lg overflow-hidden order-first md:order-last">
+            <div className="rounded-lg overflow-hidden order-first md:order-last" ref={carousel2Ref}>
               <Carousel 
-                plugins={[autoplayPlugin2.current]}
+                plugins={isCarousel2Visible ? [autoplayPlugin2.current] : []}
                 className="w-full relative" 
                 opts={{ loop: true, align: "center", slidesToScroll: 1 }}
                 onMouseEnter={autoplayPlugin2.current.stop}
-                onMouseLeave={autoplayPlugin2.current.reset}
+                onMouseLeave={autoplayPlugin2.current.play}
               >
                     <CarouselContent className="-ml-4 md:-ml-8">
                       {incentiveImages.map((img, i) => (

@@ -1,7 +1,7 @@
 
 "use client";
 
-import React, { useRef } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import Image from "next/image";
 import { Card, CardContent } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -36,7 +36,36 @@ const strengths = [
 ];
 
 export default function AboutPage() {
-  const autoplayPlugin = React.useRef(Autoplay({ delay: 4000, stopOnInteraction: true }));
+  const autoplayPlugin = React.useRef(Autoplay({ delay: 4000, stopOnInteraction: true, stopOnFocusIn: true }));
+  const carouselRef = useRef<HTMLDivElement>(null);
+  const [isCarouselVisible, setIsCarouselVisible] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setIsCarouselVisible(true);
+            autoplayPlugin.current.play();
+          } else {
+            autoplayPlugin.current.stop();
+          }
+        });
+      },
+      { threshold: 0.5 }
+    );
+
+    if (carouselRef.current) {
+      observer.observe(carouselRef.current);
+    }
+
+    return () => {
+      if (carouselRef.current) {
+        observer.unobserve(carouselRef.current);
+      }
+    };
+  }, []);
+
   return (
     <>
       <section className="bg-secondary py-8 md:py-12">
@@ -113,14 +142,14 @@ export default function AboutPage() {
 
       <section className="py-12 md:py-16">
         <div className="container">
-          <div className="max-w-4xl mx-auto">
+          <div className="max-w-4xl mx-auto" ref={carouselRef}>
             <h2 className="text-3xl font-headline font-bold text-center mb-12">Discover Our Journey</h2>
              <Carousel
-                plugins={[autoplayPlugin.current]}
+                plugins={isCarouselVisible ? [autoplayPlugin.current] : []}
                 className="w-full relative"
                 opts={{ loop: true, align: "center", slidesToScroll: 1 }}
                 onMouseEnter={autoplayPlugin.current.stop}
-                onMouseLeave={autoplayPlugin.current.reset}
+                onMouseLeave={autoplayPlugin.current.play}
                 >
               <CarouselContent className="-ml-4 md:-ml-8">
                 {youtubeVideos.map(video => (
