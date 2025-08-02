@@ -1,3 +1,4 @@
+
 "use client";
 
 import React from "react";
@@ -14,7 +15,11 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const images = [
   "https://www.adbhuttravel.com/wp-content/uploads/2023/08/IMG-9291-scaled.jpg",
-  "https://www.adbhuttravel.com/wp-content/uploads/2023/08/IMG-9915-scaled.jpg"
+  "https://www.adbhuttravel.com/wp-content/uploads/2023/08/IMG-9915-scaled.jpg",
+  "https://www.adbhuttravel.com/wp-content/uploads/2023/08/3ce2ac17-ec82-47eb-949f-4acbd0fa212b.jpg",
+  "https://www.adbhuttravel.com/wp-content/uploads/2023/08/a80b49d0-a460-4f9f-821d-5f4addf4beca.jpg",
+  "https://www.adbhuttravel.com/wp-content/uploads/2023/08/52738303_542253809601039_5092883468392595456_n.jpg",
+  "https://www.adbhuttravel.com/wp-content/uploads/2023/08/PHOTO-2020-07-23-14-27-13-3.jpg",
 ];
 
 export default function GroupImagesCarousel() {
