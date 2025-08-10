@@ -66,7 +66,7 @@ export default function MiceContactForm() {
         <div className="text-center mb-8">
             <h2 className="text-3xl font-headline font-bold text-gray-800">Get in touch</h2>
             <p className="text-muted-foreground mt-2">
-                or write to us at <Link href="mailto:mice@adbhuttravel.com" className="text-accent font-semibold hover:underline">mice@adbhuttravel.com</Link>
+                or write to us at <Link href="mailto:mice@adbhuttravel.com?subject=Travel%20MICE%20Event" className="text-accent font-semibold hover:underline">mice@adbhuttravel.com</Link>
             </p>
         </div>
         <Form {...form}>
@@ -299,3 +299,5 @@ export default function MiceContactForm() {
     </div>
   );
 }
+
+    
