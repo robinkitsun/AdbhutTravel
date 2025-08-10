@@ -102,38 +102,8 @@ const faqItems = [
 
 
 export default function MicePage() {
-    const autoplayPlugin = React.useRef(Autoplay({ delay: 3000, stopOnInteraction: true, stopOnFocusIn: true, playOnInit: false }));
-    const carouselRef = useRef<HTMLDivElement>(null);
-    const [api, setApi] = useState<CarouselApi>()
-
-    useEffect(() => {
-        if (!api) return;
-
-        const observer = new IntersectionObserver(
-          (entries) => {
-            entries.forEach((entry) => {
-              if (entry.isIntersecting) {
-                api.plugins().autoplay?.play();
-              } else {
-                 api.plugins().autoplay?.stop();
-              }
-            });
-          },
-          { threshold: 0.5 }
-        );
+    const autoplayPlugin = React.useRef(Autoplay({ delay: 3000, stopOnInteraction: true, stopOnFocusIn: true }));
     
-        const currentRef = carouselRef.current;
-        if (currentRef) {
-          observer.observe(currentRef);
-        }
-    
-        return () => {
-          if (currentRef) {
-            observer.unobserve(currentRef);
-          }
-        };
-      }, [api]);
-
   return (
     <div className="bg-background">
       {/* Hero Section */}
@@ -223,9 +193,8 @@ export default function MicePage() {
                 ))}
               </ul>
             </div>
-             <div className="relative h-80 rounded-lg" ref={carouselRef}>
+             <div className="relative h-80 rounded-lg">
                <Carousel
-                    setApi={setApi}
                     plugins={[autoplayPlugin.current]}
                     className="w-full h-full"
                     opts={{ loop: true, align: "center" }}
