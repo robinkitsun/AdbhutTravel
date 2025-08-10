@@ -19,9 +19,9 @@ const images = [
   "https://www.adbhuttravel.com/wp-content/uploads/2023/08/IMG-9915-scaled.jpg",
   "https://www.adbhuttravel.com/wp-content/uploads/2023/08/3ce2ac17-ec82-47eb-949f-4acbd0fa212b.jpg",
   "https://www.adbhuttravel.com/wp-content/uploads/2023/08/a80b49d0-a460-4f9f-821d-5f4addf4beca.jpg",
+  "https://www.adbhuttravel.com/wp-content/uploads/2025/08/Mice-g4.jpg",
   "https://www.adbhuttravel.com/wp-content/uploads/2023/08/52738303_542253809601039_5092883468392595456_n.jpg",
   "https://www.adbhuttravel.com/wp-content/uploads/2023/08/PHOTO-2020-07-23-14-27-13-3.jpg",
-  "https://www.adbhuttravel.com/wp-content/uploads/2025/08/Mice-g4.jpg",
 ];
 
 export default function GroupImagesCarousel() {
@@ -87,10 +87,10 @@ export default function GroupImagesCarousel() {
             ))}
           </CarouselContent>
           
-          <CarouselPrevious className="absolute left-[-1rem] top-1/2 -translate-y-1/2 z-10 size-10 rounded-full bg-background/50 hover:bg-background/80 shadow-md border-border border flex items-center justify-center group-hover:opacity-100 opacity-0 transition-opacity">
+          <CarouselPrevious className="absolute left-[-1rem] top-1/2 -translate-y-1/2 z-10 size-10 md:size-12 rounded-full bg-background/70 hover:bg-background/90 shadow-lg border">
              <ChevronLeft className="size-6 text-foreground/70" />
           </CarouselPrevious>
-           <CarouselNext className="absolute right-[-1rem] top-1/2 -translate-y-1/2 z-10 size-10 rounded-full bg-background/50 hover:bg-background/80 shadow-md border-border border flex items-center justify-center group-hover:opacity-100 opacity-0 transition-opacity">
+           <CarouselNext className="absolute right-[-1rem] top-1/2 -translate-y-1/2 z-10 size-10 md:size-12 rounded-full bg-background/70 hover:bg-background/90 shadow-lg border">
             <ChevronRight className="size-6 text-foreground/70" />
           </CarouselNext>
         </Carousel>

@@ -162,8 +162,8 @@ export default function AboutPage() {
                   </CarouselItem>
                 ))}
               </CarouselContent>
-               <CarouselPrevious className="absolute left-0 top-1/2 -translate-y-1/2 z-10 size-8 md:size-10 bg-white/60 hover:bg-white/90 text-foreground animate-pulse [animation-duration:5s] hover:animate-none" />
-               <CarouselNext className="absolute right-0 top-1/2 -translate-y-1/2 z-10 size-8 md:size-10 bg-white/60 hover:bg-white/90 text-foreground animate-pulse [animation-duration:5s] hover:animate-none" />
+               <CarouselPrevious className="absolute left-0 top-1/2 -translate-y-1/2 z-10 size-10 md:size-12 rounded-full bg-background/70 hover:bg-background/90 shadow-lg border" />
+               <CarouselNext className="absolute right-0 top-1/2 -translate-y-1/2 z-10 size-10 md:size-12 rounded-full bg-background/70 hover:bg-background/90 shadow-lg border" />
             </Carousel>
           </div>
         </div>
