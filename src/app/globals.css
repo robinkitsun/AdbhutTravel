@@ -92,6 +92,14 @@ body {
     transform: scaleX(1);
     transform-origin: right;
   }
+  
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  .animate-marquee-infinite {
+    animation: marquee 30s linear infinite;
+  }
 }
 
 .custom-cursor-follower {
