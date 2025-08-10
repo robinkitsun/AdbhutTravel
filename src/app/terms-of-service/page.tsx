@@ -74,12 +74,11 @@ export default function TermsOfServicePage() {
     return (
         <div className="container py-12 md:py-16">
             <div className="max-w-4xl mx-auto">
-                <div className="flex justify-end mb-8">
-                    <Logo />
-                </div>
-
                 <Form {...form}>
                     <form onSubmit={form.handleSubmit(onSubmit)} className="border p-4 sm:p-6 md:p-8 space-y-6 bg-card text-card-foreground shadow-lg rounded-lg">
+                        <div className="flex justify-end mb-8">
+                            <Logo />
+                        </div>
                         <Section>
                             <p className="text-center text-muted-foreground text-sm md:text-base">
                                 By "Adbhut Travel And Event Pvt Ltd" before giving you our service, we have some terms and conditions, you are requested to read them carefully and if you accept these terms and conditions, only then we will be able to serve you.
@@ -131,7 +130,7 @@ export default function TermsOfServicePage() {
                                     render={({ field }) => (
                                         <FormItem>
                                             <FormLabel>If for Someone else, What is your relationship with traveler?</FormLabel>
-                                            <FormControl><Input placeholder="e.g., Spouse, Friend" {...field} /></FormControl>
+                                            <FormControl><Input placeholder="e.g., Spouse, Friend" {...field} className="border-border" /></FormControl>
                                             <FormMessage />
                                         </FormItem>
                                     )}
@@ -168,7 +167,7 @@ export default function TermsOfServicePage() {
                                     render={({ field }) => (
                                         <FormItem>
                                             <FormLabel>If Yes, Please explain</FormLabel>
-                                            <FormControl><Textarea placeholder="Please provide details of the legal case." {...field} /></FormControl>
+                                            <FormControl><Textarea placeholder="Please provide details of the legal case." {...field} className="border-border" /></FormControl>
                                             <FormMessage />
                                         </FormItem>
                                     )}
@@ -235,9 +234,9 @@ export default function TermsOfServicePage() {
                         <div className="border rounded-lg text-sm md:text-base">
                             <h2 className="text-base md:text-lg font-bold p-3 bg-gray-100 text-center">Details of the traveler who will travel (यात्रा करने वाले यात्री का विवरण)</h2>
                             <div className="p-4 space-y-4">
-                                <FormField control={form.control} name="passengerDetails" render={({ field }) => (<FormItem><FormLabel>Passenger and passport details (यात्री का विवरण और पासपोर्ट डिटेल)</FormLabel><FormControl><Textarea {...field} /></FormControl><FormMessage /></FormItem>)} />
-                                <FormField control={form.control} name="travelServiceDescription" render={({ field }) => (<FormItem><FormLabel>Description of travel service (ट्रैवल सर्विस इसका विवरण)</FormLabel><FormControl><Textarea {...field} /></FormControl><FormMessage /></FormItem>)} />
-                                <FormField control={form.control} name="totalFee" render={({ field }) => (<FormItem><FormLabel>Total fee per person including service charge (in Indian Rupees) (सेवा शुल्क सहित कुल प्रति व्यक्ति शुल्क (भारतीय रुपये में))</FormLabel><FormControl><Input {...field} /></FormControl><FormMessage /></FormItem>)} />
+                                <FormField control={form.control} name="passengerDetails" render={({ field }) => (<FormItem><FormLabel>Passenger and passport details (यात्री का विवरण और पासपोर्ट डिटेल)</FormLabel><FormControl><Textarea {...field} className="border-border" /></FormControl><FormMessage /></FormItem>)} />
+                                <FormField control={form.control} name="travelServiceDescription" render={({ field }) => (<FormItem><FormLabel>Description of travel service (ट्रैवल सर्विस इसका विवरण)</FormLabel><FormControl><Textarea {...field} className="border-border" /></FormControl><FormMessage /></FormItem>)} />
+                                <FormField control={form.control} name="totalFee" render={({ field }) => (<FormItem><FormLabel>Total fee per person including service charge (in Indian Rupees) (सेवा शुल्क सहित कुल प्रति व्यक्ति शुल्क (भारतीय रुपये में))</FormLabel><FormControl><Input {...field} className="border-border" /></FormControl><FormMessage /></FormItem>)} />
                             </div>
                         </div>
 
@@ -264,17 +263,17 @@ export default function TermsOfServicePage() {
 
                         <div className="border rounded-lg p-4 space-y-4">
                              <div className="grid md:grid-cols-2 gap-4">
-                                <FormField control={form.control} name="name" render={({ field }) => (<FormItem><FormLabel>Name</FormLabel><FormControl><Input placeholder="Full Name" {...field} /></FormControl><FormMessage /></FormItem>)} />
-                                <FormField control={form.control} name="email" render={({ field }) => (<FormItem><FormLabel>Email for Confirmation</FormLabel><FormControl><Input type="email" placeholder="email@example.com" {...field} /></FormControl><FormMessage /></FormItem>)} />
+                                <FormField control={form.control} name="name" render={({ field }) => (<FormItem><FormLabel>Name</FormLabel><FormControl><Input placeholder="Full Name" {...field} className="border-border" /></FormControl><FormMessage /></FormItem>)} />
+                                <FormField control={form.control} name="email" render={({ field }) => (<FormItem><FormLabel>Email for Confirmation</FormLabel><FormControl><Input type="email" placeholder="email@example.com" {...field} className="border-border" /></FormControl><FormMessage /></FormItem>)} />
                              </div>
                              <div className="grid md:grid-cols-2 gap-4">
-                                <FormField control={form.control} name="mobile" render={({ field }) => (<FormItem><FormLabel>Mobile Number</FormLabel><FormControl><Input placeholder="Mobile Number" {...field} /></FormControl><FormMessage /></FormItem>)} />
-                                <FormField control={form.control} name="idNumber" render={({ field }) => (<FormItem><FormLabel>Aadhar Card Number / Any other Govt Id</FormLabel><FormControl><Input placeholder="ID Number" {...field} /></FormControl><FormMessage /></FormItem>)} />
+                                <FormField control={form.control} name="mobile" render={({ field }) => (<FormItem><FormLabel>Mobile Number</FormLabel><FormControl><Input placeholder="Mobile Number" {...field} className="border-border" /></FormControl><FormMessage /></FormItem>)} />
+                                <FormField control={form.control} name="idNumber" render={({ field }) => (<FormItem><FormLabel>Aadhar Card Number / Any other Govt Id</FormLabel><FormControl><Input placeholder="ID Number" {...field} className="border-border" /></FormControl><FormMessage /></FormItem>)} />
                              </div>
-                            <FormField control={form.control} name="address" render={({ field }) => (<FormItem><FormLabel>Current Address</FormLabel><FormControl><Textarea placeholder="Full Address" {...field} /></FormControl><FormMessage /></FormItem>)} />
+                            <FormField control={form.control} name="address" render={({ field }) => (<FormItem><FormLabel>Current Address</FormLabel><FormControl><Textarea placeholder="Full Address" {...field} className="border-border" /></FormControl><FormMessage /></FormItem>)} />
                             <div className="grid md:grid-cols-3 gap-4 pt-4">
-                               <FormField control={form.control} name="signature" render={({ field }) => (<FormItem><FormLabel>Signature (Please type your full name)</FormLabel><FormControl><Input placeholder="Signature" {...field} /></FormControl><FormMessage /></FormItem>)} />
-                               <FormField control={form.control} name="place" render={({ field }) => (<FormItem><FormLabel>Place</FormLabel><FormControl><Input placeholder="Place" {...field} /></FormControl><FormMessage /></FormItem>)} />
+                               <FormField control={form.control} name="signature" render={({ field }) => (<FormItem><FormLabel>Signature (Please type your full name)</FormLabel><FormControl><Input placeholder="Signature" {...field} className="border-border" /></FormControl><FormMessage /></FormItem>)} />
+                               <FormField control={form.control} name="place" render={({ field }) => (<FormItem><FormLabel>Place</FormLabel><FormControl><Input placeholder="Place" {...field} className="border-border" /></FormControl><FormMessage /></FormItem>)} />
                                <FormField
                                   control={form.control}
                                   name="date"
@@ -303,7 +302,7 @@ export default function TermsOfServicePage() {
                             {formStatus.message && (
                                 <div className={cn("p-3 rounded-md text-center mb-4", formStatus.success ? "bg-green-100 text-green-700" : "bg-destructive/20 text-destructive")}>
                                     {formStatus.message}
-                                ...</div>
+                                </div>
                             )}
                             <Button type="submit" className="w-full text-lg" size="lg" disabled={isSubmitting}>
                                 {isSubmitting ? <><Loader2 className="mr-2 h-5 w-5 animate-spin" /> Submitting...</> : "Agree & Submit"}
