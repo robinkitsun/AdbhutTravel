@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState } from "react";
@@ -10,7 +11,8 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent } from "@/components/ui/card";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
-import { contactFormSchema, submitContactForm } from "@/lib/actions";
+import { submitContactForm } from "@/lib/actions";
+import { contactFormSchema } from "@/lib/schemas";
 import { Loader2, CheckCircle } from "lucide-react";
 
 type ContactFormData = z.infer<typeof contactFormSchema>;
