@@ -28,7 +28,7 @@ export async function submitContactForm(
     const resend = new Resend(process.env.RESEND_API_KEY);
     await resend.emails.send({
       from: 'onboarding@resend.dev',
-      to: 'info@adbhuttravel.in',
+      to: 'ankitsundriyal0@gmail.com',
       reply_to: email,
       subject: `New Contact Form Submission: ${subject}`,
       html: `<p>You have a new message from <strong>${name}</strong> (${email}):</p><p>${message}</p>`,
@@ -84,7 +84,7 @@ export async function submitMiceForm(
 
     await resend.emails.send({
       from: 'onboarding@resend.dev',
-      to: 'info@adbhuttravel.in',
+      to: 'ankitsundriyal0@gmail.com',
       reply_to: data.email,
       subject: 'New MICE Corporate Travel Inquiry',
       html: formDetailsHtml,
@@ -150,7 +150,7 @@ export async function submitTailoredTripForm(
         await resend.emails.send({
             from: 'onboarding@resend.dev',
             to: email,
-            cc: 'info@adbhuttravel.in',
+            cc: 'ankitsundriyal0@gmail.com',
             subject: 'Your Adbhut Travel Custom Trip Request',
             html: `
               <h1>Thank You for Your Custom Trip Request!</h1>
@@ -168,7 +168,7 @@ export async function submitTailoredTripForm(
          // Send notification to the admin if no customer email
         await resend.emails.send({
           from: 'onboarding@resend.dev',
-          to: 'info@adbhuttravel.in',
+          to: 'ankitsundriyal0@gmail.com',
           subject: 'New Custom Trip Request (No Customer Email)',
           html: `
             <h1>New Custom Trip Request</h1>
