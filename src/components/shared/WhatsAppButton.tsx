@@ -25,24 +25,21 @@ export function WhatsAppButton() {
             </button>
         </div>
        )}
-        <Button
-          asChild
-          size="icon"
-          className={cn(
-            "h-14 w-14 rounded-full shadow-lg bg-[#25D366] hover:bg-[#128C7E] text-white transition-all duration-300 hover:scale-110",
-            showPrompt ? 'animate-in zoom-in-50 slide-in-from-bottom-2' : ''
-          )}
-          aria-label="Chat on WhatsApp"
+        <Link 
+            href="https://wa.me/919802125147" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className="transition-transform duration-300 hover:scale-110"
+            aria-label="Chat on WhatsApp"
         >
-          <Link href="https://wa.me/919802125147" target="_blank" rel="noopener noreferrer">
-             <Image
-                src="/whatsapp-icon.svg"
-                alt="WhatsApp Icon"
-                width={52}
-                height={52}
-             />
-          </Link>
-        </Button>
+            <Image
+            src="/whatsapp-icon.svg"
+            alt="WhatsApp Icon"
+            width={64}
+            height={64}
+            className="drop-shadow-lg"
+            />
+        </Link>
     </div>
   );
 }
