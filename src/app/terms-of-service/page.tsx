@@ -117,7 +117,7 @@ export default function TermsOfServicePage() {
                                         value={field.value}
                                         className="flex flex-col space-y-2"
                                     >
-                                        <FormItem className="flex items-center space-x-3 space-y-0">
+                                        <FormItem>
                                             <Label className="flex items-center space-x-3 space-y-0 p-2 border rounded-md hover:bg-muted/50 cursor-pointer w-full">
                                                 <FormControl>
                                                     <RadioGroupItem value="self" />
@@ -125,7 +125,7 @@ export default function TermsOfServicePage() {
                                                 <span className="font-normal">For Myself (मेरे लिए)</span>
                                             </Label>
                                         </FormItem>
-                                        <FormItem className="flex items-center space-x-3 space-y-0">
+                                        <FormItem>
                                              <Label className="flex items-center space-x-3 space-y-0 p-2 border rounded-md hover:bg-muted/50 cursor-pointer w-full">
                                                 <FormControl>
                                                     <RadioGroupItem value="other" />
@@ -166,7 +166,7 @@ export default function TermsOfServicePage() {
                                         value={field.value}
                                         className="flex flex-col space-y-2"
                                     >
-                                        <FormItem className="flex items-center space-x-3 space-y-0">
+                                        <FormItem>
                                             <Label className="flex items-center space-x-3 space-y-0 p-2 border rounded-md hover:bg-muted/50 cursor-pointer w-full">
                                                 <FormControl>
                                                     <RadioGroupItem value="no" />
@@ -174,7 +174,7 @@ export default function TermsOfServicePage() {
                                                 <span className="font-normal">No (नहीं)</span>
                                             </Label>
                                         </FormItem>
-                                        <FormItem className="flex items-center space-x-3 space-y-0">
+                                        <FormItem>
                                             <Label className="flex items-center space-x-3 space-y-0 p-2 border rounded-md hover:bg-muted/50 cursor-pointer w-full">
                                                 <FormControl>
                                                     <RadioGroupItem value="yes" />
@@ -217,7 +217,7 @@ export default function TermsOfServicePage() {
                                         value={field.value}
                                         className="flex flex-col space-y-2"
                                     >
-                                        <FormItem className="flex items-center space-x-3 space-y-0">
+                                        <FormItem>
                                             <Label className="flex items-center space-x-3 space-y-0 p-2 border rounded-md hover:bg-muted/50 cursor-pointer w-full">
                                                 <FormControl>
                                                     <RadioGroupItem value="yes" />
@@ -225,7 +225,7 @@ export default function TermsOfServicePage() {
                                                 <span className="font-normal">Yes (हाँ)</span>
                                             </Label>
                                         </FormItem>
-                                        <FormItem className="flex items-center space-x-3 space-y-0">
+                                        <FormItem>
                                              <Label className="flex items-center space-x-3 space-y-0 p-2 border rounded-md hover:bg-muted/50 cursor-pointer w-full">
                                                 <FormControl>
                                                     <RadioGroupItem value="no" />
@@ -259,7 +259,7 @@ export default function TermsOfServicePage() {
                                         value={field.value}
                                         className="flex flex-col space-y-2"
                                     >
-                                        <FormItem className="flex items-center space-x-3 space-y-0">
+                                        <FormItem>
                                             <Label className="flex items-center space-x-3 space-y-0 p-2 border rounded-md hover:bg-muted/50 cursor-pointer w-full">
                                                 <FormControl>
                                                     <RadioGroupItem value="no" />
@@ -267,7 +267,7 @@ export default function TermsOfServicePage() {
                                                 <span className="font-normal">No (नहीं)</span>
                                             </Label>
                                         </FormItem>
-                                        <FormItem className="flex items-center space-x-3 space-y-0">
+                                        <FormItem>
                                             <Label className="flex items-center space-x-3 space-y-0 p-2 border rounded-md hover:bg-muted/50 cursor-pointer w-full">
                                                 <FormControl>
                                                     <RadioGroupItem value="yes" />
@@ -367,5 +367,4 @@ export default function TermsOfServicePage() {
             </div>
         </div>
     );
-
-    
+}
