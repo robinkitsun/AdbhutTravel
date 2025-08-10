@@ -8,18 +8,15 @@ import { X } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const WhatsAppIcon = (props: React.SVGProps<SVGSVGElement>) => (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 24 24"
-      fill="currentColor"
-      aria-hidden="true"
-      role="img"
-      focusable="false"
-      {...props}
+    <svg 
+        viewBox="0 0 24 24" 
+        fill="currentColor" 
+        aria-hidden="true" 
+        role="img" 
+        focusable="false" 
+        {...props}
     >
-        <path
-          d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.98 2.7 15.95 3.71 17.61L2.5 21.5L6.54 20.32C8.11 21.25 9.97 21.82 12.04 21.82H12.05C17.5 21.82 21.95 17.37 21.96 11.91C21.96 9.22 20.87 6.7 18.99 4.82C17.11 2.94 14.6 2 12.04 2ZM9.83 7.3C10.02 7.3 10.2 7.3 10.33 7.3C10.53 7.3 10.74 7.33 10.88 7.82C11.02 8.31 11.53 9.71 11.61 9.86C11.69 10 11.65 10.19 11.53 10.3C11.41 10.41 11.33 10.5 11.19 10.65C11.05 10.79 10.92 10.97 10.78 11.12C10.64 11.27 10.45 11.47 10.67 11.86C10.89 12.25 11.49 13.2 12.35 14.01C13.43 14.99 14.34 15.33 14.73 15.51C14.92 15.6 15.14 15.56 15.29 15.4C15.44 15.24 16.03 14.61 16.27 14.32C16.51 14.03 16.76 13.98 17 13.98C17.24 13.98 18.53 14.65 18.82 14.79C19.11 14.93 19.35 15.03 19.4 15.17C19.45 15.31 19.45 15.9 19.21 16.19C18.97 16.48 18.15 17.11 17.5 17.57C16.85 18.03 15.99 18.25 15.35 18.25C14.71 18.25 13.88 18.11 12.63 17.55C11.06 16.85 9.79 15.82 8.71 14.6C7.62 13.37 6.89 11.89 6.81 11.8C6.73 11.71 5.96 10.65 5.96 9.53C5.96 8.41 6.64 7.78 6.88 7.54C7.12 7.3 7.42 7.3 7.64 7.3H8.01C8.23 7.3 8.42 7.3 8.57 7.3L8.76 7.3H8.97C9.18 7.3 9.38 7.3 9.57 7.3H9.83Z"
-        />
+        <path d="M16.75,13.96C17,13.96,18.29,14.64,18.58,14.78C18.87,14.92,19.1,15.02,19.16,15.16C19.22,15.3,19.22,15.89,18.98,16.18C18.74,16.47,17.92,17.1,17.27,17.56C16.62,18.02,15.76,18.24,15.12,18.24C14.48,18.24,13.65,18.1,12.4,17.54C10.83,16.84,9.56,15.81,8.48,14.59C7.39,13.36,6.66,11.88,6.58,11.79C6.5,11.7,5.73,10.64,5.73,9.52C5.73,8.4,6.41,7.77,6.65,7.53C6.89,7.29,7.19,7.29,7.41,7.29H7.78C8,7.29,8.19,7.29,8.34,7.29L8.53,7.29H8.74C8.95,7.29,9.15,7.29,9.34,7.29H9.6C9.79,7.29,9.97,7.29,10.1,7.29C10.3,7.29,10.51,7.32,10.65,7.81C10.79,8.3,11.3,9.7,11.38,9.85C11.46,9.99,11.42,10.18,11.3,10.29C11.18,10.4,11.1,10.49,10.96,10.64C10.82,10.78,10.69,10.96,10.55,11.11C10.41,11.26,10.22,11.46,10.44,11.85C10.66,12.24,11.26,13.19,12.12,14C13.2,14.98,14.11,15.32,14.5,15.5C14.69,15.59,14.91,15.55,15.06,15.39C15.21,15.23,15.8,14.6,16.04,14.31C16.28,14.02,16.53,13.97,16.75,13.96M12,2A10,10,0,0,0,2,12A10,10,0,0,0,12,22C13.98,22,15.85,21.46,17.4,20.54L22,22L20.54,17.4C21.46,15.85,22,13.98,22,12C22,6.47,17.5,2,12,2Z"></path>
     </svg>
 );
 
@@ -28,7 +25,7 @@ export function WhatsAppButton() {
   const [showPrompt, setShowPrompt] = useState(true);
 
   return (
-    <div className="fixed bottom-4 right-4 z-50 flex flex-col items-center gap-2">
+    <div className="fixed bottom-4 right-4 z-50 flex flex-col items-end gap-2">
        {showPrompt && (
         <div className="relative flex items-center gap-2 rounded-md bg-background p-3 shadow-lg border animate-in fade-in-50 slide-in-from-bottom-2">
             <p className="text-sm font-medium text-foreground">Talk to us on WhatsApp</p>
@@ -45,13 +42,13 @@ export function WhatsAppButton() {
           asChild
           size="icon"
           className={cn(
-            "h-14 w-14 rounded-full shadow-lg bg-green-500 hover:bg-green-600 text-white transition-transform duration-300 hover:scale-110 p-2",
+            "h-14 w-14 rounded-full shadow-lg bg-[#25D366] hover:bg-[#128C7E] text-white transition-all duration-300 hover:scale-110",
             showPrompt ? 'animate-in zoom-in-50 slide-in-from-bottom-2' : ''
           )}
           aria-label="Chat on WhatsApp"
         >
           <Link href="https://wa.me/919802125147" target="_blank" rel="noopener noreferrer">
-            <WhatsAppIcon className="h-full w-full" />
+            <WhatsAppIcon className="h-8 w-8" />
           </Link>
         </Button>
     </div>
