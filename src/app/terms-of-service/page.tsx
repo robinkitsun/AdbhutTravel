@@ -40,8 +40,12 @@ export default function TermsOfServicePage() {
     const form = useForm<FormData>({
         resolver: zodResolver(termsOfServiceSchema),
         defaultValues: {
+            serviceFor: "self",
             relationship: "",
+            legalCase: "no",
             legalCaseDetails: "",
+            docsGenuine: "yes",
+            originalDocsGiven: "no",
             passengerDetails: "",
             travelServiceDescription: "",
             totalFee: "",
@@ -108,7 +112,7 @@ export default function TermsOfServicePage() {
                                 render={({ field }) => (
                                     <FormItem>
                                         <FormControl>
-                                            <RadioGroup onValueChange={field.onChange} defaultValue={field.value} className="flex flex-col space-y-2">
+                                            <RadioGroup onValueChange={field.onChange} value={field.value} className="flex flex-col space-y-2">
                                                 <FormLabel className="flex items-center space-x-3 space-y-0 p-2 border rounded-md hover:bg-muted/50 cursor-pointer">
                                                     <FormControl><RadioGroupItem value="self" /></FormControl>
                                                     <span className="font-normal">For Myself (मेरे लिए)</span>
@@ -145,7 +149,7 @@ export default function TermsOfServicePage() {
                                 render={({ field }) => (
                                     <FormItem>
                                         <FormControl>
-                                            <RadioGroup onValueChange={field.onChange} defaultValue={field.value} className="flex flex-col space-y-2">
+                                            <RadioGroup onValueChange={field.onChange} value={field.value} className="flex flex-col space-y-2">
                                                  <FormLabel className="flex items-center space-x-3 space-y-0 p-2 border rounded-md hover:bg-muted/50 cursor-pointer">
                                                     <FormControl><RadioGroupItem value="no" /></FormControl>
                                                     <span className="font-normal">No (नहीं)</span>
@@ -184,7 +188,7 @@ export default function TermsOfServicePage() {
                                 render={({ field }) => (
                                     <FormItem>
                                         <FormControl>
-                                            <RadioGroup onValueChange={field.onChange} defaultValue={field.value} className="flex flex-col space-y-2">
+                                            <RadioGroup onValueChange={field.onChange} value={field.value} className="flex flex-col space-y-2">
                                                 <FormLabel className="flex items-center space-x-3 space-y-0 p-2 border rounded-md hover:bg-muted/50 cursor-pointer">
                                                     <FormControl><RadioGroupItem value="yes" /></FormControl>
                                                     <span className="font-normal">Yes (हाँ)</span>
@@ -214,7 +218,7 @@ export default function TermsOfServicePage() {
                                 render={({ field }) => (
                                     <FormItem>
                                         <FormControl>
-                                            <RadioGroup onValueChange={field.onChange} defaultValue={field.value} className="flex flex-col space-y-2">
+                                            <RadioGroup onValueChange={field.onChange} value={field.value} className="flex flex-col space-y-2">
                                                  <FormLabel className="flex items-center space-x-3 space-y-0 p-2 border rounded-md hover:bg-muted/50 cursor-pointer">
                                                     <FormControl><RadioGroupItem value="no" /></FormControl>
                                                     <span className="font-normal">No (नहीं)</span>
@@ -316,5 +320,3 @@ export default function TermsOfServicePage() {
         </div>
     );
 }
-
-    
