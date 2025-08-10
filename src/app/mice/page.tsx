@@ -3,18 +3,15 @@
 
 import Image from "next/image";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { CheckCircle, Mic, Trophy, Ship, Presentation, Users, Handshake, Building2 } from "lucide-react";
+import { CheckCircle, Mic, Trophy, Users, Presentation, Handshake, Building2, Ticket, Users2 } from "lucide-react";
 import MiceContactForm from "@/components/mice/MiceContactForm";
-import React, { useRef, useEffect, useState } from "react";
-import Autoplay from "embla-carousel-autoplay";
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious, type CarouselApi } from "@/components/ui/carousel";
-import { cn } from "@/lib/utils";
+import React from "react";
 
 const micePillars = [
     {
         letter: "M",
         title: "Meetings",
-        icon: Users,
+        icon: Users2,
         services: ["Venue Sourcing & Booking", "Agenda Planning", "Audio-Visual Setup", "On-site Coordination"]
     },
     {
@@ -44,14 +41,6 @@ const whyChooseUs = [
     "Transparent budgeting with a focus on delivering value.",
     "Innovative technology for registration and engagement."
 ];
-
-const whyChooseUsImages = [
-    "https://www.adbhuttravel.com/wp-content/uploads/2025/08/Mice-g1.jpg",
-    "https://www.adbhuttravel.com/wp-content/uploads/2025/08/Mice-g4.jpg",
-    "https://www.adbhuttravel.com/wp-content/uploads/2025/07/Mice-Incentives-2.png",
-];
-const whyChooseUsHints = ["corporate meeting", "business presentation", "team incentive"];
-
 
 const clientLogos = [
   { src: "https://www.adbhuttravel.com/wp-content/uploads/2025/07/Adbhut-Affilications-Cetifications.png", alt: "Client Accreditations", dataAiHint: "corporate accreditations" },
@@ -102,7 +91,6 @@ const faqItems = [
 
 
 export default function MicePage() {
-    const autoplayPlugin = React.useRef(Autoplay({ delay: 3000, stopOnInteraction: true, stopOnFocusIn: true }));
     
   return (
     <div className="bg-background">
@@ -193,30 +181,14 @@ export default function MicePage() {
                 ))}
               </ul>
             </div>
-             <div className="relative h-80 rounded-lg">
-               <Carousel
-                    plugins={[autoplayPlugin.current]}
-                    className="w-full h-full"
-                    opts={{ loop: true, align: "center" }}
-                    onMouseEnter={autoplayPlugin.current.stop}
-                    onMouseLeave={autoplayPlugin.current.play}
-                >
-                    <CarouselContent>
-                        {whyChooseUsImages.map((src, index) => (
-                            <CarouselItem key={index}>
-                                <Image
-                                    src={src}
-                                    alt={`Corporate event image ${index + 1}`}
-                                    fill
-                                    className="object-cover rounded-lg shadow-lg"
-                                    data-ai-hint={whyChooseUsHints[index]}
-                                />
-                            </CarouselItem>
-                        ))}
-                    </CarouselContent>
-                    <CarouselPrevious className="absolute left-3 top-1/2 -translate-y-1/2 z-10 size-10 rounded-full bg-background/70 hover:bg-background/90 shadow-lg border" />
-                    <CarouselNext className="absolute right-3 top-1/2 -translate-y-1/2 z-10 size-10 rounded-full bg-background/70 hover:bg-background/90 shadow-lg border" />
-                </Carousel>
+             <div className="relative h-80 rounded-lg shadow-lg overflow-hidden">
+                <Image
+                    src="https://www.adbhuttravel.com/wp-content/uploads/2025/08/Mice-g1.jpg"
+                    alt="Corporate event"
+                    fill
+                    className="object-cover"
+                    data-ai-hint="corporate event"
+                />
             </div>
           </div>
           <div className="mt-16">
@@ -268,5 +240,3 @@ export default function MicePage() {
     </div>
   );
 }
-
-    
