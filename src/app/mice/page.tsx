@@ -98,40 +98,48 @@ const carouselImages = [
 ];
 
 export default function MicePage() {
-    const autoplayPlugin = React.useRef(Autoplay({ delay: 3000, stopOnInteraction: true, stopOnFocusIn: true }));
+    const autoplayPlugin = React.useRef<any>(null);
     const carouselRef = useRef<HTMLDivElement>(null);
     const [isCarouselVisible, setIsCarouselVisible] = useState(false);
 
     useEffect(() => {
-        const observer = new IntersectionObserver(
-          (entries) => {
-            entries.forEach((entry) => {
-              if (entry.isIntersecting) {
-                setIsCarouselVisible(true);
-                if (autoplayPlugin.current) {
-                  autoplayPlugin.current.play();
-                }
-              } else {
-                if (autoplayPlugin.current) {
-                  autoplayPlugin.current.stop();
-                }
+      if (!autoplayPlugin.current) {
+        autoplayPlugin.current = Autoplay({
+          delay: 3000,
+          stopOnInteraction: true,
+          stopOnFocusIn: true,
+        });
+      }
+      
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              setIsCarouselVisible(true);
+              if (autoplayPlugin.current) {
+                autoplayPlugin.current.play();
               }
-            });
-          },
-          { threshold: 0.5 }
-        );
-    
-        const currentRef = carouselRef.current;
+            } else {
+              if (autoplayPlugin.current) {
+                autoplayPlugin.current.stop();
+              }
+            }
+          });
+        },
+        { threshold: 0.5 }
+      );
+  
+      const currentRef = carouselRef.current;
+      if (currentRef) {
+        observer.observe(currentRef);
+      }
+  
+      return () => {
         if (currentRef) {
-          observer.observe(currentRef);
+          observer.unobserve(currentRef);
         }
-    
-        return () => {
-          if (currentRef) {
-            observer.unobserve(currentRef);
-          }
-        };
-      }, []);
+      };
+    }, []);
 
   return (
     <div className="bg-background">
@@ -213,54 +221,54 @@ export default function MicePage() {
       {/* Why Choose Us Section */}
       <section className="py-16 md:py-20 bg-background">
         <div className="container">
-          <div>
             <h2 className="text-3xl font-headline font-bold text-gray-800 text-center">Why Choose Adbhut MICE?</h2>
-            <ul className="mt-6 space-y-4 max-w-2xl mx-auto">
-              {whyChooseUs.map((point, index) => (
-                  <li key={index} className="flex items-start gap-3">
-                      <CheckCircle className="w-6 h-6 text-accent mt-1 flex-shrink-0"/>
-                      <span className="text-gray-600">{point}</span>
-                  </li>
-              ))}
-            </ul>
-          </div>
-           <div className="mt-12" ref={carouselRef}>
-              <Carousel
-                  plugins={isCarouselVisible ? [autoplayPlugin.current] : []}
-                  className="w-full"
-                  opts={{ loop: true, align: "center" }}
-                  onMouseEnter={() => isCarouselVisible && autoplayPlugin.current.stop()}
-                  onMouseLeave={() => isCarouselVisible && autoplayPlugin.current.play()}
-              >
-                  <CarouselContent className="-ml-4">
-                      {carouselImages.map((src, index) => (
-                      <CarouselItem key={index} className="pl-4 md:basis-1/2 lg:basis-1/3">
-                          <div className="w-full h-80 relative rounded-lg overflow-hidden shadow-lg">
-                          <Image
-                              src={src}
-                              alt={`Corporate event image ${index + 1}`}
-                              fill
-                              className="object-cover"
-                              data-ai-hint="corporate event"
-                          />
-                          </div>
-                      </CarouselItem>
-                      ))}
-                  </CarouselContent>
-                  <CarouselPrevious className="absolute left-2 top-1/2 -translate-y-1/2 z-10 size-10 md:size-12 rounded-full bg-background/70 hover:bg-background/90 shadow-lg border" />
-                  <CarouselNext className="absolute right-2 top-1/2 -translate-y-1/2 z-10 size-10 md:size-12 rounded-full bg-background/70 hover:bg-background/90 shadow-lg border" />
-              </Carousel>
-          </div>
-          <div className="mt-16">
-             <div className="relative text-center">
-                 <h3 className="text-gray-600 font-semibold mb-6">OUR ACCREDITATIONS</h3>
-                 <div className="flex flex-wrap items-center justify-center gap-x-12 gap-y-6">
-                    {clientLogos.map((logo, index) => (
-                        <Image key={index} src={logo.src} alt={logo.alt} width={1000} height={80} className="object-contain h-auto w-full max-w-4xl" data-ai-hint={logo.dataAiHint} />
-                    ))}
-                 </div>
-             </div>
-          </div>
+            <div className="mt-12">
+                <ul className="space-y-4 max-w-2xl mx-auto">
+                {whyChooseUs.map((point, index) => (
+                    <li key={index} className="flex items-start gap-3">
+                        <CheckCircle className="w-6 h-6 text-accent mt-1 flex-shrink-0"/>
+                        <span className="text-gray-600">{point}</span>
+                    </li>
+                ))}
+                </ul>
+            </div>
+            <div className="mt-12" ref={carouselRef}>
+                <Carousel
+                    plugins={isCarouselVisible && autoplayPlugin.current ? [autoplayPlugin.current] : []}
+                    className="w-full"
+                    opts={{ loop: true, align: "center" }}
+                    onMouseEnter={() => isCarouselVisible && autoplayPlugin.current?.stop()}
+                    onMouseLeave={() => isCarouselVisible && autoplayPlugin.current?.play()}
+                >
+                    <CarouselContent className="-ml-4">
+                        {carouselImages.map((src, index) => (
+                        <CarouselItem key={index} className="pl-4 md:basis-1/2 lg:basis-1/3">
+                            <div className="w-full h-80 relative rounded-lg overflow-hidden shadow-lg">
+                            <Image
+                                src={src}
+                                alt={`Corporate event image ${index + 1}`}
+                                fill
+                                className="object-cover"
+                                data-ai-hint="corporate event"
+                            />
+                            </div>
+                        </CarouselItem>
+                        ))}
+                    </CarouselContent>
+                    <CarouselPrevious className="absolute left-2 top-1/2 -translate-y-1/2 z-10 size-10 md:size-12 rounded-full bg-background/70 hover:bg-background/90 shadow-lg border" />
+                    <CarouselNext className="absolute right-2 top-1/2 -translate-y-1/2 z-10 size-10 md:size-12 rounded-full bg-background/70 hover:bg-background/90 shadow-lg border" />
+                </Carousel>
+            </div>
+            <div className="mt-16">
+                <div className="relative text-center">
+                    <h3 className="text-gray-600 font-semibold mb-6">OUR ACCREDITATIONS</h3>
+                    <div className="flex flex-wrap items-center justify-center gap-x-12 gap-y-6">
+                        {clientLogos.map((logo, index) => (
+                            <Image key={index} src={logo.src} alt={logo.alt} width={1000} height={80} className="object-contain h-auto w-full max-w-4xl" data-ai-hint={logo.dataAiHint} />
+                        ))}
+                    </div>
+                </div>
+            </div>
         </div>
       </section>
 
