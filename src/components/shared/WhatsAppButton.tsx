@@ -38,9 +38,8 @@ export function WhatsAppButton() {
              <Image
                 src="/whatsapp-icon.svg"
                 alt="WhatsApp Icon"
-                width={40}
-                height={40}
-                className="p-1"
+                width={52}
+                height={52}
              />
           </Link>
         </Button>
