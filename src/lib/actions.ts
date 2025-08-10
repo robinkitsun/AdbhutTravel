@@ -213,6 +213,60 @@ export async function submitTermsOfServiceForm(
   }
 
   const resend = new Resend(process.env.RESEND_API_KEY);
+  
+  const footerHtml = `
+    <div style="background-color: #f8f9fa; color: #343a40; padding: 2rem 1rem; border-top: 1px solid #dee2e6; margin-top: 2rem;">
+        <div style="max-width: 1200px; margin: auto; text-align: center;">
+            <div style="display: grid; grid-template-columns: repeat(1, 1fr); gap: 2rem; text-align: left; @media (min-width: 768px) { grid-template-columns: repeat(4, 1fr); }">
+                <div style="margin-bottom: 1.5rem;">
+                    <img src="https://www.adbhuttravel.com/wp-content/uploads/2025/07/adbhut_transparent.png" alt="Adbhut Logo" style="width: 150px; height: auto; margin-bottom: 1rem;" />
+                    <p style="font-weight: 600;">Adbhut Travel And Event Pvt. Ltd.</p>
+                    <p style="font-size: 0.875rem; color: #6c757d;">Our Effort Your Comfort<br>CIN: U63090HR2020PTC086874</p>
+                </div>
+                <div>
+                    <h3 style="font-weight: 600; margin-bottom: 1rem;">Quick Links</h3>
+                    <ul style="list-style: none; padding: 0; space-y: 0.5rem; font-size: 0.875rem;">
+                        <li><a href="https://adbhuttravel.com/about" style="color: #6c757d; text-decoration: none;">About Us</a></li>
+                        <li><a href="https://adbhuttravel.com/services" style="color: #6c757d; text-decoration: none;">Services</a></li>
+                        <li><a href="https://adbhuttravel.com/mice" style="color: #6c757d; text-decoration: none;">MICE</a></li>
+                        <li><a href="https://adbhuttravel.com/contact" style="color: #6c757d; text-decoration: none;">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 style="font-weight: 600; margin-bottom: 1rem;">Legal</h3>
+                    <ul style="list-style: none; padding: 0; space-y: 0.5rem; font-size: 0.875rem;">
+                        <li><a href="https://adbhuttravel.com/terms-of-service" style="color: #6c757d; text-decoration: none;">Policy & Terms of Service</a></li>
+                        <li><a href="https://adbhuttravel.com/cancellation-policy" style="color: #6c757d; text-decoration: none;">Refund Policy</a></li>
+                        <li><a href="https://adbhuttravel.com/legal" style="color: #6c757d; text-decoration: none;">Legal Information</a></li>
+                        <li><a href="https://adbhuttravel.com/career" style="color: #6c757d; text-decoration: none;">Careers</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 style="font-weight: 600; margin-bottom: 1rem;">Contact</h3>
+                    <ul style="list-style: none; padding: 0; font-size: 0.875rem; color: #6c757d;">
+                        <li style="display: flex; align-items: flex-start; gap: 0.5rem; margin-bottom: 0.75rem;">
+                            <span>📍</span>
+                            <span>SCF 61, 1st Floor, Near Anaj Mandi Gate, Pehowa, Kurukshetra, Haryana-136128</span>
+                        </li>
+                        <li style="display: flex; align-items: flex-start; gap: 0.5rem; margin-bottom: 0.75rem;">
+                            <span>📞</span>
+                            <span>
+                                <a href="tel:18008905147" style="display: block; color: #6c757d; text-decoration: none;">Toll Free: 1800 890 5147</a>
+                                <a href="tel:+919671825147" style="display: block; color: #6c757d; text-decoration: none;">Mobile: +91-9671825147</a>
+                            </span>
+                        </li>
+                        <li style="display: flex; align-items: center; gap: 0.5rem;">
+                            <span>✉️</span>
+                            <a href="mailto:info@adbhuttravel.in" style="color: #6c757d; text-decoration: none;">info@adbhuttravel.in</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div style="margin-top: 2rem; border-top: 1px solid #dee2e6; padding-top: 1rem; text-align: center; font-size: 0.875rem; color: #6c757d;">
+                <p>&copy; ${new Date().getFullYear()} Adbhut Travel And Event Pvt. Ltd. All Rights Reserved.</p>
+            </div>
+        </div>
+    </div>`;
 
   const documentHtml = `
     <div style="font-family: sans-serif; max-width: 800px; margin: auto; border: 1px solid #eee; padding: 20px;">
@@ -253,23 +307,17 @@ export async function submitTermsOfServiceForm(
           <p><strong>Place:</strong> ${data.place}</p>
           <p><strong>Date of Agreement:</strong> ${new Date(data.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
       </div>
+      ${footerHtml}
     </div>
   `;
 
   try {
-    // Send email to admin
-    await resend.emails.send({
-      from: RESEND_FROM_EMAIL,
-      to: ADMIN_EMAIL,
-      subject: `Terms & Conditions Signed by ${data.name}`,
-      html: documentHtml,
-    });
-
-    // Send confirmation email to customer
+    // Send confirmation email to customer, CC admin
     await resend.emails.send({
       from: RESEND_FROM_EMAIL,
       to: data.email,
-      subject: 'Your Signed Terms & Conditions with Adbhut Travel',
+      cc: ADMIN_EMAIL,
+      subject: `Your Signed Terms & Conditions with Adbhut Travel - ${data.name}`,
       html: `
         <h1>Thank you for your submission</h1>
         <p>Dear ${data.name},</p>

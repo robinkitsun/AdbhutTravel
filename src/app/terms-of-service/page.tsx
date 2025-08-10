@@ -76,7 +76,7 @@ export default function TermsOfServicePage() {
     const watchLegalCase = form.watch('legalCase');
 
     return (
-        <div className="container py-12 md:py-16">
+        <div className="container py-12 md:py-16 select-none">
             <div className="max-w-4xl mx-auto">
                 <Form {...form}>
                     <form onSubmit={form.handleSubmit(onSubmit)} className="border p-4 sm:p-6 md:p-8 space-y-6 bg-card text-card-foreground shadow-lg rounded-lg">
