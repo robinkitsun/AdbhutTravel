@@ -3,7 +3,7 @@
 
 import { z } from 'zod';
 import { Resend } from 'resend';
-import { contactFormSchema, miceFormSchema, tailoredTripFormSchema } from "./schemas";
+import { contactFormSchema, miceFormSchema, tailoredTripFormSchema, termsOfServiceSchema } from "./schemas";
 
 const RESEND_FROM_EMAIL = 'noreply@adbhuttravel.com';
 const ADMIN_EMAIL = 'ankitsundriyal0@gmail.com';
@@ -191,6 +191,105 @@ export async function submitTailoredTripForm(
     console.error("Failed to send email via Resend:", error);
     return {
       message: "Something went wrong and we couldn't send your request. Please try again later.",
+      success: false,
+    };
+  }
+}
+
+type TermsFormState = {
+  message: string;
+  success: boolean;
+};
+
+export async function submitTermsOfServiceForm(
+  data: z.infer<typeof termsOfServiceSchema>
+): Promise<TermsFormState> {
+  if (!process.env.RESEND_API_KEY) {
+    console.error("Resend API key is not configured.");
+    return {
+      message: "The form is not configured to send emails. Please contact support.",
+      success: false,
+    }
+  }
+
+  const resend = new Resend(process.env.RESEND_API_KEY);
+
+  const documentHtml = `
+    <div style="font-family: sans-serif; max-width: 800px; margin: auto; border: 1px solid #eee; padding: 20px;">
+      <img src="https://www.adbhuttravel.com/wp-content/uploads/2025/07/adbhut_transparent.png" alt="Adbhut Travel Logo" style="max-width: 188px; margin-bottom: 20px;">
+      <h1 style="text-align: center; font-size: 24px;">Terms & Conditions Agreement</h1>
+      
+      <h2>Client Information:</h2>
+      <p><strong>Name:</strong> ${data.name}</p>
+      <p><strong>Email:</strong> ${data.email}</p>
+      <p><strong>Mobile:</strong> ${data.mobile}</p>
+      <p><strong>Address:</strong> ${data.address}</p>
+      <p><strong>ID Number:</strong> ${data.idNumber}</p>
+
+      <hr style="margin: 20px 0;" />
+
+      <h2>Form Responses:</h2>
+      <p><strong>Q1. Service for self or other?:</strong> ${data.serviceFor}${data.serviceFor === 'other' ? ` (${data.relationship})` : ''}</p>
+      <p><strong>Q2. Any pending legal case?:</strong> ${data.legalCase}${data.legalCase === 'yes' ? ` (${data.legalCaseDetails})` : ''}</p>
+      <p><strong>Q3. Documents are genuine?:</strong> ${data.docsGenuine}</p>
+      <p><strong>Q4. Original documents given?:</strong> ${data.originalDocsGiven}</p>
+      
+      <h3 style="margin-top: 20px;">Traveler Details:</h3>
+      <div style="border: 1px solid #ddd; padding: 10px; border-radius: 5px;">
+          <p><strong>Passenger and passport details:</strong><br>${data.passengerDetails.replace(/\n/g, '<br>')}</p>
+          <p><strong>Description of travel service:</strong><br>${data.travelServiceDescription.replace(/\n/g, '<br>')}</p>
+          <p><strong>Total fee per person:</strong> ${data.totalFee}</p>
+      </div>
+
+      <hr style="margin: 20px 0;" />
+
+      <h2>Agreement Certification</h2>
+      <p style="background-color: #f0f0f0; padding: 15px; border-left: 4px solid #1a73e8;">
+        <strong>Certified and Agreed:</strong> I hereby certify that I have read the complete terms and conditions and we accept these terms and conditions and if any of my statements is false then legal action should be taken against me.
+      </p>
+      
+      <div style="margin-top: 30px; border-top: 1px solid #eee; padding-top: 20px;">
+          <p><strong>Signature:</strong> ${data.signature}</p>
+          <p><strong>Place:</strong> ${data.place}</p>
+          <p><strong>Date of Agreement:</strong> ${new Date(data.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
+      </div>
+    </div>
+  `;
+
+  try {
+    // Send email to admin
+    await resend.emails.send({
+      from: RESEND_FROM_EMAIL,
+      to: ADMIN_EMAIL,
+      subject: `Terms & Conditions Signed by ${data.name}`,
+      html: documentHtml,
+    });
+
+    // Send confirmation email to customer
+    await resend.emails.send({
+      from: RESEND_FROM_EMAIL,
+      to: data.email,
+      subject: 'Your Signed Terms & Conditions with Adbhut Travel',
+      html: `
+        <h1>Thank you for your submission</h1>
+        <p>Dear ${data.name},</p>
+        <p>Thank you for completing the Terms & Conditions agreement. A copy of your submitted document is attached below for your records.</p>
+        <hr>
+        ${documentHtml}
+        <br>
+        <p>Best regards,</p>
+        <p>The Adbhut Travel Team</p>
+      `,
+    });
+
+    return {
+      message: "Agreement submitted successfully! A copy has been sent to your email.",
+      success: true,
+    };
+  } catch (error) {
+    console.error("Failed to send terms of service email:", error);
+    return {
+      message: "An error occurred while submitting the agreement. Please try again.",
       success: false,
     };
   }
