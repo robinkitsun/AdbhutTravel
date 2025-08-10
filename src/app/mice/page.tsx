@@ -4,7 +4,7 @@
 import Image from "next/image";
 import { CheckCircle, Mic, Trophy, Users, Presentation, Handshake, Building2, Ticket, Users2 } from "lucide-react";
 import MiceContactForm from "@/components/mice/MiceContactForm";
-import React from "react";
+import React, { useRef, useEffect, useState } from "react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
@@ -99,6 +99,32 @@ const carouselImages = [
 
 export default function MicePage() {
     const autoplayPlugin = React.useRef(Autoplay({ delay: 3000, stopOnInteraction: true, stopOnFocusIn: true }));
+    const carouselRef = useRef<HTMLDivElement>(null);
+    const [isCarouselVisible, setIsCarouselVisible] = useState(false);
+
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                setIsCarouselVisible(true);
+              }
+            });
+          },
+          { threshold: 0.5 }
+        );
+    
+        const currentRef = carouselRef.current;
+        if (currentRef) {
+          observer.observe(currentRef);
+        }
+    
+        return () => {
+          if (currentRef) {
+            observer.unobserve(currentRef);
+          }
+        };
+      }, []);
 
   return (
     <div className="bg-background">
@@ -190,13 +216,13 @@ export default function MicePage() {
                 ))}
               </ul>
             </div>
-             <div className="h-80 rounded-lg shadow-lg overflow-hidden">
+             <div className="h-80 rounded-lg shadow-lg overflow-hidden" ref={carouselRef}>
                 <Carousel
-                    plugins={[autoplayPlugin.current]}
+                    plugins={isCarouselVisible ? [autoplayPlugin.current] : []}
                     className="w-full h-full"
                     opts={{ loop: true, align: "center" }}
-                    onMouseEnter={() => autoplayPlugin.current.stop()}
-                    onMouseLeave={() => autoplayPlugin.current.play()}
+                    onMouseEnter={() => isCarouselVisible && autoplayPlugin.current.stop()}
+                    onMouseLeave={() => isCarouselVisible && autoplayPlugin.current.play()}
                 >
                     <CarouselContent className="h-full -ml-4">
                         {carouselImages.map((src, index) => (
