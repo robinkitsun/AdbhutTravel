@@ -4,63 +4,124 @@
 import Image from "next/image";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { CheckCircle } from "lucide-react";
-import { Card, CardContent } from "@/components/ui/card";
 import MiceContactForm from "@/components/mice/MiceContactForm";
+import React, { useRef, useEffect, useState } from "react";
+import Autoplay from "embla-carousel-autoplay";
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
+
+const micePillars = [
+    {
+        letter: "M",
+        title: "Meetings",
+        services: ["Venue Sourcing & Booking", "Agenda Planning", "Audio-Visual Setup", "On-site Coordination"]
+    },
+    {
+        letter: "I",
+        title: "Incentives",
+        services: ["Customized Itineraries", "Luxury Accommodations", "Exclusive Experiences", "Team-building Activities"]
+    },
+    {
+        letter: "C",
+        title: "Conferences",
+        services: ["Delegate Registration", "Speaker Management", "Logistics & Transport", "Gala Dinners & Networking"]
+    },
+    {
+        letter: "E",
+        title: "Exhibitions",
+        services: ["Stall Design & Fabrication", "Exhibitor Management", "Visitor Engagement", "Post-event Analytics"]
+    }
+];
+
+const whyChooseUs = [
+    "End-to-End solutions for all your event needs.",
+    "Access to a global network of trusted vendors and hotels.",
+    "Dedicated event manager for seamless coordination.",
+    "Transparent budgeting with a focus on delivering value.",
+    "Innovative technology for registration and engagement."
+];
+
+const whyChooseUsImages = [
+    "https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg",
+    "https://www.adbhuttravel.com/wp-content/uploads/2025/07/MICE-Corporate-Travel-2.jpeg",
+    "https://images.pexels.com/photos/1181414/pexels-photo-1181414.jpeg",
+];
+const whyChooseUsHints = ["corporate team working", "business meeting", "corporate conference"];
+
+
+const clientLogos = [
+  { src: "https://www.adbhuttravel.com/wp-content/uploads/2025/07/Adbhut-Affilications-Cetifications.png", alt: "Client Accreditations", dataAiHint: "corporate accreditations" },
+];
+
+const faqItems = [
+  {
+    question: "What exactly is MICE tourism?",
+    answer: "MICE stands for Meetings, Incentives, Conferences, and Exhibitions. It represents a specialized sector of tourism focused on planning, booking, and facilitating corporate events and group travel for business purposes."
+  },
+  {
+    question: "What are the logistical services covered under MICE?",
+    answer: "Logistical services include venue sourcing, contract negotiation, travel and accommodation booking for attendees, ground transportation, audio-visual equipment setup, catering, delegate registration, and on-site event management."
+  },
+  {
+    question: "What is the hallmark of a good MICE organiser?",
+    answer: "A good MICE organizer is characterized by meticulous attention to detail, strong negotiation skills, an extensive network of trusted vendors, excellent communication, and the ability to seamlessly manage all event logistics to deliver a flawless experience."
+  },
+  {
+    question: "Why is it important for an organisation to have MICE planners?",
+    answer: "Professional MICE planners save organizations time and money by leveraging industry expertise and supplier relationships. They ensure events are strategically planned to meet business objectives, manage risks, and allow the organization to focus on its core activities."
+  },
+  {
+    question: "What is the main objective of MICE tourism?",
+    answer: "The main objectives are to facilitate business networking, share knowledge, motivate employees through incentive travel, showcase products and services, and ultimately drive business growth and foster professional relationships."
+  },
+  {
+    question: "What are the top MICE tourism destinations in the world?",
+    answer: "Top destinations often include cities with excellent connectivity, world-class convention centers, and ample accommodation, such as Dubai, Singapore, Las Vegas, Barcelona, and Bangkok. For domestic MICE in India, popular choices are Delhi, Mumbai, Goa, and Hyderabad."
+  },
+  {
+    question: "What is the latest trend in MICE tourism?",
+    answer: "Current trends include a focus on sustainable or 'green' events, the integration of technology for hybrid (in-person and virtual) meetings, and a growing demand for unique, experiential activities that offer authentic local flavor."
+  },
+  {
+    question: "What is the importance of content in MICE tourism?",
+    answer: "Content is king. In conferences and meetings, high-quality, relevant content delivered by engaging speakers is crucial for attracting attendees, fostering learning, and ensuring the event's success and ROI."
+  },
+  {
+    question: "What is the role of logistics in MICE tourism?",
+    answer: "Logistics form the backbone of any MICE event. It involves the precise coordination of all tangible aspects, including flights, hotels, venues, transportation, and scheduling, to ensure the event runs smoothly from start to finish."
+  },
+  {
+    question: "Why are MICE events good for business?",
+    answer: "MICE events are powerful business tools. They help in building employee and client relationships, provide valuable networking opportunities, boost morale and productivity through incentives, and serve as a platform for launching new products and strategies."
+  }
+];
+
 
 export default function MicePage() {
-    const micePillars = [
-        {
-            letter: "M",
-            title: "Meetings",
-            services: ["Venue Sourcing & Booking", "Agenda Planning", "Audio-Visual Setup", "On-site Coordination"]
-        },
-        {
-            letter: "I",
-            title: "Incentives",
-            services: ["Customized Itineraries", "Luxury Accommodations", "Exclusive Experiences", "Team-building Activities"]
-        },
-        {
-            letter: "C",
-            title: "Conferences",
-            services: ["Delegate Registration", "Speaker Management", "Logistics & Transport", "Gala Dinners & Networking"]
-        },
-        {
-            letter: "E",
-            title: "Exhibitions",
-            services: ["Stall Design & Fabrication", "Exhibitor Management", "Visitor Engagement", "Post-event Analytics"]
-        }
-    ];
+    const autoplayPlugin = React.useRef(Autoplay({ delay: 3000, stopOnInteraction: true, stopOnFocusIn: true }));
+    const carouselRef = useRef<HTMLDivElement>(null);
+    const [isCarouselVisible, setIsCarouselVisible] = useState(false);
 
-    const whyChooseUs = [
-        "End-to-End solutions for all your event needs.",
-        "Access to a global network of trusted vendors and hotels.",
-        "Dedicated event manager for seamless coordination.",
-        "Transparent budgeting with a focus on delivering value.",
-        "Innovative technology for registration and engagement."
-    ];
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              setIsCarouselVisible(entry.isIntersecting);
+            });
+          },
+          { threshold: 0.5 }
+        );
     
-    const clientLogos = [
-      { src: "https://www.adbhuttravel.com/wp-content/uploads/2025/07/Adbhut-Affilications-Cetifications.png", alt: "Client Accreditations", dataAiHint: "corporate accreditations" },
-    ];
-
-    const faqItems = [
-      {
-        question: "What is the ideal lead time for booking a MICE event?",
-        answer: "For domestic events, we recommend a lead time of at least 3-6 months. For international events, 6-12 months is ideal to ensure the best rates and venue availability. However, we can also accommodate more urgent requests."
-      },
-      {
-        question: "Can you handle events of any size?",
-        answer: "Yes, we have experience managing events of all scales, from intimate board meetings of 10 executives to large-scale conferences with over 1,000 attendees. Our network and resources allow us to scale our services to your specific needs."
-      },
-      {
-        question: "What are your payment terms?",
-        answer: "Typically, we require an advance payment to confirm bookings, with the balance due closer to the event date. We offer flexible and transparent payment schedules, which will be clearly outlined in your event proposal."
-      },
-      {
-        question: "Do you provide on-site support during the event?",
-        answer: "Absolutely. A dedicated event manager and support staff will be present on-site to ensure everything runs smoothly from start to finish. We handle all logistics so you can focus on your event's objectives."
-      }
-    ];
+        const currentRef = carouselRef.current;
+        if (currentRef) {
+          observer.observe(currentRef);
+        }
+    
+        return () => {
+          if (currentRef) {
+            observer.unobserve(currentRef);
+          }
+        };
+      }, []);
 
   return (
     <div className="bg-background">
@@ -147,14 +208,30 @@ export default function MicePage() {
                 ))}
               </ul>
             </div>
-             <div className="relative h-80 rounded-lg">
-               <Image
-                  src="https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg"
-                  alt="Team working on a project"
-                  fill
-                  className="object-cover rounded-lg shadow-lg"
-                  data-ai-hint="corporate team working"
-               />
+             <div className="relative h-80 rounded-lg" ref={carouselRef}>
+               <Carousel
+                    plugins={isCarouselVisible ? [autoplayPlugin.current] : []}
+                    className="w-full h-full"
+                    opts={{ loop: true, align: "center" }}
+                    onMouseEnter={autoplayPlugin.current.stop}
+                    onMouseLeave={autoplayPlugin.current.play}
+                >
+                    <CarouselContent>
+                        {whyChooseUsImages.map((src, index) => (
+                            <CarouselItem key={index}>
+                                <Image
+                                    src={src}
+                                    alt={`Corporate event image ${index + 1}`}
+                                    fill
+                                    className="object-cover rounded-lg shadow-lg"
+                                    data-ai-hint={whyChooseUsHints[index]}
+                                />
+                            </CarouselItem>
+                        ))}
+                    </CarouselContent>
+                    <CarouselPrevious className="absolute left-3 top-1/2 -translate-y-1/2 z-10 size-10 rounded-full bg-background/70 hover:bg-background/90 shadow-lg border" />
+                    <CarouselNext className="absolute right-3 top-1/2 -translate-y-1/2 z-10 size-10 rounded-full bg-background/70 hover:bg-background/90 shadow-lg border" />
+                </Carousel>
             </div>
           </div>
           <div className="mt-16">
