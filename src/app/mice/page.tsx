@@ -7,7 +7,7 @@ import { CheckCircle, Mic, Trophy, Ship, Presentation, Users, Handshake, Buildin
 import MiceContactForm from "@/components/mice/MiceContactForm";
 import React, { useRef, useEffect, useState } from "react";
 import Autoplay from "embla-carousel-autoplay";
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious, type CarouselApi } from "@/components/ui/carousel";
 import { cn } from "@/lib/utils";
 
 const micePillars = [
@@ -102,15 +102,21 @@ const faqItems = [
 
 
 export default function MicePage() {
-    const autoplayPlugin = React.useRef(Autoplay({ delay: 3000, stopOnInteraction: true, stopOnFocusIn: true }));
+    const autoplayPlugin = React.useRef(Autoplay({ delay: 3000, stopOnInteraction: true, stopOnFocusIn: true, playOnInit: false }));
     const carouselRef = useRef<HTMLDivElement>(null);
-    const [isCarouselVisible, setIsCarouselVisible] = useState(false);
+    const [api, setApi] = useState<CarouselApi>()
 
     useEffect(() => {
+        if (!api) return;
+
         const observer = new IntersectionObserver(
           (entries) => {
             entries.forEach((entry) => {
-              setIsCarouselVisible(entry.isIntersecting);
+              if (entry.isIntersecting) {
+                api.plugins().autoplay?.play();
+              } else {
+                 api.plugins().autoplay?.stop();
+              }
             });
           },
           { threshold: 0.5 }
@@ -126,7 +132,7 @@ export default function MicePage() {
             observer.unobserve(currentRef);
           }
         };
-      }, []);
+      }, [api]);
 
   return (
     <div className="bg-background">
@@ -219,7 +225,8 @@ export default function MicePage() {
             </div>
              <div className="relative h-80 rounded-lg" ref={carouselRef}>
                <Carousel
-                    plugins={isCarouselVisible ? [autoplayPlugin.current] : []}
+                    setApi={setApi}
+                    plugins={[autoplayPlugin.current]}
                     className="w-full h-full"
                     opts={{ loop: true, align: "center" }}
                     onMouseEnter={autoplayPlugin.current.stop}
@@ -292,3 +299,5 @@ export default function MicePage() {
     </div>
   );
 }
+
+    
