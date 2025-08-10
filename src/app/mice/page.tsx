@@ -3,31 +3,36 @@
 
 import Image from "next/image";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { CheckCircle } from "lucide-react";
+import { CheckCircle, Mic, Trophy, Ship, Presentation, Users, Handshake, Building2 } from "lucide-react";
 import MiceContactForm from "@/components/mice/MiceContactForm";
 import React, { useRef, useEffect, useState } from "react";
 import Autoplay from "embla-carousel-autoplay";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
+import { cn } from "@/lib/utils";
 
 const micePillars = [
     {
         letter: "M",
         title: "Meetings",
+        icon: Users,
         services: ["Venue Sourcing & Booking", "Agenda Planning", "Audio-Visual Setup", "On-site Coordination"]
     },
     {
         letter: "I",
         title: "Incentives",
+        icon: Trophy,
         services: ["Customized Itineraries", "Luxury Accommodations", "Exclusive Experiences", "Team-building Activities"]
     },
     {
         letter: "C",
         title: "Conferences",
+        icon: Mic,
         services: ["Delegate Registration", "Speaker Management", "Logistics & Transport", "Gala Dinners & Networking"]
     },
     {
         letter: "E",
         title: "Exhibitions",
+        icon: Presentation,
         services: ["Stall Design & Fabrication", "Exhibitor Management", "Visitor Engagement", "Post-event Analytics"]
     }
 ];
@@ -179,10 +184,14 @@ export default function MicePage() {
                         <div className="absolute -top-6 -left-3 text-8xl md:text-9xl font-bold text-primary/30 select-none -z-10">
                             {pillar.letter}
                         </div>
-                        <h3 className="text-2xl font-headline font-bold mb-4 text-gray-800">{pillar.title}</h3>
+                        <h3 className="text-2xl font-headline font-bold mb-4 text-gray-800 flex items-center gap-3">
+                            <pillar.icon className="w-8 h-8 text-accent" />
+                            {pillar.title}
+                        </h3>
                         <ul className="space-y-3">
                            {pillar.services.map(service => (
-                             <li key={service} className="text-gray-600 border-b pb-2 last:border-b-0">
+                             <li key={service} className="text-gray-600 border-b pb-2 last:border-b-0 flex items-center gap-2">
+                                <CheckCircle className="w-4 h-4 text-accent/70" />
                                 <span>{service}</span>
                              </li>
                            ))}
