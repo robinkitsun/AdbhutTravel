@@ -41,11 +41,11 @@ const whyChooseUs = [
 ];
 
 const whyChooseUsImages = [
-    "https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg",
-    "https://www.adbhuttravel.com/wp-content/uploads/2025/07/MICE-Corporate-Travel-2.jpeg",
-    "https://images.pexels.com/photos/1181414/pexels-photo-1181414.jpeg",
+    "https://www.adbhuttravel.com/wp-content/uploads/2025/08/Mice-g1.jpg",
+    "https://www.adbhuttravel.com/wp-content/uploads/2025/08/Mice-g4.jpg",
+    "https://www.adbhuttravel.com/wp-content/uploads/2025/07/Mice-Incentives-2.png",
 ];
-const whyChooseUsHints = ["corporate team working", "business meeting", "corporate conference"];
+const whyChooseUsHints = ["corporate meeting", "business presentation", "team incentive"];
 
 
 const clientLogos = [
@@ -138,11 +138,11 @@ export default function MicePage() {
             <div className="relative h-80 md:h-96">
                <div className="absolute inset-0 bg-primary/10 rounded-lg -rotate-3 transition-transform duration-300 hover:rotate-0"></div>
                <Image
-                  src="https://images.pexels.com/photos/1181414/pexels-photo-1181414.jpeg"
+                  src="https://www.adbhuttravel.com/wp-content/uploads/2025/08/Mice-g5.jpg"
                   alt="Corporate Event Singer"
                   fill
                   className="object-cover rounded-lg shadow-xl"
-                  data-ai-hint="corporate event concert"
+                  data-ai-hint="corporate event"
                />
             </div>
           </div>
@@ -175,14 +175,14 @@ export default function MicePage() {
            </div>
            <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8">
                 {micePillars.map((pillar) => (
-                    <div key={pillar.title} className="relative p-8 rounded-lg bg-white shadow-md border border-gray-100">
-                        <div className="absolute -top-4 -left-2 text-8xl md:text-9xl font-bold text-gray-100 select-none -z-10">
+                    <div key={pillar.title} className="relative p-8 rounded-lg bg-white shadow-lg border border-gray-100 transition-all duration-300 hover:shadow-2xl hover:-translate-y-1">
+                        <div className="absolute -top-6 -left-3 text-8xl md:text-9xl font-bold text-primary/30 select-none -z-10">
                             {pillar.letter}
                         </div>
                         <h3 className="text-2xl font-headline font-bold mb-4 text-gray-800">{pillar.title}</h3>
                         <ul className="space-y-3">
                            {pillar.services.map(service => (
-                             <li key={service} className="text-gray-600 border-b pb-2">
+                             <li key={service} className="text-gray-600 border-b pb-2 last:border-b-0">
                                 <span>{service}</span>
                              </li>
                            ))}
