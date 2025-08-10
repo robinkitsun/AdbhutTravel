@@ -292,7 +292,7 @@ export async function submitTermsOfServiceForm(
           hr { border: 0; border-top: 1px solid #eee; margin: 20px 0; }
           .question-block { margin-top: 20px; }
           .question { font-weight: bold; }
-          .answer { color: #555; }
+          .answer { color: #555; white-space: pre-wrap; }
           .terms-header {
             background-color: #468585;
             color: white;
@@ -302,6 +302,25 @@ export async function submitTermsOfServiceForm(
             align-items: center;
             border-radius: 8px;
             font-family: serif;
+          }
+          .details-header {
+            background-color: #f2f2f2;
+            padding: 10px;
+            text-align: center;
+            font-weight: bold;
+          }
+          .details-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+          }
+          .details-table td {
+            padding: 8px;
+            border: 1px solid #ddd;
+          }
+          .details-table td:first-child {
+            font-weight: bold;
+            width: 40%;
           }
           .terms-list { list-style-position: outside; padding-left: 20px; color: #555; }
           .important { font-weight: bold; color: #000; }
@@ -333,14 +352,45 @@ export async function submitTermsOfServiceForm(
           
           <div class="question-block">
             <p class="question">Q 1. You are taking this service for yourself or for someone else (आप यह सर्विस खुद के लिए ले रहे हैं या किसी और के लिए)?</p>
-            <p class="answer">Answer: ${data.serviceFor === 'self' ? 'For Myself (मेरे लिए)' : `For Someone else (${data.relationship})`}</p>
+            <p class="answer">${data.serviceFor === 'self' ? 'For Myself (मेरे लिए)' : `For Someone else (${data.relationship})`}</p>
           </div>
           
           <div class="question-block">
             <p class="question">Q 2. Is there any legal case or lawsuit pending against the applicant or his/her accompaniment? (क्या आवेदक या उसके साथी के विरुद्ध कोई कानूनी मामला या वाद लंबित है)?</p>
-            <p class="answer">Answer: ${data.legalCase === 'no' ? 'No (नहीं)' : `Yes (${data.legalCaseDetails})`}</p>
+            <p class="answer">${data.legalCase === 'no' ? 'No (नहीं)' : `Yes (${data.legalCaseDetails})`}</p>
           </div>
-          <hr/>
+          
+          <div class="question-block">
+            <p class="question">Q 3. Do you confirm that the documents you have submitted to us are genuine (क्या आप इस बात की पुष्टि करते हैं कि आपके द्वारा हमें प्रस्तुत किए गए दस्तावेज वास्तविक हैं)?</p>
+            <p class="answer">${data.docsGenuine}</p>
+          </div>
+
+          <div class="question-block">
+            <p class="question">Q 4. Have you given your original passport or any other original documents to Adbhut Travel And Event Pvt Ltd or its staff? (क्या आपने अपना मूल पासपोर्ट या कोई अन्य मूल दस्तावेज अद्भुत ट्रैवल एंड इवेंट प्राइवेट लिमिटेड या उसके कर्मचारियों को दिया है)?</p>
+            <p class="answer">${data.originalDocsGiven}</p>
+          </div>
+
+          <div class="details-header" style="margin-top: 20px;">Details of the traveler who will travel (यात्रा करने वाले यात्री का विवरण)</div>
+          <table class="details-table">
+            <tr>
+              <td>Passenger and passport details</td>
+              <td class="answer">${data.passengerDetails}</td>
+            </tr>
+            <tr>
+              <td>Description of travel service</td>
+              <td class="answer">${data.travelServiceDescription}</td>
+            </tr>
+            <tr>
+              <td>Total fee per person including service charge (in Indian Rupees)</td>
+              <td class="answer">${data.totalFee}</td>
+            </tr>
+          </table>
+
+          <div style="margin-top: 30px; border-top: 1px solid #eee; padding-top: 20px;">
+              <h3>Certification:</h3>
+              <p class="answer">☑️ I hereby certify that I have read the complete terms and conditions and we accept these terms and conditions and if any of my statements is false then legal action should be taken against me.
+              <br>(मैं प्रमाणित करता/करती हु कि मैंने पूरे नियम और शर्तें पढ़ ली हैं और में इन नियम और शर्तें को स्वीकार करता /करती हु और अगर मेरा कोई भी बयान झूठा साबित होता है तो मेरे खिलाफ कानूनी कार्रवाई की जानी चाहिए।)</p>
+          </div>
 
           <div style="margin-top: 30px; border-top: 1px solid #eee; padding-top: 20px; text-align: right;">
               <p><strong>Signature (हस्ताक्षर):</strong> ${data.signature}</p>
