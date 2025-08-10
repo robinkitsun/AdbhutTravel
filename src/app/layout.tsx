@@ -4,11 +4,11 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { CookieConsentBanner } from "@/components/shared/CookieConsentBanner";
 import { ScrollToTopButton } from "@/components/shared/ScrollToTopButton";
-import { Chatbot } from "@/components/shared/Chatbot";
 import "./globals.css";
 import { ScrollToBottomButton } from "@/components/shared/ScrollToBottomButton";
 import { CustomCursor } from "@/components/shared/CustomCursor";
 import { PT_Sans, Playfair_Display } from 'next/font/google';
+import { WhatsAppButton } from "@/components/shared/WhatsAppButton";
 
 const ptSans = PT_Sans({
   subsets: ['latin'],
@@ -76,7 +76,7 @@ export default function RootLayout({
         <Toaster />
         <ScrollToTopButton />
         <ScrollToBottomButton />
-        <Chatbot />
+        <WhatsAppButton />
       </body>
     </html>
   );
