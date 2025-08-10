@@ -2,10 +2,12 @@
 "use client";
 
 import Image from "next/image";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { CheckCircle, Mic, Trophy, Users, Presentation, Handshake, Building2, Ticket, Users2 } from "lucide-react";
 import MiceContactForm from "@/components/mice/MiceContactForm";
-import React from "react";
+import React, { useRef, useEffect, useState } from "react";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
+import Autoplay from "embla-carousel-autoplay";
 
 const micePillars = [
     {
@@ -89,9 +91,15 @@ const faqItems = [
   }
 ];
 
+const carouselImages = [
+    "https://www.adbhuttravel.com/wp-content/uploads/2025/08/Mice-g1.jpg",
+    "https://www.adbhuttravel.com/wp-content/uploads/2025/08/Mice-g4.jpg",
+    "https://www.adbhuttravel.com/wp-content/uploads/2025/07/Mice-Incentices-2.png"
+];
 
 export default function MicePage() {
-    
+    const autoplayPlugin = React.useRef(Autoplay({ delay: 3000, stopOnInteraction: true, stopOnFocusIn: true }));
+
   return (
     <div className="bg-background">
       {/* Hero Section */}
@@ -144,8 +152,9 @@ export default function MicePage() {
            </div>
            <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8">
                 {micePillars.map((pillar) => (
-                    <div key={pillar.title} className="relative p-8 rounded-lg bg-white shadow-lg border border-gray-100 transition-all duration-300 hover:shadow-2xl hover:-translate-y-1">
-                        <div className="absolute -top-6 -left-3 text-8xl md:text-9xl font-bold text-primary/30 select-none -z-10">
+                    <div key={pillar.title} className="relative p-8 rounded-lg bg-white shadow-lg border border-gray-100 transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 group">
+                       <div className="absolute inset-0 bg-gradient-to-r from-accent/5 to-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg"></div>
+                       <div className="absolute -top-6 -left-3 text-8xl md:text-9xl font-bold text-primary/30 select-none -z-10 group-hover:text-accent/20 transition-colors duration-300">
                             {pillar.letter}
                         </div>
                         <h3 className="text-2xl font-headline font-bold mb-4 text-gray-800 flex items-center gap-3">
@@ -181,14 +190,32 @@ export default function MicePage() {
                 ))}
               </ul>
             </div>
-             <div className="relative h-80 rounded-lg shadow-lg overflow-hidden">
-                <Image
-                    src="https://www.adbhuttravel.com/wp-content/uploads/2025/08/Mice-g1.jpg"
-                    alt="Corporate event"
-                    fill
-                    className="object-cover"
-                    data-ai-hint="corporate event"
-                />
+             <div className="h-80 rounded-lg shadow-lg overflow-hidden">
+                <Carousel
+                    plugins={[autoplayPlugin.current]}
+                    className="w-full h-full"
+                    opts={{ loop: true, align: "center" }}
+                    onMouseEnter={() => autoplayPlugin.current.stop()}
+                    onMouseLeave={() => autoplayPlugin.current.play()}
+                >
+                    <CarouselContent className="h-full -ml-4">
+                        {carouselImages.map((src, index) => (
+                        <CarouselItem key={index} className="pl-4">
+                            <div className="w-full h-full relative">
+                            <Image
+                                src={src}
+                                alt={`Corporate event image ${index + 1}`}
+                                fill
+                                className="object-cover"
+                                data-ai-hint="corporate event"
+                            />
+                            </div>
+                        </CarouselItem>
+                        ))}
+                    </CarouselContent>
+                    <CarouselPrevious className="absolute left-2 top-1/2 -translate-y-1/2 z-10 size-10 md:size-12 rounded-full bg-background/70 hover:bg-background/90 shadow-lg border" />
+                    <CarouselNext className="absolute right-2 top-1/2 -translate-y-1/2 z-10 size-10 md:size-12 rounded-full bg-background/70 hover:bg-background/90 shadow-lg border" />
+                </Carousel>
             </div>
           </div>
           <div className="mt-16">
