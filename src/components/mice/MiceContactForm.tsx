@@ -13,26 +13,17 @@ import { Textarea } from "@/components/ui/textarea";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Loader2, CheckCircle } from "lucide-react";
+import { submitMiceForm } from "@/lib/actions";
+import { miceFormSchema } from "@/lib/schemas";
+import { cn } from "@/lib/utils";
 
-const miceFormSchema = z.object({
-  title: z.string().optional(),
-  lastName: z.string().min(1, { message: "Last name is required." }),
-  email: z.string().email({ message: "Please enter a valid email address." }),
-  phone: z.string().min(10, { message: "Please enter a valid phone number." }),
-  monthOfTravel: z.string().optional(),
-  guests: z.string().min(1, { message: "Number of guests is required." }),
-  destinations: z.string().optional(),
-  hotelCategory: z.string().optional(),
-  hotelType: z.string().optional(),
-  serviceRequired: z.string().optional(),
-  additionalInfo: z.string().optional(),
-});
 
 type MiceFormData = z.infer<typeof miceFormSchema>;
 
 const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 const hotelCategories = ["3 Star", "4 Star", "5 Star"];
 const hotelTypes = ["Business Hotel", "Resort", "Boutique Hotel", "Airport Hotel"];
+const countryCodes = ["+91", "+1", "+44", "+61", "+971"];
 
 export default function MiceContactForm() {
   const [formStatus, setFormStatus] = useState<{ success: boolean; message: string }>({ success: false, message: "" });
@@ -40,12 +31,13 @@ export default function MiceContactForm() {
   const form = useForm<MiceFormData>({
     resolver: zodResolver(miceFormSchema),
     defaultValues: {
-      title: "Mr.",
+      firstName: "",
       lastName: "",
       email: "",
+      countryCode: "+91",
       phone: "",
       monthOfTravel: "October",
-      guests: "1",
+      guests: "5",
       destinations: "",
       hotelCategory: "3 Star",
       hotelType: "Business Hotel",
@@ -59,10 +51,11 @@ export default function MiceContactForm() {
   const onSubmit = async (data: MiceFormData) => {
     setFormStatus({ success: false, message: "" });
     try {
-        console.log("Form Data:", data);
-        await new Promise(resolve => setTimeout(resolve, 1000));
-        setFormStatus({ success: true, message: "Your message has been sent successfully! We will get back to you shortly." });
-        form.reset();
+        const result = await submitMiceForm(data);
+        setFormStatus({ success: result.success, message: result.message });
+        if(result.success) {
+            form.reset();
+        }
     } catch (error) {
         setFormStatus({ success: false, message: "Something went wrong. Please try again." });
     }
@@ -79,24 +72,15 @@ export default function MiceContactForm() {
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                <FormField
+                 <FormField
                     control={form.control}
-                    name="title"
+                    name="firstName"
                     render={({ field }) => (
                         <FormItem>
                             <FormLabel className="text-gray-700">First & Middle name</FormLabel>
-                            <Select onValueChange={field.onChange} defaultValue={field.value}>
-                                <FormControl>
-                                    <SelectTrigger className="bg-gray-50">
-                                        <SelectValue placeholder="Mr." />
-                                    </SelectTrigger>
-                                </FormControl>
-                                <SelectContent>
-                                    <SelectItem value="Mr.">Mr.</SelectItem>
-                                    <SelectItem value="Mrs.">Mrs.</SelectItem>
-                                    <SelectItem value="Ms.">Ms.</SelectItem>
-                                </SelectContent>
-                            </Select>
+                            <FormControl>
+                                <Input placeholder="First Name" {...field} className="bg-gray-50"/>
+                            </FormControl>
                             <FormMessage />
                         </FormItem>
                     )}
@@ -108,7 +92,7 @@ export default function MiceContactForm() {
                         <FormItem>
                             <FormLabel className="text-gray-700">Last name</FormLabel>
                             <FormControl>
-                                <Input placeholder="Name" {...field} className="bg-gray-50"/>
+                                <Input placeholder="Last Name" {...field} className="bg-gray-50"/>
                             </FormControl>
                             <FormMessage />
                         </FormItem>
@@ -129,20 +113,42 @@ export default function MiceContactForm() {
                     </FormItem>
                 )}
             />
-
-            <FormField
-                control={form.control}
-                name="phone"
-                render={({ field }) => (
-                    <FormItem>
-                        <FormLabel className="text-gray-700">Phone number</FormLabel>
-                        <FormControl>
-                            <Input type="tel" placeholder="" {...field} className="bg-gray-50" hasPrefix={true}/>
-                        </FormControl>
-                        <FormMessage />
-                    </FormItem>
-                )}
-            />
+            
+            <div className="grid grid-cols-[auto,1fr] gap-2">
+                <FormField
+                    control={form.control}
+                    name="countryCode"
+                    render={({ field }) => (
+                        <FormItem>
+                             <FormLabel className="text-gray-700">Code</FormLabel>
+                             <Select onValueChange={field.onChange} defaultValue={field.value}>
+                                <FormControl>
+                                <SelectTrigger className="bg-gray-50 w-[80px]">
+                                    <SelectValue placeholder="+91" />
+                                </SelectTrigger>
+                                </FormControl>
+                                <SelectContent>
+                                    {countryCodes.map(code => <SelectItem key={code} value={code}>{code}</SelectItem>)}
+                                </SelectContent>
+                            </Select>
+                            <FormMessage />
+                        </FormItem>
+                    )}
+                />
+                <FormField
+                    control={form.control}
+                    name="phone"
+                    render={({ field }) => (
+                        <FormItem>
+                            <FormLabel className="text-gray-700">Phone number</FormLabel>
+                            <FormControl>
+                                <Input type="tel" placeholder="Phone Number" {...field} className="bg-gray-50" />
+                            </FormControl>
+                            <FormMessage />
+                        </FormItem>
+                    )}
+                />
+            </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <FormField
@@ -172,7 +178,7 @@ export default function MiceContactForm() {
                         <FormItem>
                             <FormLabel className="text-gray-700">No. of Guests</FormLabel>
                             <FormControl>
-                                <Input type="number" min="1" placeholder="1" {...field} className="bg-gray-50"/>
+                                <Input type="number" min="1" placeholder="5" {...field} className="bg-gray-50"/>
                             </FormControl>
                             <FormMessage />
                         </FormItem>
@@ -264,7 +270,7 @@ export default function MiceContactForm() {
             />
             
             <div className="text-center pt-4">
-              <Button type="submit" className="w-full sm:w-auto px-16 py-6 text-lg bg-red-500 hover:bg-red-600" disabled={isSubmitting}>
+              <Button type="submit" className="w-full sm:w-auto px-16 py-6 text-lg" disabled={isSubmitting}>
                 {isSubmitting ? (
                   <>
                     <Loader2 className="mr-2 h-4 w-4 animate-spin" />

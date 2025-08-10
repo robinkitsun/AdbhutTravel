@@ -4,7 +4,7 @@
 import { chatWithAgent } from "@/ai/flows/chat-flow";
 import { z } from 'zod';
 import { Resend } from 'resend';
-import { contactFormSchema, tailoredTripFormSchema } from "./schemas";
+import { contactFormSchema, miceFormSchema, tailoredTripFormSchema } from "./schemas";
 
 type ChatState = {
   messages: { role: 'user' | 'assistant', content: string }[];
@@ -68,7 +68,7 @@ export async function submitContactForm(
     const resend = new Resend(process.env.RESEND_API_KEY);
     await resend.emails.send({
       from: 'onboarding@resend.dev',
-      to: 'ankitsundriyal0@gmail.com',
+      to: 'info@adbhuttravel.in',
       reply_to: email,
       subject: `New Contact Form Submission: ${subject}`,
       html: `<p>You have a new message from <strong>${name}</strong> (${email}):</p><p>${message}</p>`,
@@ -82,6 +82,62 @@ export async function submitContactForm(
 
   } catch (error) {
     console.error("Failed to send email:", error);
+    return {
+      message: "Something went wrong. Please try again later.",
+      success: false,
+    };
+  }
+}
+
+type MiceFormState = {
+    message: string;
+    success: boolean;
+};
+
+export async function submitMiceForm(
+  data: z.infer<typeof miceFormSchema>
+): Promise<MiceFormState> {
+
+  if (!process.env.RESEND_API_KEY) {
+      console.error("Resend API key is not configured.");
+      return {
+          message: "The form is not configured to send emails. Please contact support.",
+          success: false,
+      }
+  }
+
+  try {
+    const resend = new Resend(process.env.RESEND_API_KEY);
+    const formDetailsHtml = `
+      <h2>MICE Inquiry Details</h2>
+      <p><strong>Name:</strong> ${data.firstName} ${data.lastName}</p>
+      <p><strong>Email:</strong> ${data.email}</p>
+      <p><strong>Phone:</strong> ${data.countryCode} ${data.phone}</p>
+      <p><strong>Month of Travel:</strong> ${data.monthOfTravel}</p>
+      <p><strong>Number of Guests:</strong> ${data.guests}</p>
+      <p><strong>Destinations:</strong> ${data.destinations || 'N/A'}</p>
+      <p><strong>Hotel Category:</strong> ${data.hotelCategory}</p>
+      <p><strong>Hotel Type:</strong> ${data.hotelType}</p>
+      <p><strong>Service Required:</strong> ${data.serviceRequired || 'N/A'}</p>
+      <p><strong>Additional Info:</strong> ${data.additionalInfo || 'N/A'}</p>
+    `;
+
+    await resend.emails.send({
+      from: 'onboarding@resend.dev',
+      to: 'info@adbhuttravel.in',
+      reply_to: data.email,
+      subject: 'New MICE Corporate Travel Inquiry',
+      html: formDetailsHtml,
+    });
+
+
+    return {
+      message: "Your message has been sent successfully! We will get back to you shortly.",
+      success: true,
+    };
+
+  } catch (error) {
+    console.error("Failed to send MICE email:", error);
     return {
       message: "Something went wrong. Please try again later.",
       success: false,
@@ -134,7 +190,7 @@ export async function submitTailoredTripForm(
         await resend.emails.send({
             from: 'onboarding@resend.dev',
             to: email,
-            cc: 'ankitsundriyal0@gmail.com',
+            cc: 'info@adbhuttravel.in',
             subject: 'Your Adbhut Travel Custom Trip Request',
             html: `
               <h1>Thank You for Your Custom Trip Request!</h1>
@@ -152,7 +208,7 @@ export async function submitTailoredTripForm(
          // Send notification to the admin if no customer email
         await resend.emails.send({
           from: 'onboarding@resend.dev',
-          to: 'ankitsundriyal0@gmail.com',
+          to: 'info@adbhuttravel.in',
           subject: 'New Custom Trip Request (No Customer Email)',
           html: `
             <h1>New Custom Trip Request</h1>
