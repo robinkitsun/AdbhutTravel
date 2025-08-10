@@ -9,7 +9,6 @@ import { z } from "zod";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Card } from "@/components/ui/card";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Loader2, CheckCircle } from "lucide-react";
 
@@ -55,7 +54,7 @@ export default function MiceContactForm() {
   };
 
   return (
-    <Card className="p-4 sm:p-6 lg:p-8 shadow-lg bg-white border border-gray-100 rounded-lg">
+    <div className="p-4 sm:p-6 lg:p-8 shadow-lg bg-white border border-gray-100 rounded-lg">
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
@@ -156,6 +155,6 @@ export default function MiceContactForm() {
             )}
           </form>
         </Form>
-    </Card>
+    </div>
   );
 }
