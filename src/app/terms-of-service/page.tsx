@@ -106,17 +106,17 @@ export default function TermsOfServicePage() {
                                 control={form.control}
                                 name="serviceFor"
                                 render={({ field }) => (
-                                    <FormItem className="space-y-3">
+                                    <FormItem>
                                         <FormControl>
-                                            <RadioGroup onValueChange={field.onChange} defaultValue={field.value} className="flex flex-col space-y-1">
-                                                <FormItem className="flex items-center space-x-3 space-y-0">
+                                            <RadioGroup onValueChange={field.onChange} defaultValue={field.value} className="flex flex-col space-y-2">
+                                                <FormLabel className="flex items-center space-x-3 space-y-0 p-2 border rounded-md hover:bg-muted/50 cursor-pointer">
                                                     <FormControl><RadioGroupItem value="self" /></FormControl>
-                                                    <FormLabel className="font-normal">For Myself (मेरे लिए)</FormLabel>
-                                                </FormItem>
-                                                <FormItem className="flex items-center space-x-3 space-y-0">
+                                                    <span className="font-normal">For Myself (मेरे लिए)</span>
+                                                </FormLabel>
+                                                <FormLabel className="flex items-center space-x-3 space-y-0 p-2 border rounded-md hover:bg-muted/50 cursor-pointer">
                                                     <FormControl><RadioGroupItem value="other" /></FormControl>
-                                                    <FormLabel className="font-normal">For Someone else (किसी और के लिए)</FormLabel>
-                                                </FormItem>
+                                                    <span className="font-normal">For Someone else (किसी और के लिए)</span>
+                                                </FormLabel>
                                             </RadioGroup>
                                         </FormControl>
                                         <FormMessage />
@@ -130,7 +130,7 @@ export default function TermsOfServicePage() {
                                     render={({ field }) => (
                                         <FormItem>
                                             <FormLabel>If for Someone else, What is your relationship with traveler?</FormLabel>
-                                            <FormControl><Input placeholder="e.g., Spouse, Friend" {...field} className="border-border" /></FormControl>
+                                            <FormControl><Input placeholder="e.g., Spouse, Friend" {...field} className="border-input" /></FormControl>
                                             <FormMessage />
                                         </FormItem>
                                     )}
@@ -143,17 +143,17 @@ export default function TermsOfServicePage() {
                                 control={form.control}
                                 name="legalCase"
                                 render={({ field }) => (
-                                    <FormItem className="space-y-3">
+                                    <FormItem>
                                         <FormControl>
-                                            <RadioGroup onValueChange={field.onChange} defaultValue={field.value} className="flex space-x-4">
-                                                <FormItem className="flex items-center space-x-3 space-y-0">
+                                            <RadioGroup onValueChange={field.onChange} defaultValue={field.value} className="flex flex-col space-y-2">
+                                                 <FormLabel className="flex items-center space-x-3 space-y-0 p-2 border rounded-md hover:bg-muted/50 cursor-pointer">
                                                     <FormControl><RadioGroupItem value="no" /></FormControl>
-                                                    <FormLabel className="font-normal">No (नहीं)</FormLabel>
-                                                </FormItem>
-                                                <FormItem className="flex items-center space-x-3 space-y-0">
+                                                    <span className="font-normal">No (नहीं)</span>
+                                                </FormLabel>
+                                                 <FormLabel className="flex items-center space-x-3 space-y-0 p-2 border rounded-md hover:bg-muted/50 cursor-pointer">
                                                     <FormControl><RadioGroupItem value="yes" /></FormControl>
-                                                    <FormLabel className="font-normal">Yes (हाँ)</FormLabel>
-                                                </FormItem>
+                                                    <span className="font-normal">Yes (हाँ)</span>
+                                                </FormLabel>
                                             </RadioGroup>
                                         </FormControl>
                                         <FormMessage />
@@ -167,7 +167,7 @@ export default function TermsOfServicePage() {
                                     render={({ field }) => (
                                         <FormItem>
                                             <FormLabel>If Yes, Please explain</FormLabel>
-                                            <FormControl><Textarea placeholder="Please provide details of the legal case." {...field} className="border-border" /></FormControl>
+                                            <FormControl><Textarea placeholder="Please provide details of the legal case." {...field} className="border-input" /></FormControl>
                                             <FormMessage />
                                         </FormItem>
                                     )}
@@ -182,17 +182,17 @@ export default function TermsOfServicePage() {
                                 control={form.control}
                                 name="docsGenuine"
                                 render={({ field }) => (
-                                    <FormItem className="space-y-3">
+                                    <FormItem>
                                         <FormControl>
-                                            <RadioGroup onValueChange={field.onChange} defaultValue={field.value} className="flex space-x-4">
-                                                <FormItem className="flex items-center space-x-3 space-y-0">
+                                            <RadioGroup onValueChange={field.onChange} defaultValue={field.value} className="flex flex-col space-y-2">
+                                                <FormLabel className="flex items-center space-x-3 space-y-0 p-2 border rounded-md hover:bg-muted/50 cursor-pointer">
                                                     <FormControl><RadioGroupItem value="yes" /></FormControl>
-                                                    <FormLabel className="font-normal">Yes (हाँ)</FormLabel>
-                                                </FormItem>
-                                                <FormItem className="flex items-center space-x-3 space-y-0">
+                                                    <span className="font-normal">Yes (हाँ)</span>
+                                                </FormLabel>
+                                                <FormLabel className="flex items-center space-x-3 space-y-0 p-2 border rounded-md hover:bg-muted/50 cursor-pointer">
                                                     <FormControl><RadioGroupItem value="no" /></FormControl>
-                                                    <FormLabel className="font-normal">No (नहीं)</FormLabel>
-                                                </FormItem>
+                                                    <span className="font-normal">No (नहीं)</span>
+                                                </FormLabel>
                                             </RadioGroup>
                                         </FormControl>
                                         <FormMessage />
@@ -212,17 +212,17 @@ export default function TermsOfServicePage() {
                                 control={form.control}
                                 name="originalDocsGiven"
                                 render={({ field }) => (
-                                    <FormItem className="space-y-3">
+                                    <FormItem>
                                         <FormControl>
-                                            <RadioGroup onValueChange={field.onChange} defaultValue={field.value} className="flex space-x-4">
-                                                <FormItem className="flex items-center space-x-3 space-y-0">
+                                            <RadioGroup onValueChange={field.onChange} defaultValue={field.value} className="flex flex-col space-y-2">
+                                                 <FormLabel className="flex items-center space-x-3 space-y-0 p-2 border rounded-md hover:bg-muted/50 cursor-pointer">
                                                     <FormControl><RadioGroupItem value="no" /></FormControl>
-                                                    <FormLabel className="font-normal">No (नहीं)</FormLabel>
-                                                </FormItem>
-                                                <FormItem className="flex items-center space-x-3 space-y-0">
+                                                    <span className="font-normal">No (नहीं)</span>
+                                                </FormLabel>
+                                                 <FormLabel className="flex items-center space-x-3 space-y-0 p-2 border rounded-md hover:bg-muted/50 cursor-pointer">
                                                     <FormControl><RadioGroupItem value="yes" /></FormControl>
-                                                    <FormLabel className="font-normal">Yes (हाँ)</FormLabel>
-                                                </FormItem>
+                                                    <span className="font-normal">Yes (हाँ)</span>
+                                                </FormLabel>
                                             </RadioGroup>
                                         </FormControl>
                                         <FormMessage />
@@ -234,9 +234,9 @@ export default function TermsOfServicePage() {
                         <div className="border rounded-lg text-sm md:text-base">
                             <h2 className="text-base md:text-lg font-bold p-3 bg-gray-100 text-center">Details of the traveler who will travel (यात्रा करने वाले यात्री का विवरण)</h2>
                             <div className="p-4 space-y-4">
-                                <FormField control={form.control} name="passengerDetails" render={({ field }) => (<FormItem><FormLabel>Passenger and passport details (यात्री का विवरण और पासपोर्ट डिटेल)</FormLabel><FormControl><Textarea {...field} className="border-border" /></FormControl><FormMessage /></FormItem>)} />
-                                <FormField control={form.control} name="travelServiceDescription" render={({ field }) => (<FormItem><FormLabel>Description of travel service (ट्रैवल सर्विस इसका विवरण)</FormLabel><FormControl><Textarea {...field} className="border-border" /></FormControl><FormMessage /></FormItem>)} />
-                                <FormField control={form.control} name="totalFee" render={({ field }) => (<FormItem><FormLabel>Total fee per person including service charge (in Indian Rupees) (सेवा शुल्क सहित कुल प्रति व्यक्ति शुल्क (भारतीय रुपये में))</FormLabel><FormControl><Input {...field} className="border-border" /></FormControl><FormMessage /></FormItem>)} />
+                                <FormField control={form.control} name="passengerDetails" render={({ field }) => (<FormItem><FormLabel>Passenger and passport details</FormLabel><FormControl><Textarea {...field} className="border-input" /></FormControl><FormMessage /></FormItem>)} />
+                                <FormField control={form.control} name="travelServiceDescription" render={({ field }) => (<FormItem><FormLabel>Description of travel service</FormLabel><FormControl><Textarea {...field} className="border-input" /></FormControl><FormMessage /></FormItem>)} />
+                                <FormField control={form.control} name="totalFee" render={({ field }) => (<FormItem><FormLabel>Total fee per person including service charge (in Indian Rupees)</FormLabel><FormControl><Input {...field} className="border-input" /></FormControl><FormMessage /></FormItem>)} />
                             </div>
                         </div>
 
@@ -245,17 +245,19 @@ export default function TermsOfServicePage() {
                                 control={form.control}
                                 name="certify"
                                 render={({ field }) => (
-                                    <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4">
-                                        <FormControl>
-                                            <Checkbox checked={field.value} onCheckedChange={field.onChange} />
-                                        </FormControl>
-                                        <div className="space-y-1 leading-none">
-                                            <FormLabel className="cursor-pointer">
-                                                I hereby certify that I have read the complete terms and conditions and we accept these terms and conditions and if any of my statements is false then legal action should be taken against me.
-                                                <br /> (मैं प्रमाणित करता/करती हु कि मैंने पूरे नियम और शर्तें पढ़ ली हैं और में इन नियम और शर्तें को स्वीकार करता /करती हु और अगर मेरा कोई भी बयान झूठा साबित होता है तो मेरे खिलाफ कानूनी कार्रवाई की जानी चाहिए।)
-                                            </FormLabel>
-                                            <FormMessage />
-                                        </div>
+                                    <FormItem>
+                                        <FormLabel className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4 hover:bg-muted/50 cursor-pointer">
+                                            <FormControl>
+                                                <Checkbox checked={field.value} onCheckedChange={field.onChange} />
+                                            </FormControl>
+                                            <div className="space-y-1 leading-none">
+                                                <span className="font-medium">
+                                                    I hereby certify that I have read the complete terms and conditions and we accept these terms and conditions and if any of my statements is false then legal action should be taken against me.
+                                                    <br /> (मैं प्रमाणित करता/करती हु कि मैंने पूरे नियम और शर्तें पढ़ ली हैं और में इन नियम और शर्तें को स्वीकार करता /करती हु और अगर मेरा कोई भी बयान झूठा साबित होता है तो मेरे खिलाफ कानूनी कार्रवाई की जानी चाहिए।)
+                                                </span>
+                                            </div>
+                                        </FormLabel>
+                                        <FormMessage className="pl-4 pt-1" />
                                     </FormItem>
                                 )}
                             />
@@ -263,17 +265,17 @@ export default function TermsOfServicePage() {
 
                         <div className="border rounded-lg p-4 space-y-4">
                              <div className="grid md:grid-cols-2 gap-4">
-                                <FormField control={form.control} name="name" render={({ field }) => (<FormItem><FormLabel>Name</FormLabel><FormControl><Input placeholder="Full Name" {...field} className="border-border" /></FormControl><FormMessage /></FormItem>)} />
-                                <FormField control={form.control} name="email" render={({ field }) => (<FormItem><FormLabel>Email for Confirmation</FormLabel><FormControl><Input type="email" placeholder="email@example.com" {...field} className="border-border" /></FormControl><FormMessage /></FormItem>)} />
+                                <FormField control={form.control} name="name" render={({ field }) => (<FormItem><FormLabel>Name</FormLabel><FormControl><Input placeholder="Full Name" {...field} className="border-input" /></FormControl><FormMessage /></FormItem>)} />
+                                <FormField control={form.control} name="email" render={({ field }) => (<FormItem><FormLabel>Email for Confirmation</FormLabel><FormControl><Input type="email" placeholder="email@example.com" {...field} className="border-input" /></FormControl><FormMessage /></FormItem>)} />
                              </div>
                              <div className="grid md:grid-cols-2 gap-4">
-                                <FormField control={form.control} name="mobile" render={({ field }) => (<FormItem><FormLabel>Mobile Number</FormLabel><FormControl><Input placeholder="Mobile Number" {...field} className="border-border" /></FormControl><FormMessage /></FormItem>)} />
-                                <FormField control={form.control} name="idNumber" render={({ field }) => (<FormItem><FormLabel>Aadhar Card Number / Any other Govt Id</FormLabel><FormControl><Input placeholder="ID Number" {...field} className="border-border" /></FormControl><FormMessage /></FormItem>)} />
+                                <FormField control={form.control} name="mobile" render={({ field }) => (<FormItem><FormLabel>Mobile Number</FormLabel><FormControl><Input placeholder="Mobile Number" {...field} className="border-input" /></FormControl><FormMessage /></FormItem>)} />
+                                <FormField control={form.control} name="idNumber" render={({ field }) => (<FormItem><FormLabel>Aadhar Card Number / Any other Govt Id</FormLabel><FormControl><Input placeholder="ID Number" {...field} className="border-input" /></FormControl><FormMessage /></FormItem>)} />
                              </div>
-                            <FormField control={form.control} name="address" render={({ field }) => (<FormItem><FormLabel>Current Address</FormLabel><FormControl><Textarea placeholder="Full Address" {...field} className="border-border" /></FormControl><FormMessage /></FormItem>)} />
+                            <FormField control={form.control} name="address" render={({ field }) => (<FormItem><FormLabel>Current Address</FormLabel><FormControl><Textarea placeholder="Full Address" {...field} className="border-input" /></FormControl><FormMessage /></FormItem>)} />
                             <div className="grid md:grid-cols-3 gap-4 pt-4">
-                               <FormField control={form.control} name="signature" render={({ field }) => (<FormItem><FormLabel>Signature (Please type your full name)</FormLabel><FormControl><Input placeholder="Signature" {...field} className="border-border" /></FormControl><FormMessage /></FormItem>)} />
-                               <FormField control={form.control} name="place" render={({ field }) => (<FormItem><FormLabel>Place</FormLabel><FormControl><Input placeholder="Place" {...field} className="border-border" /></FormControl><FormMessage /></FormItem>)} />
+                               <FormField control={form.control} name="signature" render={({ field }) => (<FormItem><FormLabel>Signature (Please type your full name)</FormLabel><FormControl><Input placeholder="Signature" {...field} className="border-input" /></FormControl><FormMessage /></FormItem>)} />
+                               <FormField control={form.control} name="place" render={({ field }) => (<FormItem><FormLabel>Place</FormLabel><FormControl><Input placeholder="Place" {...field} className="border-input" /></FormControl><FormMessage /></FormItem>)} />
                                <FormField
                                   control={form.control}
                                   name="date"
@@ -283,7 +285,7 @@ export default function TermsOfServicePage() {
                                       <Popover>
                                         <PopoverTrigger asChild>
                                           <FormControl>
-                                            <Button variant={"outline"} className={cn("pl-3 text-left font-normal", !field.value && "text-muted-foreground")}>
+                                            <Button variant={"outline"} className={cn("pl-3 text-left font-normal border-input", !field.value && "text-muted-foreground")}>
                                               {field.value ? format(field.value, "PPP") : <span>Pick a date</span>}
                                               <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
                                             </Button>
@@ -314,3 +316,5 @@ export default function TermsOfServicePage() {
         </div>
     );
 }
+
+    

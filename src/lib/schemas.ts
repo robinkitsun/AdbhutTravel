@@ -55,7 +55,7 @@ export const termsOfServiceSchema = z.object({
   address: z.string().min(10, "A valid address is required."),
   signature: z.string().min(2, "Signature (full name) is required."),
   place: z.string().min(2, "Place is required."),
-  date: z.date(),
+  date: z.date({ required_error: "Date is required." }),
 }).superRefine((data, ctx) => {
     if (data.serviceFor === 'other' && !data.relationship) {
         ctx.addIssue({
@@ -73,3 +73,4 @@ export const termsOfServiceSchema = z.object({
     }
 });
 
+    
