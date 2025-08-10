@@ -4,7 +4,7 @@
 import Image from "next/image";
 import { CheckCircle, Mic, Trophy, Users, Presentation, Handshake, Building2, Ticket, Users2 } from "lucide-react";
 import MiceContactForm from "@/components/mice/MiceContactForm";
-import React, { useRef, useEffect, useState } from "react";
+import React from "react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
