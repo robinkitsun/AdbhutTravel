@@ -4,7 +4,7 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import type { z } from "zod";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { format } from "date-fns";
 import { Calendar as CalendarIcon, Loader2, CheckCircle } from "lucide-react";
 
@@ -58,9 +58,14 @@ export default function TermsOfServicePage() {
             address: "",
             signature: "",
             place: "",
-            date: new Date(),
+            date: undefined,
         },
     });
+
+    useEffect(() => {
+        // Set date only on the client to avoid hydration mismatch
+        form.setValue('date', new Date());
+    }, [form]);
 
     const { isSubmitting } = form.formState;
 
@@ -354,3 +359,5 @@ export default function TermsOfServicePage() {
         </div>
     );
 }
+
+    
