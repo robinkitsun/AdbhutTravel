@@ -92,8 +92,9 @@ export default function TermsOfServicePage() {
                             </p>
                         </Section>
 
-                        <div className="text-center bg-primary/10 py-2">
-                            <h1 className="font-headline text-xl md:text-2xl font-bold">Terms & Conditions (नियम एवं शर्तें)</h1>
+                        <div className="text-center bg-[#468585] text-white py-3 rounded-md flex justify-between items-center px-6">
+                            <h1 className="font-headline text-xl md:text-2xl font-bold">Terms & Conditions</h1>
+                             <h1 className="font-headline text-xl md:text-2xl font-bold">नियम एवं शर्तें</h1>
                         </div>
 
                         <ol className="list-decimal list-outside space-y-4 pl-6 text-muted-foreground text-sm md:text-base">
@@ -118,22 +119,18 @@ export default function TermsOfServicePage() {
                                         value={field.value}
                                         className="flex flex-col space-y-2"
                                     >
-                                        <FormItem>
-                                            <Label className="flex items-center space-x-3 space-y-0 p-2 border rounded-md hover:bg-muted/50 cursor-pointer w-full">
-                                                <FormControl>
-                                                    <RadioGroupItem value="self" />
-                                                </FormControl>
-                                                <span className="font-normal">For Myself (मेरे लिए)</span>
-                                            </Label>
-                                        </FormItem>
-                                        <FormItem>
-                                             <Label className="flex items-center space-x-3 space-y-0 p-2 border rounded-md hover:bg-muted/50 cursor-pointer w-full">
-                                                <FormControl>
-                                                    <RadioGroupItem value="other" />
-                                                </FormControl>
-                                                <span className="font-normal">For Someone else (किसी और के लिए)</span>
-                                            </Label>
-                                        </FormItem>
+                                        <Label className="flex items-center space-x-3 space-y-0 p-2 border rounded-md hover:bg-muted/50 cursor-pointer w-full">
+                                            <FormControl>
+                                                <RadioGroupItem value="self" />
+                                            </FormControl>
+                                            <span className="font-normal">For Myself (मेरे लिए)</span>
+                                        </Label>
+                                         <Label className="flex items-center space-x-3 space-y-0 p-2 border rounded-md hover:bg-muted/50 cursor-pointer w-full">
+                                            <FormControl>
+                                                <RadioGroupItem value="other" />
+                                            </FormControl>
+                                            <span className="font-normal">For Someone else (किसी और के लिए)</span>
+                                        </Label>
                                     </RadioGroup>
                                     </FormControl>
                                     <FormMessage />
@@ -167,22 +164,18 @@ export default function TermsOfServicePage() {
                                         value={field.value}
                                         className="flex flex-col space-y-2"
                                     >
-                                        <FormItem>
-                                            <Label className="flex items-center space-x-3 space-y-0 p-2 border rounded-md hover:bg-muted/50 cursor-pointer w-full">
-                                                <FormControl>
-                                                    <RadioGroupItem value="no" />
-                                                </FormControl>
-                                                <span className="font-normal">No (नहीं)</span>
-                                            </Label>
-                                        </FormItem>
-                                        <FormItem>
-                                            <Label className="flex items-center space-x-3 space-y-0 p-2 border rounded-md hover:bg-muted/50 cursor-pointer w-full">
-                                                <FormControl>
-                                                    <RadioGroupItem value="yes" />
-                                                </FormControl>
-                                                <span className="font-normal">Yes (हाँ)</span>
-                                            </Label>
-                                        </FormItem>
+                                        <Label className="flex items-center space-x-3 space-y-0 p-2 border rounded-md hover:bg-muted/50 cursor-pointer w-full">
+                                            <FormControl>
+                                                <RadioGroupItem value="no" />
+                                            </FormControl>
+                                            <span className="font-normal">No (नहीं)</span>
+                                        </Label>
+                                        <Label className="flex items-center space-x-3 space-y-0 p-2 border rounded-md hover:bg-muted/50 cursor-pointer w-full">
+                                            <FormControl>
+                                                <RadioGroupItem value="yes" />
+                                            </FormControl>
+                                            <span className="font-normal">Yes (हाँ)</span>
+                                        </Label>
                                     </RadioGroup>
                                     </FormControl>
                                     <FormMessage />
@@ -218,22 +211,18 @@ export default function TermsOfServicePage() {
                                         value={field.value}
                                         className="flex flex-col space-y-2"
                                     >
-                                        <FormItem>
-                                            <Label className="flex items-center space-x-3 space-y-0 p-2 border rounded-md hover:bg-muted/50 cursor-pointer w-full">
-                                                <FormControl>
-                                                    <RadioGroupItem value="yes" />
-                                                </FormControl>
-                                                <span className="font-normal">Yes (हाँ)</span>
-                                            </Label>
-                                        </FormItem>
-                                        <FormItem>
-                                             <Label className="flex items-center space-x-3 space-y-0 p-2 border rounded-md hover:bg-muted/50 cursor-pointer w-full">
-                                                <FormControl>
-                                                    <RadioGroupItem value="no" />
-                                                </FormControl>
-                                                <span className="font-normal">No (नहीं)</span>
-                                            </Label>
-                                        </FormItem>
+                                        <Label className="flex items-center space-x-3 space-y-0 p-2 border rounded-md hover:bg-muted/50 cursor-pointer w-full">
+                                            <FormControl>
+                                                <RadioGroupItem value="yes" />
+                                            </FormControl>
+                                            <span className="font-normal">Yes (हाँ)</span>
+                                        </Label>
+                                         <Label className="flex items-center space-x-3 space-y-0 p-2 border rounded-md hover:bg-muted/50 cursor-pointer w-full">
+                                            <FormControl>
+                                                <RadioGroupItem value="no" />
+                                            </FormControl>
+                                            <span className="font-normal">No (नहीं)</span>
+                                        </Label>
                                     </RadioGroup>
                                     </FormControl>
                                     <FormMessage />
@@ -260,22 +249,18 @@ export default function TermsOfServicePage() {
                                         value={field.value}
                                         className="flex flex-col space-y-2"
                                     >
-                                        <FormItem>
-                                            <Label className="flex items-center space-x-3 space-y-0 p-2 border rounded-md hover:bg-muted/50 cursor-pointer w-full">
-                                                <FormControl>
-                                                    <RadioGroupItem value="no" />
-                                                </FormControl>
-                                                <span className="font-normal">No (नहीं)</span>
-                                            </Label>
-                                        </FormItem>
-                                        <FormItem>
-                                            <Label className="flex items-center space-x-3 space-y-0 p-2 border rounded-md hover:bg-muted/50 cursor-pointer w-full">
-                                                <FormControl>
-                                                    <RadioGroupItem value="yes" />
-                                                </FormControl>
-                                                <span className="font-normal">Yes (हाँ)</span>
-                                            </Label>
-                                        </FormItem>
+                                        <Label className="flex items-center space-x-3 space-y-0 p-2 border rounded-md hover:bg-muted/50 cursor-pointer w-full">
+                                            <FormControl>
+                                                <RadioGroupItem value="no" />
+                                            </FormControl>
+                                            <span className="font-normal">No (नहीं)</span>
+                                        </Label>
+                                        <Label className="flex items-center space-x-3 space-y-0 p-2 border rounded-md hover:bg-muted/50 cursor-pointer w-full">
+                                            <FormControl>
+                                                <RadioGroupItem value="yes" />
+                                            </FormControl>
+                                            <span className="font-normal">Yes (हाँ)</span>
+                                        </Label>
                                     </RadioGroup>
                                     </FormControl>
                                     <FormMessage />

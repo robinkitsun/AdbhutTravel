@@ -4,6 +4,7 @@
 import { z } from 'zod';
 import { Resend } from 'resend';
 import { contactFormSchema, miceFormSchema, tailoredTripFormSchema, termsOfServiceSchema } from "./schemas";
+import puppeteer from 'puppeteer';
 
 const RESEND_FROM_EMAIL = 'noreply@adbhuttravel.com';
 const ADMIN_EMAIL = 'ankitsundriyal0@gmail.com';
@@ -215,7 +216,7 @@ export async function submitTermsOfServiceForm(
   const resend = new Resend(process.env.RESEND_API_KEY);
   
   const footerHtml = `
-    <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color: #f8f9fa; color: #343a40; padding: 32px 16px; border-top: 1px solid #dee2e6; margin-top: 32px;">
+    <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color: #f3ece7; color: #343a40; padding: 32px 16px; border-top: 1px solid #dee2e6; margin-top: 32px;">
       <tr>
         <td align="center">
           <table width="100%" cellpadding="0" cellspacing="0" border="0" style="max-width: 1200px;">
@@ -280,50 +281,84 @@ export async function submitTermsOfServiceForm(
       </tr>
     </table>`;
 
-  const documentHtml = `
-    <div style="font-family: sans-serif; max-width: 800px; margin: auto; border: 1px solid #eee; padding: 20px;">
-      <img src="https://www.adbhuttravel.com/wp-content/uploads/2025/07/adbhut_transparent.png" alt="Adbhut Travel Logo" style="max-width: 188px; margin-bottom: 20px;">
-      <h1 style="text-align: center; font-size: 24px;">Terms & Conditions Agreement</h1>
-      
-      <h2>Client Information:</h2>
-      <p><strong>Name:</strong> ${data.name}</p>
-      <p><strong>Email:</strong> ${data.email}</p>
-      <p><strong>Mobile:</strong> ${data.mobile}</p>
-      <p><strong>Address:</strong> ${data.address}</p>
-      <p><strong>ID Number:</strong> ${data.idNumber}</p>
+    const documentHtml = `
+    <html>
+      <head>
+        <style>
+          body { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; color: #333; }
+          .container { max-width: 800px; margin: auto; padding: 20px; border: 1px solid #eee; }
+          .logo { max-width: 188px; margin-bottom: 20px; }
+          h1, h2, h3 { color: #222; }
+          hr { border: 0; border-top: 1px solid #eee; margin: 20px 0; }
+          .question-block { margin-top: 20px; }
+          .question { font-weight: bold; }
+          .answer { color: #555; }
+          .terms-header {
+            background-color: #468585;
+            color: white;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 8px;
+            font-family: serif;
+          }
+          .terms-list { list-style-position: outside; padding-left: 20px; color: #555; }
+          .important { font-weight: bold; color: #000; }
+        </style>
+      </head>
+      <body>
+        <div class="container">
+          <img src="https://www.adbhuttravel.com/wp-content/uploads/2025/07/adbhut_transparent.png" alt="Adbhut Travel Logo" class="logo">
+          <p>By "Adbhut Travel And Event Pvt Ltd" before giving you our service, we have some terms and conditions, you are requested to read them carefully and if you accept these terms and conditions, only then we will be able to serve you.
+          <br>
+          "अद्भुत ट्रैवल एंड इवेंट प्राइवेट लिमिटेड" के द्वारा, आपको अपनी सर्विस देने के लिए हमारी कुछ नियम और शर्तें हैं, आपसे अनुरोध है की इन्हे धयानपूर्व पढ़े और यदि आप इन नियमों और शर्तों को स्वीकार करते हैं, तो ही हम आपको अपनी सेवा दे पाएंगे।
+          </p>
 
-      <hr style="margin: 20px 0;" />
+          <div class="terms-header">
+            <h2>Terms & Conditions</h2>
+            <h2>नियम एवं शर्तें</h2>
+          </div>
 
-      <h2>Form Responses:</h2>
-      <p><strong>Q1. Service for self or other?:</strong> ${data.serviceFor}${data.serviceFor === 'other' ? ` (${data.relationship})` : ''}</p>
-      <p><strong>Q2. Any pending legal case?:</strong> ${data.legalCase}${data.legalCase === 'yes' ? ` (${data.legalCaseDetails})` : ''}</p>
-      <p><strong>Q3. Documents are genuine?:</strong> ${data.docsGenuine}</p>
-      <p><strong>Q4. Original documents given?:</strong> ${data.originalDocsGiven}</p>
-      
-      <h3 style="margin-top: 20px;">Traveler Details:</h3>
-      <div style="border: 1px solid #ddd; padding: 10px; border-radius: 5px;">
-          <p><strong>Passenger and passport details:</strong><br>${data.passengerDetails.replace(/\n/g, '<br>')}</p>
-          <p><strong>Description of travel service:</strong><br>${data.travelServiceDescription.replace(/\n/g, '<br>')}</p>
-          <p><strong>Total fee per person:</strong> ${data.totalFee}</p>
-      </div>
+          <ol class="terms-list">
+             <li>The visa will be decided by the embassy, if your visa is refused, we will not be responsible. (वीज़ा का निर्णय दूतावास द्वारा दिया जाएगा, यदि आपका वीज़ा रद्द होता है, तो ज़िम्मेदारी हमारी नहीं होगी।)</li>
+              <li>Visa fee and our service fee will not be refunded in case of visa rejection. (वीज़ा अस्वीकृति के मामले में वीज़ा शुल्क और हमारी सेवा शुल्क वापस नहीं किया जाएगा।)</li>
+              <li>The documents provided by you are genuine, no fraud or forgery has been done by any party, If any fraud is found in them then it will be your responsibility and legal action will be taken against you. (आपके द्वारा उपलब्ध कराए गए दस्तावेज वास्तविक हैं, किसी भी पक्ष द्वारा कोई धोखाधड़ी या जालसाजी नहीं की गई है, यदि उनमें कोई धोखाधड़ी पाई जाती है तो इसकी जिम्मेदारी आपकी होगी और आपके खिलाफ कानूनी कार्रवाई की जाएगी।)</li>
+              <li><span class="important">Very important:</span> When applying for a visa, please keep in mind that if you have booked a travel services such Tour Package/Flight/Hotel etc before the visa decision, and if your visa gets refused, the risk of trail expenses will be your own. (<span class="important">बहुत महत्वपूर्ण:</span> वीजा के लिए आवेदन करते समय, कृपया ध्यान रखें कि यदि आपने वीजा निर्णय से पहले यात्रा पैकेज जैसे टूर पैकेज / फ्लाइट / होटल आदि की बुकिंग की है, और यदि आपका वीसा रद्द हो जाता है, तो खर्च का जोखिम आपका खुद का होगा।)</li>
+              <li>If a person going to international or domestic destination has any problem like illness or any problem, then we will not have any responsibility. (अगर अंतरराष्ट्रीय या घरेलू गंतव्य पर जाने वाले व्यक्ति को कोई समस्या जैसे बीमारी या कोई समस्या होती है, तो किसी भी तरह की जिम्मेदारी हमारी नहीं होगी।)</li>
+              <li>We have provided you with a travel service and if you have the remaining amount, we have the right to cancel your existing booking. (हमने आपको एक यात्रा सेवा प्रदान की है और यदि आपके द्वारा राशि शेष है, तो हमें आपकी मौजूदा बुकिंग रद्द करने का अधिकार है।)</li>
+              <li>If you are booking travel services for any other person, then it will be your duty to tell him about this term and condition. (अगर आप किसी अन्य व्यक्ति के लिए हमसे ट्रैवल सर्विसेज बुक करवा रहे हैं तो उसको इस टर्म एंड कंडीशन के बारे में बताना आपका फर्ज होगा।)</li>
+          </ol>
+          <hr/>
+          
+          <div class="question-block">
+            <p class="question">Q 1. You are taking this service for yourself or for someone else (आप यह सर्विस खुद के लिए ले रहे हैं या किसी और के लिए)?</p>
+            <p class="answer">Answer: ${data.serviceFor === 'self' ? 'For Myself (मेरे लिए)' : `For Someone else (${data.relationship})`}</p>
+          </div>
+          
+          <div class="question-block">
+            <p class="question">Q 2. Is there any legal case or lawsuit pending against the applicant or his/her accompaniment? (क्या आवेदक या उसके साथी के विरुद्ध कोई कानूनी मामला या वाद लंबित है)?</p>
+            <p class="answer">Answer: ${data.legalCase === 'no' ? 'No (नहीं)' : `Yes (${data.legalCaseDetails})`}</p>
+          </div>
+          <hr/>
 
-      <hr style="margin: 20px 0;" />
-
-      <h2>Agreement Certification</h2>
-      <p style="background-color: #f0f0f0; padding: 15px; border-left: 4px solid #1a73e8;">
-        <strong>Certified and Agreed:</strong> I hereby certify that I have read the complete terms and conditions and we accept these terms and conditions and if any of my statements is false then legal action should be taken against me.
-      </p>
-      
-      <div style="margin-top: 30px; border-top: 1px solid #eee; padding-top: 20px;">
-          <p><strong>Signature:</strong> ${data.signature}</p>
-          <p><strong>Place:</strong> ${data.place}</p>
-          <p><strong>Date of Agreement:</strong> ${new Date(data.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
-      </div>
-      ${footerHtml}
-    </div>
+          <div style="margin-top: 30px; border-top: 1px solid #eee; padding-top: 20px; text-align: right;">
+              <p><strong>Signature (हस्ताक्षर):</strong> ${data.signature}</p>
+              <p><strong>Place:</strong> ${data.place}</p>
+              <p><strong>Date:</strong> ${new Date(data.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
+          </div>
+        </div>
+      </body>
+    </html>
   `;
-
+  
   try {
+    const browser = await puppeteer.launch({ args: ['--no-sandbox'] });
+    const page = await browser.newPage();
+    await page.setContent(documentHtml, { waitUntil: 'networkidle0' });
+    const pdfBuffer = await page.pdf({ format: 'A4', printBackground: true });
+    await browser.close();
+
     // Send confirmation email to customer, CC admin
     await resend.emails.send({
       from: RESEND_FROM_EMAIL,
@@ -333,17 +368,22 @@ export async function submitTermsOfServiceForm(
       html: `
         <h1>Thank you for your submission</h1>
         <p>Dear ${data.name},</p>
-        <p>Thank you for completing the Terms & Conditions agreement. A copy of your submitted document is attached below for your records.</p>
-        <hr>
-        ${documentHtml}
+        <p>Thank you for completing the Terms & Conditions agreement. A copy of your submitted document is attached as a PDF for your records.</p>
         <br>
         <p>Best regards,</p>
         <p>The Adbhut Travel Team</p>
+        ${footerHtml}
       `,
+      attachments: [
+        {
+          filename: 'Adbhut_Travel_Terms_Agreement.pdf',
+          content: pdfBuffer,
+        },
+      ],
     });
 
     return {
-      message: "Agreement submitted successfully! A copy has been sent to your email.",
+      message: "Agreement submitted successfully! A PDF copy has been sent to your email.",
       success: true,
     };
   } catch (error) {
