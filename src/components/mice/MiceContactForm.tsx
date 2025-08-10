@@ -9,7 +9,7 @@ import { z } from "zod";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Card, CardContent } from "@/components/ui/card";
+import { Card } from "@/components/ui/card";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Loader2, CheckCircle } from "lucide-react";
 
@@ -55,19 +55,18 @@ export default function MiceContactForm() {
   };
 
   return (
-    <Card className="p-4 sm:p-6 lg:p-8 shadow-lg bg-card">
-      <CardContent className="p-0">
+    <Card className="p-4 sm:p-6 lg:p-8 shadow-lg bg-white border border-gray-100 rounded-lg">
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <FormField
                 control={form.control}
                 name="name"
                 render={({ field }) => (
                     <FormItem>
-                    <FormLabel>Full Name</FormLabel>
+                    <FormLabel className="text-gray-700">Full Name</FormLabel>
                     <FormControl>
-                        <Input placeholder="John Doe" {...field} />
+                        <Input placeholder="John Doe" {...field} className="bg-gray-50"/>
                     </FormControl>
                     <FormMessage />
                     </FormItem>
@@ -78,24 +77,24 @@ export default function MiceContactForm() {
                 name="companyName"
                 render={({ field }) => (
                     <FormItem>
-                    <FormLabel>Company Name</FormLabel>
+                    <FormLabel className="text-gray-700">Company Name</FormLabel>
                     <FormControl>
-                        <Input placeholder="Innovatech Solutions" {...field} />
+                        <Input placeholder="Innovatech Solutions" {...field} className="bg-gray-50"/>
                     </FormControl>
                     <FormMessage />
                     </FormItem>
                 )}
                 />
             </div>
-             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <FormField
                 control={form.control}
                 name="email"
                 render={({ field }) => (
                     <FormItem>
-                    <FormLabel>Email Address</FormLabel>
+                    <FormLabel className="text-gray-700">Email Address</FormLabel>
                     <FormControl>
-                        <Input type="email" placeholder="john.doe@example.com" {...field} />
+                        <Input type="email" placeholder="john.doe@example.com" {...field} className="bg-gray-50"/>
                     </FormControl>
                     <FormMessage />
                     </FormItem>
@@ -106,9 +105,9 @@ export default function MiceContactForm() {
                 name="phone"
                 render={({ field }) => (
                     <FormItem>
-                    <FormLabel>Phone Number</FormLabel>
+                    <FormLabel className="text-gray-700">Phone Number</FormLabel>
                     <FormControl>
-                        <Input type="tel" placeholder="+91 98765 43210" {...field} />
+                        <Input type="tel" placeholder="+91 98765 43210" {...field} className="bg-gray-50"/>
                     </FormControl>
                     <FormMessage />
                     </FormItem>
@@ -120,39 +119,43 @@ export default function MiceContactForm() {
               name="eventDetails"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Event Details</FormLabel>
+                  <FormLabel className="text-gray-700">Event Details</FormLabel>
                   <FormControl>
-                    <Textarea placeholder="Tell us about your event, number of people, destination, dates, etc." className="min-h-[120px]" {...field} />
+                    <Textarea placeholder="Tell us about your event, number of people, destination, dates, etc." className="min-h-[120px] bg-gray-50" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
             />
             
-            <Button type="submit" className="w-full" disabled={isSubmitting}>
-              {isSubmitting ? (
-                <>
-                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                  Submitting Request...
-                </>
-              ) : (
-                "Submit Request"
-              )}
-            </Button>
+            <div className="text-center pt-4">
+              <Button type="submit" className="w-full sm:w-auto px-12 py-3 text-lg" disabled={isSubmitting}>
+                {isSubmitting ? (
+                  <>
+                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                    Submitting...
+                  </>
+                ) : (
+                  "Submit"
+                )}
+              </Button>
+            </div>
+
 
             {formStatus.message && (
-              formStatus.success ? (
-                <div className="flex items-center gap-2 text-green-600 font-medium p-3 bg-green-100 rounded-md">
-                   <CheckCircle className="h-5 w-5" />
-                   <p>{formStatus.message}</p>
-                </div>
-              ) : (
-                <p className="text-sm font-medium text-destructive">{formStatus.message}</p>
-              )
+              <div className="pt-4">
+                {formStatus.success ? (
+                  <div className="flex items-center gap-2 text-green-700 font-medium p-3 bg-green-100 rounded-md">
+                    <CheckCircle className="h-5 w-5" />
+                    <p>{formStatus.message}</p>
+                  </div>
+                ) : (
+                  <p className="text-sm font-medium text-destructive text-center">{formStatus.message}</p>
+                )}
+              </div>
             )}
           </form>
         </Form>
-      </CardContent>
     </Card>
   );
 }
