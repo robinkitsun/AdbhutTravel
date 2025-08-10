@@ -5,6 +5,9 @@ import { z } from 'zod';
 import { Resend } from 'resend';
 import { contactFormSchema, miceFormSchema, tailoredTripFormSchema } from "./schemas";
 
+const RESEND_FROM_EMAIL = 'noreply@adbhuttravel.com';
+const ADMIN_EMAIL = 'ankitsundriyal0@gmail.com';
+
 type ContactFormState = {
   message: string;
   success: boolean;
@@ -27,8 +30,8 @@ export async function submitContactForm(
   try {
     const resend = new Resend(process.env.RESEND_API_KEY);
     await resend.emails.send({
-      from: 'onboarding@resend.dev',
-      to: 'ankitsundriyal0@gmail.com',
+      from: RESEND_FROM_EMAIL,
+      to: ADMIN_EMAIL,
       reply_to: email,
       subject: `New Contact Form Submission: ${subject}`,
       html: `<p>You have a new message from <strong>${name}</strong> (${email}):</p><p>${message}</p>`,
@@ -83,8 +86,8 @@ export async function submitMiceForm(
     `;
 
     await resend.emails.send({
-      from: 'onboarding@resend.dev',
-      to: 'ankitsundriyal0@gmail.com',
+      from: RESEND_FROM_EMAIL,
+      to: ADMIN_EMAIL,
       reply_to: data.email,
       subject: 'New MICE Corporate Travel Inquiry',
       html: formDetailsHtml,
@@ -148,9 +151,9 @@ export async function submitTailoredTripForm(
     // Send confirmation to customer if email is provided
     if (email) {
         await resend.emails.send({
-            from: 'onboarding@resend.dev',
+            from: RESEND_FROM_EMAIL,
             to: email,
-            cc: 'ankitsundriyal0@gmail.com',
+            cc: ADMIN_EMAIL,
             subject: 'Your Adbhut Travel Custom Trip Request',
             html: `
               <h1>Thank You for Your Custom Trip Request!</h1>
@@ -167,8 +170,8 @@ export async function submitTailoredTripForm(
     } else {
          // Send notification to the admin if no customer email
         await resend.emails.send({
-          from: 'onboarding@resend.dev',
-          to: 'ankitsundriyal0@gmail.com',
+          from: RESEND_FROM_EMAIL,
+          to: ADMIN_EMAIL,
           subject: 'New Custom Trip Request (No Customer Email)',
           html: `
             <h1>New Custom Trip Request</h1>
