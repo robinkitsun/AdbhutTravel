@@ -106,25 +106,37 @@ export default function TermsOfServicePage() {
                         </ol>
 
                         <Question number="1" text="You are taking this service for yourself or for someone else" hindiText="आप यह सर्विस खुद के लिए ले रहे हैं या किसी और के लिए">
-                            <FormField
+                           <FormField
                                 control={form.control}
                                 name="serviceFor"
                                 render={({ field }) => (
-                                    <FormItem>
-                                        <FormControl>
-                                            <RadioGroup onValueChange={field.onChange} value={field.value} className="flex flex-col space-y-2">
-                                                <FormLabel className="flex items-center space-x-3 space-y-0 p-2 border rounded-md hover:bg-muted/50 cursor-pointer">
-                                                    <FormControl><RadioGroupItem value="self" /></FormControl>
-                                                    <span className="font-normal">For Myself (मेरे लिए)</span>
-                                                </FormLabel>
-                                                <FormLabel className="flex items-center space-x-3 space-y-0 p-2 border rounded-md hover:bg-muted/50 cursor-pointer">
-                                                    <FormControl><RadioGroupItem value="other" /></FormControl>
-                                                    <span className="font-normal">For Someone else (किसी और के लिए)</span>
-                                                </FormLabel>
-                                            </RadioGroup>
-                                        </FormControl>
-                                        <FormMessage />
-                                    </FormItem>
+                                <FormItem className="space-y-3">
+                                    <FormControl>
+                                    <RadioGroup
+                                        onValueChange={field.onChange}
+                                        value={field.value}
+                                        className="flex flex-col space-y-2"
+                                    >
+                                        <FormItem className="flex items-center space-x-3 space-y-0">
+                                            <Label className="flex items-center space-x-3 space-y-0 p-2 border rounded-md hover:bg-muted/50 cursor-pointer w-full">
+                                                <FormControl>
+                                                    <RadioGroupItem value="self" />
+                                                </FormControl>
+                                                <span className="font-normal">For Myself (मेरे लिए)</span>
+                                            </Label>
+                                        </FormItem>
+                                        <FormItem className="flex items-center space-x-3 space-y-0">
+                                             <Label className="flex items-center space-x-3 space-y-0 p-2 border rounded-md hover:bg-muted/50 cursor-pointer w-full">
+                                                <FormControl>
+                                                    <RadioGroupItem value="other" />
+                                                </FormControl>
+                                                <span className="font-normal">For Someone else (किसी और के लिए)</span>
+                                            </Label>
+                                        </FormItem>
+                                    </RadioGroup>
+                                    </FormControl>
+                                    <FormMessage />
+                                </FormItem>
                                 )}
                             />
                             {watchServiceFor === 'other' && (
@@ -147,21 +159,33 @@ export default function TermsOfServicePage() {
                                 control={form.control}
                                 name="legalCase"
                                 render={({ field }) => (
-                                    <FormItem>
-                                        <FormControl>
-                                            <RadioGroup onValueChange={field.onChange} value={field.value} className="flex flex-col space-y-2">
-                                                 <FormLabel className="flex items-center space-x-3 space-y-0 p-2 border rounded-md hover:bg-muted/50 cursor-pointer">
-                                                    <FormControl><RadioGroupItem value="no" /></FormControl>
-                                                    <span className="font-normal">No (नहीं)</span>
-                                                </FormLabel>
-                                                 <FormLabel className="flex items-center space-x-3 space-y-0 p-2 border rounded-md hover:bg-muted/50 cursor-pointer">
-                                                    <FormControl><RadioGroupItem value="yes" /></FormControl>
-                                                    <span className="font-normal">Yes (हाँ)</span>
-                                                </FormLabel>
-                                            </RadioGroup>
-                                        </FormControl>
-                                        <FormMessage />
-                                    </FormItem>
+                                <FormItem className="space-y-3">
+                                    <FormControl>
+                                    <RadioGroup
+                                        onValueChange={field.onChange}
+                                        value={field.value}
+                                        className="flex flex-col space-y-2"
+                                    >
+                                        <FormItem className="flex items-center space-x-3 space-y-0">
+                                            <Label className="flex items-center space-x-3 space-y-0 p-2 border rounded-md hover:bg-muted/50 cursor-pointer w-full">
+                                                <FormControl>
+                                                    <RadioGroupItem value="no" />
+                                                </FormControl>
+                                                <span className="font-normal">No (नहीं)</span>
+                                            </Label>
+                                        </FormItem>
+                                        <FormItem className="flex items-center space-x-3 space-y-0">
+                                            <Label className="flex items-center space-x-3 space-y-0 p-2 border rounded-md hover:bg-muted/50 cursor-pointer w-full">
+                                                <FormControl>
+                                                    <RadioGroupItem value="yes" />
+                                                </FormControl>
+                                                <span className="font-normal">Yes (हाँ)</span>
+                                            </Label>
+                                        </FormItem>
+                                    </RadioGroup>
+                                    </FormControl>
+                                    <FormMessage />
+                                </FormItem>
                                 )}
                             />
                             {watchLegalCase === 'yes' && (
@@ -186,21 +210,33 @@ export default function TermsOfServicePage() {
                                 control={form.control}
                                 name="docsGenuine"
                                 render={({ field }) => (
-                                    <FormItem>
-                                        <FormControl>
-                                            <RadioGroup onValueChange={field.onChange} value={field.value} className="flex flex-col space-y-2">
-                                                <FormLabel className="flex items-center space-x-3 space-y-0 p-2 border rounded-md hover:bg-muted/50 cursor-pointer">
-                                                    <FormControl><RadioGroupItem value="yes" /></FormControl>
-                                                    <span className="font-normal">Yes (हाँ)</span>
-                                                </FormLabel>
-                                                <FormLabel className="flex items-center space-x-3 space-y-0 p-2 border rounded-md hover:bg-muted/50 cursor-pointer">
-                                                    <FormControl><RadioGroupItem value="no" /></FormControl>
-                                                    <span className="font-normal">No (नहीं)</span>
-                                                </FormLabel>
-                                            </RadioGroup>
-                                        </FormControl>
-                                        <FormMessage />
-                                    </FormItem>
+                                    <FormItem className="space-y-3">
+                                    <FormControl>
+                                    <RadioGroup
+                                        onValueChange={field.onChange}
+                                        value={field.value}
+                                        className="flex flex-col space-y-2"
+                                    >
+                                        <FormItem className="flex items-center space-x-3 space-y-0">
+                                            <Label className="flex items-center space-x-3 space-y-0 p-2 border rounded-md hover:bg-muted/50 cursor-pointer w-full">
+                                                <FormControl>
+                                                    <RadioGroupItem value="yes" />
+                                                </FormControl>
+                                                <span className="font-normal">Yes (हाँ)</span>
+                                            </Label>
+                                        </FormItem>
+                                        <FormItem className="flex items-center space-x-3 space-y-0">
+                                             <Label className="flex items-center space-x-3 space-y-0 p-2 border rounded-md hover:bg-muted/50 cursor-pointer w-full">
+                                                <FormControl>
+                                                    <RadioGroupItem value="no" />
+                                                </FormControl>
+                                                <span className="font-normal">No (नहीं)</span>
+                                            </Label>
+                                        </FormItem>
+                                    </RadioGroup>
+                                    </FormControl>
+                                    <FormMessage />
+                                </FormItem>
                                 )}
                             />
                         </Question>
@@ -216,21 +252,33 @@ export default function TermsOfServicePage() {
                                 control={form.control}
                                 name="originalDocsGiven"
                                 render={({ field }) => (
-                                    <FormItem>
-                                        <FormControl>
-                                            <RadioGroup onValueChange={field.onChange} value={field.value} className="flex flex-col space-y-2">
-                                                 <FormLabel className="flex items-center space-x-3 space-y-0 p-2 border rounded-md hover:bg-muted/50 cursor-pointer">
-                                                    <FormControl><RadioGroupItem value="no" /></FormControl>
-                                                    <span className="font-normal">No (नहीं)</span>
-                                                </FormLabel>
-                                                 <FormLabel className="flex items-center space-x-3 space-y-0 p-2 border rounded-md hover:bg-muted/50 cursor-pointer">
-                                                    <FormControl><RadioGroupItem value="yes" /></FormControl>
-                                                    <span className="font-normal">Yes (हाँ)</span>
-                                                </FormLabel>
-                                            </RadioGroup>
-                                        </FormControl>
-                                        <FormMessage />
-                                    </FormItem>
+                                <FormItem className="space-y-3">
+                                    <FormControl>
+                                    <RadioGroup
+                                        onValueChange={field.onChange}
+                                        value={field.value}
+                                        className="flex flex-col space-y-2"
+                                    >
+                                        <FormItem className="flex items-center space-x-3 space-y-0">
+                                            <Label className="flex items-center space-x-3 space-y-0 p-2 border rounded-md hover:bg-muted/50 cursor-pointer w-full">
+                                                <FormControl>
+                                                    <RadioGroupItem value="no" />
+                                                </FormControl>
+                                                <span className="font-normal">No (नहीं)</span>
+                                            </Label>
+                                        </FormItem>
+                                        <FormItem className="flex items-center space-x-3 space-y-0">
+                                            <Label className="flex items-center space-x-3 space-y-0 p-2 border rounded-md hover:bg-muted/50 cursor-pointer w-full">
+                                                <FormControl>
+                                                    <RadioGroupItem value="yes" />
+                                                </FormControl>
+                                                <span className="font-normal">Yes (हाँ)</span>
+                                            </Label>
+                                        </FormItem>
+                                    </RadioGroup>
+                                    </FormControl>
+                                    <FormMessage />
+                                </FormItem>
                                 )}
                             />
                         </Question>
@@ -245,12 +293,12 @@ export default function TermsOfServicePage() {
                         </div>
 
                         <Section className="border-t pt-6">
-                            <FormField
+                           <FormField
                                 control={form.control}
                                 name="certify"
                                 render={({ field }) => (
                                     <FormItem>
-                                        <FormLabel className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4 hover:bg-muted/50 cursor-pointer">
+                                        <Label className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4 hover:bg-muted/50 cursor-pointer">
                                             <FormControl>
                                                 <Checkbox checked={field.value} onCheckedChange={field.onChange} />
                                             </FormControl>
@@ -260,7 +308,7 @@ export default function TermsOfServicePage() {
                                                     <br /> (मैं प्रमाणित करता/करती हु कि मैंने पूरे नियम और शर्तें पढ़ ली हैं और में इन नियम और शर्तें को स्वीकार करता /करती हु और अगर मेरा कोई भी बयान झूठा साबित होता है तो मेरे खिलाफ कानूनी कार्रवाई की जानी चाहिए।)
                                                 </span>
                                             </div>
-                                        </FormLabel>
+                                        </Label>
                                         <FormMessage className="pl-4 pt-1" />
                                     </FormItem>
                                 )}
@@ -319,4 +367,5 @@ export default function TermsOfServicePage() {
             </div>
         </div>
     );
-}
+
+    
