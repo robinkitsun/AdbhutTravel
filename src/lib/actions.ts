@@ -342,7 +342,7 @@ export async function submitTermsOfServiceForm(
                       <table class="footer-links-table" cellpadding="0" cellspacing="0" border="0">
                         <tr>
                           <td>
-                            <img src="https://www.adbhuttravel.com/wp-content/uploads/2025/07/adbhut_transparent.png" alt="Adbhut Logo" class="footer-logo" />
+                            <img src="/images/services/adbhut-logo.png" alt="Adbhut Logo" class="footer-logo" />
                             <p style="font-weight: 600; margin: 0;">Adbhut Travel And Event Pvt. Ltd.</p>
                             <p style="font-size: 0.875rem; color: #6c757d; margin: 0;">Our Effort Your Comfort<br>CIN: U63090HR2020PTC086874</p>
                           </td>
