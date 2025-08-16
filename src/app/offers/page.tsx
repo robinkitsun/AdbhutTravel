@@ -11,52 +11,52 @@ export const metadata: Metadata = {
 const offers = [
     {
         title: "Morni Hills 1N/2D Package",
-        imageUrl: "/images/offers/morni-hills.jpg",
+        imageUrl: "/images/services/Offers/Offers 1 MORNI-1N2D-scaled.jpg",
         dataAiHint: "hills landscape"
     },
     {
         title: "Shimla 2N/3D Tour",
-        imageUrl: "/images/offers/shimla.jpg",
+        imageUrl: "/images/services/Offers/Offers 2 SHIMLA-2N3D-scaled.jpg",
         dataAiHint: "mountain town"
     },
     {
         title: "Mussoorie 2N/3D Getaway",
-        imageUrl: "/images/offers/mussoorie.jpg",
+        imageUrl: "/images/services/Offers/Offers 3 MUSSOORIE-2N3D-scaled.jpg",
         dataAiHint: "himalayan valley"
     },
     {
         title: "Manali 3N/5D Adventure",
-        imageUrl: "/images/offers/manali.jpg",
+        imageUrl: "/images/services/Offers/Offers 4 MANALI-3NIGHTS-5-DAYS-scaled.jpg",
         dataAiHint: "snowy mountains"
     },
     {
         title: "Explore the World with Us",
-        imageUrl: "/images/offers/travel-video-ad.jpg",
+        imageUrl: "/images/services/Offers/Offers 5 Copy-of-TRAVEL-VIDEO-AD.jpg",
         dataAiHint: "travel collage"
     },
     {
         title: "Trio Island Special by Adbhut",
-        imageUrl: "/images/offers/trio-island.png",
+        imageUrl: "/images/services/Offers/Offers 6 TRIO-ISLAND-BY-ADBHUT.png",
         dataAiHint: "tropical islands"
     },
     {
         title: "Honeymoon Special by Adbhut",
-        imageUrl: "/images/offers/honeymoon-special.jpg",
+        imageUrl: "/images/services/Offers/Offers 7Honeymoon-special-BY-ADBHUT-scaled.jpg",
         dataAiHint: "honeymoon couple"
     },
     {
         title: "Amazing Thailand Tour",
-        imageUrl: "/images/offers/thailand.jpg",
+        imageUrl: "/images/services/Offers/Offers 8 Copy-of-Thailand-Travel-Banner-Template-scaled.jpg",
         dataAiHint: "thailand beach"
     },
     {
         title: "Experience Dubai with Adbhut",
-        imageUrl: "/images/offers/dubai.jpg",
+        imageUrl: "/images/services/Offers/Offers 9 Experience-DUBAI-BY-ADBHUT-scaled.jpg",
         dataAiHint: "dubai skyline"
     },
     {
         title: "Discover Adbhut Travel",
-        imageUrl: "/images/offers/about-adbhut.jpg",
+        imageUrl: "/images/services/Offers/Offers 10 ABOUT-ADBHUT-1-scaled.jpg",
         dataAiHint: "travel agency"
     }
 ];

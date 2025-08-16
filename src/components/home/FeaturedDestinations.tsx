@@ -6,13 +6,13 @@ const featuredPackages: Package[] = [
   {
     id: '1',
     name: 'Couple Kashmir Package',
-    image: '/images/packages/kashmir-couple.jpg',
+    image: '/images/services/Home/Feature Kashmir.jpg',
     dataAiHint: 'Kashmir snow couple',
     duration: '04 Nights / 05 Days',
     packageType: '(Couple)',
     facilities: ['flight', 'hotel', 'transport', 'meals', 'sightseeing'],
     gallery: [
-        '/images/packages/kashmir-couple.jpg'
+        '/images/services/Home/Feature Kashmir.jpg'
     ],
     galleryHints: ["Kashmir snow couple"],
     itinerary: [
@@ -26,13 +26,13 @@ const featuredPackages: Package[] = [
   {
     id: '5',
     name: 'Paris tour',
-    image: '/images/packages/paris-tour.jpg',
+    image: '/images/services/Home/Feature Paris.jpg',
     dataAiHint: 'Eiffel Tower',
     duration: '04 Nights / 05 Days',
     packageType: '(One Person)',
     facilities: ['flight', 'hotel', 'sightseeing', 'guide', 'insurance'],
     gallery: [
-        '/images/packages/paris-tour.jpg'
+        '/images/services/Home/Feature Paris.jpg'
     ],
     galleryHints: ["Eiffel Tower"],
     itinerary: [
@@ -46,13 +46,13 @@ const featuredPackages: Package[] = [
   {
     id: '6',
     name: 'Honeymoon in Bali',
-    image: '/images/packages/bali-honeymoon.jpg',
+    image: '/images/services/Home/Feature Bali.jpg',
     dataAiHint: 'Bali temple lake',
     duration: '7 night 8 days',
     packageType: '(Honeymoon Couple)',
     facilities: ['flight', 'hotel', 'transport', 'meals', 'sightseeing', 'spa'],
     gallery: [
-      '/images/packages/bali-honeymoon.jpg'
+      '/images/services/Home/Feature Bali.jpg'
     ],
     galleryHints: ["Bali temple lake"],
     itinerary: [

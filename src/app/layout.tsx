@@ -33,7 +33,7 @@ export const metadata: Metadata = {
   },
   description: "Explore breathtaking destinations with Adbhut Travel. We curate unforgettable, personalized travel packages and itineraries, from exotic beaches to mountain treks.",
   icons: {
-    icon: "/favicon.ico",
+    icon: "/images/services/A fevicon.ico",
   },
   openGraph: {
     title: "Adbhut Travel | Unforgettable Journeys & Custom Itineraries",

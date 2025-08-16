@@ -279,7 +279,7 @@ export async function submitTermsOfServiceForm(
     <body>
       <div class="wrapper">
         <div class="container">
-          <img src="https://www.adbhuttravel.com/wp-content/uploads/2025/07/adbhut_transparent.png" alt="Adbhut Travel Logo" class="logo">
+          <img src="https://ci3.googleusercontent.com/meips/ADKq_NZtYtK43tA5d1_S1G0vO4t9qXb_G3eG8iH7yN5r7VfR-k0f9L5f6K5nZz-pW6c-oIe4g=s0-d-e1-ft#https://www.adbhuttravel.com/wp-content/uploads/2025/07/adbhut_transparent.png" alt="Adbhut Travel Logo" class="logo">
           <p>By "Adbhut Travel And Event Pvt Ltd" before giving you our service, we have some terms and conditions, you are requested to read them carefully and if you accept these terms and conditions, only then we will be able to serve you.
           <br>
           "अद्भुत ट्रैवल एंड इवेंट प्राइवेट लिमिटेड" के द्वारा, आपको अपनी सर्विस देने के लिए हमारी कुछ नियम और शर्तें हैं, आपसे अनुरोध है की इन्हे धयानपूर्व पढ़े और यदि आप इन नियमों और शर्तों को स्वीकार करते हैं, तो ही हम आपको अपनी सेवा दे पाएंगे।
@@ -336,7 +336,7 @@ export async function submitTermsOfServiceForm(
             <td align="center">
               <div class="footer-content">
                 <table width="100%" cellpadding="0" cellspacing="0" border="0">
-                  <tr><td align="center" style="padding-bottom: 32px;"><img src="https://www.adbhuttravel.com/wp-content/uploads/2025/07/Adbhut-Affilications-Cetifications.png" alt="Certifications" style="max-width: 100%; height: auto;" /></td></tr>
+                  <tr><td align="center" style="padding-bottom: 32px;"><img src="https://ci3.googleusercontent.com/meips/ADKq_NbO9nE7oB5rE8iA6lB8wI8A6c0d4a2b1c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8g9h0i1j2k3l4m5n6o7p8q9r0s1t2u3v4w5x6y7z8a9b0c1d2e3f4g5h6i7j8k9l0m1n2o3p4q5r6s7t8u9v0w1x2y3z=s0-d-e1-ft#https://www.adbhuttravel.com/wp-content/uploads/2025/07/Adbhut-Affilications-Cetifications.png" alt="Certifications" style="max-width: 100%; height: auto;" /></td></tr>
                   <tr>
                     <td>
                       <table class="footer-links-table" cellpadding="0" cellspacing="0" border="0">
@@ -409,3 +409,4 @@ export async function submitTermsOfServiceForm(
     };
   }
 }
+

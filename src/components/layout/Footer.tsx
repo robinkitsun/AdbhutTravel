@@ -33,7 +33,7 @@ export default function Footer() {
         <div className="mb-8">
           <div className="flex justify-center items-center">
               <Image
-                src="/images/shared/affiliations-banner.png"
+                src="/images/services/Home/Adbhut-Affilications-Cetifications.png"
                 alt="Certifications and Affiliations"
                 width={1536}
                 height={113}
