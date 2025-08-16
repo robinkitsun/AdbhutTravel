@@ -12,9 +12,9 @@ import Link from 'next/link';
 import Autoplay from 'embla-carousel-autoplay';
 
 const teamMembers = [
-  { name: "Mr. Mohit Sharma", role: "Founder & CEO", image: "https://www.adbhuttravel.com/wp-content/uploads/2025/07/Mohit-Adbhut-Founder.jpeg", dataAiHint: "man portrait" },
-  { name: "Mrs. Aditi Sharma", role: "Sales Director", image: "https://www.adbhuttravel.com/wp-content/uploads/2025/08/Mrs.-Aditi-Sharma-e1754152464837.jpg", dataAiHint: "woman portrait" },
-  { name: "Mr. Sachin", role: "Head of Operations", image: "https://www.adbhuttravel.com/wp-content/uploads/2025/07/Sachin-OPS-Manager-Adbhut-Travel-Event-Pvt.-Ltd.png", dataAiHint: "man portrait" },
+  { name: "Mr. Mohit Sharma", role: "Founder & CEO", image: "/images/about/mohit-sharma.jpeg", dataAiHint: "man portrait" },
+  { name: "Mrs. Aditi Sharma", role: "Sales Director", image: "/images/about/aditi-sharma.jpg", dataAiHint: "woman portrait" },
+  { name: "Mr. Sachin", role: "Head of Operations", image: "/images/about/sachin.png", dataAiHint: "man portrait" },
   { name: "Mr. Ankit", role: "Business Development Manager (BDM)", image: "", dataAiHint: "man portrait" },
 ];
 
@@ -78,7 +78,7 @@ export default function AboutPage() {
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="rounded-lg overflow-hidden shadow-xl">
               <Image
-                src="https://www.adbhuttravel.com/wp-content/uploads/2025/07/Our-Story.jpeg"
+                src="/images/about/our-story.jpeg"
                 alt="Our team working together on a travel plan"
                 width={600}
                 height={500}
@@ -188,7 +188,7 @@ export default function AboutPage() {
             <div className="flex flex-col items-center">
                 <div className="mb-4 flex items-center justify-center h-16">
                     <Link href="https://www.northcabs.in/" target="_blank" rel="noopener noreferrer" className="transition-transform duration-300 hover:-translate-y-1">
-                        <Image src="https://www.adbhuttravel.com/wp-content/uploads/2025/07/NorthCabs.png" alt="North Cab Logo" width={200} height={80} className="max-h-12 w-auto object-contain" />
+                        <Image src="/images/trademarks/north-cabs-logo.png" alt="North Cab Logo" width={200} height={80} className="max-h-12 w-auto object-contain" />
                     </Link>
                 </div>
                 <h3 className="text-xl font-headline font-semibold">North Cab</h3>
@@ -197,7 +197,7 @@ export default function AboutPage() {
             <div className="flex flex-col items-center">
                 <div className="mb-4 flex items-center justify-center h-16">
                     <Link href="https://visitkurukshetra.in/" target="_blank" rel="noopener noreferrer" className="transition-transform duration-300 hover:-translate-y-1">
-                        <Image src="https://www.adbhuttravel.com/wp-content/uploads/2024/06/Screenshot_2023-01-24_at_1.52.15_PM-removebg-preview.png" alt="Visit Kurukshetra Logo" width={250} height={80} className="max-h-12 w-auto object-contain" />
+                        <Image src="/images/trademarks/visit-kurukshetra-logo.png" alt="Visit Kurukshetra Logo" width={250} height={80} className="max-h-12 w-auto object-contain" />
                     </Link>
                 </div>
                 <h3 className="text-xl font-headline font-semibold">Visit Kurukshetra</h3>
@@ -250,3 +250,5 @@ export default function AboutPage() {
     </>
   );
 }
+
+    

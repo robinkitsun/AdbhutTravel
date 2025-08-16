@@ -1,3 +1,4 @@
+
 import Image from "next/image";
 import { Check } from "lucide-react";
 import { TailoredTripForm } from "./TailoredTripForm";
@@ -9,7 +10,7 @@ export default function TailoredExperience() {
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div className="rounded-lg overflow-hidden shadow-2xl transition-transform duration-300 hover:-translate-y-1">
             <Image
-              src="https://www.adbhuttravel.com/wp-content/uploads/2025/07/Tailored-Experience.jpeg"
+              src="/images/home/tailored-experience.jpeg"
               alt="Tailored travel experience"
               width={600}
               height={700}
@@ -45,3 +46,5 @@ export default function TailoredExperience() {
     </section>
   );
 }
+
+    

@@ -11,52 +11,52 @@ export const metadata: Metadata = {
 const offers = [
     {
         title: "Morni Hills 1N/2D Package",
-        imageUrl: "https://www.adbhuttravel.com/wp-content/uploads/2024/06/MORNI-1N2D-scaled.jpg",
+        imageUrl: "/images/offers/morni-hills.jpg",
         dataAiHint: "hills landscape"
     },
     {
         title: "Shimla 2N/3D Tour",
-        imageUrl: "https://www.adbhuttravel.com/wp-content/uploads/2024/06/SHIMLA-2N3D-scaled.jpg",
+        imageUrl: "/images/offers/shimla.jpg",
         dataAiHint: "mountain town"
     },
     {
         title: "Mussoorie 2N/3D Getaway",
-        imageUrl: "https://www.adbhuttravel.com/wp-content/uploads/2024/06/MUSSOORIE-2N3D-scaled.jpg",
+        imageUrl: "/images/offers/mussoorie.jpg",
         dataAiHint: "himalayan valley"
     },
     {
         title: "Manali 3N/5D Adventure",
-        imageUrl: "https://www.adbhuttravel.com/wp-content/uploads/2024/06/MANALI-3NIGHTS-5-DAYS-scaled.jpg",
+        imageUrl: "/images/offers/manali.jpg",
         dataAiHint: "snowy mountains"
     },
     {
         title: "Explore the World with Us",
-        imageUrl: "https://www.adbhuttravel.com/wp-content/uploads/2024/06/Copy-of-TRAVEL-VIDEO-AD.jpg",
+        imageUrl: "/images/offers/travel-video-ad.jpg",
         dataAiHint: "travel collage"
     },
     {
         title: "Trio Island Special by Adbhut",
-        imageUrl: "https://www.adbhuttravel.com/wp-content/uploads/2024/06/TRIO-ISLAND-BY-ADBHUT.png",
+        imageUrl: "/images/offers/trio-island.png",
         dataAiHint: "tropical islands"
     },
     {
         title: "Honeymoon Special by Adbhut",
-        imageUrl: "https://www.adbhuttravel.com/wp-content/uploads/2024/06/Honeymoon-special-BY-ADBHUT-scaled.jpg",
+        imageUrl: "/images/offers/honeymoon-special.jpg",
         dataAiHint: "honeymoon couple"
     },
     {
         title: "Amazing Thailand Tour",
-        imageUrl: "https://www.adbhuttravel.com/wp-content/uploads/2024/06/Copy-of-Thailand-Travel-Banner-Template-scaled.jpg",
+        imageUrl: "/images/offers/thailand.jpg",
         dataAiHint: "thailand beach"
     },
     {
         title: "Experience Dubai with Adbhut",
-        imageUrl: "https://www.adbhuttravel.com/wp-content/uploads/2024/06/Experience-DUBAI-BY-ADBHUT-scaled.jpg",
+        imageUrl: "/images/offers/dubai.jpg",
         dataAiHint: "dubai skyline"
     },
     {
         title: "Discover Adbhut Travel",
-        imageUrl: "https://www.adbhuttravel.com/wp-content/uploads/2024/06/ABOUT-ADBHUT-1-scaled.jpg",
+        imageUrl: "/images/offers/about-adbhut.jpg",
         dataAiHint: "travel agency"
     }
 ];
@@ -102,3 +102,5 @@ export default function OffersPage() {
     </>
   );
 }
+
+    

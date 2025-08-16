@@ -1,3 +1,4 @@
+
 import type { Metadata } from "next";
 import { Toaster } from "@/components/ui/toaster";
 import Header from "@/components/layout/Header";
@@ -41,7 +42,7 @@ export const metadata: Metadata = {
     siteName: 'Adbhut Travel',
     images: [
       {
-        url: 'https://www.adbhuttravel.com/wp-content/uploads/2025/07/Home-Page-Hero.jpeg', // Default OG image
+        url: '/images/home/hero.jpeg', // Default OG image
         width: 1200,
         height: 630,
         alt: 'A beautiful tropical beach with a boat, representing travel destinations.',
@@ -54,7 +55,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: "Adbhut Travel | Unforgettable Journeys & Custom Itineraries",
     description: "Explore the world's most breathtaking destinations with Adbhut Travel.",
-     images: ['https://www.adbhuttravel.com/wp-content/uploads/2025/07/Home-Page-Hero.jpeg'], // Default Twitter image
+     images: ['/images/home/hero.jpeg'], // Default Twitter image
   },
 };
 
@@ -81,3 +82,5 @@ export default function RootLayout({
     </html>
   );
 }
+
+    

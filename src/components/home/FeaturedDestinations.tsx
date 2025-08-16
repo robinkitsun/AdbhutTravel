@@ -1,3 +1,4 @@
+
 import PackageCard from "@/components/shared/PackageCard";
 import type { Package } from "@/lib/types";
 
@@ -5,13 +6,13 @@ const featuredPackages: Package[] = [
   {
     id: '1',
     name: 'Couple Kashmir Package',
-    image: 'https://www.adbhuttravel.com/wp-content/uploads/elementor/thumbs/0231360a-2d4d-4083-b845-af0ab6a5f939-qbf1rtwnf6x8mcl6p8q8bo24o3cudvotd7j9z0ato8.jpg',
+    image: '/images/packages/kashmir-couple.jpg',
     dataAiHint: 'Kashmir snow couple',
     duration: '04 Nights / 05 Days',
     packageType: '(Couple)',
     facilities: ['flight', 'hotel', 'transport', 'meals', 'sightseeing'],
     gallery: [
-        'https://www.adbhuttravel.com/wp-content/uploads/elementor/thumbs/0231360a-2d4d-4083-b845-af0ab6a5f939-qbf1rtwnf6x8mcl6p8q8bo24o3cudvotd7j9z0ato8.jpg'
+        '/images/packages/kashmir-couple.jpg'
     ],
     galleryHints: ["Kashmir snow couple"],
     itinerary: [
@@ -25,13 +26,13 @@ const featuredPackages: Package[] = [
   {
     id: '5',
     name: 'Paris tour',
-    image: 'https://www.adbhuttravel.com/wp-content/uploads/elementor/thumbs/famous-eiffel-tower-paris-with-gorgeous-colors-qbf1rs0z1iunz4nx07wz6oj7hbm3yhhcoy8b0gdm0o.jpg',
+    image: '/images/packages/paris-tour.jpg',
     dataAiHint: 'Eiffel Tower',
     duration: '04 Nights / 05 Days',
     packageType: '(One Person)',
     facilities: ['flight', 'hotel', 'sightseeing', 'guide', 'insurance'],
     gallery: [
-        'https://www.adbhuttravel.com/wp-content/uploads/elementor/thumbs/famous-eiffel-tower-paris-with-gorgeous-colors-qbf1rs0z1iunz4nx07wz6oj7hbm3yhhcoy8b0gdm0o.jpg'
+        '/images/packages/paris-tour.jpg'
     ],
     galleryHints: ["Eiffel Tower"],
     itinerary: [
@@ -45,13 +46,13 @@ const featuredPackages: Package[] = [
   {
     id: '6',
     name: 'Honeymoon in Bali',
-    image: 'https://www.adbhuttravel.com/wp-content/uploads/elementor/thumbs/bali-pagoda-indonesia-qbf1rvsbsuzt9kige9jhgnl1uv3kt9wa1gu8xk81bs.jpg',
+    image: '/images/packages/bali-honeymoon.jpg',
     dataAiHint: 'Bali temple lake',
     duration: '7 night 8 days',
     packageType: '(Honeymoon Couple)',
     facilities: ['flight', 'hotel', 'transport', 'meals', 'sightseeing', 'spa'],
     gallery: [
-      'https://www.adbhuttravel.com/wp-content/uploads/elementor/thumbs/bali-pagoda-indonesia-qbf1rvsbsuzt9kige9jhgnl1uv3kt9wa1gu8xk81bs.jpg'
+      '/images/packages/bali-honeymoon.jpg'
     ],
     galleryHints: ["Bali temple lake"],
     itinerary: [
@@ -86,3 +87,5 @@ export default function FeaturedDestinations() {
     </section>
   );
 }
+
+    

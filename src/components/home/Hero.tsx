@@ -1,3 +1,4 @@
+
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import Image from "next/image";
@@ -6,7 +7,7 @@ export default function Hero() {
   return (
     <section className="relative h-[calc(80vh)] w-full">
       <Image
-        src="https://www.adbhuttravel.com/wp-content/uploads/2025/07/Home-Page-Hero.jpeg"
+        src="/images/home/hero.jpeg"
         alt="Tropical beach background"
         fill
         priority
@@ -30,3 +31,5 @@ export default function Hero() {
     </section>
   );
 }
+
+    

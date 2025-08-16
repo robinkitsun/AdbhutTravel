@@ -11,13 +11,13 @@ const domesticPackages: Package[] = [
   {
     id: '1',
     name: 'Couple Kashmir Package',
-    image: 'https://www.adbhuttravel.com/wp-content/uploads/elementor/thumbs/0231360a-2d4d-4083-b845-af0ab6a5f939-qbf1rtwnf6x8mcl6p8q8bo24o3cudvotd7j9z0ato8.jpg',
+    image: '/images/packages/kashmir-couple.jpg',
     dataAiHint: 'Kashmir snow couple',
     duration: '04 Nights / 05 Days',
     packageType: '(Couple)',
     facilities: ['flight', 'hotel', 'transport', 'meals', 'sightseeing'],
     gallery: [
-        'https://www.adbhuttravel.com/wp-content/uploads/elementor/thumbs/0231360a-2d4d-4083-b845-af0ab6a5f939-qbf1rtwnf6x8mcl6p8q8bo24o3cudvotd7j9z0ato8.jpg'
+        '/images/packages/kashmir-couple.jpg'
     ],
     galleryHints: ["Kashmir snow couple"],
     itinerary: [
@@ -31,13 +31,13 @@ const domesticPackages: Package[] = [
   {
     id: '2',
     name: '4 Person Leh Ladakh',
-    image: 'https://www.adbhuttravel.com/wp-content/uploads/elementor/thumbs/2f3139a7-93e8-4446-ab1e-49abfc63c708-qbf1rs0z1iunz4nx07wz6oj7hbm3yhhcoy8b0gdm0o.jpg',
+    image: '/images/packages/leh-ladakh-group.jpg',
     dataAiHint: 'Ladakh mountains snow',
     duration: '04 Nights / 05 Days',
     packageType: '(4 Person)',
     facilities: ['hotel', 'transport', 'meals', 'sightseeing', 'guide'],
     gallery: [
-       'https://www.adbhuttravel.com/wp-content/uploads/elementor/thumbs/2f3139a7-93e8-4446-ab1e-49abfc63c708-qbf1rs0z1iunz4nx07wz6oj7hbm3yhhcoy8b0gdm0o.jpg'
+       '/images/packages/leh-ladakh-group.jpg'
     ],
     galleryHints: ["Ladakh mountains snow"],
     itinerary: [
@@ -51,13 +51,13 @@ const domesticPackages: Package[] = [
   {
     id: '3',
     name: 'Char dham yatra',
-    image: 'https://www.adbhuttravel.com/wp-content/uploads/elementor/thumbs/tourists-taking-photos-beautiful-scenery-skiing-around-deogyusan-qbf1rtwnf6x8mcl6p8q8bo24o3cudvotd7j9z0ato8.jpg',
+    image: '/images/packages/char-dham.jpg',
     dataAiHint: 'himalayas temple pilgrimage',
     duration: '09 Nights / 10 Days',
     packageType: '(Group)',
     facilities: ['hotel', 'transport', 'meals', 'guide', 'permit'],
     gallery: [
-       'https://www.adbhuttravel.com/wp-content/uploads/elementor/thumbs/tourists-taking-photos-beautiful-scenery-skiing-around-deogyusan-qbf1rtwnf6x8mcl6p8q8bo24o3cudvotd7j9z0ato8.jpg'
+       '/images/packages/char-dham.jpg'
     ],
     galleryHints: ["himalayas temple pilgrimage"],
     itinerary: [
@@ -79,13 +79,13 @@ const internationalPackages: Package[] = [
   {
     id: '4',
     name: 'Couple Malaysia trip',
-    image: 'https://www.adbhuttravel.com/wp-content/uploads/elementor/thumbs/cityscape-singapore-city-skyline-qbf1ruuhm0yixyjtjr4uw5tl9h87lksjpc6rga9fi0.jpg',
+    image: '/images/packages/malaysia-couple.jpg',
     dataAiHint: 'Malaysia city skyline',
     duration: '04 Nights / 05 Days',
     packageType: '(Couple)',
     facilities: ['flight', 'hotel', 'transport', 'meals', 'visa'],
     gallery: [
-        'https://www.adbhuttravel.com/wp-content/uploads/elementor/thumbs/cityscape-singapore-city-skyline-qbf1ruuhm0yixyjtjr4uw5tl9h87lksjpc6rga9fi0.jpg'
+        '/images/packages/malaysia-couple.jpg'
     ],
     galleryHints: ["Malaysia city skyline"],
     itinerary: [
@@ -99,13 +99,13 @@ const internationalPackages: Package[] = [
   {
     id: '5',
     name: 'Paris tour',
-    image: 'https://www.adbhuttravel.com/wp-content/uploads/elementor/thumbs/famous-eiffel-tower-paris-with-gorgeous-colors-qbf1rs0z1iunz4nx07wz6oj7hbm3yhhcoy8b0gdm0o.jpg',
+    image: '/images/packages/paris-tour.jpg',
     dataAiHint: 'Eiffel Tower',
     duration: '04 Nights / 05 Days',
     packageType: '(One Person)',
     facilities: ['flight', 'hotel', 'sightseeing', 'guide', 'insurance'],
     gallery: [
-        'https://www.adbhuttravel.com/wp-content/uploads/elementor/thumbs/famous-eiffel-tower-paris-with-gorgeous-colors-qbf1rs0z1iunz4nx07wz6oj7hbm3yhhcoy8b0gdm0o.jpg'
+        '/images/packages/paris-tour.jpg'
     ],
     galleryHints: ["Eiffel Tower"],
     itinerary: [
@@ -119,13 +119,13 @@ const internationalPackages: Package[] = [
   {
     id: '6',
     name: 'Honeymoon in Bali',
-    image: 'https://www.adbhuttravel.com/wp-content/uploads/elementor/thumbs/bali-pagoda-indonesia-qbf1rvsbsuzt9kige9jhgnl1uv3kt9wa1gu8xk81bs.jpg',
+    image: '/images/packages/bali-honeymoon.jpg',
     dataAiHint: 'Bali temple lake',
     duration: '7 night 8 days',
     packageType: '(Honeymoon Couple)',
     facilities: ['flight', 'hotel', 'transport', 'meals', 'sightseeing', 'spa'],
     gallery: [
-      'https://www.adbhuttravel.com/wp-content/uploads/elementor/thumbs/bali-pagoda-indonesia-qbf1rvsbsuzt9kige9jhgnl1uv3kt9wa1gu8xk81bs.jpg'
+      '/images/packages/bali-honeymoon.jpg'
     ],
     galleryHints: ["Bali temple lake"],
     itinerary: [
@@ -154,3 +154,5 @@ export default function Home() {
     </div>
   );
 }
+
+    

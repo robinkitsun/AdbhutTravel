@@ -14,14 +14,14 @@ import {
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const images = [
-  "https://www.adbhuttravel.com/wp-content/uploads/2023/08/IMG-9291-scaled.jpg",
-  "https://www.adbhuttravel.com/wp-content/uploads/2025/08/Mice-g2.jpg",
-  "https://www.adbhuttravel.com/wp-content/uploads/2023/08/IMG-9915-scaled.jpg",
-  "https://www.adbhuttravel.com/wp-content/uploads/2023/08/3ce2ac17-ec82-47eb-949f-4acbd0fa212b.jpg",
-  "https://www.adbhuttravel.com/wp-content/uploads/2025/08/Group-Photo-Ind.jpg",
-  "https://www.adbhuttravel.com/wp-content/uploads/2025/08/Mice-g4.jpg",
-  "https://www.adbhuttravel.com/wp-content/uploads/2023/08/52738303_542253809601039_5092883468392595456_n.jpg",
-  "https://www.adbhuttravel.com/wp-content/uploads/2023/08/PHOTO-2020-07-23-14-27-13-3.jpg",
+  "/images/home/carousel-1.jpg",
+  "/images/home/carousel-2.jpg",
+  "/images/home/carousel-3.jpg",
+  "/images/home/carousel-4.jpg",
+  "/images/home/carousel-5.jpg",
+  "/images/home/carousel-6.jpg",
+  "/images/home/carousel-7.jpg",
+  "/images/home/carousel-8.jpg",
 ];
 
 export default function GroupImagesCarousel() {
@@ -98,3 +98,5 @@ export default function GroupImagesCarousel() {
     </section>
   );
 }
+
+    

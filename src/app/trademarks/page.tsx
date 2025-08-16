@@ -9,12 +9,12 @@ export const metadata: Metadata = {
 };
 
 const logos = [
-  { src: 'https://www.adbhuttravel.com/wp-content/uploads/2024/06/Screenshot-2024-06-27-at-11.17.15%E2%80%AFAM-1.png', alt: 'Adbhut Travel Agency Logo', width: 250, height: 80 },
-  { src: 'https://www.adbhuttravel.com/wp-content/uploads/2025/07/adb-scaled.png', alt: 'Adbhut Wordmark Logo', width: 250, height: 80 },
-  { src: 'https://www.adbhuttravel.com/wp-content/uploads/2024/06/Screenshot_2023-01-24_at_1.52.15_PM-removebg-preview.png', alt: 'VisitKurukshetra.in Logo', width: 250, height: 80 },
-  { src: 'https://www.adbhuttravel.com/wp-content/uploads/2025/07/Adbhut-Foundation.png', alt: 'Adbhut Foundation Logo', width: 250, height: 80 },
-  { src: 'https://www.adbhuttravel.com/wp-content/uploads/2025/07/NorthCabs.png', alt: 'North Cabs Logo', width: 200, height: 80 },
-  { src: 'https://www.adbhuttravel.com/wp-content/uploads/2025/07/Home2Home.png', alt: 'Home2Home Logo', width: 250, height: 80 },
+  { src: '/images/trademarks/adbhut-travel-agency-logo.png', alt: 'Adbhut Travel Agency Logo', width: 250, height: 80 },
+  { src: '/images/trademarks/adbhut-wordmark-logo.png', alt: 'Adbhut Wordmark Logo', width: 250, height: 80 },
+  { src: '/images/trademarks/visit-kurukshetra-logo.png', alt: 'VisitKurukshetra.in Logo', width: 250, height: 80 },
+  { src: '/images/trademarks/adbhut-foundation-logo.png', alt: 'Adbhut Foundation Logo', width: 250, height: 80 },
+  { src: '/images/trademarks/north-cabs-logo.png', alt: 'North Cabs Logo', width: 200, height: 80 },
+  { src: '/images/trademarks/home2home-logo.png', alt: 'Home2Home Logo', width: 250, height: 80 },
 ];
 
 const wordmarks = [
@@ -68,3 +68,5 @@ export default function TrademarksPage() {
     </div>
   );
 }
+
+    

@@ -33,7 +33,7 @@ export default function Footer() {
         <div className="mb-8">
           <div className="flex justify-center items-center">
               <Image
-                src="https://www.adbhuttravel.com/wp-content/uploads/2025/07/Adbhut-Affilications-Cetifications.png"
+                src="/images/shared/affiliations-banner.png"
                 alt="Certifications and Affiliations"
                 width={1536}
                 height={113}
@@ -122,3 +122,5 @@ export default function Footer() {
     </footer>
   );
 }
+
+    

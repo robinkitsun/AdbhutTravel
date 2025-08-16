@@ -45,7 +45,7 @@ const whyChooseUs = [
 ];
 
 const clientLogos = [
-  { src: "https://www.adbhuttravel.com/wp-content/uploads/2025/07/Adbhut-Affilications-Cetifications.png", alt: "Client Accreditations", dataAiHint: "corporate accreditations" },
+  { src: "/images/shared/affiliations-banner.png", alt: "Client Accreditations", dataAiHint: "corporate accreditations" },
 ];
 
 const faqItems = [
@@ -92,9 +92,9 @@ const faqItems = [
   ];
 
 const carouselImages = [
-    "/images/services/Mice g1.jpg",
-    "/images/services/Mice g4.jpg",
-    "https://www.adbhuttravel.com/wp-content/uploads/2025/07/Mice-Incentices-2.png"
+    "/images/mice/carousel-1.jpg",
+    "/images/mice/carousel-2.jpg",
+    "/images/mice/carousel-3.png"
 ];
 
 export default function MicePage() {
@@ -156,7 +156,7 @@ export default function MicePage() {
             <div className="relative h-80 md:h-96">
                <div className="absolute inset-0 bg-primary/10 rounded-lg -rotate-3 transition-transform duration-300 hover:rotate-0"></div>
                <Image
-                  src="https://www.adbhuttravel.com/wp-content/uploads/2025/08/Mice-g5.jpg"
+                  src="/images/mice/hero.jpg"
                   alt="Corporate Event Singer"
                   fill
                   className="object-cover rounded-lg shadow-xl"
@@ -302,3 +302,5 @@ export default function MicePage() {
     </div>
   );
 }
+
+    
