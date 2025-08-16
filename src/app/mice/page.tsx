@@ -92,7 +92,7 @@ const faqItems = [
   ];
 
 const carouselImages = [
-    "https://www.adbhuttravel.com/wp-content/uploads/2025/08/Mice-g1.jpg",
+    "/images/services/Mice g1.jpg",
     "https://www.adbhuttravel.com/wp-content/uploads/2025/08/Mice-g4.jpg",
     "https://www.adbhuttravel.com/wp-content/uploads/2025/07/Mice-Incentices-2.png"
 ];
