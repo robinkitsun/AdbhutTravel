@@ -4,6 +4,7 @@
 import { z } from 'zod';
 import { Resend } from 'resend';
 import { contactFormSchema, miceFormSchema, tailoredTripFormSchema, termsOfServiceSchema } from "./schemas";
+import puppeteer from 'puppeteer';
 
 const RESEND_FROM_EMAIL = 'noreply@adbhuttravel.com';
 const ADMIN_EMAIL = 'ankitsundriyal0@gmail.com';
@@ -388,6 +389,14 @@ export async function submitTermsOfServiceForm(
   `;
   
   try {
+    const browser = await puppeteer.launch({
+      args: ['--no-sandbox', '--disable-setuid-sandbox'],
+    });
+    const page = await browser.newPage();
+    await page.setContent(documentHtml, { waitUntil: 'networkidle0' });
+    const pdfBuffer = await page.pdf({ format: 'A4', printBackground: true });
+    await browser.close();
+
     // Send confirmation email to customer, CC admin
     await resend.emails.send({
       from: RESEND_FROM_EMAIL,
@@ -395,10 +404,16 @@ export async function submitTermsOfServiceForm(
       cc: ADMIN_EMAIL,
       subject: `Your Signed Terms & Conditions with Adbhut Travel - ${data.name}`,
       html: documentHtml,
+      attachments: [
+        {
+          filename: 'Adbhut_Travel_Terms_Agreement.pdf',
+          content: pdfBuffer,
+        },
+      ],
     });
 
     return {
-      message: "Agreement submitted successfully! A copy has been sent to your email.",
+      message: "Agreement submitted successfully! A copy has been sent to your email with a PDF attachment.",
       success: true,
     };
   } catch (error) {
