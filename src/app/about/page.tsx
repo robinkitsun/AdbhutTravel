@@ -111,10 +111,10 @@ export default function AboutPage() {
                     <h2 className="text-3xl font-headline font-bold mb-4">Our Strengths</h2>
                     <ul className="space-y-3 text-muted-foreground">
                         {strengths.map((strength, index) => (
-                        <li key={index} className="flex items-start gap-3">
-                            <CheckCircle2 className="h-5 w-5 text-accent mt-1 flex-shrink-0" />
-                            <span>{strength}</span>
-                        </li>
+                          <li key={index} className="flex items-start gap-3">
+                              <CheckCircle2 className="h-5 w-5 text-accent mt-1 flex-shrink-0" />
+                              <span>{strength}</span>
+                          </li>
                         ))}
                     </ul>
                 </div>
