@@ -78,7 +78,7 @@ export default function AboutPage() {
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="rounded-lg overflow-hidden shadow-xl">
               <Image
-                src="https://www.adbhuttravel.com/wp-content/uploads/2025/07/Our-Story.jpeg"
+                src="/images/services/About Us/Our Story.jpeg"
                 alt="Our team working together on a travel plan"
                 width={600}
                 height={500}
