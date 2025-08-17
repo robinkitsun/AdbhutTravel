@@ -7,8 +7,16 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
 import { Loader2, PlusCircle, Edit, Trash2 } from 'lucide-react';
-import { getUpdates, createUpdate, updateUpdate, deleteUpdate, type UpdatePost } from './actions';
+import { getUpdates, createUpdate, updateUpdate, deleteUpdate } from './actions';
 
+// Define the shape of a post, ensuring serializable types for the client
+export interface UpdatePost {
+  id: string;
+  title: string;
+  content: string;
+  created_at: string; // Supabase returns ISO string
+  updated_at?: string;
+}
 
 export default function AdminUpdatesPage() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
