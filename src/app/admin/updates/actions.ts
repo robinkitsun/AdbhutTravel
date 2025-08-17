@@ -8,11 +8,17 @@ import type { UpdatePost } from './page';
 
 type ActionResult<T> = { success: true; data: T } | { success: false; error: string };
 
-// This is a server-only file, so we can use the service_role key here safely.
-const supabaseAdmin = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY!
-);
+// Helper function to create the admin client. This ensures env vars are read at runtime.
+const getSupabaseAdmin = () => {
+    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+    const serviceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+
+    if (!supabaseUrl || !serviceRoleKey) {
+        throw new Error('Supabase credentials are not set in the environment.');
+    }
+    
+    return createClient(supabaseUrl, serviceRoleKey);
+};
 
 const formSchema = z.object({
   id: z.string().optional(),
@@ -23,6 +29,7 @@ const formSchema = z.object({
 // This function now runs on the server and uses the Supabase admin client
 export async function getUpdates(): Promise<ActionResult<UpdatePost[]>> {
   try {
+    const supabaseAdmin = getSupabaseAdmin();
     const { data, error } = await supabaseAdmin
       .from('updates')
       .select('*')
@@ -53,6 +60,7 @@ export async function createUpdate(formData: FormData): Promise<ActionResult<{ i
     const { title, content } = validatedFields.data;
 
     try {
+        const supabaseAdmin = getSupabaseAdmin();
         const { data, error } = await supabaseAdmin
             .from('updates')
             .insert([{ title, content }])
@@ -91,6 +99,7 @@ export async function updateUpdate(formData: FormData): Promise<ActionResult<nul
     }
 
     try {
+        const supabaseAdmin = getSupabaseAdmin();
         const { error } = await supabaseAdmin
             .from('updates')
             .update({ title, content, updated_at: new Date().toISOString() })
@@ -117,6 +126,7 @@ export async function deleteUpdate(id: string): Promise<ActionResult<null>> {
     }
     
     try {
+        const supabaseAdmin = getSupabaseAdmin();
         const { error } = await supabaseAdmin
             .from('updates')
             .delete()
