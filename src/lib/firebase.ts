@@ -22,17 +22,17 @@ export { app, db };
 
 // --- SERVER-SIDE (ADMIN) INITIALIZATION ---
 // Check if all required environment variables are present
-const hasServiceAccount = 
+const hasServiceAccount =
     process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID &&
     process.env.FIREBASE_PRIVATE_KEY &&
     process.env.FIREBASE_CLIENT_EMAIL;
 
 if (hasServiceAccount && !admin.apps.length) {
     const serviceAccount: admin.ServiceAccount = {
-        projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
+        projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID!,
         // Replace escaped newlines from the environment variable
-        privateKey: process.env.FIREBASE_PRIVATE_KEY.replace(/\\n/g, '\n'),
-        clientEmail: process.env.FIREBASE_CLIENT_EMAIL,
+        privateKey: process.env.FIREBASE_PRIVATE_KEY!.replace(/\\n/g, '\n'),
+        clientEmail: process.env.FIREBASE_CLIENT_EMAIL!,
     };
     
     admin.initializeApp({
