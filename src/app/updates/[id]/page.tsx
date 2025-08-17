@@ -16,12 +16,14 @@ export const revalidate = 60;
 
 async function getUpdateData(id: string): Promise<UpdatePost | null> {
   try {
+    if (!db) {
+        throw new Error("Firestore is not initialized.");
+    }
     const docRef = doc(db, 'updates', id);
     const docSnap = await getDoc(docRef);
 
     if (docSnap.exists()) {
       const data = docSnap.data();
-       // Convert plain object timestamp to Firestore Timestamp if necessary
       const createdAt = data.createdAt instanceof Timestamp ? data.createdAt : new Timestamp(data.createdAt.seconds, data.createdAt.nanoseconds);
       return { 
         id: docSnap.id,

@@ -21,12 +21,14 @@ export const revalidate = 60;
 
 async function getUpdates(): Promise<UpdatePost[]> {
     try {
+        if (!db) {
+            throw new Error("Firestore is not initialized.");
+        }
         const updatesCollection = collection(db, 'updates');
         const q = query(updatesCollection, orderBy('createdAt', 'desc'));
         const updatesSnapshot = await getDocs(q);
         const updatesList = updatesSnapshot.docs.map(doc => {
             const data = doc.data();
-            // Convert plain object timestamp to Firestore Timestamp if necessary
             const createdAt = data.createdAt instanceof Timestamp ? data.createdAt : new Timestamp(data.createdAt.seconds, data.createdAt.nanoseconds);
             return {
                 id: doc.id,
@@ -38,7 +40,6 @@ async function getUpdates(): Promise<UpdatePost[]> {
         return updatesList;
     } catch (error) {
         console.error("Error fetching updates:", error);
-        // Return empty array on error to prevent build failure
         return [];
     }
 }
@@ -82,7 +83,7 @@ export default async function UpdatesPage() {
                  </div>
             ) : (
                 <div className="text-center">
-                     <p className="text-muted-foreground">Could not load updates. Please ensure your Firestore security rules are configured correctly.</p>
+                     <p className="text-muted-foreground">No updates have been posted yet. Check back soon!</p>
                 </div>
             )}
          </div>
