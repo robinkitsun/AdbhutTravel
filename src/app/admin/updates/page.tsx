@@ -26,6 +26,7 @@ interface UpdatePost {
   title: string;
   content: string;
   createdAt: Timestamp;
+  updatedAt?: Timestamp;
 }
 
 const ADMIN_PASSWORD = process.env.NEXT_PUBLIC_ADMIN_PASSWORD || "adbhutadmin";
@@ -50,15 +51,21 @@ export default function AdminUpdatesPage() {
 
   const fetchUpdates = async () => {
     setIsLoading(true);
-    const updatesCollection = collection(db, 'updates');
-    const q = query(updatesCollection, orderBy('createdAt', 'desc'));
-    const updatesSnapshot = await getDocs(q);
-    const updatesList = updatesSnapshot.docs.map((doc) => ({
-      id: doc.id,
-      ...doc.data(),
-    })) as UpdatePost[];
-    setUpdates(updatesList);
-    setIsLoading(false);
+    try {
+      const updatesCollection = collection(db, 'updates');
+      const q = query(updatesCollection, orderBy('createdAt', 'desc'));
+      const updatesSnapshot = await getDocs(q);
+      const updatesList = updatesSnapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      })) as UpdatePost[];
+      setUpdates(updatesList);
+    } catch (err) {
+      console.error("Error fetching updates:", err);
+      setError("Could not fetch updates. Ensure Firestore is set up correctly.");
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const handlePasswordSubmit = (e: React.FormEvent) => {
@@ -81,22 +88,25 @@ export default function AdminUpdatesPage() {
 
     try {
       if (editingId) {
-        // Update existing post
         const postDoc = doc(db, 'updates', editingId);
-        await updateDoc(postDoc, { title, content });
+        await updateDoc(postDoc, { 
+          title, 
+          content,
+          updatedAt: serverTimestamp(),
+        });
       } else {
-        // Add new post
         await addDoc(collection(db, 'updates'), {
           title,
           content,
           createdAt: serverTimestamp(),
+          updatedAt: serverTimestamp(),
         });
       }
       resetForm();
-      fetchUpdates();
+      await fetchUpdates();
     } catch (err) {
-      console.error(err);
-      alert('An error occurred. Please try again.');
+      console.error("Error submitting update:", err);
+      alert('An error occurred. Please check the console and ensure your Firestore security rules are correct.');
     } finally {
         setIsSubmitting(false);
     }
@@ -115,7 +125,7 @@ export default function AdminUpdatesPage() {
         await deleteDoc(doc(db, 'updates', id));
         fetchUpdates();
       } catch (err) {
-        console.error(err);
+        console.error("Error deleting update:", err);
         alert('Failed to delete the update.');
       }
     }
