@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
-import { Loader2, PlusCircle, Edit, Trash2, Bold, Italic, List } from 'lucide-react';
+import { Loader2, PlusCircle, Edit, Trash2, Bold, Italic, List, Heading1, Heading2, Heading3, Pilcrow, Quote, Link2, Underline, Strikethrough } from 'lucide-react';
 import { getUpdates, createUpdate, updateUpdate, deleteUpdate } from './actions';
 
 // Define the shape of a post, ensuring serializable types for the client
@@ -19,7 +19,7 @@ export interface UpdatePost {
 }
 
 const EditorToolbar = ({ textareaRef, onContentChange }: { textareaRef: React.RefObject<HTMLTextAreaElement>, onContentChange: (newContent: string) => void }) => {
-    const applyTag = (tag: 'b' | 'i' | 'ul') => {
+    const applyTag = (tag: 'b' | 'i' | 'u' | 's' | 'p' | 'h1' | 'h2' | 'h3' | 'blockquote' | 'ul' | 'a') => {
         const textarea = textareaRef.current;
         if (!textarea) return;
 
@@ -31,6 +31,13 @@ const EditorToolbar = ({ textareaRef, onContentChange }: { textareaRef: React.Re
         if (tag === 'ul') {
             const listItems = selectedText.split('\n').map(item => `  <li>${item}</li>`).join('\n');
             newText = `<ul>\n${listItems}\n</ul>`;
+        } else if (tag === 'a') {
+            const url = prompt("Enter the URL for the link:");
+            if (url) {
+                newText = `<a href="${url}" target="_blank" rel="noopener noreferrer">${selectedText || 'Link Text'}</a>`;
+            } else {
+                return; // User cancelled prompt
+            }
         } else {
             newText = `<${tag}>${selectedText}</${tag}>`;
         }
@@ -47,12 +54,37 @@ const EditorToolbar = ({ textareaRef, onContentChange }: { textareaRef: React.Re
     };
 
     return (
-        <div className="flex items-center gap-2 rounded-t-md border border-b-0 border-input bg-muted p-1.5">
+        <div className="flex items-center flex-wrap gap-2 rounded-t-md border border-b-0 border-input bg-muted p-1.5">
             <Button type="button" variant="outline" size="icon" onClick={() => applyTag('b')} title="Bold">
                 <Bold className="h-4 w-4" />
             </Button>
             <Button type="button" variant="outline" size="icon" onClick={() => applyTag('i')} title="Italic">
                 <Italic className="h-4 w-4" />
+            </Button>
+             <Button type="button" variant="outline" size="icon" onClick={() => applyTag('u')} title="Underline">
+                <Underline className="h-4 w-4" />
+            </Button>
+            <Button type="button" variant="outline" size="icon" onClick={() => applyTag('s')} title="Strikethrough">
+                <Strikethrough className="h-4 w-4" />
+            </Button>
+             <Button type="button" variant="outline" size="icon" onClick={() => applyTag('a')} title="Link">
+                <Link2 className="h-4 w-4" />
+            </Button>
+            <div className="h-6 w-px bg-border mx-1"></div>
+            <Button type="button" variant="outline" size="icon" onClick={() => applyTag('h1')} title="Heading 1">
+                <Heading1 className="h-4 w-4" />
+            </Button>
+             <Button type="button" variant="outline" size="icon" onClick={() => applyTag('h2')} title="Heading 2">
+                <Heading2 className="h-4 w-4" />
+            </Button>
+             <Button type="button" variant="outline" size="icon" onClick={() => applyTag('h3')} title="Heading 3">
+                <Heading3 className="h-4 w-4" />
+            </Button>
+            <Button type="button" variant="outline" size="icon" onClick={() => applyTag('p')} title="Paragraph">
+                <Pilcrow className="h-4 w-4" />
+            </Button>
+             <Button type="button" variant="outline" size="icon" onClick={() => applyTag('blockquote')} title="Blockquote">
+                <Quote className="h-4 w-4" />
             </Button>
             <Button type="button" variant="outline" size="icon" onClick={() => applyTag('ul')} title="Bulleted List">
                 <List className="h-4 w-4" />
