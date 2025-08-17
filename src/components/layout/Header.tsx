@@ -29,6 +29,7 @@ const navLinks = [
   { href: "/services", label: "Services" },
   { href: "/mice", label: "MICE" },
   { href: "/updates", label: "Updates" },
+  { href: "/updates-firebase", label: "Updates (Firebase)" },
   { href: "/investment", label: "Investment" },
   { href: "/career", label: "Career" },
   { href: "/contact", label: "Contact Us" },
