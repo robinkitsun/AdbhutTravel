@@ -45,27 +45,33 @@ const morePageLinks = [
 export default function Header() {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
+    setIsMounted(true);
+    
     const handleScroll = () => {
-      // Set scrolled to true if user has scrolled down at all
       const isScrolled = window.scrollY > 10;
       setScrolled(isScrolled);
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
 
+  const headerHeightClass = isMounted && scrolled ? 'h-20' : 'h-24';
+  const navGapClass = isMounted && scrolled ? 'gap-5' : 'gap-8';
+
 
   return (
     <header className={cn(
       "sticky top-0 z-50 w-full transition-all duration-300 bg-primary backdrop-blur-sm shadow-md"
       )}>
-      <div className={cn("container flex items-center justify-between transition-all duration-300", scrolled ? 'h-24' : 'h-20')}>
+      <div className={cn("container flex items-center justify-between transition-all duration-300", headerHeightClass)}>
         <div className="flex-shrink-0">
           <Link href="/">
             <Logo />
@@ -74,7 +80,7 @@ export default function Header() {
 
         {/* Desktop Navigation */}
         <div className="hidden md:flex flex-grow items-center justify-center">
-            <nav className={cn("flex items-center transition-all duration-500", scrolled ? "gap-8" : "gap-5")}>
+            <nav className={cn("flex items-center transition-all duration-500", navGapClass)}>
             {navLinks.map(({ href, label }) => (
                 <Link
                 key={href}
