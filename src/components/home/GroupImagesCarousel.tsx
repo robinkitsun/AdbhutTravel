@@ -18,11 +18,11 @@ const images = [
   "/images/services/Home/Mice g2.jpg",
   "/images/services/Home/Adbhut Tour Group 3.jpg",
   "/images/services/Home/Adbhut Tour Group 4.JPG",
-  "/images/services/Home/Adbhut Tour Group 5.jpg",
+  "/images/services/Home/Adbhut Tour Group 5.JPG",
   "/images/services/Home/Mice g4.jpg",
   "/images/services/Home/Adbhut Tour Group 7.jpg",
   "/images/services/Home/Adbhut Tour Group 8.jpg",
-  "/images/services/Home/Adbhut Tour Group 9.JPG",
+  "/images/services/Home/Adbhut Tour Group 9.png",
   "/images/services/Home/Adbhut Tour Group 10.JPG",
   "/images/services/Home/Adbhut Tour Group 11.jpg",
 ];
