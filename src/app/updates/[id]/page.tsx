@@ -1,30 +1,69 @@
 
-// This page will display a single, detailed update.
-// We will connect this to Firestore in a later step.
-
 import { notFound } from 'next/navigation';
+import { db } from '@/lib/firebase';
+import { doc, getDoc, Timestamp } from 'firebase/firestore';
+import type { Metadata } from 'next';
 
-// This is a placeholder function. We will replace it with a real data fetching function from our database.
-async function getUpdateData(id: string) {
-  console.log(id); // To prevent unused variable error during build
-  // In the future, this function will fetch data for a single post from Firestore.
-  // For example: const post = await db.collection('posts').doc(id).get();
-  // If the post doesn't exist, we'll return null.
-  return null; // Placeholder
+interface UpdatePost {
+    id: string;
+    title: string;
+    content: string;
+    createdAt: Timestamp;
 }
 
+// Revalidate this page every 60 seconds
+export const revalidate = 60;
+
+async function getUpdateData(id: string): Promise<UpdatePost | null> {
+  try {
+    const docRef = doc(db, 'updates', id);
+    const docSnap = await getDoc(docRef);
+
+    if (docSnap.exists()) {
+      return { id: docSnap.id, ...docSnap.data() } as UpdatePost;
+    } else {
+      return null;
+    }
+  } catch (error) {
+    console.error("Error fetching document:", error);
+    return null;
+  }
+}
+
+export async function generateMetadata({ params }: { params: { id: string } }): Promise<Metadata> {
+  const update = await getUpdateData(params.id);
+
+  if (!update) {
+    return {
+      title: 'Update Not Found',
+    }
+  }
+
+  return {
+    title: update.title,
+    description: update.content.substring(0, 150),
+  }
+}
 
 export default async function UpdateDetailPage({ params }: { params: { id: string } }) {
     const update = await getUpdateData(params.id);
 
-    // If no update is found for the given ID, show a 404 page.
     if (!update) {
         notFound();
     }
 
     return (
-        <article className="container py-12">
-            {/* The content will go here once we fetch it from the database */}
+        <article className="container py-12 md:py-16">
+           <div className="max-w-3xl mx-auto">
+                <h1 className="text-3xl md:text-4xl font-headline font-bold mb-4">{update.title}</h1>
+                <p className="text-sm text-muted-foreground mb-8">
+                     Published on {new Date(update.createdAt.seconds * 1000).toLocaleDateString()}
+                </p>
+                <div 
+                    className="prose lg:prose-lg max-w-none"
+                    dangerouslySetInnerHTML={{ __html: update.content }} 
+                />
+           </div>
         </article>
     );
 }
