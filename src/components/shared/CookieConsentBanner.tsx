@@ -27,16 +27,16 @@ export function CookieConsentBanner() {
   }
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-50 p-4">
-      <Card className="bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80">
+    <div className="fixed bottom-0 left-1/2 -translate-x-1/2 z-50 p-4 w-full max-w-2xl">
+      <Card className="bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80 shadow-2xl">
         <CardContent className="container flex flex-col md:flex-row items-center justify-between gap-4 p-4">
-            <div className="flex items-center gap-3">
-              <Cookie className="h-6 w-6 text-accent shrink-0"/>
+            <div className="flex items-center gap-3 text-center md:text-left">
+              <Cookie className="h-6 w-6 text-accent shrink-0 hidden sm:block"/>
               <p className="text-sm text-muted-foreground">
                 We use cookies to enhance your browsing experience and analyze site traffic.
               </p>
             </div>
-          <Button onClick={handleAccept} size="sm">Accept</Button>
+          <Button onClick={handleAccept} size="sm" className="shrink-0">Accept</Button>
         </CardContent>
       </Card>
     </div>
