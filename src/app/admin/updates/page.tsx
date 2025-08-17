@@ -1,12 +1,12 @@
 
 'use client';
 
-import { useState, useEffect, useTransition, useRef } from 'react';
+import { useState, useEffect, useTransition, useRef, useCallback } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
-import { Loader2, PlusCircle, Edit, Trash2, Bold, Italic, List, Heading1, Heading2, Heading3, Pilcrow, Quote, Link2, Underline, Strikethrough } from 'lucide-react';
+import { Loader2, PlusCircle, Edit, Trash2, Bold, Italic, List, Heading1, Heading2, Heading3, Pilcrow, Quote, Link2, Underline, Strikethrough, Undo2, Redo2 } from 'lucide-react';
 import { getUpdates, createUpdate, updateUpdate, deleteUpdate } from './actions';
 
 // Define the shape of a post, ensuring serializable types for the client
@@ -18,77 +18,60 @@ export interface UpdatePost {
   updated_at?: string;
 }
 
-const EditorToolbar = ({ textareaRef, onContentChange }: { textareaRef: React.RefObject<HTMLTextAreaElement>, onContentChange: (newContent: string) => void }) => {
-    const applyTag = (tag: 'b' | 'i' | 'u' | 's' | 'p' | 'h1' | 'h2' | 'h3' | 'blockquote' | 'ul' | 'a') => {
-        const textarea = textareaRef.current;
-        if (!textarea) return;
+const useHistory = (initialState: string) => {
+    const [index, setIndex] = useState(0);
+    const [history, setHistory] = useState([initialState]);
 
-        const start = textarea.selectionStart;
-        const end = textarea.selectionEnd;
-        const selectedText = textarea.value.substring(start, end);
-        let newText;
-
-        if (tag === 'ul') {
-            const listItems = selectedText.split('\n').map(item => `  <li>${item}</li>`).join('\n');
-            newText = `<ul>\n${listItems}\n</ul>`;
-        } else if (tag === 'a') {
-            const url = prompt("Enter the URL for the link:");
-            if (url) {
-                newText = `<a href="${url}" target="_blank" rel="noopener noreferrer">${selectedText || 'Link Text'}</a>`;
-            } else {
-                return; // User cancelled prompt
-            }
+    const setState = (action: string | ((prevState: string) => string), overwrite = false) => {
+        const newState = typeof action === 'function' ? action(history[index]) : action;
+        if (overwrite) {
+            const historyCopy = [...history];
+            historyCopy[index] = newState;
+            setHistory(historyCopy);
         } else {
-            newText = `<${tag}>${selectedText}</${tag}>`;
+            const updatedHistory = history.slice(0, index + 1);
+            setHistory([...updatedHistory, newState]);
+            setIndex(updatedHistory.length);
         }
-
-        const updatedContent = textarea.value.substring(0, start) + newText + textarea.value.substring(end);
-        onContentChange(updatedContent);
-
-        // Focus and set cursor after the inserted text
-        setTimeout(() => {
-            textarea.focus();
-            const newCursorPosition = start + newText.length;
-            textarea.setSelectionRange(newCursorPosition, newCursorPosition);
-        }, 0);
     };
+    
+    const undo = () => index > 0 && setIndex(prev => prev - 1);
+    const redo = () => index < history.length - 1 && setIndex(prev => prev + 1);
+
+    return [history[index], setState, undo, redo, history.length, index] as const;
+};
+
+
+const EditorToolbar = ({ onCommand }: { onCommand: (command: string, value?: string) => void }) => {
+    
+    const commands: {cmd: string; icon: React.ElementType, title: string, value?:string}[] = [
+        { cmd: 'bold', icon: Bold, title: 'Bold' },
+        { cmd: 'italic', icon: Italic, title: 'Italic' },
+        { cmd: 'underline', icon: Underline, title: 'Underline' },
+        { cmd: 'strikeThrough', icon: Strikethrough, title: 'Strikethrough' },
+        { cmd: 'createLink', icon: Link2, title: 'Link' },
+        { cmd: 'insertUnorderedList', icon: List, title: 'Bulleted List' },
+        { cmd: 'formatBlock', value:'h1', icon: Heading1, title: 'Heading 1' },
+        { cmd: 'formatBlock', value:'h2', icon: Heading2, title: 'Heading 2' },
+        { cmd: 'formatBlock', value:'h3', icon: Heading3, title: 'Heading 3' },
+        { cmd: 'formatBlock', value:'p', icon: Pilcrow, title: 'Paragraph' },
+        { cmd: 'formatBlock', value:'blockquote', icon: Quote, title: 'Blockquote' },
+    ];
 
     return (
         <div className="flex items-center flex-wrap gap-2 rounded-t-md border border-b-0 border-input bg-muted p-1.5">
-            <Button type="button" variant="outline" size="icon" onClick={() => applyTag('b')} title="Bold">
-                <Bold className="h-4 w-4" />
+            <Button type="button" variant="outline" size="icon" onClick={() => onCommand('undo')} title="Undo (Ctrl+Z)">
+                <Undo2 className="h-4 w-4" />
             </Button>
-            <Button type="button" variant="outline" size="icon" onClick={() => applyTag('i')} title="Italic">
-                <Italic className="h-4 w-4" />
-            </Button>
-             <Button type="button" variant="outline" size="icon" onClick={() => applyTag('u')} title="Underline">
-                <Underline className="h-4 w-4" />
-            </Button>
-            <Button type="button" variant="outline" size="icon" onClick={() => applyTag('s')} title="Strikethrough">
-                <Strikethrough className="h-4 w-4" />
-            </Button>
-             <Button type="button" variant="outline" size="icon" onClick={() => applyTag('a')} title="Link">
-                <Link2 className="h-4 w-4" />
+            <Button type="button" variant="outline" size="icon" onClick={() => onCommand('redo')} title="Redo (Ctrl+Y)">
+                <Redo2 className="h-4 w-4" />
             </Button>
             <div className="h-6 w-px bg-border mx-1"></div>
-            <Button type="button" variant="outline" size="icon" onClick={() => applyTag('h1')} title="Heading 1">
-                <Heading1 className="h-4 w-4" />
-            </Button>
-             <Button type="button" variant="outline" size="icon" onClick={() => applyTag('h2')} title="Heading 2">
-                <Heading2 className="h-4 w-4" />
-            </Button>
-             <Button type="button" variant="outline" size="icon" onClick={() => applyTag('h3')} title="Heading 3">
-                <Heading3 className="h-4 w-4" />
-            </Button>
-            <Button type="button" variant="outline" size="icon" onClick={() => applyTag('p')} title="Paragraph">
-                <Pilcrow className="h-4 w-4" />
-            </Button>
-             <Button type="button" variant="outline" size="icon" onClick={() => applyTag('blockquote')} title="Blockquote">
-                <Quote className="h-4 w-4" />
-            </Button>
-            <Button type="button" variant="outline" size="icon" onClick={() => applyTag('ul')} title="Bulleted List">
-                <List className="h-4 w-4" />
-            </Button>
+            {commands.map(({cmd, icon: Icon, title, value}) => (
+                <Button key={title} type="button" variant="outline" size="icon" onClick={() => onCommand(cmd, value)} title={title}>
+                    <Icon className="h-4 w-4" />
+                </Button>
+            ))}
         </div>
     );
 };
@@ -97,14 +80,15 @@ const EditorToolbar = ({ textareaRef, onContentChange }: { textareaRef: React.Re
 export default function AdminUpdatesPage() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
   
   const [updates, setUpdates] = useState<UpdatePost[]>([]);
   const [title, setTitle] = useState('');
-  const [content, setContent] = useState('');
+  const [content, setContent, undoContent, redoContent, historyLength, historyIndex] = useHistory('');
+
   const [editingId, setEditingId] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [isPending, startTransition] = useTransition();
+  const [error, setError] = useState('');
 
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
@@ -140,10 +124,74 @@ export default function AdminUpdatesPage() {
   
   const resetForm = () => {
     setTitle('');
-    setContent('');
+    setContent('', true);
     setEditingId(null);
     setError('');
   };
+
+  const applyTag = (tag: 'b' | 'i' | 'u' | 's' | 'p' | 'h1' | 'h2' | 'h3' | 'blockquote' | 'ul' | 'a') => {
+        const textarea = textareaRef.current;
+        if (!textarea) return;
+
+        const start = textarea.selectionStart;
+        const end = textarea.selectionEnd;
+        const selectedText = textarea.value.substring(start, end);
+        let newText;
+
+        if (tag === 'ul') {
+            const listItems = selectedText.split('\n').map(item => `  <li>${item}</li>`).join('\n');
+            newText = `<ul>\n${listItems}\n</ul>`;
+        } else if (tag === 'a') {
+            const url = prompt("Enter the URL for the link:");
+            if (url) {
+                newText = `<a href="${url}" target="_blank" rel="noopener noreferrer">${selectedText || 'Link Text'}</a>`;
+            } else {
+                return; // User cancelled prompt
+            }
+        } else {
+            newText = `<${tag}>${selectedText}</${tag}>`;
+        }
+
+        const updatedContent = textarea.value.substring(0, start) + newText + textarea.value.substring(end);
+        setContent(updatedContent);
+
+        setTimeout(() => {
+            textarea.focus();
+            const newCursorPosition = start + newText.length;
+            textarea.setSelectionRange(newCursorPosition, newCursorPosition);
+        }, 0);
+  };
+
+  const handleEditorCommand = (command: string, value?: string) => {
+      if (command === 'undo') return undoContent();
+      if (command === 'redo') return redoContent();
+
+      const tagMap: { [key: string]: any } = {
+          'bold': 'b', 'italic': 'i', 'underline': 'u', 'strikeThrough': 's',
+          'createLink': 'a', 'insertUnorderedList': 'ul',
+          'formatBlock': value
+      };
+
+      const tag = tagMap[command];
+      if (tag) applyTag(tag);
+  };
+  
+  const handleKeyDown = useCallback((e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+    if (e.ctrlKey) {
+        let handled = true;
+        switch (e.key.toLowerCase()) {
+            case 'b': handleEditorCommand('bold'); break;
+            case 'i': handleEditorCommand('italic'); break;
+            case 'u': handleEditorCommand('underline'); break;
+            case 'z':
+                if (e.shiftKey) { redoContent(); } else { undoContent(); }
+                break;
+            case 'y': redoContent(); break;
+            default: handled = false;
+        }
+        if (handled) e.preventDefault();
+    }
+  }, [undoContent, redoContent]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -168,7 +216,7 @@ export default function AdminUpdatesPage() {
 
         if (result.success) {
             resetForm();
-            await fetchUpdates(); // Refresh the list
+            await fetchUpdates();
         } else {
             setError(result.error || "An unknown error occurred.");
         }
@@ -178,7 +226,7 @@ export default function AdminUpdatesPage() {
   const handleEdit = (post: UpdatePost) => {
     setEditingId(post.id);
     setTitle(post.title);
-    setContent(post.content);
+    setContent(post.content, true);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
@@ -252,13 +300,14 @@ export default function AdminUpdatesPage() {
               <label htmlFor="content" className="block text-sm font-medium mb-1">
                 Content
               </label>
-              <EditorToolbar textareaRef={textareaRef} onContentChange={setContent} />
+              <EditorToolbar onCommand={handleEditorCommand} />
               <div className="grid grid-cols-1 md:grid-cols-2 gap-0 border border-input rounded-b-md overflow-hidden">
                 <Textarea
                     ref={textareaRef}
                     id="content"
                     value={content}
                     onChange={(e) => setContent(e.target.value)}
+                    onKeyDown={handleKeyDown}
                     placeholder="Start writing here..."
                     rows={15}
                     required
@@ -335,5 +384,3 @@ export default function AdminUpdatesPage() {
     </div>
   );
 }
-
-    
