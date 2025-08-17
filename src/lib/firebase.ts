@@ -13,14 +13,15 @@ const firebaseConfig = {
   appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
 };
 
+// NOTE: This file is no longer used for database operations on the admin page,
+// as they have been moved to Server Actions. It is kept for any potential
+// future client-side needs but is not actively used for writing data.
 let app: FirebaseApp | undefined;
 let db: Firestore | null = null;
 
-// This function can be called on the client to get the Firestore instance.
-// It ensures Firebase is initialized only once.
+
 function getClientDb() {
     if (!getApps().length) {
-        // Check if config keys are present.
         if (firebaseConfig.projectId && firebaseConfig.apiKey) {
             try {
                 app = initializeApp(firebaseConfig);
@@ -29,32 +30,25 @@ function getClientDb() {
                 return null;
             }
         } else {
-            console.error("Client-side Firebase configuration is missing or incomplete in .env file.");
+            // This is not a fatal error if the client doesn't need Firebase directly.
+            console.warn("Client-side Firebase configuration is missing or incomplete in .env file.");
             return null;
         }
     } else {
         app = getApp();
     }
 
-    // Get Firestore instance only if app was initialized successfully.
-    if (app) {
-        // We check if db is already initialized to avoid re-creating it.
-        if (!db) {
-           try {
-               db = getFirestore(app);
-           } catch (e) {
-               console.error("Error getting Firestore instance on the client:", e);
-               return null;
-           }
-        }
-        return db;
+    if (app && !db) {
+       try {
+           db = getFirestore(app);
+       } catch (e) {
+           console.error("Error getting Firestore instance on the client:", e);
+           return null;
+       }
     }
-    
-    // Return null if Firebase app could not be initialized.
-    return null;
+    return db;
 }
 
-// We export the initialized db instance directly.
 const clientDb = getClientDb();
 
 export { clientDb as db };

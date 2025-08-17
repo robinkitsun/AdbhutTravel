@@ -1,35 +1,14 @@
 
 'use client';
 
-import { useState, useEffect, useCallback } from 'react';
-import { db } from '@/lib/firebase'; // The admin page uses the client-side SDK
-import {
-  collection,
-  addDoc,
-  getDocs,
-  doc,
-  updateDoc,
-  deleteDoc,
-  serverTimestamp,
-  orderBy,
-  query,
-  Timestamp,
-} from 'firebase/firestore';
+import { useState, useEffect, useTransition } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
 import { Loader2, PlusCircle, Edit, Trash2 } from 'lucide-react';
+import { getUpdates, createUpdate, updateUpdate, deleteUpdate, type UpdatePost } from './actions';
 
-interface UpdatePost {
-  id: string;
-  title: string;
-  content: string;
-  createdAt: Timestamp;
-  updatedAt?: Timestamp;
-}
-
-const ADMIN_PASSWORD = process.env.NEXT_PUBLIC_ADMIN_PASSWORD || "adbhutadmin";
 
 export default function AdminUpdatesPage() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -41,36 +20,28 @@ export default function AdminUpdatesPage() {
   const [content, setContent] = useState('');
   const [editingId, setEditingId] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isPending, startTransition] = useTransition();
 
-  const fetchUpdates = useCallback(async () => {
+  // This password check remains on the client for basic access control
+  const ADMIN_PASSWORD = process.env.NEXT_PUBLIC_ADMIN_PASSWORD || "adbhutadmin";
+
+  const fetchUpdates = async () => {
     setIsLoading(true);
     setError('');
-    try {
-      if (!db) {
-        throw new Error("Firestore is not initialized. Check your Firebase configuration in .env.");
-      }
-      const updatesCollection = collection(db, 'updates');
-      const q = query(updatesCollection, orderBy('createdAt', 'desc'));
-      const updatesSnapshot = await getDocs(q);
-      const updatesList = updatesSnapshot.docs.map((doc) => ({
-        id: doc.id,
-        ...doc.data(),
-      })) as UpdatePost[];
-      setUpdates(updatesList);
-    } catch (err: any) {
-      console.error("Error fetching updates:", err);
-      setError(`Could not fetch updates. Please ensure Firestore is set up correctly and security rules are published. Error: ${err.message}`);
-    } finally {
-      setIsLoading(false);
+    const result = await getUpdates();
+    if (result.success && result.data) {
+      setUpdates(result.data);
+    } else {
+      setError(result.error || "Failed to fetch updates.");
     }
-  }, []);
+    setIsLoading(false);
+  };
   
   useEffect(() => {
     if(isAuthenticated) {
         fetchUpdates();
     }
-  }, [isAuthenticated, fetchUpdates]);
+  }, [isAuthenticated]);
 
   const handlePasswordSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -81,6 +52,13 @@ export default function AdminUpdatesPage() {
       setError('Incorrect password.');
     }
   };
+  
+  const resetForm = () => {
+    setTitle('');
+    setContent('');
+    setEditingId(null);
+    setError('');
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -88,39 +66,28 @@ export default function AdminUpdatesPage() {
       setError('Title and content are required.');
       return;
     }
-    if (!db) {
-        setError("Database connection is not available. Please check your configuration.");
-        return;
-    }
-
-    setIsSubmitting(true);
     setError('');
 
-    try {
-      if (editingId) {
-        const postDoc = doc(db, 'updates', editingId);
-        await updateDoc(postDoc, { 
-          title, 
-          content,
-          updatedAt: serverTimestamp(),
-        });
-      } else {
-        await addDoc(collection(db, 'updates'), {
-          title,
-          content,
-          createdAt: serverTimestamp(),
-        });
-      }
-      // Only reset and fetch after a successful operation
-      resetForm();
-      await fetchUpdates(); 
-    } catch (err: any) {
-      console.error("Error submitting update:", err);
-      setError(`An error occurred while saving the data. Please check the console and ensure your Firestore security rules allow writes. Error: ${err.message}`);
-    } finally {
-        // This will run regardless of success or failure
-        setIsSubmitting(false);
-    }
+    startTransition(async () => {
+        const formData = new FormData();
+        formData.append('title', title);
+        formData.append('content', content);
+
+        let result;
+        if (editingId) {
+            formData.append('id', editingId);
+            result = await updateUpdate(formData);
+        } else {
+            result = await createUpdate(formData);
+        }
+
+        if (result.success) {
+            resetForm();
+            await fetchUpdates(); // Refresh the list
+        } else {
+            setError(result.error || "An unknown error occurred.");
+        }
+    });
   };
 
   const handleEdit = (post: UpdatePost) => {
@@ -132,30 +99,18 @@ export default function AdminUpdatesPage() {
 
   const handleDelete = async (id: string) => {
     if (window.confirm('Are you sure you want to delete this update?')) {
-      if (!db) {
-        setError("Database connection is not available. Please check your configuration.");
-        return;
-      }
-      setError('');
-      setIsSubmitting(true);
-      try {
-        await deleteDoc(doc(db, 'updates', id));
-        await fetchUpdates();
-      } catch (err: any) {
-        console.error("Error deleting update:", err);
-        setError(`Failed to delete the update. Error: ${err.message}`);
-      } finally {
-        setIsSubmitting(false);
-      }
+       setError('');
+       startTransition(async () => {
+            const result = await deleteUpdate(id);
+            if (result.success) {
+                await fetchUpdates();
+            } else {
+                setError(result.error || "Failed to delete update.");
+            }
+       });
     }
   };
 
-  const resetForm = () => {
-    setTitle('');
-    setContent('');
-    setEditingId(null);
-  };
-  
   if (!isAuthenticated) {
     return (
       <div className="container py-24 flex justify-center items-center">
@@ -224,12 +179,12 @@ export default function AdminUpdatesPage() {
           </CardContent>
           <CardFooter className="flex justify-end gap-2">
             {editingId && (
-              <Button type="button" variant="outline" onClick={resetForm}>
+              <Button type="button" variant="outline" onClick={resetForm} disabled={isPending}>
                 Cancel Edit
               </Button>
             )}
-            <Button type="submit" disabled={isSubmitting}>
-              {isSubmitting ? (
+            <Button type="submit" disabled={isPending}>
+              {isPending ? (
                 <>
                     <Loader2 className="mr-2 h-4 w-4 animate-spin" />
                     {editingId ? 'Updating...' : 'Publishing...'}
@@ -262,15 +217,15 @@ export default function AdminUpdatesPage() {
                 <div className="flex-grow mb-4 sm:mb-0 sm:mr-4">
                     <h3 className="font-semibold">{post.title}</h3>
                     <p className="text-sm text-muted-foreground">
-                        Published on: {post.createdAt ? new Date(post.createdAt?.seconds * 1000).toLocaleDateString() : 'Date not available'}
+                        Published on: {post.createdAt ? new Date(post.createdAt.seconds * 1000).toLocaleDateString() : 'Date not available'}
                     </p>
                 </div>
                 <div className="flex gap-2 flex-shrink-0">
-                    <Button variant="outline" size="sm" onClick={() => handleEdit(post)} disabled={isSubmitting}>
+                    <Button variant="outline" size="sm" onClick={() => handleEdit(post)} disabled={isPending}>
                         <Edit className="mr-2 h-4 w-4" />
                         Edit
                     </Button>
-                    <Button variant="destructive" size="sm" onClick={() => handleDelete(post.id)} disabled={isSubmitting}>
+                    <Button variant="destructive" size="sm" onClick={() => handleDelete(post.id)} disabled={isPending}>
                         <Trash2 className="mr-2 h-4 w-4" />
                         Delete
                     </Button>
