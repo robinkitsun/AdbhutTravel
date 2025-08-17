@@ -100,7 +100,7 @@ export default function AdminUpdatesPage() {
         await addDoc(collection(db, 'updates'), {
           title,
           content,
-          createdAt: Timestamp.now(),
+          createdAt: serverTimestamp(),
         });
       }
       resetForm();
@@ -122,6 +122,7 @@ export default function AdminUpdatesPage() {
 
   const handleDelete = async (id: string) => {
     if (window.confirm('Are you sure you want to delete this update?')) {
+      setError('');
       try {
         await deleteDoc(doc(db, 'updates', id));
         fetchUpdates();
