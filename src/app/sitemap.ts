@@ -22,6 +22,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/terms-of-service',
     '/cancellation-policy',
     '/updates',
+    '/updates-firebase',
     '/investment',
   ];
 
