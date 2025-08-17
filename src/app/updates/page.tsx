@@ -24,13 +24,19 @@ async function getUpdates(): Promise<UpdatePost[]> {
         const updatesCollection = collection(db, 'updates');
         const q = query(updatesCollection, orderBy('createdAt', 'desc'));
         const updatesSnapshot = await getDocs(q);
-        const updatesList = updatesSnapshot.docs.map(doc => ({
-            id: doc.id,
-            ...doc.data(),
-        })) as UpdatePost[];
+        const updatesList = updatesSnapshot.docs.map(doc => {
+            const data = doc.data();
+            return {
+                id: doc.id,
+                title: data.title,
+                content: data.content,
+                createdAt: data.createdAt
+            };
+        }) as UpdatePost[];
         return updatesList;
     } catch (error) {
         console.error("Error fetching updates:", error);
+        // Return empty array on error to prevent build failure
         return [];
     }
 }
@@ -60,7 +66,7 @@ export default async function UpdatesPage() {
                                 </Link>
                             </h2>
                             <p className="text-sm text-muted-foreground mb-4">
-                                {update.createdAt && new Date(update.createdAt.seconds * 1000).toLocaleDateString()}
+                                {update.createdAt ? new Date(update.createdAt.seconds * 1000).toLocaleDateString() : "Date not available"}
                             </p>
                             <div 
                                 className="prose prose-sm max-w-none text-muted-foreground line-clamp-3"

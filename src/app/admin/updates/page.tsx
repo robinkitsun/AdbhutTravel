@@ -43,12 +43,6 @@ export default function AdminUpdatesPage() {
   const [isLoading, setIsLoading] = useState(true);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  useEffect(() => {
-    if(isAuthenticated) {
-        fetchUpdates();
-    }
-  }, [isAuthenticated]);
-
   const fetchUpdates = async () => {
     setIsLoading(true);
     try {
@@ -62,11 +56,17 @@ export default function AdminUpdatesPage() {
       setUpdates(updatesList);
     } catch (err) {
       console.error("Error fetching updates:", err);
-      setError("Could not fetch updates. Ensure Firestore is set up correctly.");
+      setError("Could not fetch updates. Ensure Firestore is set up correctly and security rules are published.");
     } finally {
       setIsLoading(false);
     }
   };
+  
+  useEffect(() => {
+    if(isAuthenticated) {
+        fetchUpdates();
+    }
+  }, [isAuthenticated]);
 
   const handlePasswordSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -99,7 +99,6 @@ export default function AdminUpdatesPage() {
           title,
           content,
           createdAt: serverTimestamp(),
-          updatedAt: serverTimestamp(),
         });
       }
       resetForm();
@@ -228,6 +227,7 @@ export default function AdminUpdatesPage() {
 
       <div className="space-y-4">
         <h2 className="text-2xl font-bold">Existing Updates</h2>
+        {error && <p className="text-destructive">{error}</p>}
         {isLoading ? (
           <div className="flex items-center gap-2">
              <Loader2 className="h-5 w-5 animate-spin" />
@@ -241,7 +241,7 @@ export default function AdminUpdatesPage() {
                 <div className="flex-grow mb-4 sm:mb-0 sm:mr-4">
                     <h3 className="font-semibold">{post.title}</h3>
                     <p className="text-sm text-muted-foreground">
-                        Published on: {new Date(post.createdAt?.seconds * 1000).toLocaleDateString()}
+                        Published on: {post.createdAt ? new Date(post.createdAt?.seconds * 1000).toLocaleDateString() : 'Date not available'}
                     </p>
                 </div>
                 <div className="flex gap-2 flex-shrink-0">

@@ -20,12 +20,18 @@ async function getUpdateData(id: string): Promise<UpdatePost | null> {
     const docSnap = await getDoc(docRef);
 
     if (docSnap.exists()) {
-      return { id: docSnap.id, ...docSnap.data() } as UpdatePost;
+      const data = docSnap.data();
+      return { 
+        id: docSnap.id,
+        title: data.title,
+        content: data.content,
+        createdAt: data.createdAt
+      } as UpdatePost;
     } else {
       return null;
     }
   } catch (error) {
-    console.error("Error fetching document:", error);
+    console.error(`Error fetching document with id ${id}:`, error);
     return null;
   }
 }
