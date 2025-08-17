@@ -15,6 +15,20 @@ export default function Footer() {
   return (
     <footer className="bg-primary text-secondary-foreground border-t">
        <div className="container pt-16 pb-8">
+            {isHomePage && (
+                <div className="mb-12">
+                    <h2 className="text-3xl font-headline font-bold text-center mb-8">Discover Adbhut Travel</h2>
+                    <div className="relative aspect-video max-w-4xl mx-auto rounded-lg overflow-hidden shadow-2xl">
+                         <iframe
+                            className="absolute top-0 left-0 w-full h-full"
+                            src="https://www.youtube.com/embed/IfBDSc2Lb7U"
+                            title="ADBHUT Profile Video"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            allowFullScreen
+                        ></iframe>
+                    </div>
+                </div>
+            )}
             <div className="mb-12 text-center">
                  <Image src="/images/services/Home/Adbhut-Affilications-Cetifications.png" alt="Accreditations" width={1200} height={100} className="mx-auto" />
             </div>
