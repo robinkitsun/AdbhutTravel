@@ -5,7 +5,7 @@ export const dynamic = 'force-static';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   // In a real app, you would get this from an environment variable
-  const siteUrl = 'https://www.your-domain.com'; 
+  const siteUrl = 'https://adbhuttravel.com'; 
   
   const staticPages = [
     '/',

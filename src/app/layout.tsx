@@ -26,7 +26,7 @@ const playfairDisplay = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://www.your-domain.com'), // Replace with your actual domain
+  metadataBase: new URL('https://adbhuttravel.com'),
   title: {
     default: "Adbhut Travel And Event Pvt. Ltd.",
     template: "%s | Adbhut Travel",
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Adbhut Travel | Unforgettable Journeys & Custom Itineraries",
     description: "Explore the world's most breathtaking destinations with Adbhut Travel.",
-    url: 'https://www.your-domain.com', // Replace with your actual domain
+    url: 'https://adbhuttravel.com',
     siteName: 'Adbhut Travel',
     images: [
       {
