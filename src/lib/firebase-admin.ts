@@ -8,8 +8,9 @@ import { getFirestore } from 'firebase-admin/firestore';
 if (admin.apps.length === 0) {
   try {
     // When deployed to a Google Cloud environment, initializeApp() with the project ID is best practice.
+    // Ensure you have NEXT_PUBLIC_FIREBASE_PROJECT_ID set in your environment variables.
     admin.initializeApp({
-      projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID || process.env.GCP_PROJECT,
+      projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
     });
   } catch (error: any) {
     console.error("Firebase Admin SDK initialization error:", error.message);
