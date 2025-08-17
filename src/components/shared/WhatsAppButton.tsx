@@ -10,11 +10,20 @@ import Image from "next/image";
 
 export function WhatsAppButton() {
   const [isMounted, setIsMounted] = useState(false);
-  const [showPrompt, setShowPrompt] = useState(true);
+  const [showPrompt, setShowPrompt] = useState(false);
 
   useEffect(() => {
     // This ensures all rendering logic only runs on the client after mounting.
     setIsMounted(true);
+    // Only show the prompt after the component has mounted on the client.
+    setShowPrompt(true);
+
+    // Optional: Hide prompt after a few seconds
+    const timer = setTimeout(() => {
+        setShowPrompt(false);
+    }, 8000); // Hide after 8 seconds
+
+    return () => clearTimeout(timer);
   }, []);
 
   if (!isMounted) {
