@@ -21,14 +21,17 @@ export const revalidate = 60;
 
 async function getUpdates(): Promise<UpdatePost[]> {
     try {
-        if (!db) {
-            throw new Error("Firestore is not initialized.");
-        }
         const updatesCollection = collection(db, 'updates');
         const q = query(updatesCollection, orderBy('createdAt', 'desc'));
         const updatesSnapshot = await getDocs(q);
+        
+        if (updatesSnapshot.empty) {
+            return [];
+        }
+
         const updatesList = updatesSnapshot.docs.map(doc => {
             const data = doc.data();
+            // Firestore timestamps need to be handled carefully when passing from server to client
             const createdAt = data.createdAt instanceof Timestamp ? data.createdAt : new Timestamp(data.createdAt.seconds, data.createdAt.nanoseconds);
             return {
                 id: doc.id,
@@ -40,6 +43,7 @@ async function getUpdates(): Promise<UpdatePost[]> {
         return updatesList;
     } catch (error) {
         console.error("Error fetching updates:", error);
+        // Return an empty array or handle the error as appropriate
         return [];
     }
 }

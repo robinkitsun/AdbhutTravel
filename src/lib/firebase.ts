@@ -2,10 +2,8 @@
 "use client";
 // src/lib/firebase.ts
 import { initializeApp, getApps, getApp, FirebaseApp } from "firebase/app";
-import { getFirestore } from "firebase/firestore";
+import { getFirestore, Firestore } from "firebase/firestore";
 
-// This is a public configuration and is safe to expose to the client.
-// Firebase security rules will protect your data.
 const firebaseConfig = {
   apiKey: "AIzaSyDP2v8fC5pT8SK8f-Z8qJ4J8y-4oXvYq7Y",
   authDomain: "adbhut-explorer-f8c27.firebaseapp.com",
@@ -17,12 +15,14 @@ const firebaseConfig = {
 
 // Initialize Firebase
 let app: FirebaseApp;
+let db: Firestore;
+
 if (!getApps().length) {
   app = initializeApp(firebaseConfig);
 } else {
   app = getApp();
 }
 
-const db = getFirestore(app);
+db = getFirestore(app);
 
 export { app, db };

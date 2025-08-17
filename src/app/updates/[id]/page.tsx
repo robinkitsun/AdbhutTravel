@@ -16,9 +16,6 @@ export const revalidate = 60;
 
 async function getUpdateData(id: string): Promise<UpdatePost | null> {
   try {
-    if (!db) {
-        throw new Error("Firestore is not initialized.");
-    }
     const docRef = doc(db, 'updates', id);
     const docSnap = await getDoc(docRef);
 
