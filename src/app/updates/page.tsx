@@ -19,7 +19,7 @@ interface UpdatePost {
 // Revalidate this page every 60 seconds
 export const revalidate = 60;
 
-async function getUpdates() {
+async function getUpdates(): Promise<UpdatePost[]> {
     try {
         const updatesCollection = collection(db, 'updates');
         const q = query(updatesCollection, orderBy('createdAt', 'desc'));
@@ -60,7 +60,7 @@ export default async function UpdatesPage() {
                                 </Link>
                             </h2>
                             <p className="text-sm text-muted-foreground mb-4">
-                                Published on {new Date(update.createdAt.seconds * 1000).toLocaleDateString()}
+                                {update.createdAt && new Date(update.createdAt.seconds * 1000).toLocaleDateString()}
                             </p>
                             <div 
                                 className="prose prose-sm max-w-none text-muted-foreground line-clamp-3"
