@@ -1,5 +1,4 @@
 // src/lib/firebase-admin.ts
-import "dotenv/config"; // Load environment variables
 import admin from 'firebase-admin';
 import { getFirestore } from 'firebase-admin/firestore';
 
