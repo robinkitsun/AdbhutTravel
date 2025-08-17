@@ -1,12 +1,12 @@
 
 'use client';
 
-import { useState, useEffect, useTransition } from 'react';
+import { useState, useEffect, useTransition, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
-import { Loader2, PlusCircle, Edit, Trash2 } from 'lucide-react';
+import { Loader2, PlusCircle, Edit, Trash2, Bold, Italic, List } from 'lucide-react';
 import { getUpdates, createUpdate, updateUpdate, deleteUpdate } from './actions';
 
 // Define the shape of a post, ensuring serializable types for the client
@@ -17,6 +17,50 @@ export interface UpdatePost {
   created_at: string; // Supabase returns ISO string
   updated_at?: string;
 }
+
+const EditorToolbar = ({ textareaRef, onContentChange }: { textareaRef: React.RefObject<HTMLTextAreaElement>, onContentChange: (newContent: string) => void }) => {
+    const applyTag = (tag: 'b' | 'i' | 'ul') => {
+        const textarea = textareaRef.current;
+        if (!textarea) return;
+
+        const start = textarea.selectionStart;
+        const end = textarea.selectionEnd;
+        const selectedText = textarea.value.substring(start, end);
+        let newText;
+
+        if (tag === 'ul') {
+            const listItems = selectedText.split('\n').map(item => `  <li>${item}</li>`).join('\n');
+            newText = `<ul>\n${listItems}\n</ul>`;
+        } else {
+            newText = `<${tag}>${selectedText}</${tag}>`;
+        }
+
+        const updatedContent = textarea.value.substring(0, start) + newText + textarea.value.substring(end);
+        onContentChange(updatedContent);
+
+        // Focus and set cursor after the inserted text
+        setTimeout(() => {
+            textarea.focus();
+            const newCursorPosition = start + newText.length;
+            textarea.setSelectionRange(newCursorPosition, newCursorPosition);
+        }, 0);
+    };
+
+    return (
+        <div className="flex items-center gap-2 rounded-t-md border border-b-0 border-input bg-muted p-1.5">
+            <Button type="button" variant="outline" size="icon" onClick={() => applyTag('b')} title="Bold">
+                <Bold className="h-4 w-4" />
+            </Button>
+            <Button type="button" variant="outline" size="icon" onClick={() => applyTag('i')} title="Italic">
+                <Italic className="h-4 w-4" />
+            </Button>
+            <Button type="button" variant="outline" size="icon" onClick={() => applyTag('ul')} title="Bulleted List">
+                <List className="h-4 w-4" />
+            </Button>
+        </div>
+    );
+};
+
 
 export default function AdminUpdatesPage() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -29,6 +73,8 @@ export default function AdminUpdatesPage() {
   const [editingId, setEditingId] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [isPending, startTransition] = useTransition();
+
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
 
   const ADMIN_PASSWORD = process.env.NEXT_PUBLIC_ADMIN_PASSWORD || "adbhutadmin";
 
@@ -172,15 +218,18 @@ export default function AdminUpdatesPage() {
             </div>
             <div>
               <label htmlFor="content" className="block text-sm font-medium mb-1">
-                Content (HTML is supported)
+                Content
               </label>
+              <EditorToolbar textareaRef={textareaRef} onContentChange={setContent} />
               <Textarea
+                ref={textareaRef}
                 id="content"
                 value={content}
                 onChange={(e) => setContent(e.target.value)}
-                placeholder="Update content here... You can use HTML tags like <b>, <i>, <ul>, <li>, etc."
+                placeholder="Update content here..."
                 rows={10}
                 required
+                className="rounded-t-none"
               />
             </div>
           </CardContent>
