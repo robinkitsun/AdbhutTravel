@@ -1,4 +1,4 @@
-// src/lib/firebase.ts
+// THIS FILE IS FOR CLIENT-SIDE FIREBASE. DO NOT USE ON THE SERVER.
 import { initializeApp, getApps, getApp, FirebaseApp } from "firebase/app";
 import { getFirestore, Firestore } from "firebase/firestore";
 
@@ -11,16 +11,13 @@ const firebaseConfig = {
   appId: "1:565868285374:web:f5c3a37398b672f7e72a44",
 };
 
-// This function ensures Firebase is initialized only once.
 let app: FirebaseApp;
-let db: Firestore;
-
 if (getApps().length === 0) {
   app = initializeApp(firebaseConfig);
 } else {
   app = getApp();
 }
 
-db = getFirestore(app);
+const db = getFirestore(app);
 
 export { app, db };

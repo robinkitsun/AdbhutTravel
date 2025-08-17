@@ -1,7 +1,7 @@
 
 import type { Metadata } from "next";
 import Link from 'next/link';
-import { db } from '@/lib/firebase';
+import { adminDb } from '@/lib/firebase-admin'; // Use the admin SDK for server-side fetches
 import { collection, getDocs, orderBy, query, Timestamp } from 'firebase/firestore';
 
 export const metadata: Metadata = {
@@ -21,7 +21,7 @@ export const revalidate = 60;
 
 async function getUpdates(): Promise<UpdatePost[]> {
     try {
-        const updatesCollection = collection(db, 'updates');
+        const updatesCollection = collection(adminDb, 'updates'); // Use adminDb
         const q = query(updatesCollection, orderBy('createdAt', 'desc'));
         const updatesSnapshot = await getDocs(q);
         

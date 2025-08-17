@@ -2,7 +2,7 @@
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
-import { db } from '@/lib/firebase';
+import { db } from '@/lib/firebase'; // The admin page uses the client-side SDK
 import {
   collection,
   addDoc,
@@ -106,14 +106,12 @@ export default function AdminUpdatesPage() {
           createdAt: serverTimestamp(),
         });
       }
-      // Only reset form and fetch updates on successful submission
       resetForm();
-      await fetchUpdates(); // This will now reflect the true state of the database
+      await fetchUpdates(); 
     } catch (err: any) {
       console.error("Error submitting update:", err);
       setError(`An error occurred while saving the data. Please check the console and ensure your Firestore security rules allow writes. Error: ${err.message}`);
     } finally {
-        // This ensures the submitting state is always reset, even on error
         setIsSubmitting(false);
     }
   };

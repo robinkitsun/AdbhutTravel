@@ -1,6 +1,6 @@
 
 import { notFound } from 'next/navigation';
-import { db } from '@/lib/firebase';
+import { adminDb } from '@/lib/firebase-admin'; // Use the admin SDK for server-side fetches
 import { doc, getDoc, Timestamp } from 'firebase/firestore';
 import type { Metadata } from 'next';
 
@@ -16,7 +16,7 @@ export const revalidate = 60;
 
 async function getUpdateData(id: string): Promise<UpdatePost | null> {
   try {
-    const docRef = doc(db, 'updates', id);
+    const docRef = doc(adminDb, 'updates', id); // Use adminDb
     const docSnap = await getDoc(docRef);
 
     if (docSnap.exists()) {
