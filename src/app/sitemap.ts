@@ -1,3 +1,4 @@
+
 import { MetadataRoute } from 'next'
  
 export const dynamic = 'force-static';
@@ -20,6 +21,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/legal',
     '/terms-of-service',
     '/cancellation-policy',
+    '/updates',
+    '/investment',
   ];
 
   const staticPageEntries = staticPages.map((path) => ({

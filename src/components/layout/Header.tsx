@@ -28,6 +28,8 @@ const navLinks = [
   { href: "/about", label: "About Us" },
   { href: "/services", label: "Services" },
   { href: "/mice", label: "MICE" },
+  { href: "/updates", label: "Updates" },
+  { href: "/investment", label: "Investment" },
   { href: "/career", label: "Career" },
   { href: "/contact", label: "Contact Us" },
 ];
@@ -72,7 +74,7 @@ export default function Header() {
 
         {/* Desktop Navigation */}
         <div className="hidden md:flex flex-grow items-center justify-center">
-            <nav className={cn("flex items-center transition-all duration-500", scrolled ? "gap-10" : "gap-6")}>
+            <nav className={cn("flex items-center transition-all duration-500", scrolled ? "gap-8" : "gap-5")}>
             {navLinks.map(({ href, label }) => (
                 <Link
                 key={href}
