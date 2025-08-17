@@ -103,12 +103,14 @@ export default function AdminUpdatesPage() {
           createdAt: serverTimestamp(),
         });
       }
+      // Only reset form and fetch updates on successful submission
       resetForm();
       await fetchUpdates();
     } catch (err: any) {
       console.error("Error submitting update:", err);
-      setError(`An error occurred while saving the data. Please check the console and ensure your Firestore security rules are correct. Error: ${err.message}`);
+      setError(`An error occurred while saving the data. Please check the console and ensure your Firestore security rules allow writes. Error: ${err.message}`);
     } finally {
+        // This ensures the submitting state is always reset, even on error
         setIsSubmitting(false);
     }
   };
@@ -264,5 +266,3 @@ export default function AdminUpdatesPage() {
     </div>
   );
 }
-
-    
