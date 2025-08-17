@@ -1,10 +1,11 @@
+
 import { MetadataRoute } from 'next'
  
 export const dynamic = 'force-static';
 
 export default function robots(): MetadataRoute.Robots {
   // In a real app, you would get this from an environment variable
-  const siteUrl = 'https://adbhuttravel.com'; 
+  const siteUrl = 'https://www.your-domain.com'; 
 
   return {
     rules: {
