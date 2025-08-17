@@ -100,7 +100,7 @@ export default function AdminUpdatesPage() {
         await addDoc(collection(db, 'updates'), {
           title,
           content,
-          createdAt: serverTimestamp(),
+          createdAt: Timestamp.now(),
         });
       }
       resetForm();
