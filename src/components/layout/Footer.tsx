@@ -6,7 +6,6 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { Twitter, Facebook, Instagram, Linkedin, MapPin, Phone, Mail, Youtube } from "lucide-react";
 import { Logo } from "@/components/shared/Logo";
-import { NewsletterForm } from "@/components/shared/NewsletterForm";
 
 export default function Footer() {
   const pathname = usePathname();
@@ -65,9 +64,7 @@ export default function Footer() {
             </ul>
           </div>
           <div className="space-y-4 md:col-span-2">
-            <h3 className="font-headline font-semibold mb-2 text-lg">Subscribe to Our Newsletter</h3>
-            <p className="text-sm text-muted-foreground">Stay updated with our latest travel deals, destinations, and stories. No spam, just travel inspiration.</p>
-            <NewsletterForm />
+            <h3 className="font-headline font-semibold mb-2 text-lg">Connect With Us</h3>
             <div className="flex space-x-4 mt-6">
               <Link href="https://x.com/AdbhutTravel" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-accent inline-block transition-transform duration-300 hover:-translate-y-1">
                 <Twitter className="h-5 w-5" />

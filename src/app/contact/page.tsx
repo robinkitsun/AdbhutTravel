@@ -3,6 +3,7 @@ import ContactForm from "@/components/contact/ContactForm";
 import { Mail, Phone, MapPin, Facebook, Instagram, Youtube, Linkedin, Twitter } from "lucide-react";
 import Link from "next/link";
 import type { Metadata } from "next";
+import { NewsletterForm } from "@/components/shared/NewsletterForm";
 
 export const metadata: Metadata = {
   title: "Contact Us",
@@ -105,6 +106,13 @@ export default function ContactPage() {
                 </Link>
             </div>
           </div>
+        </div>
+      </section>
+      <section className="py-12 md:py-16 bg-secondary/30">
+        <div className="container max-w-2xl mx-auto text-center">
+            <h3 className="font-headline font-semibold mb-2 text-2xl">Subscribe to Our Newsletter</h3>
+            <p className="text-sm text-muted-foreground mb-6">Stay updated with our latest travel deals, destinations, and stories. No spam, just travel inspiration.</p>
+            <NewsletterForm />
         </div>
       </section>
       <section className="pb-12 md:pb-16">
