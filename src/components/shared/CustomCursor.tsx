@@ -1,12 +1,21 @@
+
 "use client";
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 export function CustomCursor() {
   const followerRef = useRef<HTMLDivElement>(null);
   const rafId = useRef<number>();
+  const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
+    // Only run this logic on the client after the component has mounted
+    setIsMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (!isMounted) return;
+
     const follower = followerRef.current;
     if (!follower) return;
 
@@ -14,7 +23,7 @@ export function CustomCursor() {
     let mouseY = window.innerHeight / 2;
     let followerX = mouseX;
     let followerY = mouseY;
-    const momentumFactor = 0.8; // Higher value = faster, more direct following
+    const momentumFactor = 0.8; 
 
     const onMouseMove = (e: MouseEvent) => {
       mouseX = e.clientX;
@@ -22,7 +31,6 @@ export function CustomCursor() {
     };
 
     const animate = () => {
-      // Direct, fast momentum
       followerX += (mouseX - followerX) * momentumFactor;
       followerY += (mouseY - followerY) * momentumFactor;
 
@@ -55,7 +63,11 @@ export function CustomCursor() {
         cancelAnimationFrame(rafId.current);
       }
     };
-  }, []);
+  }, [isMounted]);
+
+  if (!isMounted) {
+    return null;
+  }
 
   return (
     <div className="hidden md:block">
