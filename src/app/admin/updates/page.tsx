@@ -1,7 +1,7 @@
 
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { db } from '@/lib/firebase';
 import {
   collection,
@@ -43,7 +43,7 @@ export default function AdminUpdatesPage() {
   const [isLoading, setIsLoading] = useState(true);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const fetchUpdates = async () => {
+  const fetchUpdates = useCallback(async () => {
     setIsLoading(true);
     setError('');
     try {
@@ -61,13 +61,13 @@ export default function AdminUpdatesPage() {
     } finally {
       setIsLoading(false);
     }
-  };
+  }, []);
   
   useEffect(() => {
     if(isAuthenticated) {
         fetchUpdates();
     }
-  }, [isAuthenticated]);
+  }, [isAuthenticated, fetchUpdates]);
 
   const handlePasswordSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -125,7 +125,7 @@ export default function AdminUpdatesPage() {
       setError('');
       try {
         await deleteDoc(doc(db, 'updates', id));
-        fetchUpdates();
+        await fetchUpdates();
       } catch (err: any) {
         console.error("Error deleting update:", err);
         setError(`Failed to delete the update. Error: ${err.message}`);
@@ -234,10 +234,10 @@ export default function AdminUpdatesPage() {
         {isLoading ? (
           <div className="flex items-center gap-2 text-muted-foreground">
              <Loader2 className="h-5 w-5 animate-spin" />
-             <span>Loading updates... If this continues, please check your Firestore security rules.</span>
+             <span>Loading updates...</span>
           </div>
         ) : updates.length === 0 ? (
-          <p>No updates found.</p>
+          <p>No updates found. Start by creating one above.</p>
         ) : (
           updates.map((post) => (
             <Card key={post.id} className="flex flex-col sm:flex-row justify-between items-start p-4">

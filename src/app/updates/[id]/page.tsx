@@ -21,11 +21,13 @@ async function getUpdateData(id: string): Promise<UpdatePost | null> {
 
     if (docSnap.exists()) {
       const data = docSnap.data();
+       // Convert plain object timestamp to Firestore Timestamp if necessary
+      const createdAt = data.createdAt instanceof Timestamp ? data.createdAt : new Timestamp(data.createdAt.seconds, data.createdAt.nanoseconds);
       return { 
         id: docSnap.id,
         title: data.title,
         content: data.content,
-        createdAt: data.createdAt
+        createdAt: createdAt
       } as UpdatePost;
     } else {
       return null;

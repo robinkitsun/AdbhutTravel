@@ -26,13 +26,15 @@ async function getUpdates(): Promise<UpdatePost[]> {
         const updatesSnapshot = await getDocs(q);
         const updatesList = updatesSnapshot.docs.map(doc => {
             const data = doc.data();
+            // Convert plain object timestamp to Firestore Timestamp if necessary
+            const createdAt = data.createdAt instanceof Timestamp ? data.createdAt : new Timestamp(data.createdAt.seconds, data.createdAt.nanoseconds);
             return {
                 id: doc.id,
                 title: data.title,
                 content: data.content,
-                createdAt: data.createdAt
-            };
-        }) as UpdatePost[];
+                createdAt: createdAt
+            } as UpdatePost;
+        });
         return updatesList;
     } catch (error) {
         console.error("Error fetching updates:", error);
@@ -80,7 +82,7 @@ export default async function UpdatesPage() {
                  </div>
             ) : (
                 <div className="text-center">
-                     <p className="text-muted-foreground">No updates have been posted yet. Please check back later!</p>
+                     <p className="text-muted-foreground">Could not load updates. Please ensure your Firestore security rules are configured correctly.</p>
                 </div>
             )}
          </div>
