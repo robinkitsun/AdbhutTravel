@@ -10,6 +10,21 @@ interface UpdatePost {
     created_at: string;
 }
 
+// This tells Next.js to pre-render all update pages at build time
+export async function generateStaticParams() {
+  const { data: updates, error } = await supabase
+    .from('updates')
+    .select('id');
+
+  if (error || !updates) {
+    return [];
+  }
+
+  return updates.map((update) => ({
+    id: update.id.toString(),
+  }));
+}
+
 // Revalidate this page every 60 seconds
 export const revalidate = 60;
 
