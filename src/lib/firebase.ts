@@ -1,5 +1,3 @@
-
-"use client";
 // src/lib/firebase.ts
 import { initializeApp, getApps, getApp, FirebaseApp } from "firebase/app";
 import { getFirestore, Firestore } from "firebase/firestore";
@@ -13,16 +11,15 @@ const firebaseConfig = {
   appId: "1:565868285374:web:f5c3a37398b672f7e72a44",
 };
 
-// Initialize Firebase
-let app: FirebaseApp;
-let db: Firestore;
+// This function ensures Firebase is initialized only once.
+const getFirebaseApp = (): FirebaseApp => {
+  if (!getApps().length) {
+    return initializeApp(firebaseConfig);
+  }
+  return getApp();
+};
 
-if (!getApps().length) {
-  app = initializeApp(firebaseConfig);
-} else {
-  app = getApp();
-}
-
-db = getFirestore(app);
+const app = getFirebaseApp();
+const db = getFirestore(app);
 
 export { app, db };
