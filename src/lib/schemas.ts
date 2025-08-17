@@ -8,6 +8,10 @@ export const contactFormSchema = z.object({
   message: z.string().min(10, { message: "Message must be at least 10 characters." }),
 });
 
+export const newsletterFormSchema = z.object({
+  email: z.string().email({ message: "Please enter a valid email address." }),
+});
+
 export const miceFormSchema = z.object({
   firstName: z.string().min(1, { message: "First name is required." }),
   lastName: z.string().min(1, { message: "Last name is required." }),
@@ -72,5 +76,3 @@ export const termsOfServiceSchema = z.object({
         });
     }
 });
-
-    

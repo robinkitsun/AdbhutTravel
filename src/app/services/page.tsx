@@ -82,7 +82,7 @@ const services = [
     images: [
         "/images/services/Services/Airport Cab.png",
         "/images/services/Services/Airport cab 2.png",
-        "/images/services/Services/Airport cab 3.png"
+        "/images/services/Services/Airport Cab 3.png"
     ],
     dataAiHints: ["taxi car city", "person entering cab", "cab interior"],
     },

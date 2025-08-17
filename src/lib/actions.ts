@@ -3,15 +3,59 @@
 
 import { z } from 'zod';
 import { Resend } from 'resend';
-import { contactFormSchema, miceFormSchema, tailoredTripFormSchema, termsOfServiceSchema } from "./schemas";
+import { contactFormSchema, miceFormSchema, tailoredTripFormSchema, termsOfServiceSchema, newsletterFormSchema } from "./schemas";
 
 const RESEND_FROM_EMAIL = 'noreply@adbhuttravel.com';
 const ADMIN_EMAIL = 'ankitsundriyal0@gmail.com';
+const RESEND_AUDIENCE_ID = 'd8a19341-0c10-4079-a611-823eb5d289d0';
 
 type ContactFormState = {
   message: string;
   success: boolean;
 };
+
+export async function subscribeToNewsletter(
+  data: z.infer<typeof newsletterFormSchema>
+): Promise<ContactFormState> {
+
+  if (!process.env.RESEND_API_KEY) {
+      console.error("Resend API key is not configured.");
+      return {
+          message: "The form is not configured. Please contact support.",
+          success: false,
+      }
+  }
+
+  const { email } = data;
+
+  try {
+    const resend = new Resend(process.env.RESEND_API_KEY);
+    await resend.contacts.create({
+      email: email,
+      audienceId: RESEND_AUDIENCE_ID,
+      unsubscribed: false,
+    });
+
+    return {
+      message: "Thank you for subscribing!",
+      success: true,
+    };
+
+  } catch (error: any) {
+    console.error("Failed to subscribe email:", error);
+    // Handle cases where the email already exists
+    if (error.name === 'validation_error' && error.message.includes('already exists')) {
+       return {
+            message: "This email is already subscribed.",
+            success: false,
+       };
+    }
+    return {
+      message: "Something went wrong. Please try again later.",
+      success: false,
+    };
+  }
+}
 
 export async function submitContactForm(
   data: z.infer<typeof contactFormSchema>
@@ -409,4 +453,3 @@ export async function submitTermsOfServiceForm(
     };
   }
 }
-
