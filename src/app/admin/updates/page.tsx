@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
-import { Loader2, PlusCircle, Edit, Trash2, Bold, Italic, List, Heading1, Heading2, Heading3, Pilcrow, Quote, Link2, Underline, Strikethrough, Undo2, Redo2 } from 'lucide-react';
+import { Loader2, PlusCircle, Edit, Trash2, Bold, Italic, List, ListOrdered, Heading1, Heading2, Heading3, Pilcrow, Quote, Link2, Underline, Strikethrough, Undo2, Redo2, AlignLeft, AlignCenter, AlignRight, Palette } from 'lucide-react';
 import { getUpdates, createUpdate, updateUpdate, deleteUpdate } from './actions';
 
 // Define the shape of a post, ensuring serializable types for the client
@@ -36,7 +36,7 @@ const useHistory = (initialState: string) => {
     };
     
     const undo = () => index > 0 && setIndex(prev => prev - 1);
-    const redo = () => index < history.length - 1 && setIndex(prev => prev + 1);
+    const redo = () => index < history.length - 1 && setIndex(prev => prev - 1);
 
     return [history[index], setState, undo, redo, history.length, index] as const;
 };
@@ -51,11 +51,16 @@ const EditorToolbar = ({ onCommand }: { onCommand: (command: string, value?: str
         { cmd: 'strikeThrough', icon: Strikethrough, title: 'Strikethrough' },
         { cmd: 'createLink', icon: Link2, title: 'Link' },
         { cmd: 'insertUnorderedList', icon: List, title: 'Bulleted List' },
+        { cmd: 'insertOrderedList', icon: ListOrdered, title: 'Numbered List' },
         { cmd: 'formatBlock', value:'h1', icon: Heading1, title: 'Heading 1' },
         { cmd: 'formatBlock', value:'h2', icon: Heading2, title: 'Heading 2' },
         { cmd: 'formatBlock', value:'h3', icon: Heading3, title: 'Heading 3' },
         { cmd: 'formatBlock', value:'p', icon: Pilcrow, title: 'Paragraph' },
         { cmd: 'formatBlock', value:'blockquote', icon: Quote, title: 'Blockquote' },
+        { cmd: 'align', value: 'left', icon: AlignLeft, title: 'Align Left' },
+        { cmd: 'align', value: 'center', icon: AlignCenter, title: 'Align Center' },
+        { cmd: 'align', value: 'right', icon: AlignRight, title: 'Align Right' },
+        { cmd: 'foreColor', icon: Palette, title: 'Text Color' },
     ];
 
     return (
@@ -129,27 +134,43 @@ export default function AdminUpdatesPage() {
     setError('');
   };
 
-  const applyTag = (tag: 'b' | 'i' | 'u' | 's' | 'p' | 'h1' | 'h2' | 'h3' | 'blockquote' | 'ul' | 'a') => {
+  const applyTag = (tag: string, value?: string) => {
         const textarea = textareaRef.current;
         if (!textarea) return;
 
         const start = textarea.selectionStart;
         const end = textarea.selectionEnd;
         const selectedText = textarea.value.substring(start, end);
-        let newText;
+        let newText = "";
 
-        if (tag === 'ul') {
-            const listItems = selectedText.split('\n').map(item => `  <li>${item}</li>`).join('\n');
-            newText = `<ul>\n${listItems}\n</ul>`;
-        } else if (tag === 'a') {
-            const url = prompt("Enter the URL for the link:");
-            if (url) {
-                newText = `<a href="${url}" target="_blank" rel="noopener noreferrer">${selectedText || 'Link Text'}</a>`;
-            } else {
-                return; // User cancelled prompt
-            }
-        } else {
-            newText = `<${tag}>${selectedText}</${tag}>`;
+        switch(tag) {
+            case 'ul':
+            case 'ol':
+                const listTag = tag === 'ul' ? 'ul' : 'ol';
+                const listItems = selectedText.split('\n').map(item => `  <li>${item}</li>`).join('\n');
+                newText = `<${listTag}>\n${listItems}\n</${listTag}>`;
+                break;
+            case 'a':
+                const url = prompt("Enter the URL for the link:");
+                if (url) {
+                    newText = `<a href="${url}" target="_blank" rel="noopener noreferrer">${selectedText || 'Link Text'}</a>`;
+                } else {
+                    return; // User cancelled prompt
+                }
+                break;
+            case 'align':
+                newText = `<p style="text-align: ${value};">${selectedText}</p>`;
+                break;
+            case 'foreColor':
+                const color = prompt("Enter a color name or hex code (e.g., red, #FF0000):");
+                if(color) {
+                    newText = `<span style="color: ${color};">${selectedText}</span>`;
+                } else {
+                    return;
+                }
+                break;
+            default:
+                newText = `<${tag}>${selectedText}</${tag}>`;
         }
 
         const updatedContent = textarea.value.substring(0, start) + newText + textarea.value.substring(end);
@@ -168,12 +189,18 @@ export default function AdminUpdatesPage() {
 
       const tagMap: { [key: string]: any } = {
           'bold': 'b', 'italic': 'i', 'underline': 'u', 'strikeThrough': 's',
-          'createLink': 'a', 'insertUnorderedList': 'ul',
-          'formatBlock': value
+          'createLink': 'a', 'insertUnorderedList': 'ul', 'insertOrderedList': 'ol',
+          'formatBlock': value, 'align': 'align', 'foreColor': 'foreColor',
       };
 
       const tag = tagMap[command];
-      if (tag) applyTag(tag);
+      if (tag) {
+          if(command === 'align' || command === 'foreColor') {
+              applyTag(tag, value);
+          } else {
+              applyTag(tag);
+          }
+      }
   };
   
   const handleKeyDown = useCallback((e: React.KeyboardEvent<HTMLTextAreaElement>) => {
