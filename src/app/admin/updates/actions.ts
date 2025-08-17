@@ -24,17 +24,22 @@ const formSchema = z.object({
 
 // This function now runs on the server and uses the Supabase client
 export async function getUpdates(): Promise<ActionResult<UpdatePost[]>> {
-  const { data, error } = await supabase
-    .from('updates')
-    .select('*')
-    .order('created_at', { ascending: false });
+  try {
+    const { data, error } = await supabase
+      .from('updates')
+      .select('*')
+      .order('created_at', { ascending: false });
 
-  if (error) {
-    console.error("Supabase - Error fetching updates:", error);
-    return { success: false, error: "Could not fetch updates from Supabase." };
+    if (error) {
+      console.error("Supabase - Error fetching updates:", error);
+      return { success: false, error: "Could not fetch updates from Supabase." };
+    }
+
+    return { success: true, data: data as UpdatePost[] };
+  } catch (e: any) {
+    console.error("Supabase - Unexpected error fetching updates:", e);
+    return { success: false, error: `An unexpected error occurred: ${e.message}` };
   }
-
-  return { success: true, data: data as UpdatePost[] };
 }
 
 export async function createUpdate(formData: FormData): Promise<ActionResult<{ id: string }>> {
@@ -49,20 +54,25 @@ export async function createUpdate(formData: FormData): Promise<ActionResult<{ i
     
     const { title, content } = validatedFields.data;
 
-    const { data, error } = await supabase
-        .from('updates')
-        .insert([{ title, content }])
-        .select('id')
-        .single();
+    try {
+        const { data, error } = await supabase
+            .from('updates')
+            .insert([{ title, content }])
+            .select('id')
+            .single();
 
-    if (error) {
-        console.error("Supabase - Error creating update:", error);
-        return { success: false, error: `Failed to create update: ${error.message}` };
+        if (error) {
+            console.error("Supabase - Error creating update:", error);
+            return { success: false, error: `Failed to create update: ${error.message}` };
+        }
+        
+        revalidatePath('/updates'); // Revalidate public page
+        revalidatePath('/admin/updates'); // Revalidate admin page
+        return { success: true, data: { id: data.id } };
+    } catch (e: any) {
+        console.error("Supabase - Unexpected error creating update:", e);
+        return { success: false, error: `An unexpected error occurred: ${e.message}` };
     }
-    
-    revalidatePath('/updates'); // Revalidate public page
-    revalidatePath('/admin/updates'); // Revalidate admin page
-    return { success: true, data: { id: data.id } };
 }
 
 export async function updateUpdate(formData: FormData): Promise<ActionResult<null>> {
@@ -82,20 +92,25 @@ export async function updateUpdate(formData: FormData): Promise<ActionResult<nul
         return { success: false, error: 'ID is required for update.' };
     }
 
-    const { error } = await supabase
-        .from('updates')
-        .update({ title, content, updated_at: new Date().toISOString() })
-        .eq('id', id);
+    try {
+        const { error } = await supabase
+            .from('updates')
+            .update({ title, content, updated_at: new Date().toISOString() })
+            .eq('id', id);
 
-    if (error) {
-        console.error("Supabase - Error updating update:", error);
-        return { success: false, error: `Failed to update post: ${error.message}` };
+        if (error) {
+            console.error("Supabase - Error updating update:", error);
+            return { success: false, error: `Failed to update post: ${error.message}` };
+        }
+
+        revalidatePath('/updates');
+        revalidatePath(`/updates/${id}`);
+        revalidatePath('/admin/updates');
+        return { success: true, data: null };
+    } catch (e: any) {
+        console.error("Supabase - Unexpected error updating update:", e);
+        return { success: false, error: `An unexpected error occurred: ${e.message}` };
     }
-
-    revalidatePath('/updates');
-    revalidatePath(`/updates/${id}`);
-    revalidatePath('/admin/updates');
-    return { success: true, data: null };
 }
 
 export async function deleteUpdate(id: string): Promise<ActionResult<null>> {
@@ -103,17 +118,22 @@ export async function deleteUpdate(id: string): Promise<ActionResult<null>> {
         return { success: false, error: 'Document ID is required for deletion.' };
     }
     
-    const { error } = await supabase
-        .from('updates')
-        .delete()
-        .eq('id', id);
+    try {
+        const { error } = await supabase
+            .from('updates')
+            .delete()
+            .eq('id', id);
 
-    if (error) {
-        console.error("Supabase - Error deleting update:", error);
-        return { success: false, error: `Failed to delete update: ${error.message}` };
+        if (error) {
+            console.error("Supabase - Error deleting update:", error);
+            return { success: false, error: `Failed to delete update: ${error.message}` };
+        }
+
+        revalidatePath('/updates');
+        revalidatePath('/admin/updates');
+        return { success: true, data: null };
+    } catch (e: any) {
+        console.error("Supabase - Unexpected error deleting update:", e);
+        return { success: false, error: `An unexpected error occurred: ${e.message}` };
     }
-
-    revalidatePath('/updates');
-    revalidatePath('/admin/updates');
-    return { success: true, data: null };
 }
