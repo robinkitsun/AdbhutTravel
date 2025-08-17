@@ -253,16 +253,26 @@ export default function AdminUpdatesPage() {
                 Content
               </label>
               <EditorToolbar textareaRef={textareaRef} onContentChange={setContent} />
-              <Textarea
-                ref={textareaRef}
-                id="content"
-                value={content}
-                onChange={(e) => setContent(e.target.value)}
-                placeholder="Update content here..."
-                rows={10}
-                required
-                className="rounded-t-none"
-              />
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-0 border border-input rounded-b-md overflow-hidden">
+                <Textarea
+                    ref={textareaRef}
+                    id="content"
+                    value={content}
+                    onChange={(e) => setContent(e.target.value)}
+                    placeholder="Start writing here..."
+                    rows={15}
+                    required
+                    className="rounded-none border-0 border-r focus-visible:ring-0"
+                />
+                 <div className="bg-background p-4 prose lg:prose-lg max-w-none w-full h-full overflow-y-auto">
+                    <h3 className="text-xs uppercase text-muted-foreground font-semibold tracking-wider border-b pb-2 mb-4">Live Preview</h3>
+                     {content ? (
+                        <div dangerouslySetInnerHTML={{ __html: content }} />
+                    ) : (
+                        <p className="text-muted-foreground italic">Your content will appear here...</p>
+                    )}
+                </div>
+              </div>
             </div>
           </CardContent>
           <CardFooter className="flex justify-end gap-2">
