@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useEffect, useState } from 'react';
@@ -8,13 +9,21 @@ import { cn } from '@/lib/utils';
 export function ScrollToTopButton() {
   const [isVisible, setIsVisible] = useState(false);
 
-  const toggleVisibility = () => {
-    if (window.scrollY > 300) {
-      setIsVisible(true);
-    } else {
-      setIsVisible(false);
-    }
-  };
+  useEffect(() => {
+    const toggleVisibility = () => {
+      if (window.scrollY > 300) {
+        setIsVisible(true);
+      } else {
+        setIsVisible(false);
+      }
+    };
+
+    window.addEventListener('scroll', toggleVisibility);
+
+    return () => {
+      window.removeEventListener('scroll', toggleVisibility);
+    };
+  }, []);
 
   const scrollToTop = () => {
     window.scrollTo({
@@ -23,14 +32,6 @@ export function ScrollToTopButton() {
     });
   };
 
-  useEffect(() => {
-    window.addEventListener('scroll', toggleVisibility);
-
-    return () => {
-      window.removeEventListener('scroll', toggleVisibility);
-    };
-  }, []);
-
   return (
     <Button
       variant="outline"
@@ -38,9 +39,10 @@ export function ScrollToTopButton() {
       onClick={scrollToTop}
       className={cn(
         'fixed bottom-4 left-4 z-50 rounded-full shadow-lg transition-opacity duration-300',
-        isVisible ? 'opacity-100' : 'opacity-0'
+        isVisible ? 'opacity-100' : 'opacity-0 pointer-events-none'
       )}
       aria-label="Scroll to top"
+      tabIndex={isVisible ? 0 : -1}
     >
       <ArrowUp className="h-6 w-6" />
     </Button>

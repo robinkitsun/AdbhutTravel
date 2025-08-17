@@ -3,13 +3,23 @@
 
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 
 export function WhatsAppButton() {
+  const [isVisible, setIsVisible] = useState(false);
   const [showPrompt, setShowPrompt] = useState(true);
+
+  useEffect(() => {
+    // This component will only be rendered on the client, avoiding hydration errors.
+    setIsVisible(true);
+  }, []);
+
+  if (!isVisible) {
+    return null;
+  }
 
   return (
     <div className="fixed bottom-4 right-4 z-50 flex flex-col items-end gap-2">
