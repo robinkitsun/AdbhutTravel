@@ -2,24 +2,39 @@
 import admin from 'firebase-admin';
 import { getFirestore } from 'firebase-admin/firestore';
 
-// This is the correct way to initialize the Admin SDK.
-// It automatically uses the service account credentials provided by the
-// Google Cloud environment (like Firebase App Hosting) or from the .env.local file.
+// Check if the service account JSON is available in the environment variables
+const serviceAccount = process.env.GOOGLE_APPLICATION_CREDENTIALS;
+
+// Initialize the Firebase Admin SDK only if it hasn't been already.
 if (admin.apps.length === 0) {
   try {
-    // When deployed to a Google Cloud environment, initializeApp() without arguments is best practice.
-    // Locally, it will use the GOOGLE_APPLICATION_CREDENTIALS from your .env.local file.
-    // If you have FIREBASE_CONFIG, it might use that. Let's simplify and rely on the standard env vars.
-    admin.initializeApp({
-       credential: admin.credential.applicationDefault(),
-       projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
-    });
-    console.log("Firebase Admin SDK initialized successfully.");
+    // When running in a Google Cloud environment, the SDK can often find credentials automatically.
+    // However, explicitly passing them is more robust, especially for local development.
+    if (serviceAccount) {
+        admin.initializeApp({
+            credential: admin.credential.cert(JSON.parse(serviceAccount)),
+        });
+        console.log("Firebase Admin SDK initialized successfully using service account from environment variable.");
+    } else {
+        // Fallback for environments where GOOGLE_APPLICATION_CREDENTIALS is not a JSON string
+        // or for Vercel/other platforms that prefer individual env vars.
+        admin.initializeApp({
+            credential: admin.credential.cert({
+                projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
+                clientEmail: process.env.FIREBASE_CLIENT_EMAIL,
+                privateKey: process.env.FIREBASE_PRIVATE_KEY?.replace(/\\n/g, '\n'),
+            }),
+        });
+        console.log("Firebase Admin SDK initialized successfully using individual environment variables.");
+    }
   } catch (error: any) {
     console.error("Firebase Admin SDK initialization error:", error.message);
     if (error.code === 'app/duplicate-app') {
-       // This can happen with hot-reloading in dev. It's not a fatal error.
        console.log("Admin app already initialized.");
+    } else {
+      // If there's a different error, we should log it.
+      // This helps diagnose if the env vars are missing or malformed.
+      console.error("A non-duplicate-app error occurred during Firebase Admin initialization. Please check your environment variables.", error);
     }
   }
 }
