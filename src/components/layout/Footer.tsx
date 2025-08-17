@@ -6,7 +6,6 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { Twitter, Facebook, Instagram, Linkedin, MapPin, Phone, Mail, Youtube } from "lucide-react";
 import { Logo } from "@/components/shared/Logo";
-import { NewsletterForm } from "../shared/NewsletterForm";
 
 export default function Footer() {
   const pathname = usePathname();
@@ -77,7 +76,9 @@ export default function Footer() {
                     <ul className="space-y-3 text-muted-foreground">
                         <li className="flex items-start gap-3">
                             <MapPin className="w-5 h-5 mt-1 text-accent flex-shrink-0"/>
-                            <span>SCF 61, 1st Floor, Near Anaj Mandi Gate, Pehowa, Kurukshetra, Haryana-136128</span>
+                            <Link href="https://maps.app.goo.gl/PQE2gRmZKpLUZY7U9" target="_blank" rel="noopener noreferrer" className="hover:text-accent">
+                                SCF 61, 1st Floor, Near Anaj Mandi Gate, Pehowa, Kurukshetra, Haryana-136128
+                            </Link>
                         </li>
                         <li className="flex items-start gap-3">
                             <Phone className="w-5 h-5 mt-1 text-accent flex-shrink-0"/>
