@@ -45,6 +45,7 @@ export default function AdminUpdatesPage() {
 
   const fetchUpdates = async () => {
     setIsLoading(true);
+    setError('');
     try {
       const updatesCollection = collection(db, 'updates');
       const q = query(updatesCollection, orderBy('createdAt', 'desc'));
@@ -54,9 +55,9 @@ export default function AdminUpdatesPage() {
         ...doc.data(),
       })) as UpdatePost[];
       setUpdates(updatesList);
-    } catch (err) {
+    } catch (err: any) {
       console.error("Error fetching updates:", err);
-      setError("Could not fetch updates. Ensure Firestore is set up correctly and security rules are published.");
+      setError(`Could not fetch updates. Please ensure Firestore is set up correctly and security rules are published. Error: ${err.message}`);
     } finally {
       setIsLoading(false);
     }
@@ -85,6 +86,7 @@ export default function AdminUpdatesPage() {
       return;
     }
     setIsSubmitting(true);
+    setError('');
 
     try {
       if (editingId) {
@@ -103,9 +105,9 @@ export default function AdminUpdatesPage() {
       }
       resetForm();
       await fetchUpdates();
-    } catch (err) {
+    } catch (err: any) {
       console.error("Error submitting update:", err);
-      alert('An error occurred. Please check the console and ensure your Firestore security rules are correct.');
+      setError(`An error occurred. Please check the console and ensure your Firestore security rules are correct. Error: ${err.message}`);
     } finally {
         setIsSubmitting(false);
     }
@@ -123,9 +125,9 @@ export default function AdminUpdatesPage() {
       try {
         await deleteDoc(doc(db, 'updates', id));
         fetchUpdates();
-      } catch (err) {
+      } catch (err: any) {
         console.error("Error deleting update:", err);
-        alert('Failed to delete the update.');
+        setError(`Failed to delete the update. Error: ${err.message}`);
       }
     }
   };
@@ -227,11 +229,11 @@ export default function AdminUpdatesPage() {
 
       <div className="space-y-4">
         <h2 className="text-2xl font-bold">Existing Updates</h2>
-        {error && <p className="text-destructive">{error}</p>}
+        {error && <p className="text-destructive p-4 bg-destructive/10 rounded-md">{error}</p>}
         {isLoading ? (
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 text-muted-foreground">
              <Loader2 className="h-5 w-5 animate-spin" />
-             <span>Loading updates...</span>
+             <span>Loading updates... If this continues, please check your Firestore security rules.</span>
           </div>
         ) : updates.length === 0 ? (
           <p>No updates found.</p>
