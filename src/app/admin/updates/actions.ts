@@ -2,102 +2,100 @@
 'use server';
 
 import { revalidatePath } from 'next/cache';
-import { adminDb } from '@/lib/firebase-admin';
-import {
-  collection,
-  addDoc,
-  getDocs,
-  doc,
-  updateDoc,
-  deleteDoc,
-  serverTimestamp,
-  orderBy,
-  query,
-  Timestamp,
-} from 'firebase/firestore';
+import { supabase } from '@/lib/supabase';
+import { z } from 'zod';
 
 // Define the shape of a post, ensuring serializable types for the client
 export interface UpdatePost {
   id: string;
   title: string;
   content: string;
-  createdAt: Timestamp;
-  updatedAt?: Timestamp;
+  created_at: string; // Supabase returns ISO string
+  updated_at?: string;
 }
 
 type ActionResult<T> = { success: true; data: T } | { success: false; error: string };
 
-// This function now runs on the server and uses the admin SDK
+const formSchema = z.object({
+  id: z.string().optional(),
+  title: z.string().min(1, 'Title is required.'),
+  content: z.string().min(1, 'Content is required.'),
+});
+
+// This function now runs on the server and uses the Supabase client
 export async function getUpdates(): Promise<ActionResult<UpdatePost[]>> {
-  try {
-    const updatesCollection = collection(adminDb, 'updates');
-    const q = query(updatesCollection, orderBy('createdAt', 'desc'));
-    const updatesSnapshot = await getDocs(q);
-    const updatesList = updatesSnapshot.docs.map((doc) => {
-        const data = doc.data();
-        return {
-            id: doc.id,
-            title: data.title,
-            content: data.content,
-            // Timestamps are fine to pass to the client if they are not rendered directly
-            createdAt: data.createdAt, 
-            updatedAt: data.updatedAt,
-        } as UpdatePost
-    });
-    return { success: true, data: updatesList };
-  } catch (err: any) {
-    console.error("Server Action - Error fetching updates:", err);
-    return { success: false, error: "Could not fetch updates from the server." };
+  const { data, error } = await supabase
+    .from('updates')
+    .select('*')
+    .order('created_at', { ascending: false });
+
+  if (error) {
+    console.error("Supabase - Error fetching updates:", error);
+    return { success: false, error: "Could not fetch updates from Supabase." };
   }
+
+  return { success: true, data: data as UpdatePost[] };
 }
 
 export async function createUpdate(formData: FormData): Promise<ActionResult<{ id: string }>> {
-    const title = formData.get('title') as string;
-    const content = formData.get('content') as string;
+    const validatedFields = formSchema.safeParse({
+        title: formData.get('title'),
+        content: formData.get('content'),
+    });
 
-    if (!title || !content) {
-        return { success: false, error: 'Title and content are required.' };
+    if (!validatedFields.success) {
+        return { success: false, error: validatedFields.error.flatten().fieldErrors.toString() };
     }
+    
+    const { title, content } = validatedFields.data;
 
-    try {
-        const docRef = await addDoc(collection(adminDb, 'updates'), {
-            title,
-            content,
-            createdAt: serverTimestamp(),
-        });
-        revalidatePath('/updates'); // Revalidate public page
-        revalidatePath('/admin/updates'); // Revalidate admin page
-        return { success: true, data: { id: docRef.id } };
-    } catch (err: any) {
-        console.error("Server Action - Error creating update:", err);
-        return { success: false, error: `Failed to create update: ${err.message}` };
+    const { data, error } = await supabase
+        .from('updates')
+        .insert([{ title, content }])
+        .select('id')
+        .single();
+
+    if (error) {
+        console.error("Supabase - Error creating update:", error);
+        return { success: false, error: `Failed to create update: ${error.message}` };
     }
+    
+    revalidatePath('/updates'); // Revalidate public page
+    revalidatePath('/admin/updates'); // Revalidate admin page
+    return { success: true, data: { id: data.id } };
 }
 
 export async function updateUpdate(formData: FormData): Promise<ActionResult<null>> {
-    const id = formData.get('id') as string;
-    const title = formData.get('title') as string;
-    const content = formData.get('content') as string;
+    const validatedFields = formSchema.safeParse({
+        id: formData.get('id'),
+        title: formData.get('title'),
+        content: formData.get('content'),
+    });
 
-    if (!id || !title || !content) {
-        return { success: false, error: 'ID, title, and content are required.' };
+    if (!validatedFields.success) {
+        return { success: false, error: validatedFields.error.flatten().fieldErrors.toString() };
     }
 
-    try {
-        const postDoc = doc(adminDb, 'updates', id);
-        await updateDoc(postDoc, { 
-            title, 
-            content,
-            updatedAt: serverTimestamp(),
-        });
-        revalidatePath('/updates');
-        revalidatePath(`/updates/${id}`);
-        revalidatePath('/admin/updates');
-        return { success: true, data: null };
-    } catch (err: any) {
-        console.error("Server Action - Error updating update:", err);
-        return { success: false, error: `Failed to update post: ${err.message}` };
+    const { id, title, content } = validatedFields.data;
+    
+    if (!id) {
+        return { success: false, error: 'ID is required for update.' };
     }
+
+    const { error } = await supabase
+        .from('updates')
+        .update({ title, content, updated_at: new Date().toISOString() })
+        .eq('id', id);
+
+    if (error) {
+        console.error("Supabase - Error updating update:", error);
+        return { success: false, error: `Failed to update post: ${error.message}` };
+    }
+
+    revalidatePath('/updates');
+    revalidatePath(`/updates/${id}`);
+    revalidatePath('/admin/updates');
+    return { success: true, data: null };
 }
 
 export async function deleteUpdate(id: string): Promise<ActionResult<null>> {
@@ -105,13 +103,17 @@ export async function deleteUpdate(id: string): Promise<ActionResult<null>> {
         return { success: false, error: 'Document ID is required for deletion.' };
     }
     
-    try {
-        await deleteDoc(doc(adminDb, 'updates', id));
-        revalidatePath('/updates');
-        revalidatePath('/admin/updates');
-        return { success: true, data: null };
-    } catch (err: any) {
-        console.error("Server Action - Error deleting update:", err);
-        return { success: false, error: `Failed to delete update: ${err.message}` };
+    const { error } = await supabase
+        .from('updates')
+        .delete()
+        .eq('id', id);
+
+    if (error) {
+        console.error("Supabase - Error deleting update:", error);
+        return { success: false, error: `Failed to delete update: ${error.message}` };
     }
+
+    revalidatePath('/updates');
+    revalidatePath('/admin/updates');
+    return { success: true, data: null };
 }

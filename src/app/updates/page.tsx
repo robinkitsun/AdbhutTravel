@@ -1,8 +1,7 @@
 
 import type { Metadata } from "next";
 import Link from 'next/link';
-import { adminDb } from '@/lib/firebase-admin'; // Use the admin SDK for server-side fetches
-import { collection, getDocs, orderBy, query, Timestamp } from 'firebase/firestore';
+import { supabase } from '@/lib/supabase';
 
 export const metadata: Metadata = {
   title: "Latest Updates",
@@ -13,39 +12,24 @@ interface UpdatePost {
     id: string;
     title: string;
     content: string;
-    createdAt: Timestamp;
+    created_at: string;
 }
 
 // Revalidate this page every 60 seconds
 export const revalidate = 60;
 
 async function getUpdates(): Promise<UpdatePost[]> {
-    try {
-        const updatesCollection = collection(adminDb, 'updates'); // Use adminDb
-        const q = query(updatesCollection, orderBy('createdAt', 'desc'));
-        const updatesSnapshot = await getDocs(q);
-        
-        if (updatesSnapshot.empty) {
-            return [];
-        }
+    const { data, error } = await supabase
+      .from('updates')
+      .select('*')
+      .order('created_at', { ascending: false });
 
-        const updatesList = updatesSnapshot.docs.map(doc => {
-            const data = doc.data();
-            // Firestore timestamps need to be handled carefully when passing from server to client
-            const createdAt = data.createdAt instanceof Timestamp ? data.createdAt : new Timestamp(data.createdAt.seconds, data.createdAt.nanoseconds);
-            return {
-                id: doc.id,
-                title: data.title,
-                content: data.content,
-                createdAt: createdAt
-            } as UpdatePost;
-        });
-        return updatesList;
-    } catch (error) {
-        console.error("Error fetching updates:", error);
-        // Return an empty array or handle the error as appropriate
+    if (error) {
+        console.error("Error fetching updates from Supabase:", error);
         return [];
     }
+    
+    return data as UpdatePost[];
 }
 
 export default async function UpdatesPage() {
@@ -73,7 +57,7 @@ export default async function UpdatesPage() {
                                 </Link>
                             </h2>
                             <p className="text-sm text-muted-foreground mb-4">
-                                {update.createdAt ? new Date(update.createdAt.seconds * 1000).toLocaleDateString() : "Date not available"}
+                                {update.created_at ? new Date(update.created_at).toLocaleDateString() : "Date not available"}
                             </p>
                             <div 
                                 className="prose prose-sm max-w-none text-muted-foreground line-clamp-3"
