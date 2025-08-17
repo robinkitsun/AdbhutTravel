@@ -9,15 +9,15 @@ import { cn } from "@/lib/utils";
 import Image from "next/image";
 
 export function WhatsAppButton() {
-  const [isVisible, setIsVisible] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
   const [showPrompt, setShowPrompt] = useState(true);
 
   useEffect(() => {
-    // This component will only be rendered on the client, avoiding hydration errors.
-    setIsVisible(true);
+    // This ensures all rendering logic only runs on the client after mounting.
+    setIsMounted(true);
   }, []);
 
-  if (!isVisible) {
+  if (!isMounted) {
     return null;
   }
 
