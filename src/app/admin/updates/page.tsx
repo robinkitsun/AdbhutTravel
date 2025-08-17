@@ -48,7 +48,7 @@ export default function AdminUpdatesPage() {
     setError('');
     try {
       if (!db) {
-        throw new Error("Firestore is not initialized.");
+        throw new Error("Firestore is not initialized. Check your Firebase configuration in .env.");
       }
       const updatesCollection = collection(db, 'updates');
       const q = query(updatesCollection, orderBy('createdAt', 'desc'));
@@ -88,6 +88,11 @@ export default function AdminUpdatesPage() {
       setError('Title and content are required.');
       return;
     }
+    if (!db) {
+        setError("Database connection is not available. Please check your configuration.");
+        return;
+    }
+
     setIsSubmitting(true);
     setError('');
 
@@ -106,12 +111,14 @@ export default function AdminUpdatesPage() {
           createdAt: serverTimestamp(),
         });
       }
+      // Only reset and fetch after a successful operation
       resetForm();
       await fetchUpdates(); 
     } catch (err: any) {
       console.error("Error submitting update:", err);
       setError(`An error occurred while saving the data. Please check the console and ensure your Firestore security rules allow writes. Error: ${err.message}`);
     } finally {
+        // This will run regardless of success or failure
         setIsSubmitting(false);
     }
   };
@@ -125,6 +132,10 @@ export default function AdminUpdatesPage() {
 
   const handleDelete = async (id: string) => {
     if (window.confirm('Are you sure you want to delete this update?')) {
+      if (!db) {
+        setError("Database connection is not available. Please check your configuration.");
+        return;
+      }
       setError('');
       setIsSubmitting(true);
       try {

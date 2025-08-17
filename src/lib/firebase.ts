@@ -1,8 +1,7 @@
 // THIS FILE IS FOR CLIENT-SIDE FIREBASE. DO NOT USE ON THE SERVER.
 import { initializeApp, getApps, getApp, FirebaseApp } from "firebase/app";
-import { getFirestore } from "firebase/firestore";
+import { getFirestore, Firestore } from "firebase/firestore";
 
-// The config is sourced from environment variables for security and flexibility.
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
   authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
@@ -13,23 +12,35 @@ const firebaseConfig = {
 };
 
 let app: FirebaseApp;
-let db: ReturnType<typeof getFirestore>;
+let db: Firestore;
 
-// Check if all necessary environment variables are set.
-const isConfigured = firebaseConfig.apiKey && firebaseConfig.projectId;
-
-if (isConfigured) {
+// This function can be called on the client to get the Firestore instance.
+// It ensures Firebase is initialized only once.
+function getClientDb() {
     if (getApps().length === 0) {
-      app = initializeApp(firebaseConfig);
+        // Check if config keys are present.
+        if (firebaseConfig.projectId && firebaseConfig.apiKey) {
+            app = initializeApp(firebaseConfig);
+        } else {
+            console.error("Client-side Firebase configuration is missing or incomplete in .env file.");
+        }
     } else {
-      app = getApp();
+        app = getApp();
     }
-    db = getFirestore(app);
-} else {
-    console.warn("Client-side Firebase config is missing. Firestore will not be available on the client.");
-    // Set db to a null-like object to avoid runtime errors if accessed.
-    db = {} as ReturnType<typeof getFirestore>;
+
+    // Get Firestore instance only if app was initialized successfully.
+    if (app) {
+        if (!db) { // Check if db is already initialized
+           db = getFirestore(app);
+        }
+        return db;
+    }
+    // Return null or handle the uninitialized case as needed.
+    return null;
 }
 
+// We export a function to get the db instance, not the instance itself.
+// This ensures initialization logic runs when it's first needed.
+const clientDb = getClientDb();
 
-export { app, db };
+export { clientDb as db };
