@@ -12,14 +12,15 @@ const firebaseConfig = {
 };
 
 // This function ensures Firebase is initialized only once.
-const getFirebaseApp = (): FirebaseApp => {
-  if (!getApps().length) {
-    return initializeApp(firebaseConfig);
-  }
-  return getApp();
-};
+let app: FirebaseApp;
+let db: Firestore;
 
-const app = getFirebaseApp();
-const db = getFirestore(app);
+if (getApps().length === 0) {
+  app = initializeApp(firebaseConfig);
+} else {
+  app = getApp();
+}
+
+db = getFirestore(app);
 
 export { app, db };

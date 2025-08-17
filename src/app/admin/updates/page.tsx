@@ -47,6 +47,9 @@ export default function AdminUpdatesPage() {
     setIsLoading(true);
     setError('');
     try {
+      if (!db) {
+        throw new Error("Firestore is not initialized.");
+      }
       const updatesCollection = collection(db, 'updates');
       const q = query(updatesCollection, orderBy('createdAt', 'desc'));
       const updatesSnapshot = await getDocs(q);
@@ -82,7 +85,7 @@ export default function AdminUpdatesPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!title || !content) {
-      alert('Title and content are required.');
+      setError('Title and content are required.');
       return;
     }
     setIsSubmitting(true);
@@ -105,7 +108,7 @@ export default function AdminUpdatesPage() {
       }
       // Only reset form and fetch updates on successful submission
       resetForm();
-      await fetchUpdates();
+      await fetchUpdates(); // This will now reflect the true state of the database
     } catch (err: any) {
       console.error("Error submitting update:", err);
       setError(`An error occurred while saving the data. Please check the console and ensure your Firestore security rules allow writes. Error: ${err.message}`);
@@ -125,12 +128,15 @@ export default function AdminUpdatesPage() {
   const handleDelete = async (id: string) => {
     if (window.confirm('Are you sure you want to delete this update?')) {
       setError('');
+      setIsSubmitting(true);
       try {
         await deleteDoc(doc(db, 'updates', id));
         await fetchUpdates();
       } catch (err: any) {
         console.error("Error deleting update:", err);
         setError(`Failed to delete the update. Error: ${err.message}`);
+      } finally {
+        setIsSubmitting(false);
       }
     }
   };
@@ -229,10 +235,11 @@ export default function AdminUpdatesPage() {
           </CardFooter>
         </form>
       </Card>
+      
+      {error && <p className="text-destructive p-4 bg-destructive/10 rounded-md mb-4">{error}</p>}
 
       <div className="space-y-4">
         <h2 className="text-2xl font-bold">Existing Updates</h2>
-        {error && <p className="text-destructive p-4 bg-destructive/10 rounded-md">{error}</p>}
         {isLoading ? (
           <div className="flex items-center gap-2 text-muted-foreground">
              <Loader2 className="h-5 w-5 animate-spin" />
@@ -250,11 +257,11 @@ export default function AdminUpdatesPage() {
                     </p>
                 </div>
                 <div className="flex gap-2 flex-shrink-0">
-                    <Button variant="outline" size="sm" onClick={() => handleEdit(post)}>
+                    <Button variant="outline" size="sm" onClick={() => handleEdit(post)} disabled={isSubmitting}>
                         <Edit className="mr-2 h-4 w-4" />
                         Edit
                     </Button>
-                    <Button variant="destructive" size="sm" onClick={() => handleDelete(post.id)}>
+                    <Button variant="destructive" size="sm" onClick={() => handleDelete(post.id)} disabled={isSubmitting}>
                         <Trash2 className="mr-2 h-4 w-4" />
                         Delete
                     </Button>
