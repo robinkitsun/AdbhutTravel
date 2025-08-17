@@ -7,8 +7,7 @@ import { getFirestore } from 'firebase-admin/firestore';
 // Google Cloud environment (like Firebase App Hosting).
 if (admin.apps.length === 0) {
   try {
-    // When deployed to a Google Cloud environment, initializeApp() is sufficient.
-    // For local development, you might need to set GOOGLE_APPLICATION_CREDENTIALS.
+    // When deployed to a Google Cloud environment, initializeApp() with the project ID is best practice.
     admin.initializeApp({
       projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID || process.env.GCP_PROJECT,
     });

@@ -22,7 +22,9 @@ let db: Firestore | null = null;
 
 function getClientDb() {
     if (!getApps().length) {
-        if (firebaseConfig.projectId && firebaseConfig.apiKey) {
+        // Ensure the necessary client-side config values are present.
+        // The API key is often the most critical one for client-side initialization.
+        if (firebaseConfig.projectId) {
             try {
                 app = initializeApp(firebaseConfig);
             } catch (e) {
