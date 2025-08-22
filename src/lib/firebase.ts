@@ -1,6 +1,6 @@
 
-import { initializeApp, getApps, getApp } from 'firebase/app';
-import { getFirestore } from 'firebase/firestore';
+import { initializeApp, getApps, getApp, type FirebaseApp } from 'firebase/app';
+import { getFirestore, type Firestore } from 'firebase/firestore';
 import admin from 'firebase-admin';
 
 // --- CLIENT-SIDE INITIALIZATION ---
@@ -14,8 +14,8 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase for the client
-const app = !getApps().length ? initializeApp(firebaseConfig) : getApp();
-const db = getFirestore(app);
+const app: FirebaseApp = !getApps().length ? initializeApp(firebaseConfig) : getApp();
+const db: Firestore = getFirestore(app);
 
 export { app, db };
 
@@ -26,8 +26,8 @@ const hasServiceAccount =
     process.env.FIREBASE_PRIVATE_KEY &&
     process.env.FIREBASE_CLIENT_EMAIL;
 
-if (!admin.apps.length) {
-    if (hasServiceAccount) {
+if (hasServiceAccount && !admin.apps.length) {
+    try {
         const serviceAccount: admin.ServiceAccount = {
             projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID!,
             privateKey: process.env.FIREBASE_PRIVATE_KEY!.replace(/\\n/g, '\n'),
@@ -37,10 +37,38 @@ if (!admin.apps.length) {
         admin.initializeApp({
             credential: admin.credential.cert(serviceAccount),
         });
-    } else {
-        console.warn("Firebase Admin SDK not initialized: Missing environment variables.");
+    } catch (error) {
+        console.error("Firebase Admin SDK initialization error:", error);
+    }
+} else if (!hasServiceAccount) {
+     if (process.env.NODE_ENV !== 'production') {
+        console.warn("Firebase Admin SDK not initialized: Missing environment variables. This is expected in client-side rendering but might be an issue for server-side logic.");
     }
 }
 
-const adminDb = admin.firestore();
-export { adminDb };
+// Lazy-loaded admin DB instance
+let adminDbInstance: admin.firestore.Firestore | null = null;
+
+const getAdminDb = (): admin.firestore.Firestore => {
+    if (!adminDbInstance) {
+        if (admin.apps.length === 0) {
+            // This part is for safety, though the above block should handle initialization.
+            if (hasServiceAccount) {
+                 admin.initializeApp({
+                    credential: admin.credential.cert({
+                        projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID!,
+                        privateKey: process.env.FIREBASE_PRIVATE_KEY!.replace(/\\n/g, '\n'),
+                        clientEmail: process.env.FIREBASE_CLIENT_EMAIL!,
+                    }),
+                });
+            } else {
+                 throw new Error("Firebase Admin SDK is not initialized. Check your environment variables.");
+            }
+        }
+        adminDbInstance = admin.firestore();
+    }
+    return adminDbInstance;
+}
+
+// We export a getter function instead of the instance itself.
+export const adminDb = getAdminDb();
