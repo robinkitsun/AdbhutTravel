@@ -9,6 +9,12 @@ const nextConfig: NextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
+  experimental: {
+    // This will prevent the build from failing if generateStaticParams
+    // encounters an error, for example, if the database is not available.
+    // Pages will be generated on-demand instead.
+    generateStaticParams: false,
+  },
   images: {
     unoptimized: true,
     remotePatterns: [
@@ -20,7 +26,6 @@ const nextConfig: NextConfig = {
       },
     ],
   },
-  output: 'export',
 };
 
 export default nextConfig;
