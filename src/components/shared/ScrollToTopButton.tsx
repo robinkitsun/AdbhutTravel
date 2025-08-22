@@ -10,6 +10,7 @@ export function ScrollToTopButton() {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
+    // This code now runs only on the client
     const toggleVisibility = () => {
       if (window.scrollY > 300) {
         setIsVisible(true);
@@ -31,6 +32,8 @@ export function ScrollToTopButton() {
       behavior: 'smooth',
     });
   };
+  
+  if (!isVisible) return null;
 
   return (
     <Button
@@ -38,11 +41,9 @@ export function ScrollToTopButton() {
       size="icon"
       onClick={scrollToTop}
       className={cn(
-        'fixed bottom-4 left-4 z-50 rounded-full shadow-lg transition-opacity duration-300',
-        isVisible ? 'opacity-100' : 'opacity-0 pointer-events-none'
+        'fixed bottom-4 left-4 z-50 rounded-full shadow-lg'
       )}
       aria-label="Scroll to top"
-      tabIndex={isVisible ? 0 : -1}
     >
       <ArrowUp className="h-6 w-6" />
     </Button>

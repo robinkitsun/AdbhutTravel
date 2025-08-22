@@ -10,14 +10,14 @@ export function ScrollToBottomButton() {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
+    // This code now runs only on the client
     const toggleVisibility = () => {
-      // Show button if not at the bottom of the page
       const isAtBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 1;
       setIsVisible(!isAtBottom);
     };
     
     window.addEventListener('scroll', toggleVisibility);
-    toggleVisibility(); // Initial check on mount
+    toggleVisibility();
 
     return () => {
       window.removeEventListener('scroll', toggleVisibility);
@@ -30,6 +30,8 @@ export function ScrollToBottomButton() {
       behavior: 'smooth',
     });
   };
+  
+  if (!isVisible) return null;
 
   return (
     <Button
@@ -37,11 +39,9 @@ export function ScrollToBottomButton() {
       size="icon"
       onClick={scrollToBottom}
       className={cn(
-        'fixed bottom-16 left-4 z-50 rounded-full shadow-lg transition-opacity duration-300',
-        isVisible ? 'opacity-100' : 'opacity-0 pointer-events-none'
+        'fixed bottom-16 left-4 z-50 rounded-full shadow-lg'
       )}
       aria-label="Scroll to bottom"
-      tabIndex={isVisible ? 0 : -1}
     >
       <ArrowDown className="h-6 w-6" />
     </Button>

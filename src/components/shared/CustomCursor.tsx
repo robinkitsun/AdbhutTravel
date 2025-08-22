@@ -1,21 +1,13 @@
 
 "use client";
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 
 export function CustomCursor() {
   const followerRef = useRef<HTMLDivElement>(null);
   const rafId = useRef<number>();
-  const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
-    // Only run this logic on the client after the component has mounted
-    setIsMounted(true);
-  }, []);
-
-  useEffect(() => {
-    if (!isMounted) return;
-
     const follower = followerRef.current;
     if (!follower) return;
 
@@ -63,11 +55,7 @@ export function CustomCursor() {
         cancelAnimationFrame(rafId.current);
       }
     };
-  }, [isMounted]);
-
-  if (!isMounted) {
-    return null;
-  }
+  }, []);
 
   return (
     <div className="hidden md:block">

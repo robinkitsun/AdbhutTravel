@@ -9,12 +9,9 @@ import { cn } from "@/lib/utils";
 import Image from "next/image";
 
 export function WhatsAppButton() {
-  const [isMounted, setIsMounted] = useState(false);
   const [showPrompt, setShowPrompt] = useState(false);
 
   useEffect(() => {
-    // This ensures all rendering logic only runs on the client after mounting.
-    setIsMounted(true);
     // Only show the prompt after the component has mounted on the client.
     setShowPrompt(true);
 
@@ -25,10 +22,6 @@ export function WhatsAppButton() {
 
     return () => clearTimeout(timer);
   }, []);
-
-  if (!isMounted) {
-    return null;
-  }
 
   return (
     <div className="fixed bottom-4 right-4 z-50 flex flex-col items-end gap-2">
