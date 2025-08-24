@@ -50,7 +50,7 @@ const focusAreas = [
 export default function CsrPage() {
   return (
     <>
-      <section className="bg-secondary py-16 md:py-24">
+      <section className="bg-secondary py-8 md:py-12">
         <div className="container text-center">
           <h1 className="text-4xl md:text-5xl font-headline font-bold">Corporate Social Responsibility (CSR)</h1>
           <p className="mt-4 max-w-3xl mx-auto text-lg text-muted-foreground">
