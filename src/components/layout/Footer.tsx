@@ -68,6 +68,7 @@ export default function Footer() {
                         <li><Link href="/cancellation-policy" className="text-muted-foreground hover:text-accent animated-underline inline-block transition-all duration-200 hover:-translate-y-0.5">Refund Policy</Link></li>
                         <li><Link href="/legal" className="text-muted-foreground hover:text-accent animated-underline inline-block transition-all duration-200 hover:-translate-y-0.5">Legal Information</Link></li>
                         <li><Link href="/career" className="text-muted-foreground hover:text-accent animated-underline inline-block transition-all duration-200 hover:-translate-y-0.5">Careers</Link></li>
+                        <li><Link href="/csr" className="text-muted-foreground hover:text-accent animated-underline inline-block transition-all duration-200 hover:-translate-y-0.5">CSR</Link></li>
                     </ul>
                 </div>
                 
