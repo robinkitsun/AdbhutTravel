@@ -5,8 +5,9 @@ import { z } from 'zod';
 import { Resend } from 'resend';
 import { contactFormSchema, miceFormSchema, tailoredTripFormSchema, termsOfServiceSchema, newsletterFormSchema } from "./schemas";
 
-const RESEND_FROM_EMAIL = 'noreply@adbhuttravel.com';
-const ADMIN_EMAIL = 'ankitsundriyal0@gmail.com';
+const RESEND_FROM_EMAIL = 'info@adbhuttravel.com';
+const ADMIN_BCC_EMAIL = 'ankitsundriyal0@gmail.com';
+const ADMIN_CC_EMAIL = 'info@adbhuttravel.in';
 const RESEND_AUDIENCE_ID = 'd8a19341-0c10-4079-a611-823eb5d289d0';
 
 type ContactFormState = {
@@ -75,10 +76,24 @@ export async function submitContactForm(
     const resend = new Resend(process.env.RESEND_API_KEY);
     await resend.emails.send({
       from: RESEND_FROM_EMAIL,
-      to: ADMIN_EMAIL,
+      to: email, // Send to the customer
+      cc: ADMIN_CC_EMAIL,
+      bcc: ADMIN_BCC_EMAIL,
       reply_to: email,
-      subject: `New Contact Form Submission: ${subject}`,
-      html: `<p>You have a new message from <strong>${name}</strong> (${email}):</p><p>${message}</p>`,
+      subject: `Re: ${subject} - Thank You for Contacting Adbhut Travel`,
+      html: `
+        <h1>Thank You For Your Message!</h1>
+        <p>Hello ${name},</p>
+        <p>We have received your message and will get back to you as soon as possible.</p>
+        <p>Here is a copy of your message for your records:</p>
+        <hr>
+        <p><strong>Subject:</strong> ${subject}</p>
+        <p><strong>Message:</strong></p>
+        <p>${message}</p>
+        <hr>
+        <p>Best regards,</p>
+        <p>The Adbhut Travel Team</p>
+      `,
     });
 
 
@@ -131,10 +146,22 @@ export async function submitMiceForm(
 
     await resend.emails.send({
       from: RESEND_FROM_EMAIL,
-      to: ADMIN_EMAIL,
+      to: data.email, // Send to the customer
+      cc: ADMIN_CC_EMAIL,
+      bcc: ADMIN_BCC_EMAIL,
       reply_to: data.email,
-      subject: 'New MICE Corporate Travel Inquiry',
-      html: formDetailsHtml,
+      subject: 'Your MICE Corporate Travel Inquiry with Adbhut Travel',
+      html: `
+        <h1>Thank You for Your MICE Inquiry!</h1>
+        <p>Hello ${data.firstName},</p>
+        <p>We have received your MICE inquiry and our event specialists will be in touch with you shortly. We look forward to helping you plan a successful event.</p>
+        <p>Here is a summary of your request:</p>
+        <hr>
+        ${formDetailsHtml}
+        <hr>
+        <p>Best regards,</p>
+        <p>The Adbhut Travel Team</p>
+      `,
     });
 
 
@@ -197,7 +224,8 @@ export async function submitTailoredTripForm(
         await resend.emails.send({
             from: RESEND_FROM_EMAIL,
             to: email,
-            cc: ADMIN_EMAIL,
+            cc: ADMIN_CC_EMAIL,
+            bcc: ADMIN_BCC_EMAIL,
             subject: 'Your Adbhut Travel Custom Trip Request',
             html: `
               <h1>Thank You for Your Custom Trip Request!</h1>
@@ -212,14 +240,15 @@ export async function submitTailoredTripForm(
             `,
         });
     } else {
-         // Send notification to the admin if no customer email
+         // Send notification to the admins if no customer email is provided
         await resend.emails.send({
           from: RESEND_FROM_EMAIL,
-          to: ADMIN_EMAIL,
+          to: ADMIN_CC_EMAIL, // Send directly to the main business inbox
+          bcc: ADMIN_BCC_EMAIL,
           subject: 'New Custom Trip Request (No Customer Email)',
           html: `
             <h1>New Custom Trip Request</h1>
-            <p>A new custom trip request has been submitted via the website.</p>
+            <p>A new custom trip request has been submitted via the website. No customer email was provided.</p>
             <hr>
             ${formDetailsHtml}
           `
@@ -436,7 +465,8 @@ export async function submitTermsOfServiceForm(
     await resend.emails.send({
       from: RESEND_FROM_EMAIL,
       to: data.email,
-      cc: ADMIN_EMAIL,
+      cc: ADMIN_CC_EMAIL,
+      bcc: ADMIN_BCC_EMAIL,
       subject: `Your Signed Terms & Conditions with Adbhut Travel - ${data.name}`,
       html: documentHtml,
     });
