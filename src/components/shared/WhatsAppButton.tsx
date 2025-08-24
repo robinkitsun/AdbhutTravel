@@ -12,15 +12,20 @@ export function WhatsAppButton() {
   const [showPrompt, setShowPrompt] = useState(false);
 
   useEffect(() => {
-    // Only show the prompt after the component has mounted on the client.
-    setShowPrompt(true);
-
-    // Optional: Hide prompt after a few seconds
+    // This code now runs only on the client
     const timer = setTimeout(() => {
-        setShowPrompt(false);
-    }, 8000); // Hide after 8 seconds
+        setShowPrompt(true);
+    }, 3000); // Show after 3 seconds
 
-    return () => clearTimeout(timer);
+    // Optional: Hide prompt after a few more seconds
+    const hideTimer = setTimeout(() => {
+        setShowPrompt(false);
+    }, 11000); // Start hiding after 8 more seconds (total 11s)
+
+    return () => {
+        clearTimeout(timer);
+        clearTimeout(hideTimer);
+    };
   }, []);
 
   return (
@@ -38,7 +43,7 @@ export function WhatsAppButton() {
         </div>
        )}
         <Link 
-            href="https://wa.me/919802125147" 
+            href="https://wa.me/919671825147" 
             target="_blank" 
             rel="noopener noreferrer" 
             className="transition-transform duration-300 hover:scale-110"

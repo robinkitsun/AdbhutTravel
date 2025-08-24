@@ -23,6 +23,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/cancellation-policy',
     '/updates',
     '/investment',
+    '/csr',
   ];
 
   const staticPageEntries = staticPages.map((path) => ({

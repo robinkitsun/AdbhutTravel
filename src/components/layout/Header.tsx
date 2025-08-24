@@ -28,14 +28,15 @@ const navLinks = [
   { href: "/about", label: "About Us" },
   { href: "/services", label: "Services" },
   { href: "/mice", label: "MICE" },
-  { href: "/updates", label: "Updates" },
   { href: "/career", label: "Career" },
   { href: "/contact", label: "Contact Us" },
 ];
 
 const morePageLinks = [
     { href: "/offers", label: "Offers" },
+    { href: "/updates", label: "Updates" },
     { href: "/investment", label: "Investment" },
+    { href: "/csr", label: "CSR" },
     { href: "/trademarks", label: "Trademarks" },
     { href: "/affiliations", label: "Affiliations" },
     { href: "https://northcabs.in", label: "Cab Booking" },
