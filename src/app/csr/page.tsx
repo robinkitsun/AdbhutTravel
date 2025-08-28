@@ -1,12 +1,13 @@
 
-import type { Metadata } from "next";
-import { Sprout, GraduationCap, HeartHandshake, Globe, VenetianMask } from 'lucide-react';
-import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+"use client";
 
-export const metadata: Metadata = {
-  title: "Corporate Social Responsibility",
-  description: "Learn about Adbhut Travel's commitment to corporate social responsibility (CSR) through the Adbhut Foundation and our initiatives to make a positive impact.",
-};
+import type { Metadata } from "next";
+import { Sprout, GraduationCap, HeartHandshake, Globe } from 'lucide-react';
+import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+import Image from "next/image";
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
+import Autoplay from "embla-carousel-autoplay";
+import React, { useRef, useEffect, useState } from "react";
 
 const focusAreas = [
     {
@@ -47,7 +48,41 @@ const focusAreas = [
     }
 ];
 
+const csrImages = [
+    "/images/services/CSR/Adbhut CSR Army Duty.jpg",
+    "/images/services/CSR/CSR 2.jpg",
+    "/images/services/CSR/CSR 3.png",
+    "/images/services/CSR/CSR 4.jpg",
+    "/images/services/CSR/CSR 5.jpg"
+];
+
 export default function CsrPage() {
+    const autoplayPlugin = React.useRef(Autoplay({ delay: 3000, stopOnInteraction: true, stopOnFocusIn: true }));
+    const carouselRef = useRef<HTMLDivElement>(null);
+    const [isCarouselVisible, setIsCarouselVisible] = useState(false);
+
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              setIsCarouselVisible(entry.isIntersecting);
+            });
+          },
+          { threshold: 0.5 }
+        );
+    
+        const currentRef = carouselRef.current;
+        if (currentRef) {
+          observer.observe(currentRef);
+        }
+    
+        return () => {
+          if (currentRef) {
+            observer.unobserve(currentRef);
+          }
+        };
+      }, []);
+
   return (
     <>
       <section className="bg-secondary py-8 md:py-12">
@@ -58,6 +93,37 @@ export default function CsrPage() {
           </p>
         </div>
       </section>
+
+       <section className="py-12" ref={carouselRef}>
+        <div className="container">
+          <Carousel
+            plugins={isCarouselVisible ? [autoplayPlugin.current] : []}
+            className="w-full relative"
+            opts={{ loop: true, align: "center" }}
+            onMouseEnter={autoplayPlugin.current.stop}
+            onMouseLeave={autoplayPlugin.current.play}
+          >
+            <CarouselContent className="-ml-4">
+              {csrImages.map((src, index) => (
+                <CarouselItem key={index} className="pl-4 md:basis-1/2 lg:basis-1/3">
+                  <div className="w-full h-80 relative rounded-lg overflow-hidden shadow-lg">
+                    <Image
+                      src={src}
+                      alt={`CSR initiative image ${index + 1}`}
+                      fill
+                      className="object-contain"
+                      data-ai-hint="social responsibility"
+                    />
+                  </div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <CarouselPrevious className="absolute left-2 top-1/2 -translate-y-1/2 z-10 size-10 md:size-12 rounded-full bg-background/70 hover:bg-background/90 shadow-lg border" />
+            <CarouselNext className="absolute right-2 top-1/2 -translate-y-1/2 z-10 size-10 md:size-12 rounded-full bg-background/70 hover:bg-background/90 shadow-lg border" />
+          </Carousel>
+        </div>
+      </section>
+
       <section className="py-16">
          <div className="container max-w-4xl mx-auto space-y-12">
             <div className="text-center">
