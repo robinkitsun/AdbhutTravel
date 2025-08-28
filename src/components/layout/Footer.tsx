@@ -51,12 +51,12 @@ export default function Footer() {
                 <div className="space-y-3">
                     <h3 className="font-headline font-semibold text-lg">Quick Links</h3>
                     <ul className="space-y-2">
+                        <li><Link href="/mice" className="text-muted-foreground hover:text-accent animated-underline inline-block transition-all duration-200 hover:-translate-y-0.5">MICE</Link></li>
+                        <li><Link href="/offers" className="text-muted-foreground hover:text-accent animated-underline inline-block transition-all duration-200 hover:-translate-y-0.5">Offers</Link></li>
+                        <li><Link href="/updates" className="text-muted-foreground hover:text-accent animated-underline inline-block transition-all duration-200 hover:-translate-y-0.5">Updates</Link></li>
                         <li><Link href="/about" className="text-muted-foreground hover:text-accent animated-underline inline-block transition-all duration-200 hover:-translate-y-0.5">About Us</Link></li>
                         <li><Link href="/services" className="text-muted-foreground hover:text-accent animated-underline inline-block transition-all duration-200 hover:-translate-y-0.5">Services</Link></li>
-                        <li><Link href="/mice" className="text-muted-foreground hover:text-accent animated-underline inline-block transition-all duration-200 hover:-translate-y-0.5">MICE</Link></li>
-                        <li><Link href="/updates" className="text-muted-foreground hover:text-accent animated-underline inline-block transition-all duration-200 hover:-translate-y-0.5">Updates</Link></li>
                         <li><Link href="/investment" className="text-muted-foreground hover:text-accent animated-underline inline-block transition-all duration-200 hover:-translate-y-0.5">Investment</Link></li>
-                        <li><Link href="/offers" className="text-muted-foreground hover:text-accent animated-underline inline-block transition-all duration-200 hover:-translate-y-0.5">Offers</Link></li>
                     </ul>
                 </div>
 
@@ -64,11 +64,11 @@ export default function Footer() {
                 <div className="space-y-3">
                     <h3 className="font-headline font-semibold text-lg">Legal</h3>
                      <ul className="space-y-2">
-                        <li><Link href="/terms-of-service" className="text-muted-foreground hover:text-accent animated-underline inline-block transition-all duration-200 hover:-translate-y-0.5">Policy & Terms of Service</Link></li>
-                        <li><Link href="/cancellation-policy" className="text-muted-foreground hover:text-accent animated-underline inline-block transition-all duration-200 hover:-translate-y-0.5">Refund Policy</Link></li>
-                        <li><Link href="/legal" className="text-muted-foreground hover:text-accent animated-underline inline-block transition-all duration-200 hover:-translate-y-0.5">Legal Information</Link></li>
-                        <li><Link href="/career" className="text-muted-foreground hover:text-accent animated-underline inline-block transition-all duration-200 hover:-translate-y-0.5">Careers</Link></li>
                         <li><Link href="/csr" className="text-muted-foreground hover:text-accent animated-underline inline-block transition-all duration-200 hover:-translate-y-0.5">CSR</Link></li>
+                        <li><Link href="/career" className="text-muted-foreground hover:text-accent animated-underline inline-block transition-all duration-200 hover:-translate-y-0.5">Careers</Link></li>
+                        <li><Link href="/legal" className="text-muted-foreground hover:text-accent animated-underline inline-block transition-all duration-200 hover:-translate-y-0.5">Legal Information</Link></li>
+                        <li><Link href="/cancellation-policy" className="text-muted-foreground hover:text-accent animated-underline inline-block transition-all duration-200 hover:-translate-y-0.5">Refund Policy</Link></li>
+                        <li><Link href="/terms-of-service" className="text-muted-foreground hover:text-accent animated-underline inline-block transition-all duration-200 hover:-translate-y-0.5">Policy & Terms of Service</Link></li>
                     </ul>
                 </div>
                 

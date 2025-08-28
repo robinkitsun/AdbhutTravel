@@ -33,10 +33,10 @@ const navLinks = [
 ];
 
 const morePageLinks = [
+    { href: "/csr", label: "CSR" },
     { href: "/offers", label: "Offers" },
     { href: "/updates", label: "Updates" },
     { href: "/investment", label: "Investment" },
-    { href: "/csr", label: "CSR" },
     { href: "/trademarks", label: "Trademarks" },
     { href: "/affiliations", label: "Affiliations" },
     { href: "https://northcabs.in", label: "Cab Booking" },
@@ -64,8 +64,8 @@ export default function Header() {
     };
   }, []);
 
-  const headerHeightClass = isMounted && scrolled ? 'h-20' : 'h-24';
-  const navGapClass = isMounted && scrolled ? 'gap-5' : 'gap-8';
+  const headerHeightClass = isMounted && scrolled ? 'h-24' : 'h-20';
+  const navGapClass = isMounted && scrolled ? 'gap-8' : 'gap-5';
 
 
   return (
