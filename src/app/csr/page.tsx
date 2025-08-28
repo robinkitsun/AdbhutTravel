@@ -50,10 +50,10 @@ const focusAreas = [
 
 const csrImages = [
     "/images/services/CSR/Adbhut CSR Army Duty.jpg",
-    "/images/services/CSR/CSR 2.jpg",
-    "/images/services/CSR/CSR 3.png",
-    "/images/services/CSR/CSR 4.jpg",
-    "/images/services/CSR/CSR 5.jpg"
+    "/images/services/CSR/CSR Army Duty.jpg",
+    "/images/services/CSR/CSR Blood Donation.jpg",
+    "/images/services/CSR/CSR Blood Camp 3.jpg",
+    "/images/services/CSR/CSR Blood Camp 2.jpg"
 ];
 
 export default function CsrPage() {
