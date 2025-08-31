@@ -40,7 +40,7 @@ const morePageLinks = [
     { href: "/affiliations", label: "Affiliations" },
     { href: "/trademarks", label: "Trademarks" },
     { href: "https://northcabs.in", label: "Cab Booking" },
-    { href: "https://adbhuttravel.com/visitkurukshetra.in.pdf", label: "Visit Kurukshetra" },
+    { href: "https://adbhuttravel.in/visitkurukshetra.in.pdf", label: "Visit Kurukshetra" },
 ];
 
 export default function Header() {
@@ -64,8 +64,8 @@ export default function Header() {
     };
   }, []);
 
-  const headerHeightClass = isMounted && !scrolled ? 'h-24' : 'h-20';
-  const navGapClass = isMounted && !scrolled ? 'gap-8' : 'gap-5';
+  const headerHeightClass = isMounted && scrolled ? 'h-24' : 'h-20';
+  const navGapClass = isMounted && scrolled ? 'gap-8' : 'gap-5';
 
 
   return (
