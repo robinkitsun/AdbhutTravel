@@ -244,7 +244,7 @@ export default function AboutPage() {
                   <h3 className="text-lg md:text-xl font-headline font-semibold">{member.name}</h3>
                   <p className="text-accent text-sm md:text-base font-medium">{member.role}</p>
                   {member.additionalRole && (
-                    <p className="text-muted-foreground text-[10px] leading-snug mt-1" dangerouslySetInnerHTML={{ __html: member.additionalRole }} />
+                    <p className="text-muted-foreground text-[8px] leading-snug mt-1" dangerouslySetInnerHTML={{ __html: member.additionalRole }} />
                   )}
                 </div>
               </Card>
@@ -255,3 +255,5 @@ export default function AboutPage() {
     </>
   );
 }
+
+    
