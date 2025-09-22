@@ -12,7 +12,7 @@ import Link from 'next/link';
 import Autoplay from 'embla-carousel-autoplay';
 
 const teamMembers = [
-  { name: "Mr. Mohit Sharma", role: "Founder & CEO", image: "/images/services/About Us/Mohit Adbhut Founder.jpeg", dataAiHint: "man portrait" },
+  { name: "Mr. Mohit Sharma", role: "Founder & CEO", additionalRole: "Treasurer - Punjab, Haryana & Chandigarh Chapter ADTOI - Association of Domestic Tour Operators of India", image: "/images/services/About Us/Mohit Adbhut Founder.jpeg", dataAiHint: "man portrait" },
   { name: "Mrs. Aditi Sharma", role: "Sales Director", image: "/images/services/About Us/Mrs. Aditi Sharma.jpg", dataAiHint: "woman portrait" },
   { name: "Mr. Sachin", role: "Head of Operations", image: "/images/services/About Us/Sachin-OPS-Manager-Adbhut-Travel-Event-Pvt.-Ltd.png", dataAiHint: "man portrait" },
   { name: "Mr. Ankit", role: "Business Development Manager (BDM)", image: "/images/services/About Us/Anku D.Dun.jpg", dataAiHint: "man portrait" },
@@ -235,13 +235,18 @@ export default function AboutPage() {
           <h2 className="text-3xl font-headline font-bold text-center mb-12">Our Leadership Team</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             {teamMembers.map((member) => (
-              <Card key={member.name} className="p-4 md:p-6 text-center border-0 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+              <Card key={member.name} className="p-4 md:p-6 text-center border-0 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 flex flex-col">
                 <Avatar className="w-24 h-24 mx-auto mb-4">
                   <AvatarImage src={member.image} alt={member.name} data-ai-hint={member.dataAiHint} className="object-cover" />
                   <AvatarFallback>{member.name.charAt(0)}</AvatarFallback>
                 </Avatar>
-                <h3 className="text-lg md:text-xl font-headline font-semibold">{member.name}</h3>
-                <p className="text-accent text-sm md:text-base font-medium">{member.role}</p>
+                <div className="flex-grow">
+                  <h3 className="text-lg md:text-xl font-headline font-semibold">{member.name}</h3>
+                  <p className="text-accent text-sm md:text-base font-medium">{member.role}</p>
+                  {(member as any).additionalRole && (
+                    <p className="text-muted-foreground text-xs mt-1">{(member as any).additionalRole}</p>
+                  )}
+                </div>
               </Card>
             ))}
           </div>
