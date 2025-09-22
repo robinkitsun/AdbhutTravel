@@ -12,7 +12,7 @@ import Link from 'next/link';
 import Autoplay from 'embla-carousel-autoplay';
 
 const teamMembers = [
-  { name: "Mr. Mohit Sharma", role: "Founder & CEO", additionalRole: "Treasurer - Punjab, Haryana & Chandigarh Chapter <br/> (ADTOI - Association of Domestic Tour Operators of India)", image: "/images/services/About Us/Mohit Adbhut Founder.jpeg", dataAiHint: "man portrait" },
+  { name: "Mr. Mohit Sharma", role: "Founder & CEO", additionalRole: "(Treasurer - Punjab, Haryana & Chandigarh Chapter <br/> ADTOI - Association of Domestic Tour Operators of India)", image: "/images/services/About Us/Mohit Adbhut Founder.jpeg", dataAiHint: "man portrait" },
   { name: "Mrs. Aditi Sharma", role: "Sales Director", image: "/images/services/About Us/Mrs. Aditi Sharma.jpg", dataAiHint: "woman portrait" },
   { name: "Mr. Sachin", role: "Head of Operations", image: "/images/services/About Us/Sachin-OPS-Manager-Adbhut-Travel-Event-Pvt.-Ltd.png", dataAiHint: "man portrait" },
   { name: "Mr. Ankit", role: "Business Development Manager (BDM)", image: "/images/services/About Us/Anku D.Dun.jpg", dataAiHint: "man portrait" },
@@ -255,3 +255,5 @@ export default function AboutPage() {
     </>
   );
 }
+
+    
