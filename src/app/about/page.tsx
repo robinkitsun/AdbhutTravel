@@ -245,7 +245,7 @@ export default function AboutPage() {
                   <p className="text-accent text-sm md:text-base font-medium">{member.role}</p>
                   {member.additionalRoleLine1 && (
                     <div className="text-muted-foreground mt-1 leading-snug">
-                        <p className="text-[10px]">{member.additionalRoleLine1}</p>
+                        <p className="text-[9px]">{member.additionalRoleLine1}</p>
                         <p className="text-[8px]">{member.additionalRoleLine2}</p>
                     </div>
                   )}
