@@ -37,3 +37,14 @@ export interface Testimonial {
   author: string;
   location: string;
 }
+
+export interface BlogPost {
+  id: string;
+  created_at: string;
+  updated_at?: string;
+  title: string;
+  slug: string;
+  content: string;
+  cover_image_url?: string;
+  status: 'draft' | 'published' | 'archived';
+}

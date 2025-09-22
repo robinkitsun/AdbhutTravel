@@ -35,6 +35,7 @@ const navLinks = [
 const morePageLinks = [
     { href: "/csr", label: "CSR" },
     { href: "/offers", label: "Offers" },
+    { href: "/blogs", label: "Blogs" },
     { href: "/updates", label: "Updates" },
     { href: "/investment", label: "Investment" },
     { href: "/affiliations", label: "Affiliations" },
