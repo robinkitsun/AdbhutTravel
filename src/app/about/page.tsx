@@ -12,7 +12,7 @@ import Link from 'next/link';
 import Autoplay from 'embla-carousel-autoplay';
 
 const teamMembers = [
-  { name: "Mr. Mohit Sharma", role: "Founder & CEO", additionalRole: "(Treasurer - Punjab, Haryana & Chandigarh Chapter <br/> ADTOI - Association of Domestic Tour Operators of India)", image: "/images/services/About Us/Mohit Adbhut Founder.jpeg", dataAiHint: "man portrait" },
+  { name: "Mr. Mohit Sharma", role: "Founder & CEO", additionalRoleLine1: "(Treasurer - Punjab, Haryana & Chandigarh Chapter", additionalRoleLine2: "ADTOI - Association of Domestic Tour Operators of India)", image: "/images/services/About Us/Mohit Adbhut Founder.jpeg", dataAiHint: "man portrait" },
   { name: "Mrs. Aditi Sharma", role: "Sales Director", image: "/images/services/About Us/Mrs. Aditi Sharma.jpg", dataAiHint: "woman portrait" },
   { name: "Mr. Sachin", role: "Head of Operations", image: "/images/services/About Us/Sachin-OPS-Manager-Adbhut-Travel-Event-Pvt.-Ltd.png", dataAiHint: "man portrait" },
   { name: "Mr. Ankit", role: "Business Development Manager (BDM)", image: "/images/services/About Us/Anku D.Dun.jpg", dataAiHint: "man portrait" },
@@ -243,8 +243,11 @@ export default function AboutPage() {
                 <div className="flex-grow">
                   <h3 className="text-lg md:text-xl font-headline font-semibold">{member.name}</h3>
                   <p className="text-accent text-sm md:text-base font-medium">{member.role}</p>
-                  {member.additionalRole && (
-                    <p className="text-muted-foreground text-[8px] leading-snug mt-1" dangerouslySetInnerHTML={{ __html: member.additionalRole }} />
+                  {member.additionalRoleLine1 && (
+                    <div className="text-muted-foreground mt-1 leading-snug">
+                        <p className="text-[10px]">{member.additionalRoleLine1}</p>
+                        <p className="text-[8px]">{member.additionalRoleLine2}</p>
+                    </div>
                   )}
                 </div>
               </Card>
