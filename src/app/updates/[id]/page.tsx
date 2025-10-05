@@ -69,7 +69,7 @@ export default async function UpdateDetailPage({ params }: { params: { id: strin
            <div className="max-w-3xl mx-auto">
                 <h1 className="text-3xl md:text-4xl font-headline font-bold mb-4">{update.title}</h1>
                 <p className="text-sm text-muted-foreground mb-8">
-                     {update.created_at && `Published on ${new Date(update.created_at).toLocaleDateString()}`}
+                     {update.created_at && `Published on ${new Date(update.created_at).toLocaleDateString('en-IN')}`}
                 </p>
                 <div 
                     className="prose lg:prose-lg max-w-none"

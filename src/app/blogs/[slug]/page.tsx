@@ -81,7 +81,7 @@ export default async function BlogDetailPage({ params }: { params: { slug: strin
                 )}
                 <h1 className="text-3xl md:text-4xl font-headline font-bold mb-4">{blog.title}</h1>
                 <p className="text-sm text-muted-foreground mb-8">
-                     {`Published on ${new Date(blog.created_at).toLocaleDateString()}`}
+                     {`Published on ${new Date(blog.created_at).toLocaleDateString('en-IN')}`}
                 </p>
                 <div 
                     className="prose lg:prose-lg max-w-none"

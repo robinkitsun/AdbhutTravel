@@ -63,7 +63,7 @@ export default async function BlogsPage() {
                                         {post.title}
                                     </h2>
                                     <p className="text-sm text-muted-foreground mb-4">
-                                        {new Date(post.created_at).toLocaleDateString()}
+                                        {new Date(post.created_at).toLocaleDateString('en-IN')}
                                     </p>
                                     <div 
                                         className="prose prose-sm max-w-none text-muted-foreground line-clamp-3 flex-grow"

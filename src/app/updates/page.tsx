@@ -57,7 +57,7 @@ export default async function UpdatesPage() {
                                 </Link>
                             </h2>
                             <p className="text-sm text-muted-foreground mb-4">
-                                {update.created_at ? new Date(update.created_at).toLocaleDateString() : "Date not available"}
+                                {update.created_at ? new Date(update.created_at).toLocaleDateString('en-IN') : "Date not available"}
                             </p>
                             <div 
                                 className="prose prose-sm max-w-none text-muted-foreground line-clamp-3"

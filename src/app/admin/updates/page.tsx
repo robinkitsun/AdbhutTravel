@@ -391,7 +391,7 @@ export default function AdminUpdatesPage() {
                 <div className="flex-grow mb-4 sm:mb-0 sm:mr-4">
                     <h3 className="font-semibold">{post.title}</h3>
                     <p className="text-sm text-muted-foreground">
-                        Published on: {post.created_at ? new Date(post.created_at).toLocaleDateString() : 'Date not available'}
+                        Published on: {post.created_at ? new Date(post.created_at).toLocaleDateString('en-IN') : 'Date not available'}
                     </p>
                 </div>
                 <div className="flex gap-2 flex-shrink-0">

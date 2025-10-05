@@ -254,7 +254,7 @@ export default function AdminBlogsPage() {
                 <div className="flex-grow mb-4 sm:mb-0 sm:mr-4">
                     <h3 className="font-semibold">{post.title}</h3>
                     <p className="text-sm text-muted-foreground">
-                        Status: <span className="font-medium capitalize">{post.status}</span> | Created: {post.created_at ? new Date(post.created_at).toLocaleDateString() : 'N/A'}
+                        Status: <span className="font-medium capitalize">{post.status}</span> | Created: {post.created_at ? new Date(post.created_at).toLocaleDateString('en-IN') : 'N/A'}
                     </p>
                 </div>
                 <div className="flex gap-2 flex-shrink-0">
