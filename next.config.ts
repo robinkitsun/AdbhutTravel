@@ -24,6 +24,14 @@ const nextConfig: NextConfig = {
         port: '',
         pathname: '/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'adbhuttravel.in',
+      },
+      {
+        protocol: 'https',
+        hostname: 'www.adbhuttravel.in',
+      }
     ],
   },
 };
