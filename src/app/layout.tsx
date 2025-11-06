@@ -10,6 +10,7 @@ import { ScrollToBottomButton } from "@/components/shared/ScrollToBottomButton";
 import { CustomCursor } from "@/components/shared/CustomCursor";
 import { PT_Sans, Playfair_Display } from 'next/font/google';
 import { WhatsAppButton } from "@/components/shared/WhatsAppButton";
+import Script from "next/script";
 
 const ptSans = PT_Sans({
   subsets: ['latin'],
@@ -67,6 +68,32 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${ptSans.variable} ${playfairDisplay.variable} scroll-smooth`} suppressHydrationWarning>
       <head>
+        {/* Meta Pixel Code */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              !function(f,b,e,v,n,t,s)
+              {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+              n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+              if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+              n.queue=[];t=b.createElement(e);t.async=!0;
+              t.src=v;s=b.getElementsByTagName(e)[0];
+              s.parentNode.insertBefore(t,s)}(window, document,'script',
+              'https://connect.facebook.net/en_US/fbevents.js');
+              fbq('init', '534515503076183');
+              fbq('track', 'PageView');
+            `,
+          }}
+        />
+        <noscript>
+          <img
+            height="1"
+            width="1"
+            style={{ display: 'none' }}
+            src="https://www.facebook.com/tr?id=534515503076183&ev=PageView&noscript=1"
+          />
+        </noscript>
+        {/* End Meta Pixel Code */}
       </head>
       <body className="font-body antialiased flex flex-col min-h-screen bg-background">
         <CustomCursor />
