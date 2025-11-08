@@ -23,7 +23,28 @@ type MiceFormData = z.infer<typeof miceFormSchema>;
 const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 const hotelCategories = ["3 Star", "4 Star", "5 Star"];
 const hotelTypes = ["Business Hotel", "Resort", "Boutique Hotel", "Airport Hotel"];
-const countryCodes = ["+91", "+1", "+44", "+61", "+971"];
+const countryCodes = [
+    "+91", // India
+    "+1",  // USA/Canada
+    "+44", // UK
+    "+971",// UAE
+    "+966",// Saudi Arabia
+    "+974",// Qatar
+    "+65", // Singapore
+    "+60", // Malaysia
+    "+61", // Australia
+    "+64", // New Zealand
+    "+49", // Germany
+    "+33", // France
+    "+39", // Italy
+    "+34", // Spain
+    "+31", // Netherlands
+    "+41", // Switzerland
+    "+27", // South Africa
+    "+86", // China
+    "+81", // Japan
+    "+82", // South Korea
+];
 
 export default function MiceContactForm() {
   const [formStatus, setFormStatus] = useState<{ success: boolean; message: string }>({ success: false, message: "" });
@@ -302,3 +323,5 @@ export default function MiceContactForm() {
     </div>
   );
 }
+
+    
