@@ -27,6 +27,9 @@ const countryCodes = ["+91", "+1", "+44", "+61", "+971"];
 
 export default function MiceContactForm() {
   const [formStatus, setFormStatus] = useState<{ success: boolean; message: string }>({ success: false, message: "" });
+  
+  // Get current month name
+  const currentMonth = new Date().toLocaleString('default', { month: 'long' });
 
   const form = useForm<MiceFormData>({
     resolver: zodResolver(miceFormSchema),
@@ -36,7 +39,7 @@ export default function MiceContactForm() {
       email: "",
       countryCode: "+91",
       phone: "",
-      monthOfTravel: "October",
+      monthOfTravel: currentMonth,
       guests: "5",
       destinations: "",
       hotelCategory: "3 Star",
@@ -299,5 +302,3 @@ export default function MiceContactForm() {
     </div>
   );
 }
-
-    
