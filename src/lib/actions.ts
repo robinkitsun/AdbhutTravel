@@ -82,17 +82,25 @@ export async function submitContactForm(
       reply_to: email,
       subject: `Re: ${subject} - Thank You for Contacting Adbhut Travel`,
       html: `
-        <h1>Thank You For Your Message!</h1>
-        <p>Hello ${name},</p>
-        <p>We have received your message and will get back to you as soon as possible.</p>
-        <p>Here is a copy of your message for your records:</p>
-        <hr>
-        <p><strong>Subject:</strong> ${subject}</p>
-        <p><strong>Message:</strong></p>
-        <p>${message}</p>
-        <hr>
-        <p>Best regards,</p>
-        <p>The Adbhut Travel Team</p>
+        <!DOCTYPE html>
+        <html>
+        <head>
+          <meta charset="UTF-8">
+        </head>
+        <body>
+          <h1>Thank You For Your Message!</h1>
+          <p>Hello ${name},</p>
+          <p>We have received your message and will get back to you as soon as possible.</p>
+          <p>Here is a copy of your message for your records:</p>
+          <hr>
+          <p><strong>Subject:</strong> ${subject}</p>
+          <p><strong>Message:</strong></p>
+          <p>${message}</p>
+          <hr>
+          <p>Best regards,</p>
+          <p>The Adbhut Travel Team</p>
+        </body>
+        </html>
       `,
     });
 
@@ -152,15 +160,23 @@ export async function submitMiceForm(
       reply_to: data.email,
       subject: 'Your MICE Corporate Travel Inquiry with Adbhut Travel',
       html: `
-        <h1>Thank You for Your MICE Inquiry!</h1>
-        <p>Hello ${data.firstName},</p>
-        <p>We have received your MICE inquiry and our event specialists will be in touch with you shortly. We look forward to helping you plan a successful event.</p>
-        <p>Here is a summary of your request:</p>
-        <hr>
-        ${formDetailsHtml}
-        <hr>
-        <p>Best regards,</p>
-        <p>The Adbhut Travel Team</p>
+        <!DOCTYPE html>
+        <html>
+        <head>
+          <meta charset="UTF-8">
+        </head>
+        <body>
+          <h1>Thank You for Your MICE Inquiry!</h1>
+          <p>Hello ${data.firstName},</p>
+          <p>We have received your MICE inquiry and our event specialists will be in touch with you shortly. We look forward to helping you plan a successful event.</p>
+          <p>Here is a summary of your request:</p>
+          <hr>
+          ${formDetailsHtml}
+          <hr>
+          <p>Best regards,</p>
+          <p>The Adbhut Travel Team</p>
+        </body>
+        </html>
       `,
     });
 
@@ -228,15 +244,23 @@ export async function submitTailoredTripForm(
             bcc: ADMIN_BCC_EMAIL,
             subject: 'Your Adbhut Travel Custom Trip Request',
             html: `
-              <h1>Thank You for Your Custom Trip Request!</h1>
-              <p>Hello,</p>
-              <p>We've received your request and our travel experts are already looking into it. We will get back to you shortly with a personalized plan.</p>
-              <p>Here's a summary of the details you provided:</p>
-              <hr>
-              ${formDetailsHtml}
-              <br>
-              <p>Best regards,</p>
-              <p>The Adbhut Travel Team</p>
+              <!DOCTYPE html>
+              <html>
+              <head>
+                <meta charset="UTF-8">
+              </head>
+              <body>
+                <h1>Thank You for Your Custom Trip Request!</h1>
+                <p>Hello,</p>
+                <p>We've received your request and our travel experts are already looking into it. We will get back to you shortly with a personalized plan.</p>
+                <p>Here's a summary of the details you provided:</p>
+                <hr>
+                ${formDetailsHtml}
+                <br>
+                <p>Best regards,</p>
+                <p>The Adbhut Travel Team</p>
+              </body>
+              </html>
             `,
         });
     } else {
@@ -247,10 +271,18 @@ export async function submitTailoredTripForm(
           bcc: ADMIN_BCC_EMAIL,
           subject: 'New Custom Trip Request (No Customer Email)',
           html: `
-            <h1>New Custom Trip Request</h1>
-            <p>A new custom trip request has been submitted via the website. No customer email was provided.</p>
-            <hr>
-            ${formDetailsHtml}
+            <!DOCTYPE html>
+            <html>
+            <head>
+              <meta charset="UTF-8">
+            </head>
+            <body>
+              <h1>New Custom Trip Request</h1>
+              <p>A new custom trip request has been submitted via the website. No customer email was provided.</p>
+              <hr>
+              ${formDetailsHtml}
+            </body>
+            </html>
           `
         });
     }
@@ -372,7 +404,7 @@ export async function submitTermsOfServiceForm(
           </ol>
           <hr/>
           <div class="question-block">
-            <p class="question">Q 1. You are taking this service for yourself or for someone else (आप यह सर्विस खुद के लिए ले रहे हैं या किसी और के लिए)?</p>
+            <p class="question">Q 1. You are taking this service for yourself or for for someone else (आप यह सर्विस खुद के लिए ले रहे हैं या किसी और के लिए)?</p>
             <p class="answer">${data.serviceFor === 'self' ? 'For Myself (मेरे लिए)' : `For Someone else (${data.relationship})`}</p>
           </div>
           <div class="question-block">
