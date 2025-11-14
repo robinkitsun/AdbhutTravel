@@ -8,6 +8,7 @@ export const metadata: Metadata = {
 const affiliationsList = [
   "MOT (Ministry of Tourism India)",
   "IATA (International Air Transport Association – Established in 1945)",
+  "PATA India (Pacific Asia Travel Association - Established in 1974)",
   "TAAI (Travel Agents Association Of India – Established in 1951)",
   "TAFI (Travel Agents Federation Of India – Established in 1986)",
   "ETAA (Enterprising Travel Agent's Association – Established in 1996)",
