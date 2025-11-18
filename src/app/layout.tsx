@@ -68,6 +68,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${ptSans.variable} ${playfairDisplay.variable} scroll-smooth`} suppressHydrationWarning>
       <head>
+        <meta name="facebook-domain-verification" content="f2c3wtdfb1s7oi06s2le3iiwtx3tlt" />
         {/* Meta Pixel Code */}
         <script
           dangerouslySetInnerHTML={{
